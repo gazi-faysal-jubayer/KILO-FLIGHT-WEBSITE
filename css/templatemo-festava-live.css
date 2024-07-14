@@ -13,9 +13,9 @@ https://templatemo.com/tm-583-festava-live
 :root {
   --white-color:                  #ffffff;
   --primary-color:                #F8CB2E;
-  --secondary-color:              #EE5007;
+  --secondary-color:              #FE2D48;
   --section-bg-color:             #f0f8ff;
-  --custom-btn-bg-color:          #EE5007;
+  --custom-btn-bg-color:          #75A580;
   --custom-btn-bg-hover-color:    #c01f27;
   --dark-color:                   #000000;
   --p-color:                      #717275;
@@ -373,6 +373,10 @@ strong {
 .navbar {
   background: transparent;
   z-index: 9;
+}
+
+.navbar-brand img {
+  height: 50px; /* Adjust logo height */
 }
 
 .navbar-brand,
