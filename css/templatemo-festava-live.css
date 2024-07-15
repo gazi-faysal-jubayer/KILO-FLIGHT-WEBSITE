@@ -10,6 +10,7 @@
   --p-color:                      #717275;
   --border-color:                 #7fffd4;
   --link-hover-color:             #B22727;
+  --light-yellow-color:           #ffc107;
 
   --body-font-family:             'Outfit', sans-serif;
 
@@ -352,12 +353,47 @@ strong {
   top: 0;
   right: 0;
   left: 0;
-  margin-top: 51px;
+  margin-top: 0;
 }
 
+
+
+
+
+
 .sticky-wrapper.is-sticky .navbar {
-  background-color: var(--dark-color);
+    background-color: var(--dark-color);
+    position: relative;
 }
+
+.sticky-wrapper.is-sticky .navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; /* Height of the small white line */
+    background-color: var(--secondary-color);
+    opacity: 0.8;
+    animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+    from {
+        width: 0;
+        left: 0;
+    }
+    to {
+        width: 100%;
+        left: 0;
+    }
+}
+
+
+
+
+
+
 
 .navbar {
   background: transparent;
@@ -376,25 +412,78 @@ strong {
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
-  border-radius: var(--border-radius-large);
   margin: 10px;
   padding: 10px 20px;
 }
 
+
+
+
+
+
+
 .navbar-nav .nav-link {
-  display: inline-block;
-  color: var(--white-color);
-  font-size: var(--p-font-size);
-  font-weight: var(--font-weight-normal);
-  position: relative;
-  padding-top: 15px;
-  padding-bottom: 15px;
+    display: inline-block;
+    color: var(--white-color);
+    font-size: var(--p-font-size);
+    font-weight: var(--font-weight-normal);
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 600;
+    transition: all 0.2s ease-out;
 }
 
-.navbar-nav .nav-link.active, 
-.navbar-nav .nav-link:hover {
-  color: var(--secondary-color);
+.navbar-nav .nav-link::before,
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: width 0.3s ease-out, left 0.3s ease-out;
 }
+
+.navbar-nav .nav-link::before {
+    width: 0;
+    left: 0;
+    background-color: var(--white-color);
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.navbar-nav .nav-link::after {
+    width: 2px;
+    left: 0;
+    background-color: var(--secondary-color); /* Solid color line */
+    z-index: 2;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-out, left 0.3s ease-out;
+}
+
+.navbar-nav .nav-link:hover::before {
+    width: 100%;
+}
+
+.navbar-nav .nav-link:hover::after {
+    transform: scaleX(1);
+    left: 100%;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--secondary-color);
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--secondary-color);
+}
+
+
+
+
+
+
+
 
 .navbar-toggler {
   border: 0;
