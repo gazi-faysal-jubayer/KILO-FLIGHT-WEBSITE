@@ -559,7 +559,7 @@ strong {
   position: relative;
   overflow: hidden;
   padding-top: 100px;
-  height: calc(100vh - 51px);
+  height: calc(110vh - 51px);
 }
 
 .hero-section small {
@@ -621,7 +621,7 @@ strong {
   border-radius: var(--border-radius-medium);
   border: 1px solid rgba(209, 213, 219, 0.3);
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
   left: 0;
   margin: 20px;
