@@ -60,31 +60,31 @@ export default function TeamDirectory() {
     switch (category) {
       case 'advisor':
         return (
-          <div className="role-badge" style={{ background: 'rgba(212,163,89,0.15)', borderColor: 'var(--jute-gold)', color: 'var(--jute-gold)' }}>
+          <div className="role-badge" style={{ background: '#FEF3C7', borderColor: '#D97706', color: '#B45309' }}>
             <i className="bi bi-mortarboard me-1"></i> {role}
           </div>
         );
       case 'captain':
         return (
-          <div className="role-badge" style={{ background: 'rgba(255,42,42,0.15)', borderColor: 'var(--primary-red)', color: 'var(--primary-red)' }}>
+          <div className="role-badge" style={{ background: '#FEE2E2', borderColor: '#DC2626', color: '#DC2626' }}>
             <i className="bi bi-flag-fill me-1"></i> {role}
           </div>
         );
       case 'lead':
         return (
-          <div className="role-badge" style={{ background: 'rgba(0,229,255,0.15)', borderColor: 'var(--cyan-telemetry)', color: 'var(--cyan-telemetry)' }}>
+          <div className="role-badge" style={{ background: '#E0F2FE', borderColor: '#0284C7', color: '#0284C7' }}>
             <i className="bi bi-star-fill me-1"></i> {role}
           </div>
         );
       case 'alumni':
         return (
-          <div className="role-badge" style={{ background: 'rgba(248,203,46,0.15)', borderColor: 'var(--yellow-accent)', color: 'var(--yellow-accent)' }}>
+          <div className="role-badge" style={{ background: '#FEF3C7', borderColor: '#D97706', color: '#B45309' }}>
             <i className="bi bi-award-fill me-1"></i> {role}
           </div>
         );
       default:
         return (
-          <div className="role-badge" style={{ background: 'rgba(255,255,255,0.05)', borderColor: 'var(--card-border)', color: '#CBD5E1' }}>
+          <div className="role-badge" style={{ background: '#F1F5F9', borderColor: '#0F172A', color: '#0F172A' }}>
             {role}
           </div>
         );
@@ -98,42 +98,48 @@ export default function TeamDirectory() {
     { id: '2024', label: 'Season 2024' },
     { id: '2023', label: 'Season 2023' },
     { id: '2021', label: 'Season 2021 (FSUK)' },
-    { id: 'founders', label: 'Founders (2018)' },
   ];
 
   return (
     <>
-      {/* Header & Status Section */}
-      <section className="page-header-section" style={{ background: 'radial-gradient(circle at top, rgba(0, 229, 255, 0.08) 0%, var(--dark-bg) 100%)' }}>
+      {/* Header Banner */}
+      <section className="page-header-section" style={{ background: 'radial-gradient(circle at top, rgba(2, 132, 199, 0.08) 0%, var(--dark-bg) 100%)' }}>
         <div className="container mx-auto px-4 text-center">
-          <div className="d-flex flex-wrap justify-content-center align-items-center gap-2 mb-3">
-            <span className="badge-motorsport red">Team Database</span>
+          <div className="d-flex justify-content-center align-items-center gap-2 mb-3">
             <span className={`sync-badge ${isLive ? 'live' : 'cached'}`}>
-              <i className={`bi ${isLive ? 'bi-check-circle-fill text-success' : 'bi-lightning-charge-fill text-warning'} me-1`}></i>
-              {isLive ? 'Live Google Sheet Synced' : 'Default / Cached Database'}
+              <i className={`bi bi-${isLive ? 'lightning-charge-fill' : 'database-fill'} me-1`}></i>
+              {isLive ? 'Google Sheets Live Sync' : 'Static Fallback Active'}
             </span>
-            <button onClick={loadData} className="btn-refresh" title="Reload data">
-              <i className={`bi bi-arrow-clockwise ${loading ? 'spin' : ''}`}></i> Sync
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="btn-refresh"
+              title="Google Sheet Configuration Guide"
+            >
+              <i className="bi bi-gear-fill me-1"></i> Sheet Config
             </button>
-            <button onClick={() => setIsModalOpen(true)} className="custom-btn-outline py-1 px-3" style={{ fontSize: '12px' }}>
-              <i className="bi bi-file-earmark-spreadsheet me-1"></i> How to Edit Sheet
+            <button
+              onClick={loadData}
+              className="btn-refresh"
+              title="Reload live team data from Google Sheet"
+            >
+              <i className="bi bi-arrow-clockwise me-1"></i> Sync Now
             </button>
           </div>
 
-          <h1 className="text-white mb-2">OUR TEAM & ALUMNI DIRECTORY</h1>
-          <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '700px' }}>
-            Powered dynamically by Google Sheets. Over 145 student engineers across 6 generations at Khulna University of Engineering & Technology (KUET).
+          <h1 className="mb-2">TEAM KILO FLIGHT DIRECTORY</h1>
+          <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '700px' }}>
+            Meet the multidisciplinary engineers, researchers, and student innovators driving Bangladesh&apos;s pioneering Formula Student automotive program at KUET.
           </p>
 
           {/* Season Filter Tabs */}
-          <div className="d-flex flex-wrap justify-content-center gap-2 mt-4">
-            {seasonsList.map((s) => (
+          <div className="d-flex justify-content-center flex-wrap gap-2">
+            {seasonsList.map((season) => (
               <button
-                key={s.id}
-                onClick={() => setActiveSeason(s.id)}
-                className={`season-btn ${activeSeason === s.id ? 'active' : ''}`}
+                key={season.id}
+                onClick={() => setActiveSeason(season.id)}
+                className={`season-btn ${activeSeason === season.id ? 'active' : ''}`}
               >
-                {s.label}
+                {season.label}
               </button>
             ))}
           </div>
@@ -199,13 +205,13 @@ export default function TeamDirectory() {
           {loading ? (
             <div className="text-center py-5">
               <div className="spinner-border text-cyan mb-3" style={{ width: '3rem', height: '3rem' }}></div>
-              <h5 className="text-white">Connecting to Database...</h5>
+              <h5>Connecting to Database...</h5>
             </div>
           ) : filteredMembers.length === 0 ? (
             <div className="text-center py-5">
               <div className="glass-panel p-5 mx-auto" style={{ maxWidth: '500px' }}>
                 <i className="bi bi-search fs-1 text-muted mb-3 d-block"></i>
-                <h4 className="text-white mb-2">No Members Found</h4>
+                <h4 className="mb-2">No Members Found</h4>
                 <p className="text-muted small mb-4">No team members match your selected season, category, or search keywords.</p>
                 <button
                   onClick={() => {
@@ -225,7 +231,7 @@ export default function TeamDirectory() {
                 <div key={idx} className="col-lg-3 col-md-4 col-sm-6">
                   <div className="team-card">
                     <div>
-                      <div className="position-relative mx-auto mb-3 rounded-circle overflow-hidden" style={{ width: '88px', height: '88px', border: '2px solid var(--cyan-telemetry)', boxShadow: '0 0 15px var(--cyan-glow)', background: '#0B101C' }}>
+                      <div className="position-relative mx-auto mb-3 rounded-circle overflow-hidden" style={{ width: '88px', height: '88px', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A', background: '#FFFFFF' }}>
                         <Image
                           src={formatImageUrl(member.image)}
                           alt={member.name}
@@ -241,9 +247,9 @@ export default function TeamDirectory() {
                           }}
                         />
                       </div>
-                      <h6 className="text-white mb-1 fs-5">{member.name}</h6>
+                      <h6 className="mb-1 fs-5">{member.name}</h6>
                       {getRoleBadge(member.category, member.role)}
-                      <div className="small text-info mt-2 font-monospace">{member.department}</div>
+                      <div className="small mt-2 font-monospace" style={{ color: '#0284C7', fontWeight: 700 }}>{member.department}</div>
                       {member.bio && <p className="small text-muted mt-2 mb-0">{member.bio}</p>}
                     </div>
 

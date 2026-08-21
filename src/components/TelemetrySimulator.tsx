@@ -87,8 +87,8 @@ export default function TelemetrySimulator() {
       const h = canvas.getBoundingClientRect().height;
       ctx.clearRect(0, 0, w, h);
 
-      // Grid
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+      // Grid (Light Theme)
+      ctx.strokeStyle = 'rgba(15, 23, 42, 0.08)';
       ctx.lineWidth = 1;
       const gridStep = 30;
       for (let x = 0; x < w; x += gridStep) {
@@ -111,12 +111,14 @@ export default function TelemetrySimulator() {
 
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius * 0.5, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(0, 229, 255, 0.2)';
+      ctx.strokeStyle = '#0284C7';
+      ctx.lineWidth = 1.5;
       ctx.stroke();
 
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(255, 42, 42, 0.3)';
+      ctx.strokeStyle = '#FF2A2A';
+      ctx.lineWidth = 1.5;
       ctx.stroke();
 
       ctx.beginPath();
@@ -124,7 +126,8 @@ export default function TelemetrySimulator() {
       ctx.lineTo(centerX + radius, centerY);
       ctx.moveTo(centerX, centerY - radius);
       ctx.lineTo(centerX, centerY + radius);
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+      ctx.strokeStyle = '#0F172A';
+      ctx.lineWidth = 1;
       ctx.stroke();
 
       // Live G-Force Indicator Ball
@@ -132,16 +135,16 @@ export default function TelemetrySimulator() {
       const ballY = centerY - (currentLongG / 2.0) * radius;
 
       const gradient = ctx.createRadialGradient(ballX, ballY, 2, ballX, ballY, 16);
-      gradient.addColorStop(0, '#00E5FF');
-      gradient.addColorStop(0.5, 'rgba(0, 229, 255, 0.4)');
-      gradient.addColorStop(1, 'rgba(0, 229, 255, 0)');
+      gradient.addColorStop(0, '#0284C7');
+      gradient.addColorStop(0.5, 'rgba(2, 132, 199, 0.4)');
+      gradient.addColorStop(1, 'rgba(2, 132, 199, 0)');
 
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(ballX, ballY, 16, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.fillStyle = '#FFFFFF';
+      ctx.fillStyle = '#0F172A';
       ctx.beginPath();
       ctx.arc(ballX, ballY, 4, 0, Math.PI * 2);
       ctx.fill();
@@ -158,22 +161,25 @@ export default function TelemetrySimulator() {
 
       for (let i = 0; i < numLEDs; i++) {
         const lx = startX + i * (ledW + 6);
-        let color = 'rgba(255, 255, 255, 0.1)';
+        let color = '#E2E8F0';
 
         if (i < activeLEDs) {
-          if (i < 5) color = '#00E5FF';
-          else if (i < 8) color = '#F8CB2E';
+          if (i < 5) color = '#0284C7';
+          else if (i < 8) color = '#D97706';
           else color = '#FF2A2A';
         }
 
         ctx.fillStyle = color;
         ctx.fillRect(lx, barY, ledW, 14);
+        ctx.strokeStyle = '#0F172A';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(lx, barY, ledW, 14);
       }
 
       // Telemetry Velocity Curve
       ctx.beginPath();
-      ctx.strokeStyle = '#00E5FF';
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#0284C7';
+      ctx.lineWidth = 2.5;
       const waveY = h * 0.7;
 
       for (let x = 0; x < barW; x += 4) {
@@ -200,7 +206,7 @@ export default function TelemetrySimulator() {
       <div className="telemetry-header">
         <div className="d-flex align-items-center gap-3">
           <span className="badge bg-danger pulse-dot">LIVE CONNECTED</span>
-          <span className="text-muted font-monospace small">VEHICLE_ID: KF-ALPHA-2026</span>
+          <span className="text-muted font-monospace small fw-bold">VEHICLE_ID: KF-ALPHA-2026</span>
         </div>
 
         {/* Mode Selector Buttons */}
@@ -223,7 +229,7 @@ export default function TelemetrySimulator() {
       <div className="row g-4 align-items-center">
         {/* Canvas */}
         <div className="col-lg-8">
-          <div className="position-relative rounded p-2" style={{ background: '#04070D', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="position-relative rounded p-2" style={{ background: '#F8FAFC', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}>
             <canvas ref={canvasRef} style={{ width: '100%', height: '260px', display: 'block' }} />
           </div>
         </div>

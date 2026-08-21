@@ -52,7 +52,7 @@ export default function FsaeEvents() {
         <div key={idx} className="col-lg-4 col-md-6">
           <div className="fsae-event-card">
             <span className={`badge-motorsport ${evt.badgeClass} mb-2`}>{evt.badge}</span>
-            <h4 className="text-white mb-2">{evt.title}</h4>
+            <h4 className="mb-2">{evt.title}</h4>
             <p className="small text-muted mb-3">{evt.description}</p>
             <div className="event-metric">{evt.metric}</div>
           </div>

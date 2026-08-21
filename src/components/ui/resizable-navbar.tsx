@@ -87,12 +87,12 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       animate={{
         backdropFilter: visible ? 'blur(20px)' : 'blur(8px)',
         boxShadow: visible
-          ? '0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 229, 255, 0.18)'
-          : '0 4px 15px rgba(0, 0, 0, 0.3)',
+          ? '4px 4px 0 #0F172A, 0 10px 30px rgba(0, 0, 0, 0.08)'
+          : '3px 3px 0 #0F172A',
         width: visible ? '72%' : '100%',
         y: visible ? 16 : 8,
-        borderColor: visible ? 'rgba(0, 229, 255, 0.35)' : 'rgba(255, 255, 255, 0.1)',
-        background: visible ? 'rgba(10, 15, 29, 0.92)' : 'rgba(7, 11, 20, 0.7)',
+        borderColor: '#0F172A',
+        background: visible ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.9)',
       }}
       transition={{
         type: 'spring',
@@ -104,7 +104,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minHeight: '62px',
         padding: '8px 24px',
         borderRadius: '9999px',
-        borderWidth: '1px',
+        borderWidth: '2px',
         borderStyle: 'solid',
       }}
       className={cn('resizable-desktop-body', className)}
@@ -132,7 +132,7 @@ export const NavItems = ({ items, className, onItemClick, pathname }: NavItemsPr
             onClick={onItemClick}
             className="resizable-nav-link"
             style={{
-              color: isActive ? '#00E5FF' : hovered === idx ? '#FFFFFF' : '#CBD5E1',
+              color: isActive ? '#FF2A2A' : hovered === idx ? '#0F172A' : '#334155',
             }}
           >
             {hovered === idx && (
@@ -143,9 +143,9 @@ export const NavItems = ({ items, className, onItemClick, pathname }: NavItemsPr
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '9999px',
-                  background: 'rgba(0, 229, 255, 0.14)',
-                  border: '1px solid rgba(0, 229, 255, 0.35)',
-                  boxShadow: '0 0 15px rgba(0, 229, 255, 0.25)',
+                  background: 'rgba(255, 42, 42, 0.1)',
+                  border: '1.5px solid #FF2A2A',
+                  boxShadow: '2px 2px 0 #0F172A',
                   zIndex: 0,
                 }}
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
@@ -165,12 +165,12 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       animate={{
         backdropFilter: visible ? 'blur(20px)' : 'blur(10px)',
         boxShadow: visible
-          ? '0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 229, 255, 0.15)'
-          : '0 4px 15px rgba(0, 0, 0, 0.4)',
+          ? '4px 4px 0 #0F172A, 0 10px 25px rgba(0, 0, 0, 0.08)'
+          : '3px 3px 0 #0F172A',
         width: visible ? '92%' : '100%',
         y: visible ? 12 : 8,
-        borderColor: visible ? 'rgba(0, 229, 255, 0.35)' : 'rgba(255, 255, 255, 0.1)',
-        background: visible ? 'rgba(10, 15, 29, 0.95)' : 'rgba(7, 11, 20, 0.85)',
+        borderColor: '#0F172A',
+        background: visible ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.92)',
       }}
       transition={{
         type: 'spring',
@@ -180,7 +180,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       style={{
         padding: '10px 18px',
         borderRadius: '16px',
-        borderWidth: '1px',
+        borderWidth: '2px',
         borderStyle: 'solid',
       }}
       className={cn('resizable-mobile-body', className)}
@@ -198,46 +198,14 @@ export const MobileNavHeader = ({
     <div
       style={{
         display: 'flex',
-        width: '100%',
-        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        width: '100%',
       }}
       className={className}
     >
       {children}
     </div>
-  );
-};
-
-export const MobileNavMenu = ({
-  children,
-  className,
-  isOpen,
-}: MobileNavMenuProps) => {
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0, marginTop: 0 }}
-          animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
-          exit={{ opacity: 0, height: 0, marginTop: 0 }}
-          transition={{ duration: 0.25 }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '8px',
-            width: '100%',
-            paddingTop: '12px',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-            overflow: 'hidden',
-          }}
-          className={className}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
   );
 };
 
@@ -255,7 +223,7 @@ export const MobileNavToggle = ({
       style={{
         background: 'transparent',
         border: 'none',
-        color: '#00E5FF',
+        color: '#0F172A',
         cursor: 'pointer',
         padding: '6px',
         display: 'flex',
@@ -263,33 +231,71 @@ export const MobileNavToggle = ({
         justifyContent: 'center',
       }}
     >
-      {isOpen ? <IconX size={26} /> : <IconMenu2 size={26} />}
+      {isOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
     </button>
   );
 };
 
-export const NavbarLogo = () => {
+export const MobileNavMenu = ({
+  children,
+  className,
+  isOpen,
+}: MobileNavMenuProps) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
+          style={{
+            overflow: 'hidden',
+            width: '100%',
+            marginTop: '12px',
+            borderTop: '2px solid #0F172A',
+            paddingTop: '12px',
+          }}
+          className={className}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export const NavbarLogo = ({
+  src = '/images/logo.png',
+  alt = 'Team Kilo Flight',
+  href = '/',
+}: {
+  src?: string;
+  alt?: string;
+  href?: string;
+}) => {
   return (
     <Link
-      href="/"
+      href={href}
       style={{
         display: 'flex',
         alignItems: 'center',
         textDecoration: 'none',
-        position: 'relative',
-        zIndex: 20,
+        flexShrink: 0,
       }}
     >
       <Image
-        src="/images/logo.png"
-        alt="Team Kilo Flight"
-        width={150}
-        height={44}
+        src={src}
+        alt={alt}
+        width={130}
+        height={38}
         style={{
+          height: '38px',
           width: 'auto',
-          height: '40px',
           objectFit: 'contain',
           display: 'block',
+          filter:
+            'drop-shadow(1.5px 0 0 #0F172A) drop-shadow(-1.5px 0 0 #0F172A) drop-shadow(0 1.5px 0 #0F172A) drop-shadow(0 -1.5px 0 #0F172A) drop-shadow(1.5px 1.5px 0 #0F172A) drop-shadow(-1.5px -1.5px 0 #0F172A) drop-shadow(1.5px -1.5px 0 #0F172A) drop-shadow(-1.5px 1.5px 0 #0F172A) drop-shadow(2px 2px 4px rgba(0,0,0,0.35))',
         }}
         priority
       />
@@ -298,45 +304,51 @@ export const NavbarLogo = () => {
 };
 
 export const NavbarButton = ({
-  href,
-  as: Tag = 'a',
   children,
-  className,
-  variant = 'primary',
+  href,
   onClick,
+  className,
+  variant,
   style,
-  ...props
 }: {
-  href?: string;
-  as?: React.ElementType;
   children: React.ReactNode;
-  className?: string;
-  variant?: 'primary' | 'secondary' | 'dark' | 'gradient';
+  href?: string;
   onClick?: () => void;
+  className?: string;
+  variant?: string;
   style?: React.CSSProperties;
-} & (
-  | React.ComponentPropsWithoutRef<'a'>
-  | React.ComponentPropsWithoutRef<'button'>
-)) => {
-  const isPrimary = variant === 'primary';
-
-  return (
-    <Tag
-      href={href || undefined}
-      onClick={onClick}
+}) => {
+  const content = (
+    <motion.span
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.96 }}
       className={cn('resizable-btn', className)}
       style={{
-        background: isPrimary ? 'var(--primary-red)' : 'transparent',
+        background: '#FF2A2A',
         color: '#FFFFFF',
-        border: isPrimary ? '1px solid #FF5555' : '1px solid rgba(0, 229, 255, 0.4)',
-        boxShadow: isPrimary
-          ? '0 0 18px var(--primary-red-glow), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
-          : '0 0 10px var(--cyan-glow)',
+        border: '2px solid #0F172A',
+        boxShadow: '3px 3px 0 #0F172A',
         ...style,
       }}
-      {...props}
     >
       {children}
-    </Tag>
+    </motion.span>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} style={{ textDecoration: 'none' }}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      onClick={onClick}
+      style={{ background: 'none', border: 'none', padding: 0 }}
+    >
+      {content}
+    </button>
   );
 };

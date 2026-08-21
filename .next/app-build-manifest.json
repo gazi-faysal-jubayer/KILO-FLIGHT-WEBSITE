@@ -6,20 +6,25 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/not-found.js"
     ],
     "/sponsorship/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/sponsorship/page.js"
     ],
-    "/cars/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/cars/page.js"
+      "static/chunks/app/page.js"
+    ],
+    "/join-us/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/join-us/page.js"
     ]
   }
 }

@@ -63,11 +63,11 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full text-decoration-none py-2 px-3 rounded-lg"
                 style={{
-                  color: isActive ? '#00E5FF' : '#E5E7EB',
-                  background: isActive ? 'rgba(0, 229, 255, 0.1)' : 'transparent',
+                  color: isActive ? '#FF2A2A' : '#0F172A',
+                  background: isActive ? 'rgba(255, 42, 42, 0.1)' : 'transparent',
                   fontFamily: 'var(--font-orbitron), sans-serif',
                   fontSize: '14px',
-                  fontWeight: 600,
+                  fontWeight: 700,
                   display: 'block',
                   width: '100%',
                 }}

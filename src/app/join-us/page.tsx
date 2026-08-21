@@ -1,104 +1,194 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 export default function JoinUsPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [selectedDept, setSelectedDept] = useState('aero');
+
+  const departments = [
+    { id: 'aero', label: 'Aerodynamics' },
+    { id: 'chassis', label: 'Chassis & Structure' },
+    { id: 'powertrain', label: 'Powertrain & ICE' },
+    { id: 'elec', label: 'DAQ & Electronics' },
+    { id: 'biz', label: 'Business & PR' },
+    { id: 'driver', label: 'Driver Team' },
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setTimeout(() => setSubmitted(false), 6000);
+  };
+
+  const handleReset = () => {
+    const form = document.querySelector('.neo-join-form') as HTMLFormElement;
+    if (form) form.reset();
+    setSelectedDept('aero');
   };
 
   return (
-    <section className="page-header-section" style={{ minHeight: '85vh', background: 'radial-gradient(circle at center, rgba(14, 20, 32, 0.7) 0%, var(--dark-bg) 100%)' }}>
+    <section
+      className="page-header-section"
+      style={{
+        minHeight: '90vh',
+        background:
+          'radial-gradient(circle at top, rgba(255, 42, 42, 0.06) 0%, rgba(2, 132, 199, 0.04) 45%, var(--dark-bg) 100%)',
+        paddingBottom: '80px',
+      }}
+    >
       <div className="container mx-auto px-4">
-        <div className="row text-center mb-4">
+        {/* Header Intro */}
+        <div className="row text-center mb-5">
           <div className="col-lg-8 mx-auto">
-            <span className="badge-motorsport red mb-2">Recruitment & Partnerships</span>
-            <h1 className="text-white mb-2" style={{ fontSize: '36px' }}>JOIN TEAM KILO FLIGHT</h1>
-            <p className="text-muted">
-              Apply to become a student engineer on Bangladesh&apos;s premier Formula Student team or request an industry sponsor packet.
+            <span className="badge-motorsport red mb-2">Recruitment &amp; Partnerships</span>
+            <h1 className="mb-2" style={{ fontSize: '38px' }}>
+              JOIN TEAM KILO FLIGHT
+            </h1>
+            <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '650px' }}>
+              Apply to become a student engineer on Bangladesh&apos;s premier Formula Student motorsport team or request an industry sponsor packet.
             </p>
           </div>
         </div>
 
+        {/* Form Container */}
         <div className="row justify-content-center">
-          <div className="col-lg-8 col-md-10">
-            <div className="glass-panel p-4 p-md-5">
+          <div className="col-lg-9 col-md-11">
+            <div className="neo-join-form-wrapper">
               {submitted ? (
-                <div className="text-center py-5">
-                  <i className="bi bi-check-circle-fill text-success fs-1 mb-3 d-block"></i>
-                  <h3 className="text-white mb-2">Application Submitted Successfully!</h3>
-                  <p className="text-muted">Thank you for your interest in Team Kilo Flight. Our team leads will review your application and reach out via email.</p>
+                <div
+                  className="neo-join-form text-center p-5 d-flex flex-column align-items-center justify-content-center"
+                  style={{ minHeight: '400px', background: '#FFFFFF' }}
+                >
+                  <div id="circleform" />
+                  <i
+                    className="bi bi-check-circle-fill fs-1 mb-3 text-success"
+                    style={{ filter: 'drop-shadow(2px 2px 0 #0F172A)' }}
+                  ></i>
+                  <h2
+                    className="mb-2"
+                    style={{
+                      fontFamily: 'var(--font-orbitron)',
+                      color: '#0F172A',
+                      fontWeight: 900,
+                    }}
+                  >
+                    APPLICATION SUBMITTED!
+                  </h2>
+                  <p className="text-muted fw-bold max-w-500 mb-4" style={{ maxWidth: '450px' }}>
+                    Thank you for applying to Team Kilo Flight! Our technical leads will review your application and contact you shortly via email.
+                  </p>
+                  <button
+                    type="button"
+                    className="custom-btn"
+                    onClick={() => setSubmitted(false)}
+                  >
+                    Submit Another Application
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit}>
-                  <h4 className="text-white mb-4">
-                    <i className="bi bi-person-badge text-cyan me-2"></i> Application & Inquiry Form
-                  </h4>
+                <form className="neo-join-form" onSubmit={handleSubmit}>
+                  {/* Circle Cutout Accent */}
+                  <div id="circleform" />
 
-                  <div className="row g-3 mb-3">
-                    <div className="col-md-6">
-                      <label className="form-label text-muted small">Full Name</label>
-                      <input type="text" className="form-control-custom" placeholder="John Doe" required />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label text-muted small">Email Address</label>
-                      <input type="email" className="form-control-custom" placeholder="name@kuet.ac.bd" required />
+                  {/* Intro Banner with Animated Ticker */}
+                  <div id="introform">
+                    <p>ENGINEER APPLICATION</p>
+                    <div id="introformbehind">
+                      <p>||||||||||||||||||||||||||||||||||||||||||||||||||||||||</p>
                     </div>
                   </div>
 
-                  <div className="row g-3 mb-3">
-                    <div className="col-md-6">
-                      <label className="form-label text-muted small">Phone Number</label>
-                      <input type="tel" className="form-control-custom" placeholder="+880 1700-000000" required />
+                  {/* Middle Form Inputs */}
+                  <div id="middleform">
+                    <div>
+                      <p>FULL NAME</p>
+                      <input
+                        className="neo-input"
+                        type="text"
+                        placeholder="e.g. Gazi Faysal Jubayer"
+                        required
+                      />
                     </div>
-                    <div className="col-md-6">
-                      <label className="form-label text-muted small">Application Type</label>
-                      <select className="form-control-custom" required defaultValue="student">
+
+                    <div>
+                      <p>EMAIL ADDRESS</p>
+                      <input
+                        className="neo-input"
+                        type="email"
+                        placeholder="e.g. engineer@kuet.ac.bd"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <p>PHONE NUMBER</p>
+                      <input
+                        className="neo-input"
+                        type="tel"
+                        placeholder="+880 1700-000000"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <p>APPLICATION CATEGORY</p>
+                      <select className="neo-input" defaultValue="student" required>
                         <option value="student">Student Recruitment Application</option>
-                        <option value="sponsor">Corporate Sponsor Packet Request</option>
-                        <option value="alumni">Alumni Mentor / Advisory</option>
+                        <option value="sponsor">Corporate Sponsorship Inquiry</option>
+                        <option value="mentor">Alumni Advisory / Mentor</option>
                       </select>
                     </div>
-                  </div>
 
-                  <div className="mb-4">
-                    <label className="form-label text-muted small d-block">Preferred Sub-Team / Department</label>
-                    <div className="row g-2">
-                      {[
-                        { id: 'aero', label: 'Aerodynamics' },
-                        { id: 'chassis', label: 'Chassis' },
-                        { id: 'powertrain', label: 'Powertrain' },
-                        { id: 'elec', label: 'Electronics' },
-                        { id: 'biz', label: 'Business / PR' },
-                        { id: 'driver', label: 'Driver Team' },
-                      ].map((dept) => (
-                        <div key={dept.id} className="col-md-4 col-6">
-                          <label className="p-2 rounded d-flex align-items-center gap-2" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--card-border)', cursor: 'pointer' }}>
-                            <input type="radio" name="deptChoice" defaultChecked={dept.id === 'aero'} />
-                            <span className="small text-white">{dept.label}</span>
+                    <div>
+                      <p>PREFERRED SUB-TEAM / DEPARTMENT</p>
+                      <div className="neo-dept-radio-grid">
+                        {departments.map((dept) => (
+                          <label
+                            key={dept.id}
+                            className={`neo-dept-label ${
+                              selectedDept === dept.id ? 'active' : ''
+                            }`}
+                            onClick={() => setSelectedDept(dept.id)}
+                          >
+                            <input
+                              type="radio"
+                              name="deptChoice"
+                              value={dept.id}
+                              checked={selectedDept === dept.id}
+                              onChange={() => setSelectedDept(dept.id)}
+                              style={{ display: 'none' }}
+                            />
+                            <span>{dept.label}</span>
                           </label>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p>STATEMENT OF INTEREST & TECHNICAL SKILLS</p>
+                      <textarea
+                        className="neo-input"
+                        rows={3}
+                        placeholder="Mention your department at KUET (or company), software skills (CAD, SolidWorks, MATLAB, Ansys), or past projects..."
+                        required
+                      ></textarea>
                     </div>
                   </div>
 
-                  <div className="mb-4">
-                    <label className="form-label text-muted small">Statement of Interest & Technical Background</label>
-                    <textarea
-                      className="form-control-custom"
-                      rows={4}
-                      placeholder="Mention your department at KUET (or company), software skills (CAD, SolidWorks, MATLAB, Ansys), or past projects..."
-                      required
-                    ></textarea>
+                  {/* Submit Button Block */}
+                  <div id="endform">
+                    <button type="submit">SUBMIT APPLICATION</button>
                   </div>
 
-                  <button type="submit" className="custom-btn w-100 py-3">
-                    Submit Application
-                  </button>
+                  {/* Secondary Quick Action Buttons */}
+                  <div id="endform2">
+                    <Link href="/subteams">Explore Sub-Teams</Link>
+                    <button id="passbutton" type="button" onClick={handleReset}>
+                      Reset Form
+                    </button>
+                  </div>
                 </form>
               )}
             </div>

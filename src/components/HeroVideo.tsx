@@ -11,7 +11,7 @@ export default function HeroVideo() {
           <div className="col-12 mt-auto mb-4 text-center">
             <small className="mb-2">Commemorating the Heroes of 1971</small>
 
-            <h1 className="text-white mb-4 display-3 fw-bold">Team Kilo Flight</h1>
+            <h1 className="mb-4 display-3 fw-bold" style={{ color: '#0F172A' }}>Team Kilo Flight</h1>
 
             <Link href="#section_2" className="custom-btn px-4 py-3 text-decoration-none">
               <i className="bi bi-play-circle me-2"></i> Let&apos;s begin
@@ -20,7 +20,7 @@ export default function HeroVideo() {
 
           <div className="col-lg-12 col-12 mt-auto text-center mb-4">
             <div className="location-wrap mx-auto">
-              <h5 className="text-white mb-0 fs-6">
+              <h5 className="mb-0 fs-6" style={{ color: '#0F172A', fontWeight: 800 }}>
                 <i className="custom-icon bi-geo-alt me-2 text-danger"></i>
                 KUET, Bangladesh
               </h5>

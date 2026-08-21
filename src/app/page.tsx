@@ -33,7 +33,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. INTERACTIVE LIVE TELEMETRY SIMULATOR */}
-      <section className="section-padding py-5" id="section_3" style={{ background: 'rgba(6, 10, 18, 0.6)' }}>
+      <section className="section-padding py-5" id="section_3" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
           <div className="row text-center mb-4">
             <div className="col-lg-8 mx-auto">
@@ -63,7 +63,7 @@ export default function HomePage() {
       </section>
 
       {/* 5. SUB-TEAMS LINK CALLOUT */}
-      <section className="section-padding py-5" style={{ background: 'rgba(6, 10, 18, 0.4)' }}>
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
           <div className="row justify-content-center text-center">
             <div className="col-lg-8">
@@ -92,7 +92,7 @@ export default function HomePage() {
           </div>
 
           <div className="table-responsive">
-            <table className="schedule-table table text-white align-middle w-100">
+            <table className="schedule-table table align-middle w-100">
               <thead>
                 <tr>
                   <th scope="col">Year</th>
@@ -105,48 +105,48 @@ export default function HomePage() {
                 <tr>
                   <th scope="row" className="font-orbitron fs-5 text-cyan">2021</th>
                   <td>
-                    <div className="fw-bold text-white">Formula Student UK (FSUK)</div>
+                    <div className="fw-bold">Formula Student UK (FSUK)</div>
                     <div className="small text-muted">Virtual Engineering Concept Class</div>
                   </td>
                   <td>
                     <span className="badge-motorsport jute">Kilo Flight Alpha Reveal</span>
-                    <div className="small text-light mt-1">Showcased Bangladesh&apos;s first eco-jute composite bodywork design.</div>
+                    <div className="small text-muted mt-1">Showcased Bangladesh&apos;s first eco-jute composite bodywork design.</div>
                   </td>
                   <td>Silverstone Circuit / Online</td>
                 </tr>
                 <tr>
-                  <th scope="row" className="font-orbitron fs-5 text-warning">2022</th>
+                  <th scope="row" className="font-orbitron fs-5" style={{ color: '#D97706' }}>2022</th>
                   <td>
-                    <div className="fw-bold text-white">National Engineering Innovation Awards</div>
+                    <div className="fw-bold">National Engineering Innovation Awards</div>
                     <div className="small text-muted">Automotive & Sustainable Tech Category</div>
                   </td>
                   <td>
                     <span className="badge-motorsport red">Top 10 National Innovator</span>
-                    <div className="small text-light mt-1">Recognized for sustainable natural fiber composite innovation.</div>
+                    <div className="small text-muted mt-1">Recognized for sustainable natural fiber composite innovation.</div>
                   </td>
                   <td>Dhaka, Bangladesh</td>
                 </tr>
                 <tr>
                   <th scope="row" className="font-orbitron fs-5 text-cyan">2023</th>
                   <td>
-                    <div className="fw-bold text-white">Formula Student Germany (FSG)</div>
+                    <div className="fw-bold">Formula Student Germany (FSG)</div>
                     <div className="small text-muted">International Design Event</div>
                   </td>
                   <td>
                     <span className="badge-motorsport">Eco-Material Innovation</span>
-                    <div className="small text-light mt-1">Presented technical design dossier to world-class Formula 1 judge panels.</div>
+                    <div className="small text-muted mt-1">Presented technical design dossier to world-class Formula 1 judge panels.</div>
                   </td>
                   <td>Hockenheimring, Germany</td>
                 </tr>
                 <tr>
-                  <th scope="row" className="font-orbitron fs-5 text-danger">2026</th>
+                  <th scope="row" className="font-orbitron fs-5" style={{ color: '#DC2626' }}>2026</th>
                   <td>
-                    <div className="fw-bold text-white">Formula Student UK & International</div>
+                    <div className="fw-bold">Formula Student UK & International</div>
                     <div className="small text-muted">EV & ICE Next Generation Prototype</div>
                   </td>
                   <td>
                     <span className="badge-motorsport red">Kilo Flight EV Concept</span>
-                    <div className="small text-light mt-1">Unveiling our high-performance electric powertrain & aerodynamic monocoque.</div>
+                    <div className="small text-muted mt-1">Unveiling our high-performance electric powertrain & aerodynamic monocoque.</div>
                   </td>
                   <td>Silverstone, UK</td>
                 </tr>
@@ -157,7 +157,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. CONTACT & LOCATION SECTION */}
-      <section className="section-padding py-5" style={{ background: 'rgba(6, 10, 18, 0.6)' }}>
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
           <div className="row text-center mb-4">
             <div className="col-lg-8 mx-auto">
@@ -171,7 +171,7 @@ export default function HomePage() {
             {/* Form */}
             <div className="col-lg-6">
               <div className="glass-panel p-4 h-100">
-                <h4 className="text-white mb-4">
+                <h4 className="mb-4">
                   <i className="bi bi-envelope me-2 text-cyan"></i> Send Us a Message
                 </h4>
                 <form>
@@ -205,13 +205,13 @@ export default function HomePage() {
             {/* Location */}
             <div className="col-lg-6">
               <div className="glass-panel p-4 h-100 d-flex flex-column">
-                <h4 className="text-white mb-3">
+                <h4 className="mb-3">
                   <i className="bi bi-geo-alt me-2 text-danger"></i> Our Workshop Location
                 </h4>
                 <p className="small text-muted mb-3">
                   Department of Mechanical Engineering, Khulna University of Engineering & Technology (KUET), Khulna-9203, Bangladesh.
                 </p>
-                <div className="rounded overflow-hidden flex-grow-1" style={{ minHeight: '240px', border: '1px solid var(--card-border)' }}>
+                <div className="rounded overflow-hidden flex-grow-1" style={{ minHeight: '240px', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}>
                   <iframe
                     className="w-100 h-100"
                     style={{ border: 0 }}
