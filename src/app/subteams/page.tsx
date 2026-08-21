@@ -43,7 +43,7 @@ export default function SubteamsPage() {
   return (
     <>
       {/* Header */}
-      <section className="section-padding py-5" style={{ background: 'radial-gradient(circle at top, rgba(255, 42, 42, 0.08) 0%, var(--dark-bg) 100%)' }}>
+      <section className="page-header-section" style={{ background: 'radial-gradient(circle at top, rgba(255, 42, 42, 0.08) 0%, var(--dark-bg) 100%)' }}>
         <div className="container mx-auto px-4 text-center">
           <span className="badge-motorsport red mb-2">Technical Process</span>
           <h1 className="text-white mb-3">SUB-TEAMS & ENGINEERING WORKFLOW</h1>

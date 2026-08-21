@@ -12,7 +12,7 @@ export default function JoinUsPage() {
   };
 
   return (
-    <section className="section-padding py-5" style={{ minHeight: '85vh', background: 'radial-gradient(circle at center, rgba(14, 20, 32, 0.7) 0%, var(--dark-bg) 100%)' }}>
+    <section className="page-header-section" style={{ minHeight: '85vh', background: 'radial-gradient(circle at center, rgba(14, 20, 32, 0.7) 0%, var(--dark-bg) 100%)' }}>
       <div className="container mx-auto px-4">
         <div className="row text-center mb-4">
           <div className="col-lg-8 mx-auto">

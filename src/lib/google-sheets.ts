@@ -9,16 +9,21 @@ export const GOOGLE_SHEET_CONFIG = {
   tabName: 'Sheet1',
 };
 
-// Convert Google Drive share links to direct embed image URLs
+// Convert Google Drive share links to direct embed image URLs & validate
 export function formatImageUrl(url?: string): string {
   if (!url || typeof url !== 'string' || url.trim() === '') {
     return '/images/logo.png';
   }
   url = url.trim();
 
-  // If local path doesn't start with slash, ensure leading slash
+  // If local path starts with images/
   if (url.startsWith('images/')) {
     return `/${url}`;
+  }
+
+  // If already relative path starting with /
+  if (url.startsWith('/')) {
+    return url;
   }
 
   // Check if Google Drive link
@@ -26,7 +31,14 @@ export function formatImageUrl(url?: string): string {
   if (driveMatch && driveMatch[1]) {
     return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
   }
-  return url;
+
+  // Must start with http:// or https:// and look like a URL
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+
+  // Safe fallback if text is not a URL (e.g. non-tech user entered plain text in sheet)
+  return '/images/logo.png';
 }
 
 // Clean and categorize strings
@@ -44,7 +56,7 @@ export function formatCategory(cat?: string): MemberCategory {
 export async function fetchTeamDataFromGoogleSheets(): Promise<{ data: TeamMember[]; isLive: boolean }> {
   try {
     const url = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_CONFIG.sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(GOOGLE_SHEET_CONFIG.tabName)}`;
-    const response = await fetch(url, { next: { revalidate: 60 } }); // Cache revalidation in Next.js
+    const response = await fetch(url, { next: { revalidate: 60 } });
 
     if (!response.ok) {
       throw new Error(`Google Sheets responded with status ${response.status}`);
@@ -84,7 +96,8 @@ export async function fetchTeamDataFromGoogleSheets(): Promise<{ data: TeamMembe
       const category = formatCategory(getColVal(r, ['category', 'type', 'cat']) || (c[2]?.v ? c[2].v.toString() : 'member'));
       const department = getColVal(r, ['department', 'dept', 'batch']) || (c[3]?.v ? c[3].v.toString() : 'KUET');
       const season = (getColVal(r, ['season', 'year']) || (c[4]?.v ? c[4].v.toString() : '2026')).toLowerCase();
-      const image = formatImageUrl(getColVal(r, ['image', 'photo', 'img', 'url']) || (c[5]?.v ? c[5].v.toString() : ''));
+      const rawImage = getColVal(r, ['image', 'photo', 'img', 'url']) || (c[5]?.v ? c[5].v.toString() : '');
+      const image = formatImageUrl(rawImage);
       const linkedin = getColVal(r, ['linkedin', 'link']) || (c[6]?.v ? c[6].v.toString() : 'https://linkedin.com');
       const bio = getColVal(r, ['bio', 'description', 'about']) || (c[7]?.v ? c[7].v.toString() : '');
 

@@ -104,7 +104,7 @@ export default function TeamDirectory() {
   return (
     <>
       {/* Header & Status Section */}
-      <section className="section-padding py-5" style={{ background: 'radial-gradient(circle at top, rgba(0, 229, 255, 0.08) 0%, var(--dark-bg) 100%)' }}>
+      <section className="page-header-section" style={{ background: 'radial-gradient(circle at top, rgba(0, 229, 255, 0.08) 0%, var(--dark-bg) 100%)' }}>
         <div className="container mx-auto px-4 text-center">
           <div className="d-flex flex-wrap justify-content-center align-items-center gap-2 mb-3">
             <span className="badge-motorsport red">Team Database</span>
@@ -225,13 +225,20 @@ export default function TeamDirectory() {
                 <div key={idx} className="col-lg-3 col-md-4 col-sm-6">
                   <div className="team-card">
                     <div>
-                      <div className="position-relative mx-auto mb-3" style={{ width: '84px', height: '84px' }}>
+                      <div className="position-relative mx-auto mb-3 rounded-circle overflow-hidden" style={{ width: '88px', height: '88px', border: '2px solid var(--cyan-telemetry)', boxShadow: '0 0 15px var(--cyan-glow)', background: '#0B101C' }}>
                         <Image
                           src={formatImageUrl(member.image)}
                           alt={member.name}
                           fill
-                          className="team-avatar object-cover"
-                          sizes="84px"
+                          unoptimized={true}
+                          style={{ objectFit: 'cover' }}
+                          sizes="88px"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (target && !target.src.includes('/images/logo.png')) {
+                              target.src = '/images/logo.png';
+                            }
+                          }}
                         />
                       </div>
                       <h6 className="text-white mb-1 fs-5">{member.name}</h6>

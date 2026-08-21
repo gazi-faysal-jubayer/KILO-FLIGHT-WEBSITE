@@ -1,78 +1,93 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import {
+  Navbar as ResizableNavbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from '@/components/ui/resizable-navbar';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Our Team', href: '/team' },
-    { name: 'Sub-Teams & Workflow', href: '/subteams' },
-    { name: 'The Cars', href: '/cars' },
-    { name: 'Sponsorship', href: '/sponsorship' },
+  const navItems = [
+    { name: 'Home', link: '/' },
+    { name: 'Our Team', link: '/team' },
+    { name: 'Sub-Teams & Workflow', link: '/subteams' },
+    { name: 'The Cars', link: '/cars' },
+    { name: 'Sponsorship', link: '/sponsorship' },
   ];
 
   return (
-    <header className="site-navbar">
-      <div className="container mx-auto px-4 d-flex align-items-center justify-content-between py-3">
-        {/* Brand Logo */}
-        <Link href="/" className="d-flex align-items-center gap-2 text-decoration-none">
-          <Image
-            src="/images/logo.png"
-            alt="Team Kilo Flight Logo"
-            width={44}
-            height={44}
-            className="logo-img"
-            priority
-          />
-          <div className="brand-text">
-            KILO <span>FLIGHT</span>
-          </div>
-        </Link>
-
-        {/* Mobile Toggle Button */}
-        <div className="d-flex align-items-center gap-2 d-lg-none">
-          <Link href="/join-us" className="custom-btn py-1 px-3" style={{ fontSize: '13px' }}>
-            Join Us
-          </Link>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="btn text-white p-1 border-0"
-            aria-label="Toggle Navigation"
-          >
-            <i className={`bi ${isOpen ? 'bi-x-lg' : 'bi-list'} fs-2`}></i>
-          </button>
-        </div>
-
-        {/* Desktop Navigation Links */}
-        <nav className={`d-lg-flex align-items-center gap-2 ${isOpen ? 'd-block mt-3 w-100' : 'd-none'}`}>
-          <ul className="d-flex flex-column flex-lg-row align-items-lg-center gap-1 list-unstyled mb-0 ms-auto">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <li key={link.href} className="my-1 my-lg-0">
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`nav-link-custom d-block ${isActive ? 'active' : ''}`}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-
-          <Link href="/join-us" className="custom-btn ms-lg-3 d-none d-lg-inline-flex">
+    <ResizableNavbar>
+      {/* Desktop Navigation with dynamic scroll resize */}
+      <NavBody>
+        <NavbarLogo />
+        <NavItems items={navItems} pathname={pathname} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', zIndex: 30 }}>
+          <NavbarButton href="/join-us" variant="primary">
             Join Team
-          </Link>
-        </nav>
-      </div>
-    </header>
+          </NavbarButton>
+        </div>
+      </NavBody>
+
+      {/* Mobile Navigation */}
+      <MobileNav>
+        <MobileNavHeader>
+          <NavbarLogo />
+          <MobileNavToggle
+            isOpen={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          />
+        </MobileNavHeader>
+
+        <MobileNavMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        >
+          {navItems.map((item, idx) => {
+            const isActive = pathname === item.link;
+            return (
+              <Link
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-decoration-none py-2 px-3 rounded-lg"
+                style={{
+                  color: isActive ? '#00E5FF' : '#E5E7EB',
+                  background: isActive ? 'rgba(0, 229, 255, 0.1)' : 'transparent',
+                  fontFamily: 'var(--font-orbitron), sans-serif',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  display: 'block',
+                  width: '100%',
+                }}
+              >
+                <span>{item.name}</span>
+              </Link>
+            );
+          })}
+          <div style={{ display: 'flex', width: '100%', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
+            <NavbarButton
+              href="/join-us"
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant="primary"
+              style={{ width: '100%', textAlign: 'center' }}
+            >
+              Join Team
+            </NavbarButton>
+          </div>
+        </MobileNavMenu>
+      </MobileNav>
+    </ResizableNavbar>
   );
 }

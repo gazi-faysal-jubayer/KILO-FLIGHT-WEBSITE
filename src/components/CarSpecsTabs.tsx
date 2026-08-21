@@ -16,7 +16,7 @@ export default function CarSpecsTabs() {
               src="/images/formula_chassis_tech.jpg"
               alt="Chassis & Suspension Engineering"
               fill
-              className="object-cover"
+              style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>

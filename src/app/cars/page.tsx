@@ -11,7 +11,7 @@ export default function CarsPage() {
   return (
     <>
       {/* Header */}
-      <section className="section-padding py-5" style={{ background: 'radial-gradient(circle at top, rgba(248, 203, 46, 0.08) 0%, var(--dark-bg) 100%)' }}>
+      <section className="page-header-section" style={{ background: 'radial-gradient(circle at top, rgba(248, 203, 46, 0.08) 0%, var(--dark-bg) 100%)' }}>
         <div className="container mx-auto px-4 text-center">
           <span className="badge-motorsport jute mb-2">Vehicle Evolution</span>
           <h1 className="text-white mb-3">THE CARS OF KILO FLIGHT</h1>
@@ -34,7 +34,7 @@ export default function CarsPage() {
                     src="/images/formula_car_hero.jpg"
                     alt="Kilo Flight Alpha"
                     fill
-                    className="object-cover"
+                    style={{ objectFit: 'cover' }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
@@ -86,7 +86,7 @@ export default function CarsPage() {
                     src="/images/formula_telemetry_steering.jpg"
                     alt="Kilo Flight EV Concept"
                     fill
-                    className="object-cover"
+                    style={{ objectFit: 'cover' }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>

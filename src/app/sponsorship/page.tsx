@@ -11,7 +11,7 @@ export default function SponsorshipPage() {
   return (
     <>
       {/* Header */}
-      <section className="section-padding py-5" style={{ background: 'radial-gradient(circle at top, rgba(212, 163, 89, 0.08) 0%, var(--dark-bg) 100%)' }}>
+      <section className="page-header-section" style={{ background: 'radial-gradient(circle at top, rgba(212, 163, 89, 0.08) 0%, var(--dark-bg) 100%)' }}>
         <div className="container mx-auto px-4 text-center">
           <span className="badge-motorsport jute mb-2">Industry Partnerships</span>
           <h1 className="text-white mb-3">PARTNER WITH TEAM KILO FLIGHT</h1>
