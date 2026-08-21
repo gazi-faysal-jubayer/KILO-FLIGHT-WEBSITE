@@ -2,13 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import HeroVideo from '@/components/HeroVideo';
 import CarSpecsTabs from '@/components/CarSpecsTabs';
-import TelemetrySimulator from '@/components/TelemetrySimulator';
 import FsaeEvents from '@/components/FsaeEvents';
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. RESTORED ORIGINAL HERO SECTION */}
+      {/* 1. HERO SECTION */}
       <HeroVideo />
 
       {/* 2. THE RACE CAR TECHNICAL SPECS */}
@@ -32,23 +31,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. INTERACTIVE LIVE TELEMETRY SIMULATOR */}
-      <section className="section-padding py-5" id="section_3" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
-        <div className="container mx-auto px-4">
-          <div className="row text-center mb-4">
-            <div className="col-lg-8 mx-auto">
-              <span className="badge-motorsport red mb-2">Pit Wall Control Center</span>
-              <h2 className="mb-2">LIVE VEHICLE TELEMETRY SIMULATOR</h2>
-              <p className="text-muted">Real-time CAN-bus telemetry simulation derived from Kilo Flight Alpha dynamic testing sessions.</p>
-            </div>
-          </div>
-
-          <TelemetrySimulator />
-        </div>
-      </section>
-
-      {/* 4. FORMULA STUDENT COMPETITION EVENTS EXPLAINER */}
-      <section className="section-padding py-5">
+      {/* 3. FORMULA STUDENT COMPETITION EVENTS EXPLAINER */}
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
           <div className="row text-center mb-5">
             <div className="col-lg-8 mx-auto">
@@ -62,8 +46,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. SUB-TEAMS LINK CALLOUT */}
-      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
+      {/* 4. SUB-TEAMS LINK CALLOUT */}
+      <section className="section-padding py-5">
         <div className="container mx-auto px-4">
           <div className="row justify-content-center text-center">
             <div className="col-lg-8">
@@ -80,8 +64,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. ACHIEVEMENTS TIMELINE */}
-      <section className="section-padding py-5" id="section_5">
+      {/* 5. ACHIEVEMENTS TIMELINE */}
+      <section className="section-padding py-5" id="section_5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
           <div className="row justify-content-center text-center mb-4">
             <div className="col-lg-8">
@@ -156,8 +140,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. CONTACT & LOCATION SECTION */}
-      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
+      {/* 6. CONTACT & LOCATION SECTION */}
+      <section className="section-padding py-5">
         <div className="container mx-auto px-4">
           <div className="row text-center mb-4">
             <div className="col-lg-8 mx-auto">
