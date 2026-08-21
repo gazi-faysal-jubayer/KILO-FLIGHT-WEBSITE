@@ -178,10 +178,10 @@ export default function SponsorshipPage() {
         <PressPatternBackground />
         <div className="container mx-auto px-4 text-center position-relative" style={{ zIndex: 2 }}>
           <span className="badge-motorsport jute mb-2">Industry Partnerships</span>
-          <h1 className="mb-3" style={{ color: '#0F172A', fontWeight: 900, textShadow: '2px 2px 0 #FFFFFF, -2px -2px 0 #FFFFFF, 2px -2px 0 #FFFFFF, -2px 2px 0 #FFFFFF' }}>
+          <h1 className="mb-3" style={{ color: '#0F172A', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 48px)' }}>
             PARTNER WITH TEAM KILO FLIGHT
           </h1>
-          <p className="max-w-700 mx-auto fw-bold" style={{ maxWidth: '750px', color: '#1E293B', textShadow: '1px 1px 0 #FFFFFF, -1px -1px 0 #FFFFFF' }}>
+          <p className="max-w-700 mx-auto" style={{ maxWidth: '750px', color: '#334155', fontWeight: 600 }}>
             Support Bangladesh&apos;s pioneer Formula Student team, advance sustainable engineering,
             and connect directly with top engineering talent from Khulna University of Engineering &
             Technology (KUET).
