@@ -926,3 +926,409 @@ select.form-control-custom option {
   }
 }
 
+/*---------------------------------------
+  NEO-BRUTALIST SPONSORSHIP CARDS
+-----------------------------------------*/
+
+.sponsorship-neo-card {
+  --primary: var(--card-primary, #ff3e00);
+  --secondary: var(--card-secondary, #4d61ff);
+  --accent: var(--card-accent, #00e0b0);
+  --text: #050505;
+  --bg: #ffffff;
+  --shadow-color: #000000;
+  --pattern-color: #cfcfcf;
+
+  position: relative;
+  width: 100%;
+  background: var(--bg);
+  border: 0.3em solid var(--text);
+  border-radius: 0.8em;
+  box-shadow: 0.6em 0.6em 0 var(--shadow-color), inset 0 0 0 0.15em rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  font-family: var(--body-font-family);
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sponsorship-neo-card:hover {
+  transform: translate(-0.35em, -0.35em) scale(1.02);
+  box-shadow: 0.9em 0.9em 0 var(--shadow-color);
+}
+
+.sponsorship-neo-card:hover .card-pattern-grid,
+.sponsorship-neo-card:hover .card-overlay-dots {
+  opacity: 1;
+}
+
+.sponsorship-neo-card:active {
+  transform: translate(0.1em, 0.1em) scale(0.98);
+  box-shadow: 0.4em 0.4em 0 var(--shadow-color);
+}
+
+.sponsorship-neo-card::before {
+  content: "";
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  width: 4em;
+  height: 4em;
+  background: var(--accent);
+  transform: rotate(45deg);
+  z-index: 3;
+}
+
+.sponsorship-neo-card::after {
+  content: "★";
+  position: absolute;
+  top: 0.3em;
+  right: 0.3em;
+  color: var(--text);
+  font-size: 1.2em;
+  font-weight: bold;
+  z-index: 4;
+}
+
+.sponsorship-neo-card .card-pattern-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 0.5em 0.5em;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.sponsorship-neo-card .card-overlay-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--pattern-color) 1px, transparent 1px);
+  background-size: 1em 1em;
+  background-position: -0.5em -0.5em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.sponsorship-neo-card .bold-pattern {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6em;
+  height: 6em;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+  color: #000000;
+}
+
+.sponsorship-neo-card .card-title-area {
+  position: relative;
+  padding: 1.3em 1.4em;
+  background: var(--primary);
+  color: #ffffff;
+  font-family: var(--font-orbitron), sans-serif;
+  font-weight: 800;
+  font-size: 1.15em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.3em solid var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.sponsorship-neo-card .card-title-area::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.12) 0.5em,
+    transparent 0.5em,
+    transparent 1em
+  );
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.sponsorship-neo-card .card-tag {
+  background: #ffffff;
+  color: var(--text);
+  font-size: 0.62em;
+  font-weight: 800;
+  padding: 0.4em 0.8em;
+  border: 0.15em solid var(--text);
+  border-radius: 0.3em;
+  box-shadow: 0.2em 0.2em 0 var(--shadow-color);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(3deg);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.sponsorship-neo-card:hover .card-tag {
+  transform: rotate(-2deg) scale(1.08);
+  box-shadow: 0.25em 0.25em 0 var(--shadow-color);
+}
+
+.sponsorship-neo-card .card-body {
+  position: relative;
+  padding: 1.5em;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sponsorship-neo-card .card-description {
+  margin-bottom: 1.3em;
+  color: #1e293b;
+  font-size: 0.95em;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.sponsorship-neo-card .feature-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85em;
+  margin-bottom: 1.5em;
+  flex-grow: 1;
+}
+
+.sponsorship-neo-card .feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  transition: transform 0.2s ease;
+}
+
+.sponsorship-neo-card .feature-item:hover {
+  transform: translateX(0.3em);
+}
+
+.sponsorship-neo-card .feature-icon {
+  width: 1.6em;
+  height: 1.6em;
+  min-width: 1.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary);
+  border: 0.12em solid var(--text);
+  border-radius: 0.35em;
+  box-shadow: 0.18em 0.18em 0 rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+  color: #ffffff;
+}
+
+.sponsorship-neo-card .feature-item:hover .feature-icon {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.sponsorship-neo-card .feature-icon svg,
+.sponsorship-neo-card .feature-icon i {
+  font-size: 0.9em;
+  fill: #ffffff;
+}
+
+.sponsorship-neo-card .feature-text {
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sponsorship-neo-card .card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1.2em;
+  border-top: 0.15em dashed rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.sponsorship-neo-card .card-actions::before {
+  content: "✂";
+  position: absolute;
+  top: -0.8em;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+  background: #ffffff;
+  padding: 0 0.5em;
+  font-size: 0.95em;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.sponsorship-neo-card .price {
+  position: relative;
+  font-size: 1.85em;
+  font-weight: 900;
+  font-family: var(--font-orbitron), sans-serif;
+  color: var(--text);
+  background: transparent;
+  line-height: 1;
+}
+
+.sponsorship-neo-card .price::before {
+  content: "";
+  position: absolute;
+  bottom: 0.1em;
+  left: 0;
+  width: 100%;
+  height: 0.25em;
+  background: var(--accent);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.sponsorship-neo-card .price-currency {
+  font-size: 0.55em;
+  font-weight: 800;
+  vertical-align: top;
+  margin-right: 0.1em;
+}
+
+.sponsorship-neo-card .price-period {
+  display: block;
+  font-size: 0.38em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.65);
+  margin-top: 0.3em;
+  font-family: var(--body-font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sponsorship-neo-card .card-button {
+  position: relative;
+  background: var(--secondary);
+  color: #ffffff !important;
+  font-size: 0.88em;
+  font-weight: 800;
+  font-family: var(--font-orbitron), sans-serif;
+  padding: 0.7em 1.2em;
+  border: 0.18em solid var(--text);
+  border-radius: 0.4em;
+  box-shadow: 0.28em 0.28em 0 var(--shadow-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.sponsorship-neo-card .card-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  transition: left 0.6s ease;
+}
+
+.sponsorship-neo-card .card-button:hover {
+  transform: translate(-0.1em, -0.1em);
+  box-shadow: 0.38em 0.38em 0 var(--shadow-color);
+  filter: brightness(1.1);
+}
+
+.sponsorship-neo-card .card-button:hover::before {
+  left: 100%;
+}
+
+.sponsorship-neo-card .card-button:active {
+  transform: translate(0.1em, 0.1em);
+  box-shadow: 0.15em 0.15em 0 var(--shadow-color);
+}
+
+.sponsorship-neo-card .dots-pattern {
+  position: absolute;
+  bottom: 2em;
+  left: -2em;
+  width: 8em;
+  height: 4em;
+  opacity: 0.18;
+  transform: rotate(-10deg);
+  pointer-events: none;
+  z-index: 1;
+  color: #000000;
+}
+
+.sponsorship-neo-card .accent-shape {
+  position: absolute;
+  width: 2.2em;
+  height: 2.2em;
+  background: var(--secondary);
+  border: 0.15em solid var(--text);
+  border-radius: 0.3em;
+  transform: rotate(45deg);
+  bottom: -1.1em;
+  right: 2em;
+  z-index: 0;
+  transition: transform 0.3s ease;
+}
+
+.sponsorship-neo-card:hover .accent-shape {
+  transform: rotate(55deg) scale(1.1);
+}
+
+.sponsorship-neo-card .stamp {
+  position: absolute;
+  bottom: 1.5em;
+  left: 1.5em;
+  width: 4.5em;
+  height: 4.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.18em solid rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  transform: rotate(-15deg);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sponsorship-neo-card .stamp-text {
+  font-size: 0.6em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000000;
+  text-align: center;
+}
+
+.sponsorship-neo-card .corner-slice {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1.4em;
+  height: 1.4em;
+  background: var(--bg);
+  border-right: 0.22em solid var(--text);
+  border-top: 0.22em solid var(--text);
+  border-radius: 0 0.5em 0 0;
+  z-index: 1;
+}
+
+
