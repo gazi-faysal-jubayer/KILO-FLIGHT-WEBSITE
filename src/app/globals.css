@@ -205,78 +205,111 @@ a:hover {
 }
 
 /*---------------------------------------
-  BUTTONS               
+  BUTTONS (NEO-BRUTALIST MOTORSPORT)               
 -----------------------------------------*/
 
 .custom-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--primary-red) 0%, #D00000 100%);
+  background: var(--primary-red);
   color: #FFFFFF !important;
-  font-family: var(--header-font-family);
-  font-weight: 700;
-  font-size: 14px;
+  font-family: var(--font-orbitron), sans-serif;
+  font-weight: 800;
+  font-size: 13.5px;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 12px 28px;
-  border-radius: 4px;
-  border: none;
-  box-shadow: 0 4px 18px var(--primary-red-glow);
+  border-radius: 6px;
+  border: 2px solid #050505;
+  box-shadow: 4px 4px 0 #000000;
   cursor: pointer;
-  transition: all 0.3s ease;
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  text-decoration: none !important;
+}
+
+.custom-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  transition: left 0.6s ease;
 }
 
 .custom-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 42, 42, 0.6);
-  background: linear-gradient(135deg, #FF4545 0%, #E60000 100%);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000000;
+  background: #FF4545;
+  color: #FFFFFF !important;
+}
+
+.custom-btn:hover::before {
+  left: 100%;
+}
+
+.custom-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000000;
 }
 
 .custom-btn-outline {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(14, 21, 36, 0.8);
   color: var(--cyan-telemetry) !important;
-  border: 1px solid var(--cyan-telemetry);
-  box-shadow: 0 0 14px rgba(0, 229, 255, 0.15);
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  font-family: var(--header-font-family);
-  font-weight: 700;
+  border: 2px solid var(--cyan-telemetry);
+  box-shadow: 4px 4px 0 #000000;
+  font-family: var(--font-orbitron), sans-serif;
+  font-weight: 800;
   padding: 11px 24px;
-  font-size: 14px;
+  font-size: 13.5px;
+  border-radius: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  text-decoration: none !important;
 }
 
 .custom-btn-outline:hover {
   background: var(--cyan-telemetry);
-  color: var(--dark-bg) !important;
-  box-shadow: 0 0 25px var(--cyan-glow);
-  transform: translateY(-2px);
+  color: #060911 !important;
+  box-shadow: 6px 6px 0 #000000;
+  transform: translate(-2px, -2px);
+}
+
+.custom-btn-outline:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000000;
 }
 
 /*---------------------------------------
-  GLASS PANEL & CARDS               
+  GLASS PANEL & CARDS (NEO-BRUTALIST GLOW)               
 -----------------------------------------*/
 
 .glass-panel {
-  background: var(--card-bg);
+  position: relative;
+  background: #0B101C;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
+  border: 2px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--border-radius-large);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 6px 6px 0 #000000, inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
 }
 
 .glass-panel:hover {
-  border-color: var(--card-hover-border);
-  box-shadow: 0 15px 35px rgba(0, 229, 255, 0.15);
+  transform: translate(-3px, -3px) scale(1.008);
+  border-color: var(--cyan-telemetry);
+  box-shadow: 9px 9px 0 #000000, 0 0 20px rgba(0, 229, 255, 0.2);
 }
 
 /*---------------------------------------
@@ -424,16 +457,23 @@ a:hover {
 }
 
 .stat-box {
-  background: rgba(14, 20, 34, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0B101C;
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-left: 4px solid var(--cyan-telemetry);
   padding: 18px 20px;
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius-medium);
   text-align: left;
+  box-shadow: 4px 4px 0 #000000;
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.stat-box:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000000;
 }
 
 .stat-box.red-border {
@@ -468,9 +508,9 @@ a:hover {
 
 .telemetry-container {
   background: rgba(10, 15, 26, 0.95);
-  border: 1px solid rgba(0, 229, 255, 0.25);
+  border: 2px solid rgba(0, 229, 255, 0.3);
   border-radius: var(--border-radius-large);
-  box-shadow: 0 0 35px rgba(0, 229, 255, 0.12);
+  box-shadow: 6px 6px 0 #000000, 0 0 25px rgba(0, 229, 255, 0.15);
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -489,8 +529,9 @@ a:hover {
 
 .telemetry-readout {
   font-family: 'Orbitron', monospace;
-  background: rgba(4, 7, 13, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(4, 7, 13, 0.9);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 3px 3px 0 #000000;
   padding: 14px 16px;
   border-radius: 8px;
   text-align: center;
@@ -519,7 +560,8 @@ a:hover {
 
 .drive-mode-btn {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 2px 2px 0 #000000;
   color: var(--text-muted);
   font-family: var(--header-font-family);
   font-weight: 700;
@@ -535,7 +577,7 @@ a:hover {
   background: rgba(0, 229, 255, 0.15);
   border-color: var(--cyan-telemetry);
   color: var(--cyan-telemetry);
-  box-shadow: 0 0 12px var(--cyan-glow);
+  box-shadow: 3px 3px 0 #000000, 0 0 12px var(--cyan-glow);
 }
 
 /*---------------------------------------
@@ -550,25 +592,27 @@ a:hover {
   font-weight: 700;
   padding: 6px 14px;
   border-radius: 20px;
-  background: rgba(14, 20, 34, 0.9);
-  border: 1px solid var(--card-border);
+  background: #0B101C;
+  border: 1.5px solid var(--card-border);
+  box-shadow: 2px 2px 0 #000000;
 }
 
 .sync-badge.live {
-  border-color: rgba(34, 197, 94, 0.5);
+  border-color: rgba(34, 197, 94, 0.6);
   color: #4ADE80;
   background: rgba(34, 197, 94, 0.12);
 }
 
 .sync-badge.cached {
-  border-color: rgba(248, 203, 46, 0.5);
+  border-color: rgba(248, 203, 46, 0.6);
   color: var(--yellow-accent);
   background: rgba(248, 203, 46, 0.12);
 }
 
 .season-btn {
-  background: rgba(14, 20, 34, 0.85);
-  border: 1px solid var(--card-border);
+  background: #0B101C;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 3px 3px 0 #000000;
   color: var(--text-muted);
   font-family: var(--header-font-family);
   font-weight: 700;
@@ -581,19 +625,21 @@ a:hover {
 
 .season-btn.active,
 .season-btn:hover {
-  background: rgba(0, 229, 255, 0.15);
+  background: rgba(0, 229, 255, 0.18);
   border-color: var(--cyan-telemetry);
   color: var(--cyan-telemetry);
-  box-shadow: 0 0 15px var(--cyan-glow);
+  box-shadow: 4px 4px 0 #000000, 0 0 15px var(--cyan-glow);
+  transform: translate(-1px, -1px);
 }
 
 .team-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: #0B101C;
+  border: 2px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--border-radius-large);
+  box-shadow: 5px 5px 0 #000000, inset 0 1px 0 rgba(255, 255, 255, 0.08);
   padding: 24px 20px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -601,9 +647,9 @@ a:hover {
 }
 
 .team-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--card-hover-border);
-  box-shadow: 0 15px 35px rgba(0, 229, 255, 0.15);
+  transform: translate(-3px, -3px) scale(1.01);
+  border-color: var(--cyan-telemetry);
+  box-shadow: 8px 8px 0 #000000, 0 0 20px rgba(0, 229, 255, 0.2);
 }
 
 .role-badge {
@@ -621,7 +667,8 @@ a:hover {
 .linkedin-btn {
   color: var(--cyan-telemetry);
   background: rgba(0, 229, 255, 0.08);
-  border: 1px solid rgba(0, 229, 255, 0.3);
+  border: 1.5px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 2px 2px 0 #000000;
   padding: 5px 14px;
   border-radius: 15px;
   font-family: var(--header-font-family);
@@ -635,13 +682,15 @@ a:hover {
 
 .linkedin-btn:hover {
   background: var(--cyan-telemetry);
-  color: var(--dark-bg);
-  box-shadow: 0 0 12px var(--cyan-glow);
+  color: #060911;
+  box-shadow: 3px 3px 0 #000000, 0 0 12px var(--cyan-glow);
+  transform: translate(-1px, -1px);
 }
 
 .btn-refresh {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--card-border);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 2px 2px 0 #000000;
   color: var(--cyan-telemetry);
   font-size: 13px;
   font-family: var(--header-font-family);
@@ -655,7 +704,7 @@ a:hover {
 .btn-refresh:hover {
   background: rgba(0, 229, 255, 0.15);
   border-color: var(--cyan-telemetry);
-  box-shadow: 0 0 12px var(--cyan-glow);
+  box-shadow: 3px 3px 0 #000000, 0 0 12px var(--cyan-glow);
 }
 
 /*---------------------------------------
@@ -687,18 +736,19 @@ a:hover {
 }
 
 .workflow-step {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: #0B101C;
+  border: 2px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--border-radius-large);
+  box-shadow: 5px 5px 0 #000000;
   padding: 22px 18px;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   height: 100%;
 }
 
 .workflow-step:hover {
+  transform: translate(-3px, -3px);
   border-color: var(--cyan-telemetry);
-  box-shadow: 0 10px 25px rgba(0, 229, 255, 0.15);
-  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 #000000, 0 0 20px rgba(0, 229, 255, 0.2);
 }
 
 .pipeline-number {
@@ -706,7 +756,6 @@ a:hover {
   font-size: 28px;
   font-weight: 900;
   color: var(--cyan-telemetry);
-  opacity: 0.85;
   margin-bottom: 8px;
   line-height: 1;
 }
@@ -716,21 +765,22 @@ a:hover {
 -----------------------------------------*/
 
 .fsae-event-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: #0B101C;
+  border: 2px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--border-radius-large);
+  box-shadow: 5px 5px 0 #000000;
   padding: 24px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .fsae-event-card:hover {
+  transform: translate(-3px, -3px);
   border-color: var(--yellow-accent);
-  box-shadow: 0 10px 30px rgba(248, 203, 46, 0.14);
-  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 #000000, 0 0 20px rgba(248, 203, 46, 0.2);
 }
 
 .event-metric {
@@ -1330,5 +1380,189 @@ select.form-control-custom option {
   border-radius: 0 0.5em 0 0;
   z-index: 1;
 }
+
+/*---------------------------------------
+  SPONSORSHIP 3D PRINTING PRESS BACKGROUND
+-----------------------------------------*/
+
+.press-background-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.press {
+  background: #080D1A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: #17181c;
+  font-family: serif;
+  line-height: 1.5;
+  opacity: 0.38;
+}
+
+.press * {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.press .sheet {
+  overflow: hidden;
+}
+
+.press .sheet,
+.press .sheet:before,
+.press .roll {
+  position: absolute;
+}
+
+.press .sheet,
+.press .roll {
+  top: 40%;
+  left: 50%;
+}
+
+.press .sheet {
+  width: 4em;
+  height: 6em;
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg);
+}
+
+.press .sheet:before {
+  animation: print 0.5s ease-in-out infinite;
+  background:
+    linear-gradient(#0000 5.2em, currentColor 5.2em 5.3em, #0000 5.3em 5.5em) 0.4em 0 / 3.2em 6em,
+    linear-gradient(#0000 5.5em, currentColor 5.5em 5.7em, #0000 5.7em) 0.6em 0 / 2.8em 6em,
+    linear-gradient(90deg, #e3e4e8 0.4em, #0000 0.4em 1.9em, #e3e4e8 1.9em 2.1em, #0000 2.1em 3.6em, #e3e4e8 3.6em) 0 0 / 4em 6em,
+    repeating-linear-gradient(#e3e4e8 0 0.4em, #0000 0.4em 5em, #e3e4e8 5em 6em, #0000 6em) 0 0 / 4em 6em,
+    linear-gradient(#0000 3.4em, currentColor 3.4em) 100% 0 / 50% 6em,
+    repeating-linear-gradient(currentColor 0 0.2em, #e3e4e8 0.2em 0.4em) 0 0 / 4em 6em;
+  background-repeat: repeat-y;
+  color: #17181c;
+  content: "";
+  display: block;
+  top: -6em;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 6em);
+}
+
+.press .sheet:nth-child(1):before,
+.press .sheet:nth-child(5):before {
+  color: #c7cad1;
+}
+
+.press .sheet:nth-child(n + 7):nth-child(-n + 9) {
+  height: 0.4em;
+}
+
+.press .sheet:nth-child(1) {
+  height: 42em;
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-17.4em, 9.4em) rotateX(-90deg);
+}
+
+.press .sheet:nth-child(3) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-2.5em, -2.5em);
+}
+
+.press .sheet:nth-child(5) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-0.5em, -0.7em) rotateX(-75deg);
+}
+
+.press .sheet:nth-child(7) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(1.7em, -1.85em) rotateX(-15deg);
+}
+
+.press .sheet:nth-child(7):before {
+  background-position-y: 5.2em;
+}
+
+.press .sheet:nth-child(8) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(1.7em, -1.5em) rotateX(15deg);
+}
+
+.press .sheet:nth-child(8):before {
+  background-position-y: 4.8em;
+}
+
+.press .sheet:nth-child(9) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(1.6em, -1.05em) rotateX(45deg);
+}
+
+.press .sheet:nth-child(9):before {
+  background-position-y: 4.4em;
+}
+
+.press .sheet:nth-child(10):before,
+.press .sheet:nth-child(11):before {
+  background-position-y: 4em;
+}
+
+.press .sheet:nth-child(10) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-0.5em, 1.95em) rotateX(75deg);
+}
+
+.press .sheet:nth-child(11) {
+  height: 29em;
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-2.5em, 19.25em);
+}
+
+.press .roll {
+  background-color: #2e3138;
+  background-image: radial-gradient(1em 2em at 0.5em 50%, #17181c 49%, #17181c00 50%);
+  border-radius: 0.5em 0.5em 0.5em 0.5em / 1em 1em 1em 1em;
+  width: 8em;
+  height: 2em;
+}
+
+.press .roll:nth-child(2) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-3em, -4.5em) skewX(-22.5deg);
+}
+
+.press .roll:nth-child(4) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-2em, -0.5em) skewX(-22.5deg);
+}
+
+.press .roll:nth-child(6) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(1em, -1em) skewX(-22.5deg);
+}
+
+.press .roll:nth-child(12) {
+  transform: translate(-50%, -50%) rotateX(-45deg) rotateZ(-45deg) translate(-2em, 4.45em) skewX(-22.5deg);
+}
+
+@keyframes print {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(6em);
+  }
+}
+
+.press-overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 35%, rgba(6, 9, 17, 0.45) 0%, rgba(6, 9, 17, 0.92) 80%, var(--dark-bg) 100%),
+    linear-gradient(to bottom, rgba(6, 9, 17, 0.35) 0%, rgba(6, 9, 17, 0.95) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 
 

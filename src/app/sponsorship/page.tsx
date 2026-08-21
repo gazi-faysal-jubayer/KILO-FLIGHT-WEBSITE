@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import SponsorshipCard, { SponsorshipTier } from '@/components/SponsorshipCard';
+import PressPatternBackground from '@/components/PressPatternBackground';
 
 export const metadata: Metadata = {
   title: 'Sponsorship Opportunities | Team Kilo Flight - KUET',
@@ -164,15 +165,18 @@ export default function SponsorshipPage() {
 
   return (
     <>
-      {/* Header */}
+      {/* Header with 3D Printing Press Background */}
       <section
-        className="page-header-section"
+        className="page-header-section position-relative overflow-hidden"
         style={{
-          background:
-            'radial-gradient(circle at top, rgba(212, 163, 89, 0.08) 0%, var(--dark-bg) 100%)',
+          minHeight: '440px',
+          display: 'flex',
+          alignItems: 'center',
+          background: 'transparent',
         }}
       >
-        <div className="container mx-auto px-4 text-center">
+        <PressPatternBackground />
+        <div className="container mx-auto px-4 text-center position-relative" style={{ zIndex: 2 }}>
           <span className="badge-motorsport jute mb-2">Industry Partnerships</span>
           <h1 className="text-white mb-3">PARTNER WITH TEAM KILO FLIGHT</h1>
           <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '750px' }}>
@@ -255,15 +259,15 @@ export default function SponsorshipPage() {
         </div>
       </section>
 
-      {/* Pricing Tiers - Styled Cards */}
+      {/* Pricing Tiers - Styled Cards with 3D Printing Press Backdrop */}
       <section
-        className="section-padding py-5"
+        className="section-padding py-5 position-relative overflow-hidden"
         style={{
-          background: 'rgba(6, 10, 18, 0.6)',
-          borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
         }}
       >
-        <div className="container mx-auto px-4">
+        <PressPatternBackground />
+        <div className="container mx-auto px-4 position-relative" style={{ zIndex: 2 }}>
           <div className="row text-center mb-5">
             <div className="col-lg-8 mx-auto">
               <span className="badge-motorsport jute mb-2">Partnership Tiers</span>
