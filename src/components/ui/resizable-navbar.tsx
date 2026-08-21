@@ -85,13 +85,12 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? 'blur(20px)' : 'blur(8px)',
+        backdropFilter: visible ? 'blur(20px)' : 'blur(12px)',
         boxShadow: visible
-          ? '4px 4px 0 #0F172A, 0 10px 30px rgba(0, 0, 0, 0.08)'
-          : '3px 3px 0 #0F172A',
+          ? '0 12px 35px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+          : '0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04)',
         width: visible ? '72%' : '100%',
         y: visible ? 16 : 8,
-        borderColor: '#0F172A',
         background: visible ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.9)',
       }}
       transition={{
@@ -104,8 +103,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minHeight: '62px',
         padding: '8px 24px',
         borderRadius: '9999px',
-        borderWidth: '2px',
-        borderStyle: 'solid',
+        border: 'none',
       }}
       className={cn('resizable-desktop-body', className)}
     >
@@ -143,9 +141,8 @@ export const NavItems = ({ items, className, onItemClick, pathname }: NavItemsPr
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '9999px',
-                  background: 'rgba(255, 42, 42, 0.1)',
-                  border: '1.5px solid #FF2A2A',
-                  boxShadow: '2px 2px 0 #0F172A',
+                  background: 'rgba(255, 42, 42, 0.08)',
+                  boxShadow: '0 2px 10px rgba(255, 42, 42, 0.15)',
                   zIndex: 0,
                 }}
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
@@ -163,14 +160,13 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? 'blur(20px)' : 'blur(10px)',
+        backdropFilter: visible ? 'blur(20px)' : 'blur(12px)',
         boxShadow: visible
-          ? '4px 4px 0 #0F172A, 0 10px 25px rgba(0, 0, 0, 0.08)'
-          : '3px 3px 0 #0F172A',
+          ? '0 12px 35px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+          : '0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04)',
         width: visible ? '92%' : '100%',
         y: visible ? 12 : 8,
-        borderColor: '#0F172A',
-        background: visible ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.92)',
+        background: visible ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.94)',
       }}
       transition={{
         type: 'spring',
@@ -179,9 +175,8 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       }}
       style={{
         padding: '10px 18px',
-        borderRadius: '16px',
-        borderWidth: '2px',
-        borderStyle: 'solid',
+        borderRadius: '20px',
+        border: 'none',
       }}
       className={cn('resizable-mobile-body', className)}
     >
@@ -253,7 +248,7 @@ export const MobileNavMenu = ({
             overflow: 'hidden',
             width: '100%',
             marginTop: '12px',
-            borderTop: '2px solid #0F172A',
+            borderTop: '1px solid rgba(0, 0, 0, 0.08)',
             paddingTop: '12px',
           }}
           className={className}
@@ -266,7 +261,7 @@ export const MobileNavMenu = ({
 };
 
 export const NavbarLogo = ({
-  src = '/images/logo.png',
+  src = '/images/KILO FLIGHT - B.png',
   alt = 'Team Kilo Flight',
   href = '/',
 }: {
@@ -287,15 +282,13 @@ export const NavbarLogo = ({
       <Image
         src={src}
         alt={alt}
-        width={130}
+        width={140}
         height={38}
         style={{
           height: '38px',
           width: 'auto',
           objectFit: 'contain',
           display: 'block',
-          filter:
-            'drop-shadow(1.5px 0 0 #0F172A) drop-shadow(-1.5px 0 0 #0F172A) drop-shadow(0 1.5px 0 #0F172A) drop-shadow(0 -1.5px 0 #0F172A) drop-shadow(1.5px 1.5px 0 #0F172A) drop-shadow(-1.5px -1.5px 0 #0F172A) drop-shadow(1.5px -1.5px 0 #0F172A) drop-shadow(-1.5px 1.5px 0 #0F172A) drop-shadow(2px 2px 4px rgba(0,0,0,0.35))',
         }}
         priority
       />
@@ -326,8 +319,8 @@ export const NavbarButton = ({
       style={{
         background: '#FF2A2A',
         color: '#FFFFFF',
-        border: '2px solid #0F172A',
-        boxShadow: '3px 3px 0 #0F172A',
+        border: 'none',
+        boxShadow: '0 4px 14px rgba(255, 42, 42, 0.35)',
         ...style,
       }}
     >

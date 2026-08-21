@@ -178,8 +178,10 @@ export default function SponsorshipPage() {
         <PressPatternBackground />
         <div className="container mx-auto px-4 text-center position-relative" style={{ zIndex: 2 }}>
           <span className="badge-motorsport jute mb-2">Industry Partnerships</span>
-          <h1 className="text-white mb-3">PARTNER WITH TEAM KILO FLIGHT</h1>
-          <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '750px' }}>
+          <h1 className="mb-3" style={{ color: '#0F172A', fontWeight: 900, textShadow: '2px 2px 0 #FFFFFF, -2px -2px 0 #FFFFFF, 2px -2px 0 #FFFFFF, -2px 2px 0 #FFFFFF' }}>
+            PARTNER WITH TEAM KILO FLIGHT
+          </h1>
+          <p className="max-w-700 mx-auto fw-bold" style={{ maxWidth: '750px', color: '#1E293B', textShadow: '1px 1px 0 #FFFFFF, -1px -1px 0 #FFFFFF' }}>
             Support Bangladesh&apos;s pioneer Formula Student team, advance sustainable engineering,
             and connect directly with top engineering talent from Khulna University of Engineering &
             Technology (KUET).
@@ -215,7 +217,7 @@ export default function SponsorshipPage() {
                 >
                   <i className="bi bi-person-check"></i>
                 </div>
-                <h4 className="text-white mb-2">Direct Talent Recruitment</h4>
+                <h4 className="mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>Direct Talent Recruitment</h4>
                 <p className="small text-muted mb-0">
                   Get priority access to our resume database and interview top-tier KUET engineering
                   graduates skilled in CAD, FEA, CFD, programming, and project management.
@@ -228,7 +230,7 @@ export default function SponsorshipPage() {
                 <div className="dept-icon mx-auto">
                   <i className="bi bi-megaphone"></i>
                 </div>
-                <h4 className="text-white mb-2">Global & Media Brand Exposure</h4>
+                <h4 className="mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>Global & Media Brand Exposure</h4>
                 <p className="small text-muted mb-0">
                   Prominent logo branding on our Formula race car, team gear, global competition
                   stages (Silverstone, Hockenheimring), and national TV & newspaper press coverage.
@@ -248,7 +250,7 @@ export default function SponsorshipPage() {
                 >
                   <i className="bi bi-leaf"></i>
                 </div>
-                <h4 className="text-white mb-2">CSR & Sustainable Innovation</h4>
+                <h4 className="mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>CSR & Sustainable Innovation</h4>
                 <p className="small text-muted mb-0">
                   Align your company with eco-friendly innovation, supporting Bangladesh&apos;s
                   pioneer research into sustainable natural jute fiber composite engineering.

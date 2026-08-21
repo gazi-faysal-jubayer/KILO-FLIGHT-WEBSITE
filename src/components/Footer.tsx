@@ -11,16 +11,14 @@ export default function Footer() {
           <div className="col-lg-4 col-md-6">
             <div className="d-flex align-items-center gap-2 mb-3">
               <Image
-                src="/images/logo.png"
+                src="/images/KILO FLIGHT - B.png"
                 alt="Team Kilo Flight"
-                width={140}
-                height={40}
+                width={150}
+                height={42}
                 style={{
-                  height: '40px',
+                  height: '42px',
                   width: 'auto',
                   objectFit: 'contain',
-                  filter:
-                    'drop-shadow(1.5px 0 0 #0F172A) drop-shadow(-1.5px 0 0 #0F172A) drop-shadow(0 1.5px 0 #0F172A) drop-shadow(0 -1.5px 0 #0F172A) drop-shadow(1.5px 1.5px 0 #0F172A) drop-shadow(-1.5px -1.5px 0 #0F172A) drop-shadow(1.5px -1.5px 0 #0F172A) drop-shadow(-1.5px 1.5px 0 #0F172A) drop-shadow(2px 2px 4px rgba(0,0,0,0.25))',
                 }}
               />
             </div>
