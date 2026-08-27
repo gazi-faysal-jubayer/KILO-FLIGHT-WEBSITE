@@ -1,14 +1,62 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import HeroVideo from '@/components/HeroVideo';
 import CarSpecsTabs from '@/components/CarSpecsTabs';
 import FsaeEvents from '@/components/FsaeEvents';
 
 export default function HomePage() {
+  const [content, setContent] = useState<any | null>(null);
+  const [contactForm, setContactForm] = useState({
+    fullName: '',
+    email: '',
+    inquiryType: 'sponsorship',
+    message: '',
+  });
+  const [sendingMsg, setSendingMsg] = useState(false);
+  const [msgSent, setMsgSent] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/content')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setContent(data.data);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSendingMsg(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contactForm),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMsgSent(true);
+        setContactForm({ fullName: '', email: '', inquiryType: 'sponsorship', message: '' });
+        setTimeout(() => setMsgSent(false), 5000);
+      }
+    } catch (err) {
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setSendingMsg(false);
+    }
+  };
+
+  const achievements = content?.achievements || [];
+  const teamMembers = (content?.team || []).filter((m: any) => m.category === 'captain' || m.category === 'lead');
+
   return (
     <>
       {/* 1. HERO SECTION */}
-      <HeroVideo />
+      <HeroVideo initialData={content?.settings?.hero} />
 
       {/* 2. ONGOING & LEGACY PROJECTS: TECHNICAL ENGINEERING */}
       <section className="section-padding py-5" id="section_2">
@@ -66,7 +114,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. PREVIOUS ACHIEVEMENTS TIMELINE */}
+      {/* 5. PREVIOUS ACHIEVEMENTS TIMELINE (DYNAMIC) */}
       <section className="section-padding py-5" id="section_5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
           <div className="row justify-content-center text-center mb-4">
@@ -88,69 +136,27 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row" className="font-orbitron fs-5 text-cyan">2023</th>
-                  <td>
-                    <div className="fw-bold">Formula SAE Japan (FSAE Japan 2023)</div>
-                    <div className="small text-muted">KILOFLIGHT ALPHA Debut</div>
-                  </td>
-                  <td>
-                    <span className="badge-motorsport red">Passed Mechanical Inspection</span>
-                    <div className="small text-muted mt-1">
-                      First Bangladeshi Formula Student team in history to pass the comprehensive mechanical inspection segment at FSAE Japan with natural jute-fiber composite bodywork.
-                    </div>
-                  </td>
-                  <td>Aichi, Japan</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="font-orbitron fs-5" style={{ color: '#D97706' }}>2025</th>
-                  <td>
-                    <div className="fw-bold">Formula Student Concept Competition India</div>
-                    <div className="small text-muted">Combustion Vehicle (CV) Category</div>
-                  </td>
-                  <td>
-                    <span className="badge-motorsport jute">Conceptual Engineering Groundwork</span>
-                    <div className="small text-muted mt-1">
-                      Competed in the international CV category, laying the critical design, simulation, and packaging groundwork for physical manufacturing of PHOENIX.
-                    </div>
-                  </td>
-                  <td>India / Online</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="font-orbitron fs-5" style={{ color: '#0284C7' }}>July 2026</th>
-                  <td>
-                    <div className="fw-bold">Bangladesh AutoFest 2026</div>
-                    <div className="small text-muted">July 17–18, 2026 &bull; ALOKI Dhaka</div>
-                  </td>
-                  <td>
-                    <span className="badge-motorsport">National Vehicle Exhibition</span>
-                    <div className="small text-muted mt-1">
-                      Core group of 9 student members traveled from Khulna to represent KUET, showcasing the race car alongside 5 other Bangladeshi Formula Student teams. Logistics partner: Steadfast.
-                    </div>
-                  </td>
-                  <td>Tejgaon-Gulshan Link Road, Dhaka</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="font-orbitron fs-5" style={{ color: '#DC2626' }}>2026–2027</th>
-                  <td>
-                    <div className="fw-bold">FSAE Dynamix India 2027 &amp; FSUK 2027</div>
-                    <div className="small text-muted">January 17–18, 2027 &bull; European Circuits</div>
-                  </td>
-                  <td>
-                    <span className="badge-motorsport red">KILOFLIGHT PHOENIX Track Campaign</span>
-                    <div className="small text-muted mt-1">
-                      292 cc CFMoto 300SR, 24.4 kg 4130 spaceframe, multi-element aerodynamic wings, and 7-layer bio-jute composite bodywork aiming for top podium finishes.
-                    </div>
-                  </td>
-                  <td>India &amp; Silverstone, UK</td>
-                </tr>
+                {achievements.map((item: any) => (
+                  <tr key={item.id}>
+                    <th scope="row" className="font-orbitron fs-5 text-cyan">{item.year}</th>
+                    <td>
+                      <div className="fw-bold">{item.competition}</div>
+                      <div className="small text-muted">{item.category}</div>
+                    </td>
+                    <td>
+                      <span className="badge-motorsport red">{item.badge}</span>
+                      <div className="small text-muted mt-1">{item.details}</div>
+                    </td>
+                    <td>{item.location}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       </section>
 
-      {/* 6. TEAM LEADERSHIP & CONTACT DIRECTORY */}
+      {/* 6. TEAM LEADERSHIP & CONTACT DIRECTORY (DYNAMIC) */}
       <section className="section-padding py-5">
         <div className="container mx-auto px-4">
           <div className="row text-center mb-4">
@@ -163,115 +169,74 @@ export default function HomePage() {
 
           {/* Leadership Cards Grid */}
           <div className="row g-4 mb-5">
-            <div className="col-lg-4 col-md-6">
-              <div className="glass-panel p-4 h-100">
-                <span className="badge-motorsport red mb-2">Team Captain</span>
-                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Auritra Sharma</h4>
-                <p className="small text-muted mb-3">Overall Vehicle Design, Executive Management &amp; International Campaigns</p>
-                <div className="small">
-                  <div className="mb-1">
-                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
-                    <a href="tel:+8801611453600" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1611-453600</a>
-                  </div>
-                  <div>
-                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                    <a href="mailto:auritrasharma28@gmail.com" className="text-decoration-none text-muted">auritrasharma28@gmail.com</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6">
-              <div className="glass-panel p-4 h-100">
-                <span className="badge-motorsport mb-2">Vice Captain</span>
-                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Gazi Faysal Jubayer</h4>
-                <p className="small text-muted mb-3">Executive Coordination, Digital Platforms &amp; Sub-team Execution</p>
-                <div className="small">
-                  <div className="mb-1">
-                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
-                    <a href="tel:+8801315669261" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1315-669261</a>
-                  </div>
-                  <div>
-                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                    <a href="mailto:gazi.faysal.jubayer@gmail.com" className="text-decoration-none text-muted">gazi.faysal.jubayer@gmail.com</a>
+            {teamMembers.slice(0, 5).map((member: any) => (
+              <div key={member.id} className="col-lg-4 col-md-6">
+                <div className="glass-panel p-4 h-100">
+                  <span className="badge-motorsport red mb-2">{member.role}</span>
+                  <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>{member.name}</h4>
+                  <p className="small text-muted mb-3">{member.bio}</p>
+                  <div className="small">
+                    {member.phone && (
+                      <div className="mb-1">
+                        <i className="bi bi-telephone-fill me-2 text-danger"></i>
+                        <a href={`tel:${member.phone}`} className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>{member.phone}</a>
+                      </div>
+                    )}
+                    {member.email && (
+                      <div>
+                        <i className="bi bi-envelope-fill me-2 text-cyan"></i>
+                        <a href={`mailto:${member.email}`} className="text-decoration-none text-muted">{member.email}</a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6">
-              <div className="glass-panel p-4 h-100">
-                <span className="badge-motorsport jute mb-2">Technical Director</span>
-                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Eshraq Nipun</h4>
-                <p className="small text-muted mb-3">Vehicle Engineering Architecture, FEA/CFD &amp; Powertrain Integration</p>
-                <div className="small">
-                  <div className="mb-1">
-                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
-                    <a href="tel:+8801576713957" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1576-713957</a>
-                  </div>
-                  <div>
-                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                    <a href="mailto:nushineshraqnipun.21@gmail.com" className="text-decoration-none text-muted">nushineshraqnipun.21@gmail.com</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-6">
-              <div className="glass-panel p-4 h-100">
-                <span className="badge-motorsport mb-2">Project Director</span>
-                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Naimur Rhythm</h4>
-                <p className="small text-muted mb-3">Project Scheduling, Procurement, Logistics &amp; Static Deliverables</p>
-                <div className="small">
-                  <div className="mb-1">
-                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
-                    <a href="tel:+8801602350967" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1602-350967</a>
-                  </div>
-                  <div>
-                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                    <a href="mailto:rrhythm18@gmail.com" className="text-decoration-none text-muted">rrhythm18@gmail.com</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-12">
-              <div className="glass-panel p-4 h-100">
-                <span className="badge-motorsport red mb-2">Chassis &amp; Suspension Lead</span>
-                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Nazizus Salehin</h4>
-                <p className="small text-muted mb-3">Spaceframe Structural Fabrication, Kinematics &amp; 3-Pedal Systems</p>
-                <div className="small">
-                  <div className="mb-1">
-                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
-                    <a href="tel:+8801753060356" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1753-060356</a>
-                  </div>
-                  <div>
-                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                    <a href="mailto:salehin1056@gmail.com" className="text-decoration-none text-muted">salehin1056@gmail.com</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="row g-4 align-items-stretch">
-            {/* Form */}
+            {/* Live Connected Contact Form */}
             <div className="col-lg-6">
               <div className="glass-panel p-4 h-100">
                 <h4 className="mb-4">
                   <i className="bi bi-envelope me-2 text-cyan"></i> Send Us a Message
                 </h4>
-                <form>
+
+                {msgSent && (
+                  <div className="alert alert-success p-3 small fw-bold mb-3">
+                    <i className="bi bi-check-circle-fill me-2"></i> Your message has been sent to the team!
+                  </div>
+                )}
+
+                <form onSubmit={handleContactSubmit}>
                   <div className="row g-3">
                     <div className="col-md-6">
-                      <input type="text" className="form-control-custom" placeholder="Full Name" required />
+                      <input
+                        type="text"
+                        className="form-control-custom"
+                        placeholder="Full Name"
+                        value={contactForm.fullName}
+                        onChange={(e) => setContactForm({ ...contactForm, fullName: e.target.value })}
+                        required
+                      />
                     </div>
                     <div className="col-md-6">
-                      <input type="email" className="form-control-custom" placeholder="Email Address" required />
+                      <input
+                        type="email"
+                        className="form-control-custom"
+                        placeholder="Email Address"
+                        value={contactForm.email}
+                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                        required
+                      />
                     </div>
                     <div className="col-12">
-                      <select className="form-control-custom" required defaultValue="">
-                        <option value="" disabled>Select Inquiry Type</option>
+                      <select
+                        className="form-control-custom"
+                        value={contactForm.inquiryType}
+                        onChange={(e) => setContactForm({ ...contactForm, inquiryType: e.target.value })}
+                        required
+                      >
                         <option value="sponsorship">Corporate Sponsorship Inquiry</option>
                         <option value="media">Media &amp; Press Inquiry</option>
                         <option value="technical">Technical Partnership</option>
@@ -279,10 +244,19 @@ export default function HomePage() {
                       </select>
                     </div>
                     <div className="col-12">
-                      <textarea className="form-control-custom" rows={4} placeholder="Your Message" required></textarea>
+                      <textarea
+                        className="form-control-custom"
+                        rows={4}
+                        placeholder="Your Message"
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                        required
+                      ></textarea>
                     </div>
                     <div className="col-12">
-                      <button type="submit" className="custom-btn w-100">Send Message</button>
+                      <button type="submit" disabled={sendingMsg} className="custom-btn w-100">
+                        {sendingMsg ? 'Sending...' : 'Send Message'}
+                      </button>
                     </div>
                   </div>
                 </form>

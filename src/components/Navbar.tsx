@@ -19,6 +19,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   const navItems = [
     { name: 'Home', link: '/' },
     { name: 'Our Team', link: '/team' },

@@ -1,0 +1,639 @@
+import fs from 'fs';
+import path from 'path';
+
+// Data directory path
+const DATA_DIR = path.join(process.cwd(), 'data');
+
+// Ensure data directory exists
+function ensureDataDir() {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+}
+
+// Initial Seed Data from Master Document
+const INITIAL_SEEDS: Record<string, any> = {
+  settings: {
+    hero: {
+      subtitle: 'KUET Formula Student Motorsport',
+      title: 'Team KILOFLIGHT',
+      location: 'KUET, Bangladesh • FSAE Japan 2023 Mechanical Pass',
+      ctaText: 'Explore Phoenix & Alpha',
+      stat0to100: '≤ 5.0s',
+      stat0to100Label: '0-100 KM/H ACCEL',
+      statTopSpeed: '120 KM/H',
+      statTopSpeedLabel: 'TARGET TOP SPEED',
+      statAero: '7-LAYER',
+      statAeroLabel: 'JUTE COMPOSITE',
+      statChassis: '24.4 KG',
+      statChassisLabel: '4130 CHROMOLY CHASSIS',
+    },
+    contact: {
+      email: 'teamkiloflightkuet@gmail.com',
+      phone: '+880 1611-453600',
+      address: 'Department of Mechanical Engineering, KUET Campus, Khulna-9203, Bangladesh',
+      institution: 'Khulna University of Engineering & Technology (KUET)',
+      website: 'www.kiloflight.com',
+      facebook: 'https://facebook.com',
+      linkedin: 'https://linkedin.com',
+      youtube: 'https://youtube.com',
+      instagram: 'https://instagram.com',
+      github: 'https://github.com/gazi-faysal-jubayer',
+    },
+    security: {
+      adminPasscode: 'kiloflight2027',
+    },
+  },
+
+  cars: [
+    {
+      id: 'phoenix',
+      name: 'KILOFLIGHT PHOENIX',
+      status: 'ongoing',
+      season: '2026–2027',
+      tag: 'Ongoing Project (FSAE India 2027 & FSUK 2027)',
+      engine: 'CFMoto 300SR (292 cc, 4-Stroke, Liquid-Cooled, DOHC)',
+      topSpeed: '120 km/h',
+      acceleration: '≤ 5.0 seconds',
+      aero: 'Multi-element Front Wing, Rear Wing & Side Diffusers',
+      chassis: 'Optimized 4130 Chromoly / IS 3074 Spaceframe (24.4 kg)',
+      bodywork: '7-Layer Jute Composite + Anti-Intrusion Crash Attenuator',
+      brakes: 'Custom CNC Al 5052 3-Pedal Box, Balance Bar & Dual TVS Circuits',
+      steering: '7075-T6 Al Rack (300 mm) with 10% Optimized Ackermann',
+      targetMilestone: 'FSAE Dynamix India 2027 / FSUK 2027',
+      description:
+        'Currently in active development, KILOFLIGHT PHOENIX is our next-generation internal combustion vehicle (CV), engineered specifically to take part in FSAE Dynamix India 2027 (January 17–18, 2027) and upcoming European circuits. Powered by a high-revving 292 cc CFMoto 300SR single-cylinder engine, PHOENIX features complete custom vehicle aerodynamics, a custom CNC-milled 3-pedal box with dual-circuit TVS hydraulics, a 24.4 kg lightweight 4130 Chromoly spaceframe, and sustainable 7-layer jute-fiber composite body panels.',
+      image: '/images/formula_track_action.jpg',
+    },
+    {
+      id: 'alpha',
+      name: 'KILOFLIGHT ALPHA',
+      status: 'legacy',
+      season: '2023',
+      tag: 'Legacy Project (FSAE Japan 2023 Mechanical Pass)',
+      engine: 'Single-Cylinder Petrol Engine',
+      topSpeed: '~100 km/h',
+      acceleration: 'Standard dynamic baseline',
+      aero: 'Streamlined fairing (No wings)',
+      chassis: 'Steel Tubular Spaceframe (~28 kg)',
+      bodywork: 'Jute Fiber Composite Body Panels',
+      brakes: 'Standard hydraulic braking',
+      steering: 'Standard Rack & Pinion',
+      targetMilestone: 'FSAE Japan 2023 (Mechanical Pass)',
+      description:
+        'Manufactured in 2023, KILOFLIGHT ALPHA is the trailblazing first-generation combustion vehicle that established Bangladesh\'s presence on the global Formula Student grid. Featuring a natural jute-fiber composite body shell, ALPHA made national history as the first Bangladeshi Formula Student vehicle to pass the comprehensive mechanical inspection segment at Formula SAE Japan 2023.',
+      image: '/images/formula_car_hero.jpg',
+    },
+  ],
+
+  subteams: [
+    {
+      id: 'chassis',
+      title: 'Chassis & Suspension',
+      badge: 'Structural Backbone & Dynamics',
+      icon: 'bi-bounding-box',
+      accentColor: '#FF2A2A',
+      role: 'Responsible for the vehicle\'s structural backbone, driver cell safety envelope, and dynamic kinematics. The division optimizes torsional rigidity, suspension geometry (camber, caster, roll center, and front vertical swing point length), and manufactures all wishbones, uprights, and shock mounts.',
+      workflow: [
+        {
+          step: '1',
+          name: 'Kinematics Simulation',
+          desc: 'Model suspension roll center, camber gain, wheel rate, and bump steer curves in specialized dynamics software.',
+        },
+        {
+          step: '2',
+          name: 'Chassis CAD & FEA',
+          desc: 'Model the tubular spaceframe in SolidWorks; perform rigorous Finite Element Analysis (FEA) for torsional rigidity and impact load scenarios.',
+        },
+        {
+          step: '3',
+          name: 'Sheet Metal Upright CAD-to-CAM',
+          desc: 'Design 4 mm sheet metal uprights, export 1:1 Flat Patterns to DXF for 2D CNC laser cutting, and weld precision fixtures.',
+        },
+        {
+          step: '4',
+          name: 'Jigging & Frame Fabrication',
+          desc: 'Align chassis tubes on dedicated jigs, execute TIG/MIG welding, install dampers (DNM Burner-RCP 2S / motorcycle mono-shocks), and verify wheel alignment.',
+        },
+      ],
+      tools: ['SolidWorks FEA', 'OptimumG Kinematics', 'CNC Laser DXF', 'TIG/MIG Welding Jig', 'DNM Burner Damper Rig'],
+    },
+    {
+      id: 'aero',
+      title: 'Body & Aerodynamics',
+      badge: '7-Layer Bio-Composites & CFD',
+      icon: 'bi-wind',
+      accentColor: '#B45309',
+      role: 'Directs aerodynamic downforce generation, drag reduction, thermal ducting, and the fabrication of lightweight composite exterior surfaces. The team pioneers sustainable automotive engineering by utilizing natural Jute-fiber composites.',
+      workflow: [
+        {
+          step: '1',
+          name: 'Airfoil & Aerodynamic CFD',
+          desc: 'Design multi-element front and rear wing airfoils (chord lengths 180 mm – 230 mm) and run computational fluid dynamics (CFD) for optimal lift-to-drag ratios.',
+        },
+        {
+          step: '2',
+          name: 'Mold Design & Layup',
+          desc: 'Construct precision positive/negative molds for nose cones, sidepods, and undertrays; execute 7-layer Jute composite hand layups with sodium silicate, resin, and hardener matrices.',
+        },
+        {
+          step: '3',
+          name: 'Impact Attenuator Integration',
+          desc: 'Build and mount the rule-compliant energy-absorbing impact attenuator to the front anti-intrusion plate.',
+        },
+        {
+          step: '4',
+          name: 'Bodywork Mounting',
+          desc: 'Secure panels and wings with quick-release fasteners to chassis hardpoints ensuring minimum vibration and zero dynamic deflection.',
+        },
+      ],
+      tools: ['ANSYS Fluent CFD', 'Surface Modeling', 'Hand Layup Matrices', 'Sodium Silicate Bio-Resin', 'Quick-Release Fasteners'],
+    },
+    {
+      id: 'powertrain',
+      title: 'Mechanical Powertrain',
+      badge: 'CFMoto 300SR ICE & Thermal Mgmt',
+      icon: 'bi-lightning-charge',
+      accentColor: '#0284C7',
+      role: 'Manages internal combustion engine integration, custom fuel containment, intake restrictor sizing, exhaust gas routing, cooling system optimization, and drivetrain power transmission.',
+      workflow: [
+        {
+          step: '1',
+          name: 'Engine Packaging & Mounts',
+          desc: 'Integrate the CFMoto 300SR single-cylinder engine into the rear chassis bay with custom-machined mounting brackets.',
+        },
+        {
+          step: '2',
+          name: 'Custom Fuel System Fabrication',
+          desc: 'Fabricate a 4.5–5.0L baffled aluminum fuel tank retaining the CFMoto internal fuel pump module, rollover check valve, sight tube, and 35 mm vertical filler neck.',
+        },
+        {
+          step: '3',
+          name: 'Cooling & Exhaust Engineering',
+          desc: 'Design custom radiator ducting and lightweight exhaust routing to maintain optimal thermal management under track conditions.',
+        },
+        {
+          step: '4',
+          name: 'Drivetrain Tuning',
+          desc: 'Fabricate chain/sprocket assemblies, differential mountings, and calibrate intake restrictor airflow for maximum torque response.',
+        },
+      ],
+      tools: ['CFMoto 300SR 292cc', 'Al Baffled Fuel Tank', 'Restrictor Calibration', 'Radiator Ducting', 'Sprocket & Chain Jig'],
+    },
+    {
+      id: 'electrical',
+      title: 'Electrical Systems & DAQ',
+      badge: '12V Harness, Safety Loop & ECU',
+      icon: 'bi-cpu',
+      accentColor: '#FF2A2A',
+      role: 'Engineers the low-voltage 12V DC power distribution network, engine control unit (ECU) calibration, in-series safety shutdown loop, sensor array integration, and live telemetry data acquisition.',
+      workflow: [
+        {
+          step: '1',
+          name: 'Wiring Architecture',
+          desc: 'Design complete vehicle wire harness schematics including fusing, master disconnect switches, and relay logic.',
+        },
+        {
+          step: '2',
+          name: 'Safety Shutdown Circuit',
+          desc: 'Wire the master kill switches, cockpit emergency stop, and the mechanical Brake Over-Travel Switch (BOTS) with latching relays.',
+        },
+        {
+          step: '3',
+          name: 'Sensor Integration & Telemetry',
+          desc: 'Install wheel-speed sensors, throttle position sensors, and temperature probes linked to digital dashboard logging modules.',
+        },
+        {
+          step: '4',
+          name: 'ECU Tuning & Diagnostics',
+          desc: 'Map engine ignition and fuel injection curves to match restrictor aerodynamics and validate electrical noise isolation.',
+        },
+      ],
+      tools: ['Wire Harness Schematics', 'BOTS Safety Latch', 'ECU Fuel Mapping', 'CAN Telemetry Sensors', 'Digital Dash Logger'],
+    },
+    {
+      id: 'braking',
+      title: 'Braking & Steering',
+      badge: 'CNC 3-Pedal Box & 10% Ackermann',
+      icon: 'bi-gear-wide-connected',
+      accentColor: '#0284C7',
+      role: 'Oversees driver controls, deceleration kinematics, hydraulic circuit independence, pedal box structural integrity, and steering rack geometry.',
+      workflow: [
+        {
+          step: '1',
+          name: 'Custom 3-Pedal Box Fabrication',
+          desc: 'CNC mill and laser-cut Al 5052 plate assemblies to house throttle, brake, and hydraulic clutch pedals.',
+        },
+        {
+          step: '2',
+          name: 'Independent Dual Hydraulic Circuits',
+          desc: 'Integrate two TVS master cylinders connected via a threaded balance bar to allow manual front-to-rear brake bias adjustment.',
+        },
+        {
+          step: '3',
+          name: 'Safety Redundancy Integration',
+          desc: 'Mount dual throttle return tension springs with adjustable eye-bolts and integrate the mechanical BOTS trigger bracket.',
+        },
+        {
+          step: '4',
+          name: 'Steering Assembly',
+          desc: 'Mount the 300 mm aluminum rack-and-pinion assembly aligned to 10% Ackermann geometry and validate the mandatory 2000 N 4-wheel dynamic brake lockup test.',
+        },
+      ],
+      tools: ['CNC Al 5052 Pedal Box', 'Dual TVS Master Cylinders', 'Threaded Balance Bar', '7075-T6 300mm Rack', '2000 N Lockup Rig'],
+    },
+    {
+      id: 'business',
+      title: 'Business, Media & Content',
+      badge: 'Corporate Outreach & Static Events',
+      icon: 'bi-megaphone',
+      accentColor: '#B45309',
+      role: 'Drives corporate fundraising campaigns, brand sponsorships, digital content production, event exhibition coordination, and international competition static event deliverables.',
+      workflow: [
+        {
+          step: '1',
+          name: 'Corporate Sponsorship Outreach',
+          desc: 'Draft and pitch customized value propositions to automotive, engineering, and logistics corporations.',
+        },
+        {
+          step: '2',
+          name: 'Media & Public Relations',
+          desc: 'Curate official website content, manage social media reels, publish newsletters, and coordinate live exhibition booths (e.g., Bangladesh AutoFest).',
+        },
+        {
+          step: '3',
+          name: 'Static Competition Preparation',
+          desc: 'Compile comprehensive Cost & Manufacturing Reports, Concept Resources Management portfolios, and the Business Plan Presentation (BPP).',
+        },
+      ],
+      tools: ['Cost & Mfg Report (CRD)', 'Business Plan Presentation', 'Sponsorship Pitch Decks', 'Website & Social Production', 'AutoFest Logistics'],
+    },
+  ],
+
+  sponsorship: [
+    {
+      id: 'title',
+      title: 'Title Partner',
+      tag: 'Exclusive (1 Slot)',
+      price: '10.0',
+      period: 'Lacs BDT / Season',
+      currency: '৳',
+      primaryColor: '#FF2A2A',
+      secondaryColor: '#0F172A',
+      accentColor: '#0284C7',
+      stampText: 'FSAE Title Verified',
+      description:
+        'Dominant global exposure with primary custom livery across the race car, chest logo on apparel, top website spotlight, dedicated pit branding, and exclusive priority recruitment.',
+      logoCar: 'Primary / Custom Livery',
+      logoApparel: 'Chest / Primary',
+      websiteFeature: 'Top Header & Spotlight',
+      eventPromotion: 'Dedicated Pit Branding',
+      socialCampaign: 'Exclusive Video Series',
+      exhibitionBooth: 'Exclusive Co-Host Lounge',
+      recruitmentAccess: 'Exclusive Priority Access',
+      features: [
+        { text: 'Primary / Custom Livery on Race Car' },
+        { text: 'Chest / Primary on Team Apparel & Kits' },
+        { text: 'Top Header & Spotlight on Website' },
+        { text: 'Dedicated Pit & International Branding' },
+        { text: 'Exclusive Video Series & Social Media' },
+        { text: 'Exclusive Priority Recruitment Pipeline' },
+      ],
+    },
+    {
+      id: 'platinum',
+      title: 'Platinum Partner',
+      tag: 'High Visibility',
+      price: '7.0',
+      period: 'Lacs BDT / Season',
+      currency: '৳',
+      primaryColor: '#0284C7',
+      secondaryColor: '#0F172A',
+      accentColor: '#B45309',
+      stampText: 'Platinum Tier',
+      description:
+        'Large prominent logo branding on multi-element wings & nose cone, upper sleeve / back apparel placement, featured partner section, and full roster recruitment access.',
+      logoCar: 'Large (Wings / Nose)',
+      logoApparel: 'Upper Sleeve / Back',
+      websiteFeature: 'Featured Partner Section',
+      eventPromotion: 'Pit & Banner Display',
+      socialCampaign: 'Dedicated Reels / Posts',
+      exhibitionBooth: 'Interactive Booth Space',
+      recruitmentAccess: 'Full Roster Access',
+      features: [
+        { text: 'Large (Wings / Nose) Race Car Placement' },
+        { text: 'Upper Sleeve / Back on Team Kits' },
+        { text: 'Featured Partner Section on Website' },
+        { text: 'Pit & Banner Display at Competitions' },
+        { text: 'Dedicated Social Media Reels & Posts' },
+        { text: 'Full Roster Recruitment Access' },
+      ],
+    },
+    {
+      id: 'gold',
+      title: 'Gold Partner',
+      tag: 'Most Popular',
+      price: '4.0',
+      period: 'Lacs BDT / Season',
+      currency: '৳',
+      primaryColor: '#B45309',
+      secondaryColor: '#0F172A',
+      accentColor: '#FF2A2A',
+      stampText: 'Gold Partner',
+      description:
+        'Medium logo placement on aerodynamic sidepods, mid-sleeve apparel branding, dedicated website logo & link, and exhibition booth display space.',
+      logoCar: 'Medium (Sidepods)',
+      logoApparel: 'Mid Sleeve',
+      websiteFeature: 'Dedicated Logo & Link',
+      eventPromotion: 'Banner Inclusion',
+      socialCampaign: 'Dedicated Posts',
+      exhibitionBooth: 'Display Space',
+      recruitmentAccess: 'Access Upon Request',
+      features: [
+        { text: 'Medium (Sidepods) Race Car Placement' },
+        { text: 'Mid Sleeve on Team Apparel' },
+        { text: 'Dedicated Logo & Link on Official Website' },
+        { text: 'Banner Inclusion at International Events' },
+        { text: 'Dedicated Social Media Feature Posts' },
+        { text: 'Talent Access Upon Request' },
+      ],
+    },
+    {
+      id: 'silver',
+      title: 'Silver Partner',
+      tag: 'Technical Partner',
+      price: '2.5',
+      period: 'Lacs BDT / Season',
+      currency: '৳',
+      primaryColor: '#64748B',
+      secondaryColor: '#0F172A',
+      accentColor: '#0284C7',
+      stampText: 'Silver Supplier',
+      description:
+        'Small logo branding on chassis, standard team apparel placement, official website directory listing, and exhibition banner inclusion.',
+      logoCar: 'Small (Chassis)',
+      logoApparel: 'Standard Placement',
+      websiteFeature: 'Logo Placement',
+      eventPromotion: 'Banner Inclusion',
+      socialCampaign: 'Brand Shout-outs',
+      exhibitionBooth: 'Display Space',
+      recruitmentAccess: '—',
+      features: [
+        { text: 'Small (Chassis) Race Car Placement' },
+        { text: 'Standard Placement on Team Apparel' },
+        { text: 'Official Logo Placement on Website' },
+        { text: 'Banner Inclusion at Events & AutoFest' },
+        { text: 'Brand Shout-outs on Social Channels' },
+      ],
+    },
+    {
+      id: 'bronze',
+      title: 'Bronze Partner',
+      tag: 'Supporting Partner',
+      price: '1.5',
+      period: 'Lacs BDT / Season',
+      currency: '৳',
+      primaryColor: '#D97706',
+      secondaryColor: '#0F172A',
+      accentColor: '#64748B',
+      stampText: 'Bronze Support',
+      description:
+        'Standard decal on vehicle, team kit listing, website logo placement, and official social media mention supporting student innovation.',
+      logoCar: 'Standard Decal',
+      logoApparel: 'Standard Placement',
+      websiteFeature: 'Logo Placement',
+      eventPromotion: '—',
+      socialCampaign: 'General Mention',
+      exhibitionBooth: '—',
+      recruitmentAccess: '—',
+      features: [
+        { text: 'Standard Decal on Race Car' },
+        { text: 'Standard Placement on Team Apparel' },
+        { text: 'Logo Placement on Official Website' },
+        { text: 'General Social Media Mention' },
+      ],
+    },
+  ],
+
+  achievements: [
+    {
+      id: 'japan-2023',
+      year: '2023',
+      competition: 'Formula SAE Japan (FSAE Japan 2023)',
+      category: 'KILOFLIGHT ALPHA Debut',
+      badge: 'Passed Mechanical Inspection',
+      badgeColor: 'red',
+      headline: 'First Bangladeshi team in history to pass mechanical inspection at FSAE Japan.',
+      details:
+        'Manufactured Bangladesh\'s first natural jute-fiber composite body shell and successfully cleared all mechanical scrutineering safety requirements at FSAE Japan in Aichi.',
+      location: 'Aichi, Japan',
+    },
+    {
+      id: 'concept-india-2025',
+      year: '2025',
+      competition: 'Formula Student Concept Competition India',
+      category: 'Combustion Vehicle (CV) Category',
+      badge: 'Conceptual Engineering Groundwork',
+      badgeColor: 'jute',
+      headline: 'Competed internationally in the CV concept design category.',
+      details:
+        'Laid critical aerodynamic packaging, 4130 spaceframe FEA, and powertrain cooling simulations for the physical manufacturing of KILOFLIGHT PHOENIX.',
+      location: 'India / Online',
+    },
+    {
+      id: 'autofest-2026',
+      year: 'July 2026',
+      competition: 'Bangladesh AutoFest 2026',
+      category: 'July 17–18, 2026 • ALOKI Dhaka',
+      badge: 'National Vehicle Exhibition',
+      badgeColor: 'cyan',
+      headline: 'Exhibited project vehicle alongside 5 other national Formula Student teams.',
+      details:
+        'A dedicated core group of 9 student members traveled from Khulna to represent KUET at ALOKI (Tejgaon-Gulshan Link Road, Dhaka). Official logistics transport partner: Steadfast.',
+      location: 'Tejgaon-Gulshan Link Road, Dhaka',
+    },
+    {
+      id: 'dynamix-2027',
+      year: '2026–2027',
+      competition: 'FSAE Dynamix India 2027 & Formula Student UK 2027',
+      category: 'January 17–18, 2027 • European Circuits',
+      badge: 'KILOFLIGHT PHOENIX Track Campaign',
+      badgeColor: 'red',
+      headline: 'Dynamic track campaign with CFMoto 300SR and 4130 Chromoly chassis.',
+      details:
+        'Targeting ≤ 5.0s 0-100 acceleration, 120 km/h top speed, multi-element aerodynamic wings, and 7-layer jute bio-composite bodywork.',
+      location: 'India & Silverstone, UK',
+    },
+  ],
+
+  team: [
+    {
+      id: 'auritra-sharma',
+      name: 'Auritra Sharma',
+      role: 'Team Captain',
+      category: 'captain',
+      department: 'Mechanical Eng., KUET',
+      season: '2026 2027 all',
+      phone: '+880 1611-453600',
+      email: 'auritrasharma28@gmail.com',
+      image: '/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg',
+      linkedin: 'https://linkedin.com',
+      bio: 'Team Captain leading overall vehicle design, strategic management, and international competition campaigns for KILOFLIGHT PHOENIX.',
+    },
+    {
+      id: 'gazi-faysal-jubayer',
+      name: 'Gazi Faysal Jubayer',
+      role: 'Vice Captain',
+      category: 'captain',
+      department: 'Mechanical Eng., KUET',
+      season: '2026 2027 all',
+      phone: '+880 1315-669261',
+      email: 'gazi.faysal.jubayer@gmail.com',
+      image: '/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg',
+      linkedin: 'https://github.com/gazi-faysal-jubayer',
+      bio: 'Vice Captain overseeing executive project coordination, digital platforms, full-stack vehicle web architecture, and sub-team execution.',
+    },
+    {
+      id: 'eshraq-nipun',
+      name: 'Eshraq Nipun',
+      role: 'Technical Director',
+      category: 'lead',
+      department: 'Mechanical Eng., KUET',
+      season: '2026 2027 all',
+      phone: '+880 1576-713957',
+      email: 'nushineshraqnipun.21@gmail.com',
+      image: '/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg',
+      linkedin: 'https://linkedin.com',
+      bio: 'Directing vehicle engineering specifications, CAD/FEA simulation benchmarks, and powertrain integration for FSAE Dynamix India.',
+    },
+    {
+      id: 'naimur-rhythm',
+      name: 'Naimur Rhythm',
+      role: 'Project Director',
+      category: 'lead',
+      department: 'Mechanical Eng., KUET',
+      season: '2026 2027 all',
+      phone: '+880 1602-350967',
+      email: 'rrhythm18@gmail.com',
+      image: '/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg',
+      linkedin: 'https://linkedin.com',
+      bio: 'Managing project timeline scheduling, manufacturing procurement, sponsorship deliverables, and team logistics.',
+    },
+    {
+      id: 'nazizus-salehin',
+      name: 'Nazizus Salehin',
+      role: 'Chassis & Suspension Lead',
+      category: 'lead',
+      department: 'Mechanical Eng., KUET',
+      season: '2026 2027 all',
+      phone: '+880 1753-060356',
+      email: 'salehin1056@gmail.com',
+      image: '/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg',
+      linkedin: 'https://linkedin.com',
+      bio: 'Leading 4130 Chromoly spaceframe design, suspension kinematics modeling, 3-pedal box fabrication, and wheel alignment validation.',
+    },
+    {
+      id: 'sobahan-mia',
+      name: 'Prof. Dr. Sobahan Mia',
+      role: 'Chief Faculty Advisor',
+      category: 'advisor',
+      department: 'Mechanical Eng., KUET',
+      season: 'all',
+      phone: '',
+      email: '',
+      image: '/images/KILO FLIGHT - B.png',
+      linkedin: 'https://linkedin.com',
+      bio: 'Department of Mechanical Engineering, KUET. Providing strategic guidance and research support for automotive composite innovations.',
+    },
+    {
+      id: 'abdullah-al-bari',
+      name: 'Dr. Md. Abdullah-Al-Bari',
+      role: 'Technical Faculty Mentor',
+      category: 'advisor',
+      department: 'Mechanical Eng., KUET',
+      season: 'all',
+      phone: '',
+      email: '',
+      image: '/images/KILO FLIGHT - B.png',
+      linkedin: 'https://linkedin.com',
+      bio: 'Department of Mechanical Engineering, KUET. Advising vehicle dynamics, aerodynamics, and structural FEA validation.',
+    },
+  ],
+
+  applications: [
+    {
+      id: 'app-1',
+      fullName: 'Tanjim Rahman',
+      rollNumber: '2305014',
+      department: 'ME',
+      institutionalEmail: '2305014@stud.kuet.ac.bd',
+      whatsappNumber: '+880 1711223344',
+      primarySubteam: '1. Chassis & Suspension',
+      secondarySubteam: '5. Braking & Steering',
+      workshopSummary: 'Learned suspension roll center modeling, double wishbone geometry, and CAD spaceframe FEA load distributions.',
+      softwareSkills: ['SolidWorks', 'ANSYS (FEA/CFD)', 'Hands-on Fabrication'],
+      statementOfPurpose: 'Passionate about structural dynamics and hands-on TIG welding. Dedicated 15+ hours weekly outside classes.',
+      portfolioLink: 'https://github.com',
+      status: 'Shortlisted',
+      reviewerNotes: 'Strong CAD background from workshop test.',
+      createdAt: new Date().toISOString(),
+    },
+  ],
+
+  inquiries: [
+    {
+      id: 'inq-1',
+      fullName: 'Corporate Relations Dept',
+      email: 'partnerships@apex-auto.com',
+      inquiryType: 'sponsorship',
+      message: 'We are interested in discussing the Gold Sponsorship Tier for the upcoming FSAE Dynamix India 2027 season.',
+      status: 'Unread',
+      createdAt: new Date().toISOString(),
+    },
+  ],
+};
+
+// Generic read
+export function getCollection<T = any>(collectionName: string): T {
+  ensureDataDir();
+  const filePath = path.join(DATA_DIR, `${collectionName}.json`);
+
+  if (!fs.existsSync(filePath)) {
+    const defaultData = INITIAL_SEEDS[collectionName] || [];
+    fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2), 'utf-8');
+    return defaultData as T;
+  }
+
+  try {
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    return JSON.parse(raw) as T;
+  } catch (err) {
+    console.error(`Error reading collection ${collectionName}:`, err);
+    return (INITIAL_SEEDS[collectionName] || []) as T;
+  }
+}
+
+// Generic write
+export function saveCollection<T = any>(collectionName: string, data: T): boolean {
+  ensureDataDir();
+  const filePath = path.join(DATA_DIR, `${collectionName}.json`);
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    return true;
+  } catch (err) {
+    console.error(`Error saving collection ${collectionName}:`, err);
+    return false;
+  }
+}
+
+// Helper to get all content in one unified payload for frontend
+export function getConsolidatedContent() {
+  return {
+    settings: getCollection('settings'),
+    cars: getCollection('cars'),
+    subteams: getCollection('subteams'),
+    sponsorship: getCollection('sponsorship'),
+    achievements: getCollection('achievements'),
+    team: getCollection('team'),
+  };
+}

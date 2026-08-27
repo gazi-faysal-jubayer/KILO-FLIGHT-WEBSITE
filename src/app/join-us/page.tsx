@@ -47,13 +47,35 @@ export default function JoinUsPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMsg('');
     if (formData.primarySubteam === formData.secondarySubteam) {
-      alert('Secondary Sub-Team preference must differ from Primary preference.');
+      setErrorMsg('Secondary Sub-Team preference must differ from Primary preference.');
       return;
     }
-    setSubmitted(true);
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/recruitment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMsg(data.error || 'Submission failed. Please check required fields.');
+      }
+    } catch (err) {
+      setErrorMsg('Connection error. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -383,11 +405,19 @@ export default function JoinUsPage() {
                         onChange={(e) => setFormData({ ...formData, portfolioLink: e.target.value })}
                       />
                     </div>
+                    {errorMsg && (
+                      <div className="alert p-2 small fw-bold d-flex align-items-center gap-2 mt-2" style={{ background: '#FEE2E2', color: '#DC2626', border: '1.5px solid #DC2626', borderRadius: '8px' }}>
+                        <i className="bi bi-exclamation-triangle-fill"></i>
+                        <span>{errorMsg}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Submit Button Block */}
                   <div id="endform">
-                    <button type="submit">SUBMIT BATCH 2K23 INDUCTION</button>
+                    <button type="submit" disabled={submitting} style={{ opacity: submitting ? 0.7 : 1 }}>
+                      {submitting ? 'SUBMITTING APPLICATION...' : 'SUBMIT BATCH 2K23 INDUCTION'}
+                    </button>
                   </div>
 
                   {/* Secondary Quick Action Buttons */}

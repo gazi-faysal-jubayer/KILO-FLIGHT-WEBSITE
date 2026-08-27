@@ -17,10 +17,24 @@ export default function TeamDirectory() {
 
   const loadData = async () => {
     setLoading(true);
-    const res = await fetchTeamDataFromGoogleSheets();
-    setMembers(res.data);
-    setIsLive(res.isLive);
-    setLoading(false);
+    try {
+      const res = await fetch('/api/content');
+      const json = await res.json();
+      if (json.success && json.data?.team && json.data.team.length > 0) {
+        setMembers(json.data.team);
+        setIsLive(true);
+      } else {
+        const sheetRes = await fetchTeamDataFromGoogleSheets();
+        setMembers(sheetRes.data);
+        setIsLive(sheetRes.isLive);
+      }
+    } catch (err) {
+      const sheetRes = await fetchTeamDataFromGoogleSheets();
+      setMembers(sheetRes.data);
+      setIsLive(sheetRes.isLive);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
