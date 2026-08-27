@@ -112,7 +112,7 @@ export default function SubteamsPage() {
                                 </span>
                                 <div className="fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>{w.name}</div>
                               </div>
-                              <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
+                              <p className="small mb-0" style={{ color: '#334155', fontWeight: 500, lineHeight: '1.6' }}>
                                 {w.desc}
                               </p>
                             </div>

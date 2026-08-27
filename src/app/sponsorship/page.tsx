@@ -135,8 +135,8 @@ export default function SponsorshipPage() {
                     <th scope="col">Marketing &amp; PR Deliverable</th>
                     {tiers.map((t) => (
                       <th key={t.id} scope="col">
-                        <div>{t.title}</div>
-                        <span className="small text-muted font-normal">({t.currency || '৳'}{t.price} Lacs)</span>
+                        <div style={{ color: '#FFFFFF', fontWeight: 800 }}>{t.title}</div>
+                        <span className="small font-normal" style={{ color: '#CBD5E1' }}>({t.currency || '৳'}{t.price} Lacs)</span>
                       </th>
                     ))}
                   </tr>

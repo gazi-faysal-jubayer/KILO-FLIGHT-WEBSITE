@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { getCollection } from './db';
+import { getCollectionAsync } from './db';
 
 const SESSION_COOKIE_NAME = 'kiloflight_admin_session';
 
@@ -10,7 +10,7 @@ export async function verifyAdminSession(): Promise<boolean> {
     if (!sessionCookie || !sessionCookie.value) {
       return false;
     }
-    const settings = getCollection<any>('settings');
+    const settings = await getCollectionAsync<any>('settings');
     const validPasscode = settings?.security?.adminPasscode || 'kiloflight2027';
     // Validate session token matching the current passcode
     const expectedToken = Buffer.from(`admin:${validPasscode}`).toString('base64');

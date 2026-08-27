@@ -1,18 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { neon } from '@neondatabase/serverless';
+const { neon } = require('@neondatabase/serverless');
+const fs = require('fs');
+const path = require('path');
 
-// Data directory path for local fallback / cache
-const DATA_DIR = path.join(process.cwd(), 'data');
+const DATABASE_URL = 'postgresql://neondb_owner:npg_YdltEye1BMD7@ep-empty-recipe-avosufh7-pooler.c-11.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require';
 
-function ensureDataDir() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-  }
-}
-
-// Initial Seed Data from Master Document
-const INITIAL_SEEDS: Record<string, any> = {
+const INITIAL_SEEDS = {
   settings: {
     hero: {
       subtitle: 'KUET Formula Student Motorsport',
@@ -44,7 +36,6 @@ const INITIAL_SEEDS: Record<string, any> = {
       adminPasscode: 'kiloflight2027',
     },
   },
-
   cars: [
     {
       id: 'phoenix',
@@ -85,7 +76,6 @@ const INITIAL_SEEDS: Record<string, any> = {
       image: '/images/formula_car_hero.jpg',
     },
   ],
-
   subteams: [
     {
       id: 'chassis',
@@ -95,26 +85,10 @@ const INITIAL_SEEDS: Record<string, any> = {
       accentColor: '#FF2A2A',
       role: 'Responsible for the vehicle\'s structural backbone, driver cell safety envelope, and dynamic kinematics. The division optimizes torsional rigidity, suspension geometry (camber, caster, roll center, and front vertical swing point length), and manufactures all wishbones, uprights, and shock mounts.',
       workflow: [
-        {
-          step: '1',
-          name: 'Kinematics Simulation',
-          desc: 'Model suspension roll center, camber gain, wheel rate, and bump steer curves in specialized dynamics software.',
-        },
-        {
-          step: '2',
-          name: 'Chassis CAD & FEA',
-          desc: 'Model the tubular spaceframe in SolidWorks; perform rigorous Finite Element Analysis (FEA) for torsional rigidity and impact load scenarios.',
-        },
-        {
-          step: '3',
-          name: 'Sheet Metal Upright CAD-to-CAM',
-          desc: 'Design 4 mm sheet metal uprights, export 1:1 Flat Patterns to DXF for 2D CNC laser cutting, and weld precision fixtures.',
-        },
-        {
-          step: '4',
-          name: 'Jigging & Frame Fabrication',
-          desc: 'Align chassis tubes on dedicated jigs, execute TIG/MIG welding, install dampers (DNM Burner-RCP 2S / motorcycle mono-shocks), and verify wheel alignment.',
-        },
+        { step: '1', name: 'Kinematics Simulation', desc: 'Model suspension roll center, camber gain, wheel rate, and bump steer curves in specialized dynamics software.' },
+        { step: '2', name: 'Chassis CAD & FEA', desc: 'Model the tubular spaceframe in SolidWorks; perform rigorous Finite Element Analysis (FEA) for torsional rigidity and impact load scenarios.' },
+        { step: '3', name: 'Sheet Metal Upright CAD-to-CAM', desc: 'Design 4 mm sheet metal uprights, export 1:1 Flat Patterns to DXF for 2D CNC laser cutting, and weld precision fixtures.' },
+        { step: '4', name: 'Jigging & Frame Fabrication', desc: 'Align chassis tubes on dedicated jigs, execute TIG/MIG welding, install dampers (DNM Burner-RCP 2S / motorcycle mono-shocks), and verify wheel alignment.' },
       ],
       tools: ['SolidWorks FEA', 'OptimumG Kinematics', 'CNC Laser DXF', 'TIG/MIG Welding Jig', 'DNM Burner Damper Rig'],
     },
@@ -126,26 +100,10 @@ const INITIAL_SEEDS: Record<string, any> = {
       accentColor: '#B45309',
       role: 'Directs aerodynamic downforce generation, drag reduction, thermal ducting, and the fabrication of lightweight composite exterior surfaces. The team pioneers sustainable automotive engineering by utilizing natural Jute-fiber composites.',
       workflow: [
-        {
-          step: '1',
-          name: 'Airfoil & Aerodynamic CFD',
-          desc: 'Design multi-element front and rear wing airfoils (chord lengths 180 mm – 230 mm) and run computational fluid dynamics (CFD) for optimal lift-to-drag ratios.',
-        },
-        {
-          step: '2',
-          name: 'Mold Design & Layup',
-          desc: 'Construct precision positive/negative molds for nose cones, sidepods, and undertrays; execute 7-layer Jute composite hand layups with sodium silicate, resin, and hardener matrices.',
-        },
-        {
-          step: '3',
-          name: 'Impact Attenuator Integration',
-          desc: 'Build and mount the rule-compliant energy-absorbing impact attenuator to the front anti-intrusion plate.',
-        },
-        {
-          step: '4',
-          name: 'Bodywork Mounting',
-          desc: 'Secure panels and wings with quick-release fasteners to chassis hardpoints ensuring minimum vibration and zero dynamic deflection.',
-        },
+        { step: '1', name: 'Airfoil & Aerodynamic CFD', desc: 'Design multi-element front and rear wing airfoils (chord lengths 180 mm – 230 mm) and run computational fluid dynamics (CFD) for optimal lift-to-drag ratios.' },
+        { step: '2', name: 'Mold Design & Layup', desc: 'Construct precision positive/negative molds for nose cones, sidepods, and undertrays; execute 7-layer Jute composite hand layups with sodium silicate, resin, and hardener matrices.' },
+        { step: '3', name: 'Impact Attenuator Integration', desc: 'Build and mount the rule-compliant energy-absorbing impact attenuator to the front anti-intrusion plate.' },
+        { step: '4', name: 'Bodywork Mounting', desc: 'Secure panels and wings with quick-release fasteners to chassis hardpoints ensuring minimum vibration and zero dynamic deflection.' },
       ],
       tools: ['ANSYS Fluent CFD', 'Surface Modeling', 'Hand Layup Matrices', 'Sodium Silicate Bio-Resin', 'Quick-Release Fasteners'],
     },
@@ -157,26 +115,10 @@ const INITIAL_SEEDS: Record<string, any> = {
       accentColor: '#0284C7',
       role: 'Manages internal combustion engine integration, custom fuel containment, intake restrictor sizing, exhaust gas routing, cooling system optimization, and drivetrain power transmission.',
       workflow: [
-        {
-          step: '1',
-          name: 'Engine Packaging & Mounts',
-          desc: 'Integrate the CFMoto 300SR single-cylinder engine into the rear chassis bay with custom-machined mounting brackets.',
-        },
-        {
-          step: '2',
-          name: 'Custom Fuel System Fabrication',
-          desc: 'Fabricate a 4.5–5.0L baffled aluminum fuel tank retaining the CFMoto internal fuel pump module, rollover check valve, sight tube, and 35 mm vertical filler neck.',
-        },
-        {
-          step: '3',
-          name: 'Cooling & Exhaust Engineering',
-          desc: 'Design custom radiator ducting and lightweight exhaust routing to maintain optimal thermal management under track conditions.',
-        },
-        {
-          step: '4',
-          name: 'Drivetrain Tuning',
-          desc: 'Fabricate chain/sprocket assemblies, differential mountings, and calibrate intake restrictor airflow for maximum torque response.',
-        },
+        { step: '1', name: 'Engine Packaging & Mounts', desc: 'Integrate the CFMoto 300SR single-cylinder engine into the rear chassis bay with custom-machined mounting brackets.' },
+        { step: '2', name: 'Custom Fuel System Fabrication', desc: 'Fabricate a 4.5–5.0L baffled aluminum fuel tank retaining the CFMoto internal fuel pump module, rollover check valve, sight tube, and 35 mm vertical filler neck.' },
+        { step: '3', name: 'Cooling & Exhaust Engineering', desc: 'Design custom radiator ducting and lightweight exhaust routing to maintain optimal thermal management under track conditions.' },
+        { step: '4', name: 'Drivetrain Tuning', desc: 'Fabricate chain/sprocket assemblies, differential mountings, and calibrate intake restrictor airflow for maximum torque response.' },
       ],
       tools: ['CFMoto 300SR 292cc', 'Al Baffled Fuel Tank', 'Restrictor Calibration', 'Radiator Ducting', 'Sprocket & Chain Jig'],
     },
@@ -188,26 +130,10 @@ const INITIAL_SEEDS: Record<string, any> = {
       accentColor: '#FF2A2A',
       role: 'Engineers the low-voltage 12V DC power distribution network, engine control unit (ECU) calibration, in-series safety shutdown loop, sensor array integration, and live telemetry data acquisition.',
       workflow: [
-        {
-          step: '1',
-          name: 'Wiring Architecture',
-          desc: 'Design complete vehicle wire harness schematics including fusing, master disconnect switches, and relay logic.',
-        },
-        {
-          step: '2',
-          name: 'Safety Shutdown Circuit',
-          desc: 'Wire the master kill switches, cockpit emergency stop, and the mechanical Brake Over-Travel Switch (BOTS) with latching relays.',
-        },
-        {
-          step: '3',
-          name: 'Sensor Integration & Telemetry',
-          desc: 'Install wheel-speed sensors, throttle position sensors, and temperature probes linked to digital dashboard logging modules.',
-        },
-        {
-          step: '4',
-          name: 'ECU Tuning & Diagnostics',
-          desc: 'Map engine ignition and fuel injection curves to match restrictor aerodynamics and validate electrical noise isolation.',
-        },
+        { step: '1', name: 'Wiring Architecture', desc: 'Design complete vehicle wire harness schematics including fusing, master disconnect switches, and relay logic.' },
+        { step: '2', name: 'Safety Shutdown Circuit', desc: 'Wire the master kill switches, cockpit emergency stop, and the mechanical Brake Over-Travel Switch (BOTS) with latching relays.' },
+        { step: '3', name: 'Sensor Integration & Telemetry', desc: 'Install wheel-speed sensors, throttle position sensors, and temperature probes linked to digital dashboard logging modules.' },
+        { step: '4', name: 'ECU Tuning & Diagnostics', desc: 'Map engine ignition and fuel injection curves to match restrictor aerodynamics and validate electrical noise isolation.' },
       ],
       tools: ['Wire Harness Schematics', 'BOTS Safety Latch', 'ECU Fuel Mapping', 'CAN Telemetry Sensors', 'Digital Dash Logger'],
     },
@@ -219,26 +145,10 @@ const INITIAL_SEEDS: Record<string, any> = {
       accentColor: '#0284C7',
       role: 'Oversees driver controls, deceleration kinematics, hydraulic circuit independence, pedal box structural integrity, and steering rack geometry.',
       workflow: [
-        {
-          step: '1',
-          name: 'Custom 3-Pedal Box Fabrication',
-          desc: 'CNC mill and laser-cut Al 5052 plate assemblies to house throttle, brake, and hydraulic clutch pedals.',
-        },
-        {
-          step: '2',
-          name: 'Independent Dual Hydraulic Circuits',
-          desc: 'Integrate two TVS master cylinders connected via a threaded balance bar to allow manual front-to-rear brake bias adjustment.',
-        },
-        {
-          step: '3',
-          name: 'Safety Redundancy Integration',
-          desc: 'Mount dual throttle return tension springs with adjustable eye-bolts and integrate the mechanical BOTS trigger bracket.',
-        },
-        {
-          step: '4',
-          name: 'Steering Assembly',
-          desc: 'Mount the 300 mm aluminum rack-and-pinion assembly aligned to 10% Ackermann geometry and validate the mandatory 2000 N 4-wheel dynamic brake lockup test.',
-        },
+        { step: '1', name: 'Custom 3-Pedal Box Fabrication', desc: 'CNC mill and laser-cut Al 5052 plate assemblies to house throttle, brake, and hydraulic clutch pedals.' },
+        { step: '2', name: 'Independent Dual Hydraulic Circuits', desc: 'Integrate two TVS master cylinders connected via a threaded balance bar to allow manual front-to-rear brake bias adjustment.' },
+        { step: '3', name: 'Safety Redundancy Integration', desc: 'Mount dual throttle return tension springs with adjustable eye-bolts and integrate the mechanical BOTS trigger bracket.' },
+        { step: '4', name: 'Steering Assembly', desc: 'Mount the 300 mm aluminum rack-and-pinion assembly aligned to 10% Ackermann geometry and validate the mandatory 2000 N 4-wheel dynamic brake lockup test.' },
       ],
       tools: ['CNC Al 5052 Pedal Box', 'Dual TVS Master Cylinders', 'Threaded Balance Bar', '7075-T6 300mm Rack', '2000 N Lockup Rig'],
     },
@@ -250,26 +160,13 @@ const INITIAL_SEEDS: Record<string, any> = {
       accentColor: '#B45309',
       role: 'Drives corporate fundraising campaigns, brand sponsorships, digital content production, event exhibition coordination, and international competition static event deliverables.',
       workflow: [
-        {
-          step: '1',
-          name: 'Corporate Sponsorship Outreach',
-          desc: 'Draft and pitch customized value propositions to automotive, engineering, and logistics corporations.',
-        },
-        {
-          step: '2',
-          name: 'Media & Public Relations',
-          desc: 'Curate official website content, manage social media reels, publish newsletters, and coordinate live exhibition booths (e.g., Bangladesh AutoFest).',
-        },
-        {
-          step: '3',
-          name: 'Static Competition Preparation',
-          desc: 'Compile comprehensive Cost & Manufacturing Reports, Concept Resources Management portfolios, and the Business Plan Presentation (BPP).',
-        },
+        { step: '1', name: 'Corporate Sponsorship Outreach', desc: 'Draft and pitch customized value propositions to automotive, engineering, and logistics corporations.' },
+        { step: '2', name: 'Media & Public Relations', desc: 'Curate official website content, manage social media reels, publish newsletters, and coordinate live exhibition booths (e.g., Bangladesh AutoFest).' },
+        { step: '3', name: 'Static Competition Preparation', desc: 'Compile comprehensive Cost & Manufacturing Reports, Concept Resources Management portfolios, and the Business Plan Presentation (BPP).' },
       ],
       tools: ['Cost & Mfg Report (CRD)', 'Business Plan Presentation', 'Sponsorship Pitch Decks', 'Website & Social Production', 'AutoFest Logistics'],
     },
   ],
-
   sponsorship: [
     {
       id: 'title',
@@ -282,8 +179,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       secondaryColor: '#0F172A',
       accentColor: '#0284C7',
       stampText: 'FSAE Title Verified',
-      description:
-        'Dominant global exposure with primary custom livery across the race car, chest logo on apparel, top website spotlight, dedicated pit branding, and exclusive priority recruitment.',
+      description: 'Dominant global exposure with primary custom livery across the race car, chest logo on apparel, top website spotlight, dedicated pit branding, and exclusive priority recruitment.',
       logoCar: 'Primary / Custom Livery',
       logoApparel: 'Chest / Primary',
       websiteFeature: 'Top Header & Spotlight',
@@ -311,8 +207,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       secondaryColor: '#0F172A',
       accentColor: '#B45309',
       stampText: 'Platinum Tier',
-      description:
-        'Large prominent logo branding on multi-element wings & nose cone, upper sleeve / back apparel placement, featured partner section, and full roster recruitment access.',
+      description: 'Large prominent logo branding on multi-element wings & nose cone, upper sleeve / back apparel placement, featured partner section, and full roster recruitment access.',
       logoCar: 'Large (Wings / Nose)',
       logoApparel: 'Upper Sleeve / Back',
       websiteFeature: 'Featured Partner Section',
@@ -340,8 +235,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       secondaryColor: '#0F172A',
       accentColor: '#FF2A2A',
       stampText: 'Gold Partner',
-      description:
-        'Medium logo placement on aerodynamic sidepods, mid-sleeve apparel branding, dedicated website logo & link, and exhibition booth display space.',
+      description: 'Medium logo placement on aerodynamic sidepods, mid-sleeve apparel branding, dedicated website logo & link, and exhibition booth display space.',
       logoCar: 'Medium (Sidepods)',
       logoApparel: 'Mid Sleeve',
       websiteFeature: 'Dedicated Logo & Link',
@@ -369,8 +263,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       secondaryColor: '#0F172A',
       accentColor: '#0284C7',
       stampText: 'Silver Supplier',
-      description:
-        'Small logo branding on chassis, standard team apparel placement, official website directory listing, and exhibition banner inclusion.',
+      description: 'Small logo branding on chassis, standard team apparel placement, official website directory listing, and exhibition banner inclusion.',
       logoCar: 'Small (Chassis)',
       logoApparel: 'Standard Placement',
       websiteFeature: 'Logo Placement',
@@ -397,8 +290,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       secondaryColor: '#0F172A',
       accentColor: '#64748B',
       stampText: 'Bronze Support',
-      description:
-        'Standard decal on vehicle, team kit listing, website logo placement, and official social media mention supporting student innovation.',
+      description: 'Standard decal on vehicle, team kit listing, website logo placement, and official social media mention supporting student innovation.',
       logoCar: 'Standard Decal',
       logoApparel: 'Standard Placement',
       websiteFeature: 'Logo Placement',
@@ -414,7 +306,6 @@ const INITIAL_SEEDS: Record<string, any> = {
       ],
     },
   ],
-
   achievements: [
     {
       id: 'japan-2023',
@@ -424,8 +315,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       badge: 'Passed Mechanical Inspection',
       badgeColor: 'red',
       headline: 'First Bangladeshi team in history to pass mechanical inspection at FSAE Japan.',
-      details:
-        'Manufactured Bangladesh\'s first natural jute-fiber composite body shell and successfully cleared all mechanical scrutineering safety requirements at FSAE Japan in Aichi.',
+      details: 'Manufactured Bangladesh\'s first natural jute-fiber composite body shell and successfully cleared all mechanical scrutineering safety requirements at FSAE Japan in Aichi.',
       location: 'Aichi, Japan',
     },
     {
@@ -436,8 +326,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       badge: 'Conceptual Engineering Groundwork',
       badgeColor: 'jute',
       headline: 'Competed internationally in the CV concept design category.',
-      details:
-        'Laid critical aerodynamic packaging, 4130 spaceframe FEA, and powertrain cooling simulations for the physical manufacturing of KILOFLIGHT PHOENIX.',
+      details: 'Laid critical aerodynamic packaging, 4130 spaceframe FEA, and powertrain cooling simulations for the physical manufacturing of KILOFLIGHT PHOENIX.',
       location: 'India / Online',
     },
     {
@@ -448,8 +337,7 @@ const INITIAL_SEEDS: Record<string, any> = {
       badge: 'National Vehicle Exhibition',
       badgeColor: 'cyan',
       headline: 'Exhibited project vehicle alongside 5 other national Formula Student teams.',
-      details:
-        'A dedicated core group of 9 student members traveled from Khulna to represent KUET at ALOKI (Tejgaon-Gulshan Link Road, Dhaka). Official logistics transport partner: Steadfast.',
+      details: 'A dedicated core group of 9 student members traveled from Khulna to represent KUET at ALOKI (Tejgaon-Gulshan Link Road, Dhaka). Official logistics transport partner: Steadfast.',
       location: 'Tejgaon-Gulshan Link Road, Dhaka',
     },
     {
@@ -460,12 +348,10 @@ const INITIAL_SEEDS: Record<string, any> = {
       badge: 'KILOFLIGHT PHOENIX Track Campaign',
       badgeColor: 'red',
       headline: 'Dynamic track campaign with CFMoto 300SR and 4130 Chromoly chassis.',
-      details:
-        'Targeting ≤ 5.0s 0-100 acceleration, 120 km/h top speed, multi-element aerodynamic wings, and 7-layer jute bio-composite bodywork.',
+      details: 'Targeting ≤ 5.0s 0-100 acceleration, 120 km/h top speed, multi-element aerodynamic wings, and 7-layer jute bio-composite bodywork.',
       location: 'India & Silverstone, UK',
     },
   ],
-
   team: [
     {
       id: 'auritra-sharma',
@@ -559,7 +445,6 @@ const INITIAL_SEEDS: Record<string, any> = {
       bio: 'Department of Mechanical Engineering, KUET. Advising vehicle dynamics, aerodynamics, and structural FEA validation.',
     },
   ],
-
   applications: [
     {
       id: 'app-1',
@@ -579,7 +464,6 @@ const INITIAL_SEEDS: Record<string, any> = {
       createdAt: new Date().toISOString(),
     },
   ],
-
   inquiries: [
     {
       id: 'inq-1',
@@ -593,180 +477,37 @@ const INITIAL_SEEDS: Record<string, any> = {
   ],
 };
 
-// Get Neon SQL client
-function getNeonSql() {
-  const connectionString =
-    process.env.DATABASE_URL ||
-    process.env.POSTGRES_URL ||
-    process.env.DATABASE_URL_UNPOOLED;
+async function seed() {
+  console.log('Connecting to Neon PostgreSQL and seeding collections...');
+  const sql = neon(DATABASE_URL);
 
-  if (!connectionString) {
-    return null;
-  }
-  try {
-    return neon(connectionString);
-  } catch (err) {
-    console.error('Failed to initialize Neon SQL client:', err);
-    return null;
-  }
-}
+  // 1. Create table
+  await sql`
+    CREATE TABLE IF NOT EXISTS site_collections (
+      collection_name VARCHAR(64) PRIMARY KEY,
+      payload JSONB NOT NULL,
+      updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    );
+  `;
+  console.log('Table site_collections created or verified.');
 
-let dbInitialized = false;
-
-// Auto-initialize Neon table and seed default collections if missing
-export async function initNeonDb() {
-  if (dbInitialized) return;
-  const sql = getNeonSql();
-  if (!sql) return;
-
-  try {
-    // Create collections table
+  // 2. Insert all collections
+  for (const [name, payload] of Object.entries(INITIAL_SEEDS)) {
     await sql`
-      CREATE TABLE IF NOT EXISTS site_collections (
-        collection_name VARCHAR(64) PRIMARY KEY,
-        payload JSONB NOT NULL,
-        updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-      );
+      INSERT INTO site_collections (collection_name, payload, updated_at)
+      VALUES (${name}, ${JSON.stringify(payload)}, NOW())
+      ON CONFLICT (collection_name)
+      DO UPDATE SET payload = EXCLUDED.payload, updated_at = NOW();
     `;
-
-    // Ensure all standard collections exist
-    for (const [colName, initialData] of Object.entries(INITIAL_SEEDS)) {
-      const existing = await sql`
-        SELECT collection_name FROM site_collections WHERE collection_name = ${colName} LIMIT 1;
-      `;
-      if (existing.length === 0) {
-        await sql`
-          INSERT INTO site_collections (collection_name, payload, updated_at)
-          VALUES (${colName}, ${JSON.stringify(initialData)}, NOW());
-        `;
-      }
-    }
-    dbInitialized = true;
-  } catch (err) {
-    console.error('Neon DB initialization error:', err);
-  }
-}
-
-// Read collection asynchronously from Neon PostgreSQL (with fallback to local file)
-export async function getCollectionAsync<T = any>(collectionName: string): Promise<T> {
-  const sql = getNeonSql();
-  if (sql) {
-    try {
-      await initNeonDb();
-      const rows = await sql`
-        SELECT payload FROM site_collections WHERE collection_name = ${collectionName} LIMIT 1;
-      `;
-      if (rows.length > 0 && rows[0].payload) {
-        const payload = typeof rows[0].payload === 'string' ? JSON.parse(rows[0].payload) : rows[0].payload;
-        // Sync local cache
-        saveCollectionLocal(collectionName, payload);
-        return payload as T;
-      }
-    } catch (err) {
-      console.error(`Error querying Neon collection ${collectionName}:`, err);
-    }
+    console.log(`Synced collection to Neon PostgreSQL: ${name}`);
   }
 
-  // Fallback to local file cache / seed
-  return getCollectionLocal<T>(collectionName);
+  // 3. Verify
+  const rows = await sql`SELECT collection_name, updated_at FROM site_collections;`;
+  console.log('\nNeon Database State:');
+  console.table(rows);
 }
 
-// Write collection asynchronously to Neon PostgreSQL (and local file)
-export async function saveCollectionAsync<T = any>(collectionName: string, data: T): Promise<boolean> {
-  let postgresSuccess = false;
-  const sql = getNeonSql();
-
-  if (sql) {
-    try {
-      await initNeonDb();
-      await sql`
-        INSERT INTO site_collections (collection_name, payload, updated_at)
-        VALUES (${collectionName}, ${JSON.stringify(data)}, NOW())
-        ON CONFLICT (collection_name)
-        DO UPDATE SET payload = EXCLUDED.payload, updated_at = NOW();
-      `;
-      postgresSuccess = true;
-    } catch (err) {
-      console.error(`Error writing to Neon collection ${collectionName}:`, err);
-    }
-  }
-
-  // Always update local file cache
-  const localSuccess = saveCollectionLocal(collectionName, data);
-  return postgresSuccess || localSuccess;
-}
-
-// Local File Store Helpers
-export function getCollectionLocal<T = any>(collectionName: string): T {
-  ensureDataDir();
-  const filePath = path.join(DATA_DIR, `${collectionName}.json`);
-
-  if (!fs.existsSync(filePath)) {
-    const defaultData = INITIAL_SEEDS[collectionName] || [];
-    fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2), 'utf-8');
-    return defaultData as T;
-  }
-
-  try {
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(raw) as T;
-  } catch (err) {
-    console.error(`Error reading local collection ${collectionName}:`, err);
-    return (INITIAL_SEEDS[collectionName] || []) as T;
-  }
-}
-
-export function saveCollectionLocal<T = any>(collectionName: string, data: T): boolean {
-  ensureDataDir();
-  const filePath = path.join(DATA_DIR, `${collectionName}.json`);
-  try {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-    return true;
-  } catch (err) {
-    console.error(`Error saving local collection ${collectionName}:`, err);
-    return false;
-  }
-}
-
-// Synchronous wrapper (compatible with synchronous calls)
-export function getCollection<T = any>(collectionName: string): T {
-  return getCollectionLocal<T>(collectionName);
-}
-
-export function saveCollection<T = any>(collectionName: string, data: T): boolean {
-  // Fire async Neon save in background if possible
-  saveCollectionAsync(collectionName, data).catch((e) => console.error(e));
-  return saveCollectionLocal(collectionName, data);
-}
-
-// Consolidated Content Fetcher for Frontend
-export async function getConsolidatedContentAsync() {
-  const [settings, cars, subteams, sponsorship, achievements, team] = await Promise.all([
-    getCollectionAsync('settings'),
-    getCollectionAsync('cars'),
-    getCollectionAsync('subteams'),
-    getCollectionAsync('sponsorship'),
-    getCollectionAsync('achievements'),
-    getCollectionAsync('team'),
-  ]);
-
-  return {
-    settings,
-    cars,
-    subteams,
-    sponsorship,
-    achievements,
-    team,
-  };
-}
-
-export function getConsolidatedContent() {
-  return {
-    settings: getCollectionLocal('settings'),
-    cars: getCollectionLocal('cars'),
-    subteams: getCollectionLocal('subteams'),
-    sponsorship: getCollectionLocal('sponsorship'),
-    achievements: getCollectionLocal('achievements'),
-    team: getCollectionLocal('team'),
-  };
-}
+seed().catch((err) => {
+  console.error('Error seeding Neon:', err);
+});

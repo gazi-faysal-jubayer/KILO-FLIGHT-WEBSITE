@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCollection, saveCollection } from '@/lib/db';
+import { getCollectionAsync, saveCollectionAsync } from '@/lib/db';
 import { verifyAdminSession } from '@/lib/auth';
 
 // Public candidate application submission (POST)
@@ -33,9 +33,9 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString(),
     };
 
-    const applications = getCollection<any[]>('applications') || [];
+    const applications = (await getCollectionAsync<any[]>('applications')) || [];
     const updated = [newApplication, ...applications];
-    saveCollection('applications', updated);
+    await saveCollectionAsync('applications', updated);
 
     return NextResponse.json({
       success: true,
@@ -61,7 +61,7 @@ export async function GET(req: Request) {
   const search = searchParams.get('search')?.toLowerCase() || '';
   const status = searchParams.get('status') || 'all';
 
-  let applications = getCollection<any[]>('applications') || [];
+  let applications = (await getCollectionAsync<any[]>('applications')) || [];
 
   if (status !== 'all') {
     applications = applications.filter((app) => app.status === status);
@@ -93,7 +93,7 @@ export async function PUT(req: Request) {
       return NextResponse.json({ success: false, error: 'Missing application ID' }, { status: 400 });
     }
 
-    const applications = getCollection<any[]>('applications') || [];
+    const applications = (await getCollectionAsync<any[]>('applications')) || [];
     const updated = applications.map((app) => {
       if (app.id === id) {
         return {
@@ -106,7 +106,7 @@ export async function PUT(req: Request) {
       return app;
     });
 
-    saveCollection('applications', updated);
+    await saveCollectionAsync('applications', updated);
     return NextResponse.json({ success: true, message: 'Application updated successfully' });
   } catch (err) {
     return NextResponse.json({ success: false, error: 'Update failed' }, { status: 500 });
@@ -127,9 +127,9 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ success: false, error: 'Missing application ID' }, { status: 400 });
   }
 
-  const applications = getCollection<any[]>('applications') || [];
+  const applications = (await getCollectionAsync<any[]>('applications')) || [];
   const updated = applications.filter((app) => app.id !== id);
-  saveCollection('applications', updated);
+  await saveCollectionAsync('applications', updated);
 
   return NextResponse.json({ success: true, message: 'Application deleted' });
 }

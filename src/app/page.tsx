@@ -138,16 +138,16 @@ export default function HomePage() {
               <tbody>
                 {achievements.map((item: any) => (
                   <tr key={item.id}>
-                    <th scope="row" className="font-orbitron fs-5 text-cyan">{item.year}</th>
+                    <th scope="row" className="font-orbitron fs-5" style={{ color: '#0284C7' }}>{item.year}</th>
                     <td>
-                      <div className="fw-bold">{item.competition}</div>
-                      <div className="small text-muted">{item.category}</div>
+                      <div className="fw-bold" style={{ color: '#0F172A' }}>{item.competition}</div>
+                      <div className="small" style={{ color: '#475569' }}>{item.category}</div>
                     </td>
                     <td>
-                      <span className="badge-motorsport red">{item.badge}</span>
-                      <div className="small text-muted mt-1">{item.details}</div>
+                      <span className="badge-motorsport red mb-1">{item.badge}</span>
+                      <div className="small" style={{ color: '#334155' }}>{item.details}</div>
                     </td>
-                    <td>{item.location}</td>
+                    <td style={{ color: '#0F172A', fontWeight: 600 }}>{item.location}</td>
                   </tr>
                 ))}
               </tbody>

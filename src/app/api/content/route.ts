@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getConsolidatedContent } from '@/lib/db';
+import { getConsolidatedContentAsync } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const data = getConsolidatedContent();
+    const data = await getConsolidatedContentAsync();
     return NextResponse.json({ success: true, data });
   } catch (err) {
     return NextResponse.json(

@@ -130,7 +130,9 @@ export const NavItems = ({ items, className, onItemClick, pathname }: NavItemsPr
             onClick={onItemClick}
             className="resizable-nav-link"
             style={{
-              color: isActive ? '#FF2A2A' : hovered === idx ? '#0F172A' : '#334155',
+              color: isActive ? '#DC2626' : '#0F172A',
+              fontWeight: 800,
+              fontSize: '13.5px',
             }}
           >
             {hovered === idx && (

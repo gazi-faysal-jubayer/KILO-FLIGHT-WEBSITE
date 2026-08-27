@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCollection, saveCollection } from '@/lib/db';
+import { getCollectionAsync, saveCollectionAsync } from '@/lib/db';
 import { verifyAdminSession } from '@/lib/auth';
 
 // Public contact inquiry submission (POST)
@@ -24,9 +24,9 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString(),
     };
 
-    const inquiries = getCollection<any[]>('inquiries') || [];
+    const inquiries = (await getCollectionAsync<any[]>('inquiries')) || [];
     const updated = [newInquiry, ...inquiries];
-    saveCollection('inquiries', updated);
+    await saveCollectionAsync('inquiries', updated);
 
     return NextResponse.json({
       success: true,
@@ -48,7 +48,7 @@ export async function GET() {
     return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
   }
 
-  const inquiries = getCollection<any[]>('inquiries') || [];
+  const inquiries = (await getCollectionAsync<any[]>('inquiries')) || [];
   return NextResponse.json({ success: true, data: inquiries });
 }
 
@@ -63,9 +63,9 @@ export async function PUT(req: Request) {
     const body = await req.json();
     const { id, status } = body;
 
-    const inquiries = getCollection<any[]>('inquiries') || [];
+    const inquiries = (await getCollectionAsync<any[]>('inquiries')) || [];
     const updated = inquiries.map((inq) => (inq.id === id ? { ...inq, status } : inq));
-    saveCollection('inquiries', updated);
+    await saveCollectionAsync('inquiries', updated);
 
     return NextResponse.json({ success: true, message: 'Status updated' });
   } catch (err) {
@@ -83,9 +83,9 @@ export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get('id');
 
-  const inquiries = getCollection<any[]>('inquiries') || [];
+  const inquiries = (await getCollectionAsync<any[]>('inquiries')) || [];
   const updated = inquiries.filter((inq) => inq.id !== id);
-  saveCollection('inquiries', updated);
+  await saveCollectionAsync('inquiries', updated);
 
   return NextResponse.json({ success: true, message: 'Inquiry removed' });
 }

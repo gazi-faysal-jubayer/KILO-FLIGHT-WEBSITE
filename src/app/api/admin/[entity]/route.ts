@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCollection, saveCollection } from '@/lib/db';
+import { getCollectionAsync, saveCollectionAsync } from '@/lib/db';
 import { verifyAdminSession } from '@/lib/auth';
 
 const ALLOWED_ENTITIES = ['settings', 'cars', 'subteams', 'sponsorship', 'achievements', 'team'];
@@ -18,7 +18,7 @@ export async function GET(
     return NextResponse.json({ success: false, error: 'Invalid entity' }, { status: 400 });
   }
 
-  const data = getCollection(entity);
+  const data = await getCollectionAsync(entity);
   return NextResponse.json({ success: true, data });
 }
 
@@ -38,7 +38,7 @@ export async function PUT(
 
   try {
     const body = await req.json();
-    const success = saveCollection(entity, body);
+    const success = await saveCollectionAsync(entity, body);
     if (!success) {
       return NextResponse.json({ success: false, error: 'Failed to write data' }, { status: 500 });
     }
@@ -67,9 +67,9 @@ export async function POST(
     if (!newItem.id) {
       newItem.id = `${entity}-${Date.now()}`;
     }
-    const currentList = getCollection<any[]>(entity) || [];
+    const currentList = (await getCollectionAsync<any[]>(entity)) || [];
     const updatedList = [newItem, ...currentList];
-    saveCollection(entity, updatedList);
+    await saveCollectionAsync(entity, updatedList);
     return NextResponse.json({ success: true, data: newItem });
   } catch (err) {
     return NextResponse.json({ success: false, error: 'Failed to create item' }, { status: 500 });
@@ -93,9 +93,9 @@ export async function DELETE(
     return NextResponse.json({ success: false, error: 'Missing item ID' }, { status: 400 });
   }
 
-  const currentList = getCollection<any[]>(entity) || [];
+  const currentList = (await getCollectionAsync<any[]>(entity)) || [];
   const updatedList = currentList.filter((item: any) => item.id !== id);
-  saveCollection(entity, updatedList);
+  await saveCollectionAsync(entity, updatedList);
 
   return NextResponse.json({ success: true, message: 'Item deleted successfully' });
 }

@@ -262,10 +262,10 @@ export default function TeamDirectory() {
                           }}
                         />
                       </div>
-                      <h6 className="mb-1 fs-5">{member.name}</h6>
+                      <h6 className="mb-1 fs-5 font-orbitron" style={{ color: '#0F172A', fontWeight: 800 }}>{member.name}</h6>
                       {getRoleBadge(member.category, member.role)}
-                      <div className="small mt-2 font-monospace" style={{ color: '#0284C7', fontWeight: 700 }}>{member.department}</div>
-                      {member.bio && <p className="small text-muted mt-2 mb-0">{member.bio}</p>}
+                      <div className="small mt-2 font-monospace" style={{ color: '#0284C7', fontWeight: 800 }}>{member.department}</div>
+                      {member.bio && <p className="small mt-2 mb-0" style={{ color: '#334155', fontWeight: 500, lineHeight: '1.5' }}>{member.bio}</p>}
                     </div>
 
                     <div>

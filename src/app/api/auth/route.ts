@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { getCollection } from '@/lib/db';
+import { getCollectionAsync } from '@/lib/db';
 import { generateSessionToken, SESSION_COOKIE_NAME, verifyAdminSession } from '@/lib/auth';
 
 // GET: Check authentication status
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { passcode } = body;
 
-    const settings = getCollection<any>('settings');
+    const settings = await getCollectionAsync<any>('settings');
     const validPasscode = settings?.security?.adminPasscode || 'kiloflight2027';
 
     if (passcode !== validPasscode) {

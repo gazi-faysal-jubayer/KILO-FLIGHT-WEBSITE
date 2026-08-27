@@ -158,11 +158,12 @@ export default function CarsPage() {
                         key={c.id}
                         scope="col"
                         style={{
-                          background: c.status === 'ongoing' ? 'rgba(255, 42, 42, 0.06)' : 'transparent',
+                          background: '#0F172A',
+                          color: '#FFFFFF',
                         }}
                       >
-                        <div style={{ color: c.status === 'ongoing' ? '#FF2A2A' : '#0F172A' }}>{c.name}</div>
-                        <span className="small text-muted fw-normal">({c.season} {c.status === 'ongoing' ? 'Ongoing' : 'Legacy'})</span>
+                        <div style={{ color: c.status === 'ongoing' ? '#FF6B6B' : '#FFFFFF', fontWeight: 800 }}>{c.name}</div>
+                        <span className="small font-normal" style={{ color: '#CBD5E1' }}>({c.season} {c.status === 'ongoing' ? 'Ongoing' : 'Legacy'})</span>
                       </th>
                     ))}
                   </tr>
