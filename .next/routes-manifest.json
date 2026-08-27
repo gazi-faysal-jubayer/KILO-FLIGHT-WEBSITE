@@ -108,6 +108,12 @@
       "namedRegex": "^/cars(?:/)?$"
     },
     {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
       "page": "/join-us",
       "regex": "^/join\\-us(?:/)?$",
       "routeKeys": {},

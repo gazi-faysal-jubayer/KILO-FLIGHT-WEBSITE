@@ -29,6 +29,7 @@ export default function Navbar() {
     { name: 'Sub-Teams & Workflow', link: '/subteams' },
     { name: 'The Cars', link: '/cars' },
     { name: 'Sponsorship', link: '/sponsorship' },
+    { name: 'Contact', link: '/contact' },
   ];
 
   return (

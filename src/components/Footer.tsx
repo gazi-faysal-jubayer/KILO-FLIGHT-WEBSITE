@@ -117,6 +117,11 @@ export default function Footer() {
                   <i className="bi bi-chevron-right me-1 text-danger"></i> Join Team / Recruitment
                 </Link>
               </li>
+              <li className="mb-2">
+                <Link href="/contact" className="footer-link">
+                  <i className="bi bi-chevron-right me-1 text-danger"></i> Contact &amp; Direct Liaison
+                </Link>
+              </li>
             </ul>
           </div>
 
