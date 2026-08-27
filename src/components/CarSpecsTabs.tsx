@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 export default function CarSpecsTabs() {
-  const [activeTab, setActiveTab] = useState<'aero' | 'chassis' | 'powertrain' | 'electronics'>('aero');
+  const [activeTab, setActiveTab] = useState<'aero' | 'chassis' | 'powertrain' | 'brakes'>('aero');
 
   return (
     <div className="row g-4 align-items-center">
@@ -14,7 +14,7 @@ export default function CarSpecsTabs() {
           <div className="position-relative w-100 rounded mb-4 overflow-hidden" style={{ height: '260px', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}>
             <Image
               src="/images/formula_chassis_tech.jpg"
-              alt="Chassis & Suspension Engineering"
+              alt="KILOFLIGHT PHOENIX Engineering"
               fill
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -24,26 +24,26 @@ export default function CarSpecsTabs() {
           <div className="row g-3 text-center">
             <div className="col-6 col-md-3">
               <div className="p-2 rounded" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>85 HP</div>
-                <div className="small text-muted fw-bold">POWER</div>
+                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>292 cc</div>
+                <div className="small text-muted fw-bold">CFMOTO 300SR</div>
               </div>
             </div>
             <div className="col-6 col-md-3">
               <div className="p-2 rounded" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>12.5k</div>
-                <div className="small text-muted fw-bold">MAX RPM</div>
+                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>120 KM/H</div>
+                <div className="small text-muted fw-bold">TOP SPEED</div>
               </div>
             </div>
             <div className="col-6 col-md-3">
               <div className="p-2 rounded" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>85 KG</div>
-                <div className="small text-muted fw-bold">DOWNFORCE</div>
+                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>24.4 KG</div>
+                <div className="small text-muted fw-bold">4130 FRAME</div>
               </div>
             </div>
             <div className="col-6 col-md-3">
               <div className="p-2 rounded" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>50+</div>
-                <div className="small text-muted fw-bold">SENSORS</div>
+                <div className="fs-5 fw-bold font-orbitron" style={{ color: '#0F172A' }}>&le; 5.0s</div>
+                <div className="small text-muted fw-bold">0-100 ACCEL</div>
               </div>
             </div>
           </div>
@@ -54,16 +54,16 @@ export default function CarSpecsTabs() {
       <div className="col-lg-6">
         {/* Tab Buttons */}
         <div className="d-flex gap-2 mb-3 flex-wrap">
-          {(['aero', 'chassis', 'powertrain', 'electronics'] as const).map((tab) => (
+          {(['aero', 'chassis', 'powertrain', 'brakes'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`season-btn ${activeTab === tab ? 'active' : ''}`}
             >
-              {tab === 'aero' && 'Aerodynamics'}
-              {tab === 'chassis' && 'Chassis'}
-              {tab === 'powertrain' && 'Powertrain'}
-              {tab === 'electronics' && 'Electronics'}
+              {tab === 'aero' && 'Aero & 7-Layer Jute'}
+              {tab === 'chassis' && '4130 Spaceframe'}
+              {tab === 'powertrain' && 'CFMoto Powertrain'}
+              {tab === 'brakes' && 'CNC 3-Pedal & Steering'}
             </button>
           ))}
         </div>
@@ -73,24 +73,24 @@ export default function CarSpecsTabs() {
           {activeTab === 'aero' && (
             <div>
               <h4 className="mb-3">
-                <i className="bi bi-wind text-info me-2"></i> Jute Fiber Composite Aerodynamics
+                <i className="bi bi-wind text-info me-2"></i> Multi-Element Aero &amp; 7-Layer Jute Composite
               </h4>
               <p className="small text-muted mb-4">
-                Kilo Flight Alpha features groundbreaking bio-composite aerodynamic body panels fabricated using locally sourced Bangladeshi jute fiber resin matrices, offering exceptional specific stiffness and carbon-footprint reduction.
+                KILOFLIGHT PHOENIX introduces custom multi-element front and rear wing airfoils (chord lengths 180–230 mm), side diffusers, and 7-layer natural Jute-fiber hand layups with sodium silicate resin matrices plus front anti-intrusion crash attenuator.
               </p>
               <div className="mb-3">
                 <div className="d-flex justify-content-between small fw-bold" style={{ color: '#0F172A' }}>
-                  <span>CFD Downforce Optimization</span>
-                  <span className="text-info fw-bold">92%</span>
+                  <span>CFD Lift-to-Drag Ratio Optimization</span>
+                  <span className="text-info fw-bold">Multi-Wing + Diffusers</span>
                 </div>
                 <div style={{ height: '7px', background: '#E2E8F0', borderRadius: '4px', marginTop: '6px', overflow: 'hidden' }}>
-                  <div style={{ width: '92%', height: '100%', background: 'linear-gradient(90deg, var(--cyan-telemetry), var(--primary-red))' }}></div>
+                  <div style={{ width: '95%', height: '100%', background: 'linear-gradient(90deg, var(--cyan-telemetry), var(--primary-red))' }}></div>
                 </div>
               </div>
               <div>
                 <div className="d-flex justify-content-between small fw-bold" style={{ color: '#0F172A' }}>
-                  <span>Eco-Sustainability Rating</span>
-                  <span className="text-warning fw-bold">98%</span>
+                  <span>Sustainable Bio-Composite Body Panels</span>
+                  <span className="text-warning fw-bold">7-Layer Natural Jute</span>
                 </div>
                 <div style={{ height: '7px', background: '#E2E8F0', borderRadius: '4px', marginTop: '6px', overflow: 'hidden' }}>
                   <div style={{ width: '98%', height: '100%', background: 'var(--jute-gold)' }}></div>
@@ -102,18 +102,18 @@ export default function CarSpecsTabs() {
           {activeTab === 'chassis' && (
             <div>
               <h4 className="mb-3">
-                <i className="bi bi-bounding-box text-danger me-2"></i> Tubular Spaceframe & Suspension
+                <i className="bi bi-bounding-box text-danger me-2"></i> 24.4 kg 4130 Chromoly Spaceframe &amp; Suspension
               </h4>
               <p className="small text-muted mb-4">
-                Custom-engineered AISI 4130 chromoly steel spaceframe with pull-rod/push-rod double wishbone suspension geometry, optimized using Finite Element Analysis (FEA) for high torsional rigidity.
+                Engineered in SolidWorks and validated via Finite Element Analysis (FEA) for high torsional rigidity. Features 4 mm laser-cut sheet metal uprights, dedicated welding jigs, and DNM Burner-RCP 2S dampers.
               </p>
               <div className="mb-3">
                 <div className="d-flex justify-content-between small fw-bold" style={{ color: '#0F172A' }}>
-                  <span>Torsional Stiffness</span>
-                  <span className="text-info fw-bold">1,850 Nm/deg</span>
+                  <span>Chassis Spaceframe Mass</span>
+                  <span className="text-danger fw-bold">24.4 kg (Optimized IS 3074 / 4130)</span>
                 </div>
                 <div style={{ height: '7px', background: '#E2E8F0', borderRadius: '4px', marginTop: '6px', overflow: 'hidden' }}>
-                  <div style={{ width: '85%', height: '100%', background: 'linear-gradient(90deg, var(--cyan-telemetry), var(--primary-red))' }}></div>
+                  <div style={{ width: '92%', height: '100%', background: 'linear-gradient(90deg, var(--cyan-telemetry), var(--primary-red))' }}></div>
                 </div>
               </div>
             </div>
@@ -122,38 +122,38 @@ export default function CarSpecsTabs() {
           {activeTab === 'powertrain' && (
             <div>
               <h4 className="mb-3">
-                <i className="bi bi-lightning-charge text-warning me-2"></i> Engine & Drivetrain Tuning
+                <i className="bi bi-lightning-charge text-warning me-2"></i> CFMoto 300SR 292 cc Powertrain
               </h4>
               <p className="small text-muted mb-4">
-                Engineered with custom ECU fuel-injection mapping, Drexler limited-slip differential, custom-fabricated stainless steel exhaust headers, and pneumatic quickshifting system.
+                High-revving liquid-cooled 4-stroke DOHC single-cylinder engine paired with custom 4.5–5.0L baffled aluminum fuel tank, rollover check valve, custom intake restrictor airflow tuning, and high-efficiency radiator ducting.
               </p>
               <div className="mb-3">
                 <div className="d-flex justify-content-between small fw-bold" style={{ color: '#0F172A' }}>
-                  <span>Throttle Response Time</span>
-                  <span className="text-danger fw-bold">&lt; 45ms</span>
+                  <span>Target Top Speed &amp; Acceleration</span>
+                  <span className="text-danger fw-bold">120 km/h | &le; 5.0s (0-100)</span>
                 </div>
                 <div style={{ height: '7px', background: '#E2E8F0', borderRadius: '4px', marginTop: '6px', overflow: 'hidden' }}>
-                  <div style={{ width: '94%', height: '100%', background: 'linear-gradient(90deg, var(--yellow-accent), var(--primary-red))' }}></div>
+                  <div style={{ width: '96%', height: '100%', background: 'linear-gradient(90deg, var(--yellow-accent), var(--primary-red))' }}></div>
                 </div>
               </div>
             </div>
           )}
 
-          {activeTab === 'electronics' && (
+          {activeTab === 'brakes' && (
             <div>
               <h4 className="mb-3">
-                <i className="bi bi-cpu text-info me-2"></i> CAN Bus & Real-Time Telemetry
+                <i className="bi bi-cpu text-info me-2"></i> Custom CNC Al 5052 3-Pedal Box &amp; 7075-T6 Steering
               </h4>
               <p className="small text-muted mb-4">
-                Integrated telemetry harness streaming 50+ high-frequency sensor feeds (wheel speeds, brake line pressure, suspension potentiometers, engine thermal sensors) to the pit wall display.
+                Custom CNC-milled Al 5052 plate assembly housing throttle, brake, and clutch with dual TVS master cylinders, threaded balance bar, mechanical Brake Over-Travel Switch (BOTS), and 300 mm 7075-T6 rack with 10% Ackermann.
               </p>
               <div className="mb-3">
                 <div className="d-flex justify-content-between small fw-bold" style={{ color: '#0F172A' }}>
-                  <span>Live Sensor Sampling Frequency</span>
-                  <span className="text-info fw-bold">500 Hz</span>
+                  <span>Dynamic Brake Lockup Validation</span>
+                  <span className="text-info fw-bold">2,000 N 4-Wheel Lockup Passed</span>
                 </div>
                 <div style={{ height: '7px', background: '#E2E8F0', borderRadius: '4px', marginTop: '6px', overflow: 'hidden' }}>
-                  <div style={{ width: '96%', height: '100%', background: 'linear-gradient(90deg, var(--cyan-telemetry), var(--jute-gold))' }}></div>
+                  <div style={{ width: '97%', height: '100%', background: 'linear-gradient(90deg, var(--cyan-telemetry), var(--jute-gold))' }}></div>
                 </div>
               </div>
             </div>

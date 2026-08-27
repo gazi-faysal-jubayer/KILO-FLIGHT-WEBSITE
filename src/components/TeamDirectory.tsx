@@ -93,11 +93,12 @@ export default function TeamDirectory() {
 
   const seasonsList = [
     { id: 'all', label: 'All Seasons' },
+    { id: '2027', label: 'Season 2026–2027 (Phoenix)' },
     { id: '2026', label: 'Season 2026' },
     { id: '2025', label: 'Season 2025' },
     { id: '2024', label: 'Season 2024' },
-    { id: '2023', label: 'Season 2023' },
-    { id: '2021', label: 'Season 2021 (FSUK)' },
+    { id: '2023', label: 'Season 2023 (FSAE Japan)' },
+    { id: '2021', label: 'Season 2021 (Alpha FSUK)' },
   ];
 
   return (

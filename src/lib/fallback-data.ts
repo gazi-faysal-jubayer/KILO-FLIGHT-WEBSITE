@@ -8,7 +8,7 @@ export const FALLBACK_TEAM_DATA: TeamMember[] = [
     category: "advisor",
     department: "Mechanical Eng., KUET",
     season: "all",
-    image: "/images/logo.png",
+    image: "/images/KILO FLIGHT - B.png",
     linkedin: "https://linkedin.com",
     bio: "Department of Mechanical Engineering, KUET. Providing strategic guidance and research support for automotive composite innovations."
   },
@@ -18,133 +18,110 @@ export const FALLBACK_TEAM_DATA: TeamMember[] = [
     category: "advisor",
     department: "Mechanical Eng., KUET",
     season: "all",
-    image: "/images/logo.png",
+    image: "/images/KILO FLIGHT - B.png",
     linkedin: "https://linkedin.com",
     bio: "Department of Mechanical Engineering, KUET. Advising vehicle dynamics, aerodynamics, and structural FEA validation."
   },
-  // Season 2026
+  // Official Leadership & Core Team (2026-2027 Season)
   {
-    name: "Mahir Faysal",
-    role: "Team Captain (2026)",
+    name: "Auritra Sharma",
+    role: "Team Captain",
     category: "captain",
-    department: "Mechanical Eng. '22",
-    season: "2026",
+    department: "Mechanical Eng., KUET",
+    season: "2026 2027 all",
     image: "/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg",
     linkedin: "https://linkedin.com",
-    bio: "Leading overall vehicle design, technical integration, and team management for international competition."
+    bio: "Team Captain leading overall vehicle design, strategic management, and international competition campaigns for KILOFLIGHT PHOENIX."
+  },
+  {
+    name: "Gazi Faysal Jubayer",
+    role: "Vice Captain",
+    category: "captain",
+    department: "Mechanical Eng., KUET",
+    season: "2026 2027 all",
+    image: "/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg",
+    linkedin: "https://github.com/gazi-faysal-jubayer",
+    bio: "Vice Captain overseeing executive project coordination, digital platforms, full-stack vehicle web architecture, and sub-team execution."
+  },
+  {
+    name: "Eshraq Nipun",
+    role: "Technical Director",
+    category: "lead",
+    department: "Mechanical Eng., KUET",
+    season: "2026 2027 all",
+    image: "/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg",
+    linkedin: "https://linkedin.com",
+    bio: "Directing vehicle engineering specifications, CAD/FEA simulation benchmarks, and powertrain integration for FSAE Dynamix India."
+  },
+  {
+    name: "Naimur Rhythm",
+    role: "Project Director",
+    category: "lead",
+    department: "Mechanical Eng., KUET",
+    season: "2026 2027 all",
+    image: "/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg",
+    linkedin: "https://linkedin.com",
+    bio: "Managing project timeline scheduling, manufacturing procurement, sponsorship deliverables, and team logistics."
+  },
+  {
+    name: "Nazizus Salehin",
+    role: "Chassis & Suspension Lead",
+    category: "lead",
+    department: "Mechanical Eng., KUET",
+    season: "2026 2027 all",
+    image: "/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg",
+    linkedin: "https://linkedin.com",
+    bio: "Leading 4130 Chromoly spaceframe design, suspension kinematics modeling, 3-pedal box fabrication, and wheel alignment validation."
   },
   {
     name: "Abrar Hossain",
-    role: "Aerodynamics Lead",
+    role: "Body & Aerodynamics Lead",
     category: "lead",
-    department: "Mechanical Eng. '22",
-    season: "2026 2025",
-    image: "/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg",
+    department: "Mechanical Eng., KUET",
+    season: "2026 2027",
+    image: "/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg",
     linkedin: "https://linkedin.com",
-    bio: "Directing 3D CFD air flow simulations, wing profile optimization, and jute composite body manufacturing."
+    bio: "Directing 3D CFD air flow simulations, multi-element wing profile optimization, and 7-layer jute composite manufacturing."
   },
   {
     name: "Sajid Rahman",
-    role: "Powertrain Lead",
+    role: "Mechanical Powertrain Lead",
     category: "lead",
-    department: "Mechanical Eng. '22",
-    season: "2026 2025",
-    image: "/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg",
+    department: "Mechanical Eng., KUET",
+    season: "2026 2027",
+    image: "/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg",
     linkedin: "https://linkedin.com",
-    bio: "Managing custom engine ECU fuel mapping, quickshifter calibration, and exhaust system fabrication."
+    bio: "Managing CFMoto 300SR engine packaging, custom baffled fuel tank fabrication, and cooling loop optimization."
   },
   {
     name: "Nafis Iqbal",
-    role: "Electronics Lead",
+    role: "Electrical Systems & DAQ Lead",
     category: "lead",
-    department: "ECE '22",
-    season: "2026",
-    image: "/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg",
+    department: "ECE, KUET",
+    season: "2026 2027",
+    image: "/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg",
     linkedin: "https://linkedin.com",
-    bio: "Designing custom PCB boards, CAN bus vehicle harness, and live pit wall wireless telemetry."
+    bio: "Designing 12V DC power distribution network, ECU fuel mapping, in-series safety shutdown loop, and live sensor logging."
   },
-  // Season 2025
+  // Legacy & Alumni
   {
     name: "Tanvir Ahmed",
-    role: "Team Captain (2025)",
-    category: "captain",
-    department: "Mechanical Eng. '21",
-    season: "2025 2024",
+    role: "Former Captain (FSAE Japan 2023)",
+    category: "alumni",
+    department: "Mechanical Eng. '19",
+    season: "2023 2024",
     image: "/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg",
     linkedin: "https://linkedin.com",
-    bio: "Led vehicle chassis structural fabrication and managed 2025 testing campaign."
+    bio: "Led KILOFLIGHT ALPHA to pass the historic Mechanical Inspection at Formula SAE Japan 2023."
   },
-  {
-    name: "Tahmid Zaman",
-    role: "Chassis & Suspension Engineer",
-    category: "member",
-    department: "Mechanical Eng. '21",
-    season: "2025 2024",
-    image: "/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg",
-    linkedin: "https://linkedin.com",
-    bio: "Engineered double wishbone pull-rod suspension geometry and CNC aluminum uprights."
-  },
-  // Season 2024
   {
     name: "Shadman Sakib",
-    role: "Team Captain (2024)",
-    category: "captain",
-    department: "IPE '20",
-    season: "2024 2023",
+    role: "Founding Lead Engineer",
+    category: "alumni",
+    department: "IPE '18",
+    season: "2021 2022",
     image: "/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg",
     linkedin: "https://linkedin.com",
-    bio: "Oversaw vehicle manufacturing scheduling, cost reports, and dynamic track tests."
-  },
-  {
-    name: "Fahim Shahriar",
-    role: "Business & Marketing Lead",
-    category: "lead",
-    department: "IPE '20",
-    season: "2024 2023",
-    image: "/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg",
-    linkedin: "https://linkedin.com",
-    bio: "Formulated FSAE Business Plan Presentation and acquired key corporate sponsorships."
-  },
-  // Season 2023 & 2021 FSUK
-  {
-    name: "Rakin Absar",
-    role: "Bio-Composite Lead Engineer",
-    category: "lead",
-    department: "Mechanical Eng. '19",
-    season: "2023 2021",
-    image: "/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg",
-    linkedin: "https://linkedin.com",
-    bio: "Pioneered the development and resin vacuum bagging of Bangladesh's first jute fiber formula car bodywork."
-  },
-  {
-    name: "Asif Mahmud",
-    role: "FSUK Vehicle Dynamics Engineer",
-    category: "member",
-    department: "Mechanical Eng. '19",
-    season: "2023 2021",
-    image: "/images/team/joecalih-UmTZqmMvQcw-unsplash.jpg",
-    linkedin: "https://linkedin.com",
-    bio: "Competed in Formula Student UK virtual engineering design event presenting Kilo Flight Alpha."
-  },
-  // Founders 2018
-  {
-    name: "Kazi Shahadat Hossain",
-    role: "Founding Captain (2018)",
-    category: "alumni",
-    department: "Mechanical Eng. '16 (Alumni)",
-    season: "founders 2021",
-    image: "/images/team/abstral-official-bdlMO9z5yco-unsplash.jpg",
-    linkedin: "https://linkedin.com",
-    bio: "Founded Team Kilo Flight at KUET in November 2018, inspiring generations of Formula Student engineers."
-  },
-  {
-    name: "Zubaer Alam",
-    role: "Co-Founder & Chief Designer",
-    category: "alumni",
-    department: "Mechanical Eng. '16 (Alumni)",
-    season: "founders",
-    image: "/images/team/soundtrap-rAT6FJ6wltE-unsplash.jpg",
-    linkedin: "https://linkedin.com",
-    bio: "Co-founded the team and developed the initial Kilo Flight 1.0 CAD architecture."
+    bio: "Co-founded Team KILOFLIGHT at KUET and pioneered natural jute fiber composite research for student formula vehicles."
   }
 ];

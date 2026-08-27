@@ -118,8 +118,8 @@ export default function Footer() {
             <div className="footer-contact-box p-3 rounded mb-3">
               <p className="small mb-2 d-flex align-items-center">
                 <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                <a href="mailto:teamkiloflight@kuet.ac.bd" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>
-                  teamkiloflight@kuet.ac.bd
+                <a href="mailto:teamkiloflightkuet@gmail.com" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>
+                  teamkiloflightkuet@gmail.com
                 </a>
               </p>
               <p className="small mb-2 d-flex align-items-start text-muted">
@@ -128,7 +128,7 @@ export default function Footer() {
               </p>
               <p className="small mb-0 d-flex align-items-center text-muted">
                 <i className="bi bi-flag-fill me-2 text-warning"></i>
-                <span>Formula Student UK &amp; Germany National Representative</span>
+                <span>FSAE Japan 2023 Mechanical Pass &bull; FSAE Dynamix India 2027</span>
               </p>
             </div>
           </div>

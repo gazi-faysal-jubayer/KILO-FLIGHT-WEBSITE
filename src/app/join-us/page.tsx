@@ -5,28 +5,96 @@ import Link from 'next/link';
 
 export default function JoinUsPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [selectedDept, setSelectedDept] = useState('aero');
+  const [formData, setFormData] = useState({
+    fullName: '',
+    rollNumber: '',
+    department: 'ME',
+    institutionalEmail: '',
+    whatsappNumber: '',
+    primarySubteam: '1. Chassis & Suspension',
+    secondarySubteam: '2. Body & Aerodynamics',
+    workshopSummary: '',
+    softwareSkills: [] as string[],
+    statementOfPurpose: '',
+    portfolioLink: '',
+  });
 
-  const departments = [
-    { id: 'aero', label: 'Aerodynamics' },
-    { id: 'chassis', label: 'Chassis & Structure' },
-    { id: 'powertrain', label: 'Powertrain & ICE' },
-    { id: 'elec', label: 'DAQ & Electronics' },
-    { id: 'biz', label: 'Business & PR' },
-    { id: 'driver', label: 'Driver Team' },
+  const availableSkills = [
+    'SolidWorks',
+    'ANSYS (FEA/CFD)',
+    'MATLAB/Simulink',
+    'Embedded/Arduino',
+    'Hands-on Fabrication',
+    'Graphic Design/Video',
+    'Corporate Outreach',
   ];
+
+  const subteamOptions = [
+    '1. Chassis & Suspension',
+    '2. Body & Aerodynamics',
+    '3. Mechanical Powertrain',
+    '4. Electrical Systems & DAQ',
+    '5. Braking & Steering',
+    '6. Business, Media & Content',
+  ];
+
+  const handleSkillToggle = (skill: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      softwareSkills: prev.softwareSkills.includes(skill)
+        ? prev.softwareSkills.filter((s) => s !== skill)
+        : [...prev.softwareSkills, skill],
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (formData.primarySubteam === formData.secondarySubteam) {
+      alert('Secondary Sub-Team preference must differ from Primary preference.');
+      return;
+    }
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 6000);
   };
 
   const handleReset = () => {
-    const form = document.querySelector('.neo-join-form') as HTMLFormElement;
-    if (form) form.reset();
-    setSelectedDept('aero');
+    setFormData({
+      fullName: '',
+      rollNumber: '',
+      department: 'ME',
+      institutionalEmail: '',
+      whatsappNumber: '',
+      primarySubteam: '1. Chassis & Suspension',
+      secondarySubteam: '2. Body & Aerodynamics',
+      workshopSummary: '',
+      softwareSkills: [],
+      statementOfPurpose: '',
+      portfolioLink: '',
+    });
+    setSubmitted(false);
   };
+
+  const roadmapStages = [
+    {
+      num: '01',
+      title: 'Online Portal Registration',
+      desc: 'Complete the detailed registration form with your academic credentials, technical skills, and sub-team selections.',
+    },
+    {
+      num: '02',
+      title: 'Technical Task / Concept Review',
+      desc: 'Short assessment evaluating practical takeaways from the workshop series (CAD, kinematics, braking, powertrain, composites).',
+    },
+    {
+      num: '03',
+      title: 'Personal & Sub-Team Interview',
+      desc: 'Discussion with Sub-Team Leads and Executive Officers regarding sub-team fit, problem-solving ability, and weekly commitment.',
+    },
+    {
+      num: '04',
+      title: 'Official Team Onboarding',
+      desc: 'Final induction into active project workflows for the 2026–2027 season development of KILOFLIGHT PHOENIX.',
+    },
+  ];
 
   return (
     <section
@@ -41,50 +109,85 @@ export default function JoinUsPage() {
       <div className="container mx-auto px-4">
         {/* Header Intro */}
         <div className="row text-center mb-5">
-          <div className="col-lg-8 mx-auto">
-            <span className="badge-motorsport red mb-2">Recruitment &amp; Partnerships</span>
-            <h1 className="mb-2" style={{ fontSize: '38px' }}>
-              JOIN TEAM KILO FLIGHT
+          <div className="col-lg-9 mx-auto">
+            <span className="badge-motorsport red mb-2">Batch 2k23 Induction</span>
+            <h1 className="mb-2 font-orbitron" style={{ fontSize: 'clamp(28px, 4vw, 42px)', color: '#0F172A', fontWeight: 900 }}>
+              JOIN TEAM KILOFLIGHT
             </h1>
-            <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '650px' }}>
-              Apply to become a student engineer on Bangladesh&apos;s premier Formula Student motorsport team or request an industry sponsor packet.
+            <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '750px', fontSize: '15px' }}>
+              Step into elite student motorsport and take your hands-on engineering skills straight from the lecture hall to the international racetrack. Having participated in our technical workshop sessions, you now have the foundational knowledge required to contribute directly to the design, simulation, and manufacturing of <strong>KILOFLIGHT PHOENIX</strong>.
             </p>
           </div>
         </div>
 
+        {/* 4-Stage Recruitment Roadmap */}
+        <div className="row g-3 mb-5">
+          {roadmapStages.map((stage) => (
+            <div key={stage.num} className="col-lg-3 col-md-6">
+              <div
+                className="p-3 h-100 rounded"
+                style={{
+                  background: '#FFFFFF',
+                  border: '2px solid #0F172A',
+                  boxShadow: '3px 3px 0 #0F172A',
+                }}
+              >
+                <div className="d-flex align-items-center gap-2 mb-2">
+                  <span
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle font-orbitron fw-bold"
+                    style={{
+                      width: '28px',
+                      height: '28px',
+                      background: '#FF2A2A',
+                      color: '#FFFFFF',
+                      fontSize: '12px',
+                    }}
+                  >
+                    {stage.num}
+                  </span>
+                  <div className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '12.5px' }}>
+                    Stage {stage.num}
+                  </div>
+                </div>
+                <div className="fw-bold mb-1" style={{ color: '#0F172A', fontSize: '13.5px' }}>{stage.title}</div>
+                <p className="small text-muted mb-0" style={{ lineHeight: '1.45', fontSize: '12px' }}>{stage.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* Form Container */}
         <div className="row justify-content-center">
-          <div className="col-lg-9 col-md-11">
+          <div className="col-lg-10 col-md-12">
             <div className="neo-join-form-wrapper">
               {submitted ? (
                 <div
                   className="neo-join-form text-center p-5 d-flex flex-column align-items-center justify-content-center"
-                  style={{ minHeight: '400px', background: '#FFFFFF' }}
+                  style={{ minHeight: '420px', background: '#FFFFFF' }}
                 >
                   <div id="circleform" />
                   <i
-                    className="bi bi-check-circle-fill fs-1 mb-3 text-success"
+                    className="bi bi-check-circle-fill fs-1 mb-3 text-danger"
                     style={{ filter: 'drop-shadow(2px 2px 0 #0F172A)' }}
                   ></i>
                   <h2
-                    className="mb-2"
+                    className="mb-2 font-orbitron"
                     style={{
-                      fontFamily: 'var(--font-orbitron)',
                       color: '#0F172A',
                       fontWeight: 900,
                     }}
                   >
-                    APPLICATION SUBMITTED!
+                    REGISTRATION RECEIVED!
                   </h2>
-                  <p className="text-muted fw-bold max-w-500 mb-4" style={{ maxWidth: '450px' }}>
-                    Thank you for applying to Team Kilo Flight! Our technical leads will review your application and contact you shortly via email.
+                  <p className="text-muted fw-bold max-w-500 mb-3" style={{ maxWidth: '500px' }}>
+                    Thank you, <strong>{formData.fullName}</strong> (Roll: {formData.rollNumber}). Your registration for Batch 2k23 Induction has been logged. Our executive board will review your profile for Stage 2 (Technical Task / Concept Review) and contact you at <strong>{formData.institutionalEmail}</strong> and WhatsApp <strong>{formData.whatsappNumber}</strong>.
                   </p>
                   <button
                     type="button"
                     className="custom-btn"
-                    onClick={() => setSubmitted(false)}
+                    onClick={handleReset}
                   >
-                    Submit Another Application
+                    Submit Another Response
                   </button>
                 </div>
               ) : (
@@ -94,97 +197,202 @@ export default function JoinUsPage() {
 
                   {/* Intro Banner with Animated Ticker */}
                   <div id="introform">
-                    <p>ENGINEER APPLICATION</p>
+                    <p>BATCH 2K23 REGISTRATION PORTAL</p>
                     <div id="introformbehind">
-                      <p>||||||||||||||||||||||||||||||||||||||||||||||||||||||||</p>
+                      <p>||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</p>
                     </div>
                   </div>
 
                   {/* Middle Form Inputs */}
                   <div id="middleform">
-                    <div>
-                      <p>FULL NAME</p>
-                      <input
-                        className="neo-input"
-                        type="text"
-                        placeholder="e.g. Gazi Faysal Jubayer"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <p>EMAIL ADDRESS</p>
-                      <input
-                        className="neo-input"
-                        type="email"
-                        placeholder="e.g. engineer@kuet.ac.bd"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <p>PHONE NUMBER</p>
-                      <input
-                        className="neo-input"
-                        type="tel"
-                        placeholder="+880 1700-000000"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <p>APPLICATION CATEGORY</p>
-                      <select className="neo-input" defaultValue="student" required>
-                        <option value="student">Student Recruitment Application</option>
-                        <option value="sponsor">Corporate Sponsorship Inquiry</option>
-                        <option value="mentor">Alumni Advisory / Mentor</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <p>PREFERRED SUB-TEAM / DEPARTMENT</p>
-                      <div className="neo-dept-radio-grid">
-                        {departments.map((dept) => (
-                          <label
-                            key={dept.id}
-                            className={`neo-dept-label ${
-                              selectedDept === dept.id ? 'active' : ''
-                            }`}
-                            onClick={() => setSelectedDept(dept.id)}
-                          >
-                            <input
-                              type="radio"
-                              name="deptChoice"
-                              value={dept.id}
-                              checked={selectedDept === dept.id}
-                              onChange={() => setSelectedDept(dept.id)}
-                              style={{ display: 'none' }}
-                            />
-                            <span>{dept.label}</span>
-                          </label>
-                        ))}
+                    {/* Row 1: Full Name & Roll Number */}
+                    <div className="row g-3">
+                      <div className="col-md-6">
+                        <p>1. FULL NAME *</p>
+                        <input
+                          className="neo-input"
+                          type="text"
+                          placeholder="e.g. Gazi Faysal Jubayer"
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          required
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <p>2. STUDENT ROLL NUMBER * (FORMAT: 23XXXXX)</p>
+                        <input
+                          className="neo-input"
+                          type="text"
+                          placeholder="e.g. 2305001"
+                          pattern="23[0-9]{5}"
+                          title="Please enter a valid 7-digit KUET 2k23 roll number starting with 23"
+                          value={formData.rollNumber}
+                          onChange={(e) => setFormData({ ...formData, rollNumber: e.target.value })}
+                          required
+                        />
                       </div>
                     </div>
 
+                    {/* Row 2: Department & KUET Email */}
+                    <div className="row g-3">
+                      <div className="col-md-6">
+                        <p>3. ACADEMIC DEPARTMENT *</p>
+                        <select
+                          className="neo-input"
+                          value={formData.department}
+                          onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                          required
+                        >
+                          <option value="ME">Mechanical Engineering (ME)</option>
+                          <option value="EEE">Electrical &amp; Electronic Engineering (EEE)</option>
+                          <option value="CSE">Computer Science &amp; Engineering (CSE)</option>
+                          <option value="IPE">Industrial &amp; Production Engineering (IPE)</option>
+                          <option value="TE">Textile Engineering (TE)</option>
+                          <option value="BECM">Building Engineering &amp; Construction Mgmt (BECM)</option>
+                          <option value="LE">Leather Engineering (LE)</option>
+                          <option value="Mechatronics">Mechatronics Engineering</option>
+                          <option value="Other">Other Discipline</option>
+                        </select>
+                      </div>
+                      <div className="col-md-6">
+                        <p>4. KUET INSTITUTIONAL EMAIL * (*@stud.kuet.ac.bd)</p>
+                        <input
+                          className="neo-input"
+                          type="email"
+                          placeholder="roll@stud.kuet.ac.bd"
+                          value={formData.institutionalEmail}
+                          onChange={(e) => setFormData({ ...formData, institutionalEmail: e.target.value })}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 3: WhatsApp Contact */}
                     <div>
-                      <p>STATEMENT OF INTEREST & TECHNICAL SKILLS</p>
+                      <p>5. WHATSAPP / CONTACT NUMBER * (+880 FORMAT)</p>
+                      <input
+                        className="neo-input"
+                        type="tel"
+                        placeholder="+880 1XXXXXXXXX"
+                        value={formData.whatsappNumber}
+                        onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
+                        required
+                      />
+                    </div>
+
+                    {/* Row 4: Primary & Secondary Sub-Team Preference */}
+                    <div className="row g-3">
+                      <div className="col-md-6">
+                        <p>6. PRIMARY SUB-TEAM PREFERENCE *</p>
+                        <select
+                          className="neo-input"
+                          value={formData.primarySubteam}
+                          onChange={(e) => setFormData({ ...formData, primarySubteam: e.target.value })}
+                          required
+                        >
+                          {subteamOptions.map((opt) => (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="col-md-6">
+                        <p>7. SECONDARY SUB-TEAM PREFERENCE * (MUST DIFFER)</p>
+                        <select
+                          className="neo-input"
+                          value={formData.secondarySubteam}
+                          onChange={(e) => setFormData({ ...formData, secondarySubteam: e.target.value })}
+                          required
+                        >
+                          {subteamOptions.map((opt) => (
+                            <option key={opt} value={opt} disabled={opt === formData.primarySubteam}>
+                              {opt} {opt === formData.primarySubteam ? '(Selected as Primary)' : ''}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Row 5: Workshop Learnings Summary */}
+                    <div>
+                      <p>8. WORKSHOP LEARNINGS SUMMARY *</p>
                       <textarea
                         className="neo-input"
                         rows={3}
-                        placeholder="Mention your department at KUET (or company), software skills (CAD, SolidWorks, MATLAB, Ansys), or past projects..."
+                        placeholder="Summarize technical concepts retained from workshop sessions (CAD, kinematics, braking, powertrain, composites)..."
+                        value={formData.workshopSummary}
+                        onChange={(e) => setFormData({ ...formData, workshopSummary: e.target.value })}
                         required
                       ></textarea>
+                    </div>
+
+                    {/* Row 6: Technical Software Skills (Multi-select checkboxes) */}
+                    <div>
+                      <p>9. TECHNICAL SOFTWARE &amp; PRACTICAL SKILLS (SELECT ALL THAT APPLY)</p>
+                      <div className="d-flex gap-2 flex-wrap pt-1">
+                        {availableSkills.map((skill) => {
+                          const isSelected = formData.softwareSkills.includes(skill);
+                          return (
+                            <button
+                              type="button"
+                              key={skill}
+                              onClick={() => handleSkillToggle(skill)}
+                              className="neo-dept-label"
+                              style={{
+                                background: isSelected ? '#0F172A' : '#F8FAFC',
+                                color: isSelected ? '#FFFFFF' : '#0F172A',
+                                border: '2px solid #0F172A',
+                                boxShadow: isSelected ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
+                                cursor: 'pointer',
+                                padding: '6px 14px',
+                                borderRadius: '10px',
+                                fontSize: '12.5px',
+                                fontWeight: 700,
+                              }}
+                            >
+                              <i className={`bi ${isSelected ? 'bi-check-square-fill text-danger me-1' : 'bi-square me-1'}`}></i>
+                              {skill}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Row 7: Statement of Purpose & Availability */}
+                    <div>
+                      <p>10. STATEMENT OF PURPOSE &amp; AVAILABILITY *</p>
+                      <textarea
+                        className="neo-input"
+                        rows={3}
+                        placeholder="Why do you want to join KILOFLIGHT and how will you manage academic/project time commitments?"
+                        value={formData.statementOfPurpose}
+                        onChange={(e) => setFormData({ ...formData, statementOfPurpose: e.target.value })}
+                        required
+                      ></textarea>
+                    </div>
+
+                    {/* Row 8: Portfolio / CV Link */}
+                    <div>
+                      <p>11. PORTFOLIO / CV LINK (OPTIONAL)</p>
+                      <input
+                        className="neo-input"
+                        type="url"
+                        placeholder="Google Drive, GitHub, or LinkedIn URL"
+                        value={formData.portfolioLink}
+                        onChange={(e) => setFormData({ ...formData, portfolioLink: e.target.value })}
+                      />
                     </div>
                   </div>
 
                   {/* Submit Button Block */}
                   <div id="endform">
-                    <button type="submit">SUBMIT APPLICATION</button>
+                    <button type="submit">SUBMIT BATCH 2K23 INDUCTION</button>
                   </div>
 
                   {/* Secondary Quick Action Buttons */}
                   <div id="endform2">
-                    <Link href="/subteams">Explore Sub-Teams</Link>
+                    <Link href="/subteams">Explore Sub-Teams &amp; Workflows</Link>
                     <button id="passbutton" type="button" onClick={handleReset}>
                       Reset Form
                     </button>
