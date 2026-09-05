@@ -9,6 +9,7 @@ export interface TeamMember {
   image?: string;
   linkedin?: string;
   bio?: string;
+  isTeacher?: boolean;
 }
 
 export interface CarSpec {
