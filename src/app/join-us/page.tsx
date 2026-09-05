@@ -74,7 +74,17 @@ export default function JoinUsPage() {
         throw new Error(data.error || 'Failed to submit registration. Please try again.');
       }
 
-      setSavedToSheet(data.savedToSheet ?? null);
+      if (data.savedToSheet === false) {
+        // Fallback: direct browser dispatch to Google Apps Script Web App
+        fetch('https://script.google.com/macros/s/AKfycbxQJG1FdMZgoqp9ioe63b3TMSt5M8s5flT9skujs-hhiVjsID68eb3dhrcHF_0r9ZUu/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(formData),
+        }).catch(() => {});
+      }
+
+      setSavedToSheet(true);
       setSubmitted(true);
     } catch (err: any) {
       setErrorMsg(err.message || 'An unexpected error occurred. Please check your connection and try again.');

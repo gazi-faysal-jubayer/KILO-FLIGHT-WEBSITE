@@ -31,11 +31,16 @@ export interface RecruitmentPayload {
   createdAt?: string;
 }
 
+export const DEFAULT_RECRUITMENT_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbxQJG1FdMZgoqp9ioe63b3TMSt5M8s5flT9skujs-hhiVjsID68eb3dhrcHF_0r9ZUu/exec';
+
 export async function forwardApplicationToGoogleSheet(app: RecruitmentPayload): Promise<{ success: boolean; error?: string }> {
-  const webhookUrl = process.env.GOOGLE_SCRIPT_RECRUITMENT_URL || process.env.GOOGLE_SHEET_RECRUITMENT_WEBHOOK_URL;
-  
+  const webhookUrl =
+    process.env.GOOGLE_SCRIPT_RECRUITMENT_URL ||
+    process.env.GOOGLE_SHEET_RECRUITMENT_WEBHOOK_URL ||
+    DEFAULT_RECRUITMENT_SCRIPT_URL;
+
   if (!webhookUrl) {
-    // If webhook is not configured yet, log reminder but don't fail user application
     console.info('[GoogleSheets] GOOGLE_SCRIPT_RECRUITMENT_URL not configured in environment. Application safely stored in database.');
     return { success: false, error: 'GOOGLE_SCRIPT_RECRUITMENT_URL not configured' };
   }
