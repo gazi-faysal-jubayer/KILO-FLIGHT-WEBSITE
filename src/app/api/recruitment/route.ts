@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getCollectionAsync, saveCollectionAsync } from '@/lib/db';
 import { verifyAdminSession } from '@/lib/auth';
+import { forwardApplicationToGoogleSheet } from '@/lib/recruitment-sheets';
 
 // Public candidate application submission (POST)
 export async function POST(req: Request) {
@@ -33,14 +34,19 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString(),
     };
 
+    // 1. Safely persist in database
     const applications = (await getCollectionAsync<any[]>('applications')) || [];
     const updated = [newApplication, ...applications];
     await saveCollectionAsync('applications', updated);
+
+    // 2. Real-time forward to Google Sheets table
+    const sheetResult = await forwardApplicationToGoogleSheet(newApplication);
 
     return NextResponse.json({
       success: true,
       message: 'Application submitted successfully',
       id: newApplication.id,
+      savedToSheet: sheetResult.success,
     });
   } catch (err) {
     return NextResponse.json(

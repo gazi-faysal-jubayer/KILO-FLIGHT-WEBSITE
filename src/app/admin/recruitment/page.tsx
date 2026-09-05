@@ -135,9 +135,18 @@ export default function AdminRecruitmentPage() {
             Review, evaluate, and shortlist student engineer applications across all 6 sub-teams.
           </p>
         </div>
-        <div className="d-flex gap-2">
+        <div className="d-flex gap-2 flex-wrap">
+          <a
+            href="https://docs.google.com/spreadsheets/d/11KIBktsbfgudDzLVVcw28Rbh-0C4itJszaEKVFt2D74/edit?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="custom-btn-outline d-inline-flex align-items-center"
+            style={{ background: '#FFFFFF', textDecoration: 'none' }}
+          >
+            <i className="bi bi-file-earmark-spreadsheet-fill text-success me-1"></i> Open Google Sheet
+          </a>
           <button onClick={handleExportCSV} className="custom-btn-outline" style={{ background: '#FFFFFF' }}>
-            <i className="bi bi-file-earmark-spreadsheet me-1 text-success"></i> Export CSV
+            <i className="bi bi-download me-1 text-primary"></i> Export CSV
           </button>
           <button onClick={fetchApplications} className="custom-btn">
             <i className="bi bi-arrow-clockwise me-1"></i> Refresh

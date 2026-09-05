@@ -1,0 +1,83 @@
+[
+  {
+    "id": "app-1788581812650",
+    "fullName": "Sakibul Hasan (End-to-End Test)",
+    "rollNumber": "2305088",
+    "department": "CSE",
+    "institutionalEmail": "2305088@stud.kuet.ac.bd",
+    "whatsappNumber": "+880 1812-345678",
+    "primarySubteam": "4. Electrical Systems & DAQ",
+    "secondarySubteam": "6. Business, Media & Content",
+    "workshopSummary": "Tested DAQ telemetry sensor CAN-bus interfacing and dynamic dashboard analytics.",
+    "softwareSkills": [
+      "MATLAB/Simulink",
+      "Embedded/Arduino"
+    ],
+    "statementOfPurpose": "Passionate about building the live telemetry and sensor acquisition dashboard for KILOFLIGHT PHOENIX.",
+    "portfolioLink": "https://github.com/test-e2e",
+    "status": "Pending Review",
+    "reviewerNotes": "",
+    "createdAt": "2026-09-05T04:16:52.650Z"
+  },
+  {
+    "id": "app-1788578724159",
+    "status": "Pending Review",
+    "fullName": "Sakib Al Hasan",
+    "createdAt": "2026-09-05T03:25:24.159Z",
+    "department": "ME",
+    "rollNumber": "2305099",
+    "portfolioLink": "https://drive.google.com/test",
+    "reviewerNotes": "",
+    "primarySubteam": "1. Chassis & Suspension",
+    "softwareSkills": [
+      "SolidWorks",
+      "ANSYS (FEA/CFD)"
+    ],
+    "whatsappNumber": "+880 1711-223344",
+    "workshopSummary": "Completed spaceframe CAD modeling and structural weldment simulation during workshop.",
+    "secondarySubteam": "2. Body & Aerodynamics",
+    "institutionalEmail": "2305099@stud.kuet.ac.bd",
+    "statementOfPurpose": "Passionate about race car design and ready to commit 20 hours per week."
+  },
+  {
+    "id": "app-1788578488498",
+    "status": "Pending Review",
+    "fullName": "Sakib Al Hasan",
+    "createdAt": "2026-09-05T03:21:28.498Z",
+    "department": "ME",
+    "rollNumber": "2305099",
+    "portfolioLink": "https://drive.google.com/test",
+    "reviewerNotes": "",
+    "primarySubteam": "1. Chassis & Suspension",
+    "softwareSkills": [
+      "SolidWorks",
+      "ANSYS (FEA/CFD)"
+    ],
+    "whatsappNumber": "+880 1711-223344",
+    "workshopSummary": "Completed spaceframe CAD modeling and structural weldment simulation during workshop.",
+    "secondarySubteam": "2. Body & Aerodynamics",
+    "institutionalEmail": "2305099@stud.kuet.ac.bd",
+    "statementOfPurpose": "Passionate about race car design and ready to commit 20 hours per week."
+  },
+  {
+    "id": "app-1",
+    "status": "Shortlisted",
+    "fullName": "Tanjim Rahman",
+    "createdAt": "2026-08-27T04:33:24.028Z",
+    "department": "ME",
+    "rollNumber": "2305014",
+    "portfolioLink": "https://github.com",
+    "reviewerNotes": "Strong CAD background from workshop test.",
+    "primarySubteam": "1. Chassis & Suspension",
+    "softwareSkills": [
+      "SolidWorks",
+      "ANSYS (FEA/CFD)",
+      "Hands-on Fabrication"
+    ],
+    "whatsappNumber": "+880 1711223344",
+    "workshopSummary": "Learned suspension roll center modeling, double wishbone geometry, and CAD spaceframe FEA load distributions.",
+    "secondarySubteam": "5. Braking & Steering",
+    "institutionalEmail": "2305014@stud.kuet.ac.bd",
+    "statementOfPurpose": "Passionate about structural dynamics and hands-on TIG welding. Dedicated 15+ hours weekly outside classes."
+  }
+]

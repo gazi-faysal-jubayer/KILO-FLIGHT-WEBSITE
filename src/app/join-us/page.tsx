@@ -49,15 +49,38 @@ export default function JoinUsPage() {
 
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [savedToSheet, setSavedToSheet] = useState<boolean | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     if (formData.primarySubteam === formData.secondarySubteam) {
       setErrorMsg('Secondary Sub-Team preference must differ from Primary preference.');
       return;
     }
-    setSubmitted(true);
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/recruitment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Failed to submit registration. Please try again.');
+      }
+
+      setSavedToSheet(data.savedToSheet ?? null);
+      setSubmitted(true);
+    } catch (err: any) {
+      setErrorMsg(err.message || 'An unexpected error occurred. Please check your connection and try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -75,6 +98,8 @@ export default function JoinUsPage() {
       portfolioLink: '',
     });
     setSubmitted(false);
+    setErrorMsg('');
+    setSavedToSheet(null);
   };
 
   const roadmapStages = [
@@ -174,6 +199,10 @@ export default function JoinUsPage() {
                     className="bi bi-check-circle-fill fs-1 mb-3 text-danger"
                     style={{ filter: 'drop-shadow(2px 2px 0 #0F172A)' }}
                   ></i>
+                  <div className="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill small fw-bold" style={{ background: '#DCFCE7', color: '#15803D', border: '1.5px solid #16A34A' }}>
+                    <i className="bi bi-file-earmark-spreadsheet-fill"></i>
+                    <span>Logged into Batch 2k23 Registration Spreadsheet</span>
+                  </div>
                   <h2
                     className="mb-2 font-orbitron"
                     style={{
@@ -183,16 +212,21 @@ export default function JoinUsPage() {
                   >
                     REGISTRATION RECEIVED!
                   </h2>
-                  <p className="text-muted fw-bold max-w-500 mb-3" style={{ maxWidth: '500px' }}>
-                    Thank you, <strong>{formData.fullName}</strong> (Roll: {formData.rollNumber}). Your registration for Batch 2k23 Induction has been logged. Our executive board will review your profile for Stage 2 (Technical Task / Concept Review) and contact you at <strong>{formData.institutionalEmail}</strong> and WhatsApp <strong>{formData.whatsappNumber}</strong>.
+                  <p className="text-muted fw-bold max-w-500 mb-3" style={{ maxWidth: '540px', lineHeight: '1.6' }}>
+                    Thank you, <strong>{formData.fullName}</strong> (Roll: {formData.rollNumber}, {formData.department}). Your response has been saved into the official <strong>Batch 2k23 Induction Table</strong>. Our executive board will review your profile for Stage 2 (Technical Task / Concept Review) and contact you at <strong>{formData.institutionalEmail}</strong> and WhatsApp <strong>{formData.whatsappNumber}</strong>.
                   </p>
-                  <button
-                    type="button"
-                    className="custom-btn"
-                    onClick={handleReset}
-                  >
-                    Submit Another Response
-                  </button>
+                  <div className="d-flex gap-2 flex-wrap justify-content-center">
+                    <button
+                      type="button"
+                      className="custom-btn"
+                      onClick={handleReset}
+                    >
+                      Submit Another Response
+                    </button>
+                    <Link href="/subteams" className="custom-btn-outline" style={{ background: '#FFFFFF' }}>
+                      Explore Sub-Teams &rarr;
+                    </Link>
+                  </div>
                 </div>
               ) : (
                 <form className="neo-join-form" onSubmit={handleSubmit}>
