@@ -355,6 +355,117 @@ export default function SponsorshipPage() {
           </div>
         </div>
       </section>
+
+      {/* Want Custom Sponsor? Section */}
+      <section className="section-padding py-5" style={{ background: '#FFFFFF', borderTop: '2px solid #0F172A' }}>
+        <div className="container mx-auto px-4">
+          <div
+            className="glass-panel p-4 p-lg-5"
+            style={{
+              border: '2px solid #0F172A',
+              boxShadow: '8px 8px 0 #FF2A2A',
+              background: 'radial-gradient(circle at top right, rgba(255, 42, 42, 0.05) 0%, #FFFFFF 100%)',
+            }}
+          >
+            <div className="row g-5 align-items-center">
+              <div className="col-lg-8 col-12">
+                <span className="badge-motorsport red mb-2">Tailored Partnerships</span>
+                <h2 className="font-orbitron mb-3" style={{ color: '#0F172A', fontWeight: 900, fontSize: 'clamp(26px, 3.5vw, 42px)' }}>
+                  WANT A CUSTOM SPONSORSHIP?
+                </h2>
+                <p className="text-muted mb-4" style={{ fontSize: '16px', lineHeight: '1.7' }}>
+                  Looking for a custom tier tailored to your corporate CSR objectives, technical component supply, R&amp;D collaboration, or marketing budget? Team KILOFLIGHT works directly with corporate partners to architect bespoke agreements that deliver maximum value.
+                </p>
+
+                <div className="row g-3">
+                  <div className="col-md-6 col-12">
+                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <i className="bi bi-tools text-danger fs-5"></i>
+                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>Technical &amp; Parts In-Kind</span>
+                      </div>
+                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
+                        Supply aerospace raw materials (4130 chromoly tubes, Al 7075/5052, natural jute fabric), CNC machining, rapid prototyping, or telemetry sensors in exchange for official tier recognition.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="col-md-6 col-12">
+                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <i className="bi bi-tree-fill text-warning fs-5"></i>
+                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>CSR &amp; Green Tech Research</span>
+                      </div>
+                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
+                        Direct CSR funding towards sustainable 7-layer bio-jute composite development, eco-friendly manufacturing, and empowering student STEM innovation in Bangladesh.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="col-md-6 col-12">
+                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <i className="bi bi-airplane-engines text-info fs-5"></i>
+                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>Logistics &amp; Tour Support</span>
+                      </div>
+                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
+                        Sponsor race car air-freight transport, team competition travel gear, or international entry fees for FSAE Dynamix India 2027 and Silverstone UK.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="col-md-6 col-12">
+                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <i className="bi bi-star-fill text-danger fs-5"></i>
+                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>Bespoke Activations</span>
+                      </div>
+                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
+                        Host exclusive campus engineering seminars at KUET, private track day demonstrations with KILOFLIGHT PHOENIX, or dedicated recruitment drives.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-12 text-center">
+                <div className="p-4 rounded" style={{ background: '#F8FAFC', border: '2px solid #0F172A', boxShadow: '5px 5px 0 #0F172A' }}>
+                  <div className="dept-icon mx-auto mb-3" style={{ color: '#FF2A2A', borderColor: '#FF2A2A', background: '#FEE2E2', width: '64px', height: '64px', fontSize: '28px' }}>
+                    <i className="bi bi-patch-question-fill"></i>
+                  </div>
+                  <h4 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>
+                    Want Custom Sponsor?
+                  </h4>
+                  <p className="small text-muted mb-4" style={{ lineHeight: '1.6' }}>
+                    Speak directly with our team captains and directors to design a custom partnership package suited to your exact specifications.
+                  </p>
+
+                  <div className="d-flex flex-column gap-2">
+                    <Link
+                      href="/contact"
+                      className="custom-btn text-decoration-none w-100 py-3 text-center"
+                      style={{ fontSize: '13.5px' }}
+                    >
+                      <i className="bi bi-chat-right-text-fill me-2"></i> Discuss Custom Package
+                    </Link>
+
+                    <a
+                      href="mailto:teamkiloflightkuet@gmail.com?subject=Custom Sponsorship Proposal Inquiry - Team KILOFLIGHT"
+                      className="custom-btn-outline text-decoration-none w-100 py-2 text-center small"
+                    >
+                      <i className="bi bi-envelope-fill me-2"></i> Send Custom Proposal
+                    </a>
+                  </div>
+
+                  <div className="mt-3 pt-3 border-top small text-muted font-monospace">
+                    <i className="bi bi-telephone-fill me-1 text-danger"></i> +880 1611-453600
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

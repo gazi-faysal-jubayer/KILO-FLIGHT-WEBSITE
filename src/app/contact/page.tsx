@@ -3,49 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-const STATIC_EXECUTIVE_LEADERSHIP = [
-  {
-    name: 'Auritra Sharma',
-    role: 'Team Captain',
-    department: 'Mechanical Eng., KUET',
-    phone: '+880 1611-453600',
-    email: 'auritrasharma28@gmail.com',
-    bio: 'Team Captain leading overall vehicle design, strategic management, and international competition campaigns for KILOFLIGHT PHOENIX.',
-  },
-  {
-    name: 'Gazi Faysal Jubayer',
-    role: 'Vice Captain',
-    department: 'Mechanical Eng., KUET',
-    phone: '+880 1315-669261',
-    email: 'gazi.faysal.jubayer@gmail.com',
-    bio: 'Vice Captain overseeing executive project coordination, digital platforms, full-stack vehicle web architecture, and sub-team execution.',
-  },
-  {
-    name: 'Eshraq Nipun',
-    role: 'Technical Director',
-    department: 'Mechanical Eng., KUET',
-    phone: '+880 1576-713957',
-    email: 'nushineshraqnipun.21@gmail.com',
-    bio: 'Directing vehicle engineering specifications, CAD/FEA simulation benchmarks, and powertrain integration for FSAE Dynamix India.',
-  },
-  {
-    name: 'Naimur Rhythm',
-    role: 'Project Director',
-    department: 'Mechanical Eng., KUET',
-    phone: '+880 1602-350967',
-    email: 'rrhythm18@gmail.com',
-    bio: 'Managing project timeline scheduling, manufacturing procurement, sponsorship deliverables, and team logistics.',
-  },
-  {
-    name: 'Nazizus Salehin',
-    role: 'Chassis & Suspension Lead',
-    department: 'Mechanical Eng., KUET',
-    phone: '+880 1753-060356',
-    email: 'salehin1056@gmail.com',
-    bio: 'Leading 4130 Chromoly spaceframe design, suspension kinematics modeling, 3-pedal box fabrication, and wheel alignment validation.',
-  },
-];
-
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -326,74 +283,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Direct Executive Contacts Section */}
-      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
-        <div className="container mx-auto px-4">
-          <div className="row text-center mb-4">
-            <div className="col-lg-8 mx-auto">
-              <span className="badge-motorsport red mb-2">Direct Access</span>
-              <h2 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>
-                EXECUTIVE LEADERSHIP DIRECTORY
-              </h2>
-              <p className="text-muted">
-                Reach out directly to key project leaders for immediate response regarding sponsorships, technical inquiries, and project coordination.
-              </p>
-            </div>
-          </div>
-
-          <div className="row g-4 justify-content-center">
-            {STATIC_EXECUTIVE_LEADERSHIP.map((lead, idx) => (
-              <div key={idx} className="col-lg-4 col-md-6 col-12">
-                <div
-                  className="glass-panel p-4 h-100 d-flex flex-column justify-content-between"
-                  style={{
-                    border: '2px solid #0F172A',
-                    boxShadow: '3px 3px 0 #0F172A',
-                  }}
-                >
-                  <div>
-                    <span className="badge-motorsport red mb-2">{lead.role}</span>
-                    <h4 className="font-orbitron mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>
-                      {lead.name}
-                    </h4>
-                    <div className="small text-cyan fw-bold mb-2">{lead.department}</div>
-                    <p className="small text-muted mb-3" style={{ lineHeight: '1.5' }}>
-                      {lead.bio}
-                    </p>
-                  </div>
-
-                  <div className="border-top pt-3 d-flex flex-column gap-2 small">
-                    {lead.phone && (
-                      <div className="d-flex align-items-center gap-2">
-                        <i className="bi bi-telephone-fill text-danger"></i>
-                        <a
-                          href={`tel:${lead.phone}`}
-                          className="text-decoration-none fw-bold"
-                          style={{ color: '#0F172A' }}
-                        >
-                          {lead.phone}
-                        </a>
-                      </div>
-                    )}
-                    {lead.email && (
-                      <div className="d-flex align-items-center gap-2">
-                        <i className="bi bi-envelope-fill text-cyan"></i>
-                        <a
-                          href={`mailto:${lead.email}`}
-                          className="text-decoration-none text-muted"
-                          style={{ wordBreak: 'break-all' }}
-                        >
-                          {lead.email}
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
