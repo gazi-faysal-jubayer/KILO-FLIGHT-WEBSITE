@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { TeamMember, MemberCategory } from '@/types/team';
 import { fetchTeamDataFromGoogleSheets, formatImageUrl } from '@/lib/google-sheets';
 import { FALLBACK_TEAM_DATA } from '@/lib/fallback-data';
-import SheetGuideModal from './SheetGuideModal';
 
 export default function TeamDirectory() {
   const [members, setMembers] = useState<TeamMember[]>(FALLBACK_TEAM_DATA);
@@ -14,7 +13,6 @@ export default function TeamDirectory() {
   const [activeSeason, setActiveSeason] = useState('2026');
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [expandedBios, setExpandedBios] = useState<{ [key: string]: boolean }>({});
 
   const toggleBio = (id: string) => {
@@ -146,36 +144,7 @@ export default function TeamDirectory() {
         }}
       >
         <div className="container mx-auto px-4 text-center">
-          <div className="d-flex justify-content-center align-items-center flex-wrap gap-2 mb-3">
-            <span className={`sync-badge ${isLive ? 'live' : 'cached'}`}>
-              <i className={`bi bi-${isLive ? 'lightning-charge-fill' : 'database-fill'} me-1`}></i>
-              {isLive ? 'Google Sheets Live Sync' : 'Live Snapshot Active'}
-            </span>
-            <a
-              href="https://docs.google.com/spreadsheets/d/11V8Craw4Q8c6PlKQUCCAFZIpw3sonxeDN4E5BTjj-hI/edit?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-refresh text-decoration-none d-inline-flex align-items-center"
-              title="Open the Google Sheet in a new tab"
-            >
-              <i className="bi bi-file-earmark-spreadsheet-fill me-1 text-success"></i> Open Google Sheet
-            </a>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="btn-refresh"
-              title="View Sheet Structure and Instructions"
-            >
-              <i className="bi bi-question-circle-fill me-1"></i> Guide
-            </button>
-            <button
-              onClick={loadData}
-              className="btn-refresh"
-              title="Reload live team data from Google Sheet"
-            >
-              <i className={`bi bi-arrow-clockwise me-1 ${loading ? 'spin' : ''}`}></i> Sync Now
-            </button>
-          </div>
-
+          <span className="badge-motorsport red mb-2">Team Personnel &amp; Roster</span>
           <h1 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>
             TEAM KILOFLIGHT DIRECTORY
           </h1>
@@ -254,8 +223,8 @@ export default function TeamDirectory() {
                     style={{ padding: '7px 12px', fontSize: '13px' }}
                   >
                     <option value="all">All Members ({members.length})</option>
-                    <option value="teacher">Faculty Advisors &amp; Teachers (Teacher: 1)</option>
-                    <option value="student">Student Engineers (Teacher: 0)</option>
+                    <option value="teacher">Faculty Advisors &amp; Mentors</option>
+                    <option value="student">Student Engineers</option>
                     <option value="captain">Captains &amp; Directors</option>
                     <option value="lead">Sub-Team Department Leads</option>
                     <option value="member">General Crew &amp; Executives</option>
@@ -280,7 +249,7 @@ export default function TeamDirectory() {
           {loading && members.length === 0 ? (
             <div className="text-center py-5">
               <div className="spinner-border text-danger mb-3" style={{ width: '3rem', height: '3rem' }}></div>
-              <h5 className="font-orbitron">Fetching Live Google Sheets Team Data...</h5>
+              <h5 className="font-orbitron">Loading Team Directory...</h5>
             </div>
           ) : filteredMembers.length === 0 ? (
             <div className="text-center py-5">
@@ -475,9 +444,6 @@ export default function TeamDirectory() {
           )}
         </div>
       </section>
-
-      {/* Helper Modal */}
-      <SheetGuideModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }
