@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { TeamMember, MemberCategory } from '@/types/team';
 import { fetchTeamDataFromGoogleSheets, formatImageUrl } from '@/lib/google-sheets';
+import { FALLBACK_TEAM_DATA } from '@/lib/fallback-data';
 import SheetGuideModal from './SheetGuideModal';
 
 export default function TeamDirectory() {
@@ -18,20 +19,12 @@ export default function TeamDirectory() {
   const loadData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/content');
-      const json = await res.json();
-      if (json.success && json.data?.team && json.data.team.length > 0) {
-        setMembers(json.data.team);
-        setIsLive(true);
-      } else {
-        const sheetRes = await fetchTeamDataFromGoogleSheets();
-        setMembers(sheetRes.data);
-        setIsLive(sheetRes.isLive);
-      }
-    } catch (err) {
       const sheetRes = await fetchTeamDataFromGoogleSheets();
       setMembers(sheetRes.data);
       setIsLive(sheetRes.isLive);
+    } catch (err) {
+      setMembers(FALLBACK_TEAM_DATA);
+      setIsLive(false);
     } finally {
       setLoading(false);
     }

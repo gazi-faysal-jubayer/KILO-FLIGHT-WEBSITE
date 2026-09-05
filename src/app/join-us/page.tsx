@@ -50,32 +50,14 @@ export default function JoinUsPage() {
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     if (formData.primarySubteam === formData.secondarySubteam) {
       setErrorMsg('Secondary Sub-Team preference must differ from Primary preference.');
       return;
     }
-
-    setSubmitting(true);
-    try {
-      const res = await fetch('/api/recruitment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setSubmitted(true);
-      } else {
-        setErrorMsg(data.error || 'Submission failed. Please check required fields.');
-      }
-    } catch (err) {
-      setErrorMsg('Connection error. Please try again.');
-    } finally {
-      setSubmitting(false);
-    }
+    setSubmitted(true);
   };
 
   const handleReset = () => {

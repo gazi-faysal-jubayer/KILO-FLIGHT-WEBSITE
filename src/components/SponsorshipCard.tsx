@@ -15,12 +15,19 @@ export interface SponsorshipTier {
   secondaryColor: string;
   accentColor: string;
   features: {
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
     text: string;
   }[];
-  buttonText: string;
-  buttonLink: string;
+  buttonText?: string;
+  buttonLink?: string;
   stampText: string;
+  logoCar?: string;
+  logoApparel?: string;
+  websiteFeature?: string;
+  eventPromotion?: string;
+  socialCampaign?: string;
+  exhibitionBooth?: string;
+  recruitmentAccess?: string;
 }
 
 export default function SponsorshipCard({ tier }: { tier: SponsorshipTier }) {
@@ -62,11 +69,11 @@ export default function SponsorshipCard({ tier }: { tier: SponsorshipTier }) {
       <div className="card-body">
         <div className="card-description">{tier.description}</div>
 
-        {/* Feature Grid */}
-        <div className="feature-grid">
+        {/* Features List */}
+        <div className="features-list">
           {tier.features.map((feat, idx) => (
             <div key={idx} className="feature-item">
-              <div className="feature-icon">{feat.icon}</div>
+              <span className="feature-icon">{feat.icon || <i className="bi bi-check2-circle text-danger me-2" />}</span>
               <span className="feature-text">{feat.text}</span>
             </div>
           ))}
@@ -75,13 +82,13 @@ export default function SponsorshipCard({ tier }: { tier: SponsorshipTier }) {
         {/* Card Actions / Price & Button */}
         <div className="card-actions">
           <div className="price">
-            <span className="price-currency">{tier.currency || '$'}</span>
+            <span className="price-currency">{tier.currency || '৳'}</span>
             {tier.price}
             <span className="price-period">{tier.period}</span>
           </div>
 
-          <Link href={tier.buttonLink} className="card-button">
-            {tier.buttonText}
+          <Link href={tier.buttonLink || '/contact'} className="card-button">
+            {tier.buttonText || 'Partner With Us'}
           </Link>
         </div>
       </div>

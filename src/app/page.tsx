@@ -1,94 +1,54 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import HeroVideo from '@/components/HeroVideo';
 import CarSpecsTabs from '@/components/CarSpecsTabs';
 import FsaeEvents from '@/components/FsaeEvents';
 
+export const metadata = {
+  title: 'Team KILOFLIGHT | KUET Formula Student Motorsport Bangladesh',
+  description:
+    'Official website of Team KILOFLIGHT, premier Formula Student motorsport team from Khulna University of Engineering & Technology (KUET), Bangladesh. Building KILOFLIGHT PHOENIX.',
+};
+
 export default function HomePage() {
-  const [content, setContent] = useState<any | null>(null);
-  const [contactForm, setContactForm] = useState({
-    fullName: '',
-    email: '',
-    inquiryType: 'sponsorship',
-    message: '',
-  });
-  const [sendingMsg, setSendingMsg] = useState(false);
-  const [msgSent, setMsgSent] = useState(false);
-
-  useEffect(() => {
-    fetch('/api/content')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setContent(data.data);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSendingMsg(true);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(contactForm),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setMsgSent(true);
-        setContactForm({ fullName: '', email: '', inquiryType: 'sponsorship', message: '' });
-        setTimeout(() => setMsgSent(false), 5000);
-      }
-    } catch (err) {
-      alert('Failed to send message. Please try again.');
-    } finally {
-      setSendingMsg(false);
-    }
-  };
-
-  const achievements = content?.achievements || [];
-  const teamMembers = (content?.team || []).filter((m: any) => m.category === 'captain' || m.category === 'lead');
-
   return (
     <>
-      {/* 1. HERO SECTION */}
-      <HeroVideo initialData={content?.settings?.hero} />
+      {/* 1. HERO SECTION (100VH / 100DVH SINGLE SCREEN) */}
+      <HeroVideo />
 
-      {/* 2. ONGOING & LEGACY PROJECTS: TECHNICAL ENGINEERING */}
+      {/* 2. THE CAR & TECHNICAL BLUEPRINT: KILOFLIGHT PHOENIX */}
       <section className="section-padding py-5" id="section_2">
         <div className="container mx-auto px-4">
-          <div className="row align-items-center mb-5">
+          <div className="row justify-content-center text-center mb-5">
             <div className="col-lg-8">
-              <span className="badge-motorsport mb-2">Ongoing Project &bull; FSAE India 2027</span>
-              <h2 className="mb-2">KILOFLIGHT PHOENIX - SPECIFICATIONS</h2>
-              <p className="mb-0">
-                Engineered for FSAE Dynamix India 2027 (Jan 17–18, 2027) &amp; FSUK 2027 at Khulna University of Engineering &amp; Technology (KUET). Powered by a 292 cc CFMoto 300SR DOHC engine with custom aerodynamics and a 24.4 kg 4130 Chromoly spaceframe.
+              <span className="badge-motorsport red mb-2">Next-Gen Formula Student Vehicle</span>
+              <h2 className="mb-3">KILOFLIGHT PHOENIX ARCHITECTURE</h2>
+              <p className="text-muted">
+                Engineered for FSAE Dynamix India 2027 and European circuits. Powered by a 292 cc CFMoto 300SR ICE, 4130 spaceframe, and sustainable 7-layer jute-fiber composite body panels.
               </p>
-            </div>
-            <div className="col-lg-4 text-lg-end mt-3 mt-lg-0">
-              <Link href="/cars" className="custom-btn-outline me-2">
-                Compare Phoenix vs Alpha
-              </Link>
-              <span className="badge-motorsport red p-2">FSAE Japan 2023 Mechanical Pass</span>
             </div>
           </div>
 
           <CarSpecsTabs />
+
+          <div className="text-center mt-4">
+            <Link href="/cars" className="custom-btn-outline">
+              Compare Phoenix vs Alpha Full Specs &rarr;
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 3. FORMULA STUDENT COMPETITION EVENTS EXPLAINER */}
+      {/* 3. FSAE DYNAMIC & STATIC EVENTS EXPLAINER */}
       <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
-          <div className="row text-center mb-5">
-            <div className="col-lg-8 mx-auto">
-              <span className="badge-motorsport jute mb-2">Competition Structure</span>
-              <h2 className="mb-2">FORMULA STUDENT COMPETITION EVENTS</h2>
-              <p className="text-muted">Formula Student evaluates race cars across 1,000 total points divided into Static &amp; Dynamic Events.</p>
+          <div className="row justify-content-center text-center mb-5">
+            <div className="col-lg-8">
+              <span className="badge-motorsport me-2">Global Formula Student Regulations</span>
+              <h2 className="mb-3">FSAE COMPETITION DISDIVISIONS</h2>
+              <p className="text-muted">
+                Formula SAE challenges university teams across rigorous dynamic track trials and static engineering design evaluations totaling 1,000 points.
+              </p>
             </div>
           </div>
 
@@ -96,12 +56,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. SUB-TEAMS & DETAILED WORKFLOWS */}
-      <section className="section-padding py-5">
+      {/* 4. ENGINEERING SUB-TEAMS & DETAILED WORKFLOWS */}
+      <section className="section-padding py-5" id="section_4">
         <div className="container mx-auto px-4">
-          <div className="row justify-content-center text-center">
+          <div className="row justify-content-center text-center mb-5">
             <div className="col-lg-8">
-              <span className="badge-motorsport mb-2">6 Specialized Divisions</span>
+              <span className="badge-motorsport red mb-2">Multidisciplinary Synergy</span>
               <h2 className="mb-3">ENGINEERING SUB-TEAMS &amp; WORKFLOWS</h2>
               <p className="text-muted mb-4">
                 Chassis &amp; Suspension, Body &amp; Aerodynamics, Mechanical Powertrain, Electrical Systems &amp; DAQ, Braking &amp; Steering, and Business &amp; Media at KUET.
@@ -114,7 +74,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. PREVIOUS ACHIEVEMENTS TIMELINE (DYNAMIC) */}
+      {/* 5. PREVIOUS ACHIEVEMENTS TIMELINE */}
       <section className="section-padding py-5" id="section_5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
         <div className="container mx-auto px-4">
           <div className="row justify-content-center text-center mb-4">
@@ -136,27 +96,61 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                {achievements.map((item: any) => (
-                  <tr key={item.id}>
-                    <th scope="row" className="font-orbitron fs-5" style={{ color: '#0284C7' }}>{item.year}</th>
-                    <td>
-                      <div className="fw-bold" style={{ color: '#0F172A' }}>{item.competition}</div>
-                      <div className="small" style={{ color: '#475569' }}>{item.category}</div>
-                    </td>
-                    <td>
-                      <span className="badge-motorsport red mb-1">{item.badge}</span>
-                      <div className="small" style={{ color: '#334155' }}>{item.details}</div>
-                    </td>
-                    <td style={{ color: '#0F172A', fontWeight: 600 }}>{item.location}</td>
-                  </tr>
-                ))}
+                <tr>
+                  <th scope="row" className="font-orbitron fs-5 text-cyan">2023</th>
+                  <td>
+                    <div className="fw-bold" style={{ color: '#0F172A' }}>Formula SAE Japan (FSAE Japan 2023)</div>
+                    <div className="small text-muted">KILOFLIGHT ALPHA Debut</div>
+                  </td>
+                  <td>
+                    <span className="badge-motorsport red mb-1">Passed Mechanical Inspection</span>
+                    <div className="small text-muted">First Bangladeshi team in history to pass mechanical inspection at FSAE Japan in Aichi.</div>
+                  </td>
+                  <td style={{ color: '#0F172A', fontWeight: 600 }}>Aichi, Japan</td>
+                </tr>
+                <tr>
+                  <th scope="row" className="font-orbitron fs-5 text-cyan">2025</th>
+                  <td>
+                    <div className="fw-bold" style={{ color: '#0F172A' }}>Formula Student Concept Competition India</div>
+                    <div className="small text-muted">Combustion Vehicle (CV) Category</div>
+                  </td>
+                  <td>
+                    <span className="badge-motorsport jute mb-1">Conceptual Groundwork</span>
+                    <div className="small text-muted">Aero packaging, 4130 spaceframe FEA, and powertrain cooling simulations for PHOENIX.</div>
+                  </td>
+                  <td style={{ color: '#0F172A', fontWeight: 600 }}>India / Online</td>
+                </tr>
+                <tr>
+                  <th scope="row" className="font-orbitron fs-5 text-cyan">July 2026</th>
+                  <td>
+                    <div className="fw-bold" style={{ color: '#0F172A' }}>Bangladesh AutoFest 2026</div>
+                    <div className="small text-muted">July 17–18, 2026 &bull; ALOKI Dhaka</div>
+                  </td>
+                  <td>
+                    <span className="badge-motorsport mb-1" style={{ background: '#E0F2FE', color: '#0284C7', border: '1.5px solid #0284C7' }}>National Exhibition</span>
+                    <div className="small text-muted">9 student members traveled from Khulna to exhibit alongside 5 other national FS teams. Logistics partner: Steadfast.</div>
+                  </td>
+                  <td style={{ color: '#0F172A', fontWeight: 600 }}>Tejgaon-Gulshan Link Road, Dhaka</td>
+                </tr>
+                <tr>
+                  <th scope="row" className="font-orbitron fs-5 text-cyan">2026–2027</th>
+                  <td>
+                    <div className="fw-bold" style={{ color: '#0F172A' }}>FSAE Dynamix India 2027 &amp; FSUK 2027</div>
+                    <div className="small text-muted">January 17–18, 2027 &bull; European Circuits</div>
+                  </td>
+                  <td>
+                    <span className="badge-motorsport red mb-1">KILOFLIGHT PHOENIX Campaign</span>
+                    <div className="small text-muted">Targeting &le; 5.0s acceleration, 120 km/h top speed, multi-element wings, and 7-layer jute composite.</div>
+                  </td>
+                  <td style={{ color: '#0F172A', fontWeight: 600 }}>India &amp; Silverstone, UK</td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
       </section>
 
-      {/* 6. TEAM LEADERSHIP & CONTACT DIRECTORY (DYNAMIC) */}
+      {/* 6. TEAM LEADERSHIP & CONTACT DIRECTORY */}
       <section className="section-padding py-5">
         <div className="container mx-auto px-4">
           <div className="row text-center mb-4">
@@ -169,74 +163,115 @@ export default function HomePage() {
 
           {/* Leadership Cards Grid */}
           <div className="row g-4 mb-5">
-            {teamMembers.slice(0, 5).map((member: any) => (
-              <div key={member.id} className="col-lg-4 col-md-6">
-                <div className="glass-panel p-4 h-100">
-                  <span className="badge-motorsport red mb-2">{member.role}</span>
-                  <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>{member.name}</h4>
-                  <p className="small text-muted mb-3">{member.bio}</p>
-                  <div className="small">
-                    {member.phone && (
-                      <div className="mb-1">
-                        <i className="bi bi-telephone-fill me-2 text-danger"></i>
-                        <a href={`tel:${member.phone}`} className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>{member.phone}</a>
-                      </div>
-                    )}
-                    {member.email && (
-                      <div>
-                        <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                        <a href={`mailto:${member.email}`} className="text-decoration-none text-muted">{member.email}</a>
-                      </div>
-                    )}
+            <div className="col-lg-4 col-md-6">
+              <div className="glass-panel p-4 h-100">
+                <span className="badge-motorsport red mb-2">Team Captain</span>
+                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Auritra Sharma</h4>
+                <p className="small text-muted mb-3">Overall Vehicle Design, Strategic Management &amp; International Campaigns</p>
+                <div className="small">
+                  <div className="mb-1">
+                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
+                    <a href="tel:+8801611453600" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1611-453600</a>
+                  </div>
+                  <div>
+                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
+                    <a href="mailto:auritrasharma28@gmail.com" className="text-decoration-none text-muted">auritrasharma28@gmail.com</a>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+              <div className="glass-panel p-4 h-100">
+                <span className="badge-motorsport mb-2">Vice Captain</span>
+                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Gazi Faysal Jubayer</h4>
+                <p className="small text-muted mb-3">Executive Coordination, Digital Platforms &amp; Sub-team Execution</p>
+                <div className="small">
+                  <div className="mb-1">
+                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
+                    <a href="tel:+8801315669261" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1315-669261</a>
+                  </div>
+                  <div>
+                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
+                    <a href="mailto:gazi.faysal.jubayer@gmail.com" className="text-decoration-none text-muted">gazi.faysal.jubayer@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+              <div className="glass-panel p-4 h-100">
+                <span className="badge-motorsport jute mb-2">Technical Director</span>
+                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Eshraq Nipun</h4>
+                <p className="small text-muted mb-3">Vehicle Engineering Architecture, FEA/CFD &amp; Powertrain Integration</p>
+                <div className="small">
+                  <div className="mb-1">
+                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
+                    <a href="tel:+8801576713957" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1576-713957</a>
+                  </div>
+                  <div>
+                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
+                    <a href="mailto:nushineshraqnipun.21@gmail.com" className="text-decoration-none text-muted">nushineshraqnipun.21@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-6 col-md-6">
+              <div className="glass-panel p-4 h-100">
+                <span className="badge-motorsport mb-2">Project Director</span>
+                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Naimur Rhythm</h4>
+                <p className="small text-muted mb-3">Project Scheduling, Procurement, Logistics &amp; Static Deliverables</p>
+                <div className="small">
+                  <div className="mb-1">
+                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
+                    <a href="tel:+8801602350967" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1602-350967</a>
+                  </div>
+                  <div>
+                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
+                    <a href="mailto:rrhythm18@gmail.com" className="text-decoration-none text-muted">rrhythm18@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-6 col-md-12">
+              <div className="glass-panel p-4 h-100">
+                <span className="badge-motorsport red mb-2">Chassis &amp; Suspension Lead</span>
+                <h4 className="mb-1" style={{ color: '#0F172A', fontWeight: 800 }}>Nazizus Salehin</h4>
+                <p className="small text-muted mb-3">Spaceframe Structural Fabrication, Kinematics &amp; 3-Pedal Systems</p>
+                <div className="small">
+                  <div className="mb-1">
+                    <i className="bi bi-telephone-fill me-2 text-danger"></i>
+                    <a href="tel:+8801753060356" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>+880 1753-060356</a>
+                  </div>
+                  <div>
+                    <i className="bi bi-envelope-fill me-2 text-cyan"></i>
+                    <a href="mailto:salehin1056@gmail.com" className="text-decoration-none text-muted">salehin1056@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="row g-4 align-items-stretch">
-            {/* Live Connected Contact Form */}
+            {/* Direct Contact Form */}
             <div className="col-lg-6">
               <div className="glass-panel p-4 h-100">
                 <h4 className="mb-4">
                   <i className="bi bi-envelope me-2 text-cyan"></i> Send Us a Message
                 </h4>
-
-                {msgSent && (
-                  <div className="alert alert-success p-3 small fw-bold mb-3">
-                    <i className="bi bi-check-circle-fill me-2"></i> Your message has been sent to the team!
-                  </div>
-                )}
-
-                <form onSubmit={handleContactSubmit}>
+                <form action="mailto:teamkiloflightkuet@gmail.com" method="get" encType="text/plain">
                   <div className="row g-3">
                     <div className="col-md-6">
-                      <input
-                        type="text"
-                        className="form-control-custom"
-                        placeholder="Full Name"
-                        value={contactForm.fullName}
-                        onChange={(e) => setContactForm({ ...contactForm, fullName: e.target.value })}
-                        required
-                      />
+                      <input type="text" className="form-control-custom" placeholder="Full Name" required />
                     </div>
                     <div className="col-md-6">
-                      <input
-                        type="email"
-                        className="form-control-custom"
-                        placeholder="Email Address"
-                        value={contactForm.email}
-                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                        required
-                      />
+                      <input type="email" className="form-control-custom" placeholder="Email Address" required />
                     </div>
                     <div className="col-12">
-                      <select
-                        className="form-control-custom"
-                        value={contactForm.inquiryType}
-                        onChange={(e) => setContactForm({ ...contactForm, inquiryType: e.target.value })}
-                        required
-                      >
+                      <select className="form-control-custom" required defaultValue="">
+                        <option value="" disabled>Select Inquiry Type</option>
                         <option value="sponsorship">Corporate Sponsorship Inquiry</option>
                         <option value="media">Media &amp; Press Inquiry</option>
                         <option value="technical">Technical Partnership</option>
@@ -244,19 +279,10 @@ export default function HomePage() {
                       </select>
                     </div>
                     <div className="col-12">
-                      <textarea
-                        className="form-control-custom"
-                        rows={4}
-                        placeholder="Your Message"
-                        value={contactForm.message}
-                        onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                        required
-                      ></textarea>
+                      <textarea className="form-control-custom" rows={4} placeholder="Your Message" required></textarea>
                     </div>
                     <div className="col-12">
-                      <button type="submit" disabled={sendingMsg} className="custom-btn w-100">
-                        {sendingMsg ? 'Sending...' : 'Send Message'}
-                      </button>
+                      <button type="submit" className="custom-btn w-100">Send Message via Email</button>
                     </div>
                   </div>
                 </form>
