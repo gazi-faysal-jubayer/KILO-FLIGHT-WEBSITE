@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { TeamMember } from '@/types/team';
 import { fetchTeamDataFromGoogleSheets, formatImageUrl } from '@/lib/google-sheets';
 import { FALLBACK_TEAM_DATA } from '@/lib/fallback-data';
-import ThreeDPaperModal from '@/components/ThreeDPaperModal';
-import { Scene } from '@/components/ThreeDPaperScene';
 
 export default function TeamDirectory() {
   const [members, setMembers] = useState<TeamMember[]>(FALLBACK_TEAM_DATA);
@@ -15,9 +13,8 @@ export default function TeamDirectory() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-  const [isThreeDOpen, setIsThreeDOpen] = useState(false);
-  const [showInlineScene, setShowInlineScene] = useState(false);
   const [imageErrors, setImageErrors] = useState<{ [key: string]: boolean }>({});
+
 
 
   const loadData = async () => {
@@ -188,13 +185,6 @@ export default function TeamDirectory() {
 
   return (
     <>
-      {/* Interactive ThreeDPaper Modal */}
-      <ThreeDPaperModal
-        isOpen={isThreeDOpen}
-        onClose={() => setIsThreeDOpen(false)}
-        defaultVariant="certificate"
-      />
-
       {/* Member Certificate Detail Modal */}
       {selectedMember && (
         <div
@@ -347,22 +337,6 @@ export default function TeamDirectory() {
                         <i className="bi bi-linkedin"></i> LinkedIn Profile
                       </a>
                     )}
-
-                    <button
-                      type="button"
-                      onClick={() => setIsThreeDOpen(true)}
-                      className="btn btn-sm d-inline-flex align-items-center gap-1"
-                      style={{
-                        background: '#FF2A2A',
-                        color: '#FFFFFF',
-                        fontWeight: 700,
-                        fontSize: '12px',
-                        border: '1.5px solid #0F172A',
-                        boxShadow: '2px 2px 0 #0F172A',
-                      }}
-                    >
-                      <i className="bi bi-award-fill"></i> View 3D Certificate
-                    </button>
                   </div>
                 </div>
               </div>
@@ -385,69 +359,9 @@ export default function TeamDirectory() {
           <h1 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>
             TEAM KILOFLIGHT DIRECTORY
           </h1>
-          <p className="text-muted max-w-700 mx-auto mb-3" style={{ maxWidth: '750px', fontSize: '15px' }}>
+          <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '750px', fontSize: '15px' }}>
             Faculty advisors, technical directors, and student engineers from Khulna University of Engineering &amp; Technology (KUET) building Bangladesh&apos;s pioneering Formula Student race vehicles.
           </p>
-
-          {/* Interactive 3D Certificate Launcher Banner */}
-          <div className="d-inline-flex flex-wrap align-items-center justify-content-center gap-2 mb-4 p-2 px-3 rounded" style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}>
-            <span className="badge" style={{ background: '#FF2A2A', color: '#FFFFFF', fontSize: '11px', fontFamily: 'var(--font-orbitron)' }}>
-              NEW
-            </span>
-            <span className="small fw-bold" style={{ color: '#0F172A' }}>
-              ThreeUI 3D Paper Certificate Simulator:
-            </span>
-            <button
-              type="button"
-              onClick={() => setIsThreeDOpen(true)}
-              className="btn btn-sm d-inline-flex align-items-center gap-1"
-              style={{
-                background: '#0F172A',
-                color: '#FFFFFF',
-                fontSize: '11.5px',
-                fontWeight: 700,
-                padding: '3px 10px',
-                borderRadius: '6px',
-              }}
-            >
-              <i className="bi bi-badge-ad-fill text-warning"></i> Launch Fullscreen 3D Viewer
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowInlineScene(!showInlineScene)}
-              className="btn btn-sm d-inline-flex align-items-center gap-1"
-              style={{
-                background: showInlineScene ? '#FF2A2A' : '#F1F5F9',
-                color: showInlineScene ? '#FFFFFF' : '#0F172A',
-                border: '1px solid #0F172A',
-                fontSize: '11.5px',
-                fontWeight: 700,
-                padding: '3px 10px',
-                borderRadius: '6px',
-              }}
-            >
-              <i className="bi bi-display me-1"></i> {showInlineScene ? 'Hide Live Shader' : 'Show Live Shader'}
-            </button>
-          </div>
-
-          {/* Collapsible Inline Scene Frame */}
-          {showInlineScene && (
-            <div className="mb-4 mx-auto text-start" style={{ maxWidth: '920px' }}>
-              <div className="d-flex justify-content-between align-items-center p-2 px-3 rounded-top" style={{ background: '#0F172A', color: '#FFFFFF' }}>
-                <span className="font-monospace fw-bold small">
-                  <i className="bi bi-cpu-fill text-danger me-2"></i> ThreeUI ThreeDPaper (Variant: Certificate) — Interactive Drag &amp; Wave Simulation
-                </span>
-                <button
-                  onClick={() => setShowInlineScene(false)}
-                  className="btn btn-sm btn-danger py-0 px-2 fw-bold"
-                  style={{ fontSize: '11px' }}
-                >
-                  &times; Close
-                </button>
-              </div>
-              <Scene />
-            </div>
-          )}
 
           {/* Season Filter Tabs */}
           <div className="d-flex justify-content-center flex-wrap gap-2">
