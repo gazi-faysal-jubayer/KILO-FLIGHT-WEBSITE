@@ -2,22 +2,23 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { TeamMember, MemberCategory } from '@/types/team';
+import { TeamMember } from '@/types/team';
 import { fetchTeamDataFromGoogleSheets, formatImageUrl } from '@/lib/google-sheets';
 import { FALLBACK_TEAM_DATA } from '@/lib/fallback-data';
+import ThreeDPaperModal from '@/components/ThreeDPaperModal';
+import { Scene } from '@/components/ThreeDPaperScene';
 
 export default function TeamDirectory() {
   const [members, setMembers] = useState<TeamMember[]>(FALLBACK_TEAM_DATA);
-  const [isLive, setIsLive] = useState(false);
   const [loading, setLoading] = useState(true);
   const [activeSeason, setActiveSeason] = useState('2026');
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedBios, setExpandedBios] = useState<{ [key: string]: boolean }>({});
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [isThreeDOpen, setIsThreeDOpen] = useState(false);
+  const [showInlineScene, setShowInlineScene] = useState(false);
+  const [imageErrors, setImageErrors] = useState<{ [key: string]: boolean }>({});
 
-  const toggleBio = (id: string) => {
-    setExpandedBios((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
 
   const loadData = async () => {
     setLoading(true);
@@ -25,12 +26,10 @@ export default function TeamDirectory() {
       const sheetRes = await fetchTeamDataFromGoogleSheets();
       if (sheetRes.data && sheetRes.data.length > 0) {
         setMembers(sheetRes.data);
-        setIsLive(sheetRes.isLive);
       }
     } catch (err) {
       console.warn('Could not load live sheet, falling back to local snapshot:', err);
       setMembers(FALLBACK_TEAM_DATA);
-      setIsLive(false);
     } finally {
       setLoading(false);
     }
@@ -83,74 +82,372 @@ export default function TeamDirectory() {
   const getRoleBadge = (member: TeamMember) => {
     if (member.isTeacher || member.category === 'advisor') {
       return (
-        <div
-          className="role-badge"
-          style={{ background: '#FEF3C7', borderColor: '#D97706', color: '#92400E', fontWeight: 700 }}
+        <span
+          className="badge d-inline-flex align-items-center text-truncate"
+          style={{
+            background: '#FEF3C7',
+            border: '1.5px solid #D97706',
+            color: '#92400E',
+            fontWeight: 800,
+            fontSize: '11px',
+            maxWidth: '100%',
+            padding: '4px 8px',
+          }}
         >
-          <i className="bi bi-mortarboard-fill me-1 text-warning"></i> {member.role || 'Faculty Advisor'}
-        </div>
+          <i className="bi bi-mortarboard-fill me-1 text-warning"></i>
+          <span className="text-truncate">{member.role || 'Faculty Advisor'}</span>
+        </span>
       );
     }
 
     switch (member.category) {
       case 'captain':
         return (
-          <div
-            className="role-badge"
-            style={{ background: '#FEE2E2', borderColor: '#DC2626', color: '#991B1B', fontWeight: 700 }}
+          <span
+            className="badge d-inline-flex align-items-center text-truncate"
+            style={{
+              background: '#FEE2E2',
+              border: '1.5px solid #DC2626',
+              color: '#991B1B',
+              fontWeight: 800,
+              fontSize: '11px',
+              maxWidth: '100%',
+              padding: '4px 8px',
+            }}
           >
-            <i className="bi bi-flag-fill me-1 text-danger"></i> {member.role}
-          </div>
+            <i className="bi bi-flag-fill me-1 text-danger"></i>
+            <span className="text-truncate">{member.role}</span>
+          </span>
         );
       case 'lead':
         return (
-          <div
-            className="role-badge"
-            style={{ background: '#E0F2FE', borderColor: '#0284C7', color: '#0369A1', fontWeight: 700 }}
+          <span
+            className="badge d-inline-flex align-items-center text-truncate"
+            style={{
+              background: '#E0F2FE',
+              border: '1.5px solid #0284C7',
+              color: '#0369A1',
+              fontWeight: 800,
+              fontSize: '11px',
+              maxWidth: '100%',
+              padding: '4px 8px',
+            }}
           >
-            <i className="bi bi-star-fill me-1 text-info"></i> {member.role}
-          </div>
+            <i className="bi bi-star-fill me-1 text-info"></i>
+            <span className="text-truncate">{member.role}</span>
+          </span>
         );
       case 'alumni':
         return (
-          <div
-            className="role-badge"
-            style={{ background: '#F1F5F9', borderColor: '#64748B', color: '#334155', fontWeight: 700 }}
+          <span
+            className="badge d-inline-flex align-items-center text-truncate"
+            style={{
+              background: '#F1F5F9',
+              border: '1.5px solid #64748B',
+              color: '#334155',
+              fontWeight: 800,
+              fontSize: '11px',
+              maxWidth: '100%',
+              padding: '4px 8px',
+            }}
           >
-            <i className="bi bi-award-fill me-1 text-secondary"></i> {member.role}
-          </div>
+            <i className="bi bi-award-fill me-1 text-secondary"></i>
+            <span className="text-truncate">{member.role}</span>
+          </span>
         );
       default:
         return (
-          <div
-            className="role-badge"
-            style={{ background: '#F8FAFC', borderColor: '#0F172A', color: '#0F172A', fontWeight: 600 }}
+          <span
+            className="badge d-inline-flex align-items-center text-truncate"
+            style={{
+              background: '#F8FAFC',
+              border: '1.5px solid #0F172A',
+              color: '#0F172A',
+              fontWeight: 700,
+              fontSize: '11px',
+              maxWidth: '100%',
+              padding: '4px 8px',
+            }}
           >
-            <i className="bi bi-gear-wide-connected me-1 text-muted"></i> {member.role}
-          </div>
+            <i className="bi bi-gear-wide-connected me-1 text-muted"></i>
+            <span className="text-truncate">{member.role}</span>
+          </span>
         );
     }
   };
 
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .filter(Boolean)
+      .map((n) => n[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase();
+  };
+
   return (
     <>
+      {/* Interactive ThreeDPaper Modal */}
+      <ThreeDPaperModal
+        isOpen={isThreeDOpen}
+        onClose={() => setIsThreeDOpen(false)}
+        defaultVariant="certificate"
+      />
+
+      {/* Member Certificate Detail Modal */}
+      {selectedMember && (
+        <div
+          className="position-fixed inset-0 w-100 h-100 d-flex align-items-center justify-content-center p-3"
+          style={{
+            zIndex: 9998,
+            background: 'rgba(15, 23, 42, 0.85)',
+            backdropFilter: 'blur(6px)',
+            top: 0,
+            left: 0,
+          }}
+          onClick={() => setSelectedMember(null)}
+        >
+          <div
+            className="position-relative rounded overflow-hidden"
+            style={{
+              width: '100%',
+              maxWidth: '680px',
+              background: '#FFFFFF',
+              border: '3px solid #0F172A',
+              boxShadow: '8px 8px 0 #FF2A2A',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Certificate Header Banner */}
+            <div
+              className="px-4 py-3 d-flex justify-content-between align-items-center"
+              style={{
+                background: '#0F172A',
+                color: '#FFFFFF',
+                borderBottom: '2px solid rgba(255,255,255,0.1)',
+              }}
+            >
+              <div className="d-flex align-items-center gap-2">
+                <i className="bi bi-patch-check-fill text-danger fs-5"></i>
+                <div>
+                  <div className="font-monospace fw-bold" style={{ fontSize: '11px', letterSpacing: '1px', color: '#94A3B8' }}>
+                    FORMULA STUDENT ENGINEERING CREDENTIAL
+                  </div>
+                  <h5 className="mb-0 font-orbitron fw-bold" style={{ fontSize: '15px' }}>
+                    KUET MOTORSPORT PERSONNEL RECORD
+                  </h5>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setSelectedMember(null)}
+                className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+                style={{ width: '30px', height: '30px', fontWeight: 900 }}
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-4">
+              <div className="row g-4 align-items-center">
+                {/* Photo */}
+                <div className="col-md-5 col-12 text-center">
+                  <div
+                    className="position-relative mx-auto rounded overflow-hidden"
+                    style={{
+                      width: '180px',
+                      height: '220px',
+                      border: '2px solid #0F172A',
+                      boxShadow: '4px 4px 0 #0F172A',
+                      background: '#F1F5F9',
+                    }}
+                  >
+                    <Image
+                      src={formatImageUrl(selectedMember.image)}
+                      alt={selectedMember.name}
+                      fill
+                      unoptimized={true}
+                      style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+                      onError={() => setImageErrors((prev) => ({ ...prev, [selectedMember.name]: true }))}
+                    />
+                    <div className="cert-photo-glare"></div>
+                  </div>
+                  <div className="mt-2 font-monospace fw-bold text-muted" style={{ fontSize: '11px' }}>
+                    ID: #{selectedMember.season}-{selectedMember.name.slice(0, 3).toUpperCase()}
+                  </div>
+                </div>
+
+                {/* Details */}
+                <div className="col-md-7 col-12">
+                  <div className="d-flex align-items-center gap-2 mb-2">
+                    <span
+                      className="font-monospace fw-bold px-2 py-0.5 rounded text-white"
+                      style={{ fontSize: '11px', background: '#0F172A' }}
+                    >
+                      Season {selectedMember.season}
+                    </span>
+                    {selectedMember.isTeacher && (
+                      <span
+                        className="font-monospace fw-bold px-2 py-0.5 rounded"
+                        style={{ fontSize: '11px', background: '#FEF3C7', color: '#92400E', border: '1px solid #D97706' }}
+                      >
+                        FACULTY ADVISOR
+                      </span>
+                    )}
+                  </div>
+
+                  <h4 className="font-orbitron fw-bold mb-1" style={{ color: '#0F172A' }}>
+                    {selectedMember.name}
+                  </h4>
+
+                  <div className="my-2">{getRoleBadge(selectedMember)}</div>
+
+                  <div className="font-monospace fw-bold mb-3" style={{ color: '#0284C7', fontSize: '13px' }}>
+                    {selectedMember.department} • KUET
+                  </div>
+
+                  {/* Biography */}
+                  <div
+                    className="p-3 rounded mb-3"
+                    style={{
+                      background: '#F8FAFC',
+                      border: '1px dashed #CBD5E1',
+                      maxHeight: '160px',
+                      overflowY: 'auto',
+                    }}
+                  >
+                    <div className="fw-bold small text-muted font-monospace mb-1">OFFICIAL CITATION / BIO:</div>
+                    <p className="small mb-0" style={{ color: '#334155', lineHeight: '1.5' }}>
+                      {selectedMember.bio && selectedMember.bio.trim()
+                        ? selectedMember.bio
+                        : 'Official Formula Student project personnel responsible for engineering design, computer-aided testing, and vehicle construction for Team Kilo Flight KUET.'}
+                    </p>
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="d-flex flex-wrap gap-2 align-items-center">
+                    {selectedMember.linkedin && (
+                      <a
+                        href={selectedMember.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-sm d-inline-flex align-items-center gap-1"
+                        style={{
+                          background: '#0284C7',
+                          color: '#FFFFFF',
+                          fontWeight: 700,
+                          fontSize: '12px',
+                          border: '1.5px solid #0F172A',
+                          boxShadow: '2px 2px 0 #0F172A',
+                        }}
+                      >
+                        <i className="bi bi-linkedin"></i> LinkedIn Profile
+                      </a>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={() => setIsThreeDOpen(true)}
+                      className="btn btn-sm d-inline-flex align-items-center gap-1"
+                      style={{
+                        background: '#FF2A2A',
+                        color: '#FFFFFF',
+                        fontWeight: 700,
+                        fontSize: '12px',
+                        border: '1.5px solid #0F172A',
+                        boxShadow: '2px 2px 0 #0F172A',
+                      }}
+                    >
+                      <i className="bi bi-award-fill"></i> View 3D Certificate
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header Banner */}
       <section
         className="page-header-section"
         style={{
           background: 'radial-gradient(circle at top, rgba(255, 42, 42, 0.08) 0%, rgba(2, 132, 199, 0.05) 50%, var(--dark-bg) 100%)',
-          paddingTop: '60px',
-          paddingBottom: '40px',
+          paddingTop: '50px',
+          paddingBottom: '30px',
         }}
       >
         <div className="container mx-auto px-4 text-center">
-          <span className="badge-motorsport red mb-2">Team Personnel &amp; Roster</span>
+          <span className="badge-motorsport red mb-2">Team Personnel &amp; Credentials Roster</span>
           <h1 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>
             TEAM KILOFLIGHT DIRECTORY
           </h1>
-          <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '750px', fontSize: '15px' }}>
-            Faculty advisors, project directors, technical leads, and student engineers from Khulna University of Engineering &amp; Technology (KUET) building Bangladesh&apos;s pioneering Formula Student race vehicles.
+          <p className="text-muted max-w-700 mx-auto mb-3" style={{ maxWidth: '750px', fontSize: '15px' }}>
+            Faculty advisors, technical directors, and student engineers from Khulna University of Engineering &amp; Technology (KUET) building Bangladesh&apos;s pioneering Formula Student race vehicles.
           </p>
+
+          {/* Interactive 3D Certificate Launcher Banner */}
+          <div className="d-inline-flex flex-wrap align-items-center justify-content-center gap-2 mb-4 p-2 px-3 rounded" style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}>
+            <span className="badge" style={{ background: '#FF2A2A', color: '#FFFFFF', fontSize: '11px', fontFamily: 'var(--font-orbitron)' }}>
+              NEW
+            </span>
+            <span className="small fw-bold" style={{ color: '#0F172A' }}>
+              ThreeUI 3D Paper Certificate Simulator:
+            </span>
+            <button
+              type="button"
+              onClick={() => setIsThreeDOpen(true)}
+              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              style={{
+                background: '#0F172A',
+                color: '#FFFFFF',
+                fontSize: '11.5px',
+                fontWeight: 700,
+                padding: '3px 10px',
+                borderRadius: '6px',
+              }}
+            >
+              <i className="bi bi-badge-ad-fill text-warning"></i> Launch Fullscreen 3D Viewer
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowInlineScene(!showInlineScene)}
+              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              style={{
+                background: showInlineScene ? '#FF2A2A' : '#F1F5F9',
+                color: showInlineScene ? '#FFFFFF' : '#0F172A',
+                border: '1px solid #0F172A',
+                fontSize: '11.5px',
+                fontWeight: 700,
+                padding: '3px 10px',
+                borderRadius: '6px',
+              }}
+            >
+              <i className="bi bi-display me-1"></i> {showInlineScene ? 'Hide Live Shader' : 'Show Live Shader'}
+            </button>
+          </div>
+
+          {/* Collapsible Inline Scene Frame */}
+          {showInlineScene && (
+            <div className="mb-4 mx-auto text-start" style={{ maxWidth: '920px' }}>
+              <div className="d-flex justify-content-between align-items-center p-2 px-3 rounded-top" style={{ background: '#0F172A', color: '#FFFFFF' }}>
+                <span className="font-monospace fw-bold small">
+                  <i className="bi bi-cpu-fill text-danger me-2"></i> ThreeUI ThreeDPaper (Variant: Certificate) — Interactive Drag &amp; Wave Simulation
+                </span>
+                <button
+                  onClick={() => setShowInlineScene(false)}
+                  className="btn btn-sm btn-danger py-0 px-2 fw-bold"
+                  style={{ fontSize: '11px' }}
+                >
+                  &times; Close
+                </button>
+              </div>
+              <Scene />
+            </div>
+          )}
 
           {/* Season Filter Tabs */}
           <div className="d-flex justify-content-center flex-wrap gap-2">
@@ -180,7 +477,7 @@ export default function TeamDirectory() {
       </section>
 
       {/* Control Bar */}
-      <section className="py-3">
+      <section className="py-2">
         <div className="container mx-auto px-4">
           <div
             className="p-3 rounded"
@@ -222,7 +519,7 @@ export default function TeamDirectory() {
                     className="neo-input"
                     style={{ padding: '7px 12px', fontSize: '13px' }}
                   >
-                    <option value="all">All Members ({members.length})</option>
+                    <option value="all">All Personnel ({members.length})</option>
                     <option value="teacher">Faculty Advisors &amp; Mentors</option>
                     <option value="student">Student Engineers</option>
                     <option value="captain">Captains &amp; Directors</option>
@@ -283,132 +580,163 @@ export default function TeamDirectory() {
             <div className="row g-4">
               {filteredMembers.map((member, idx) => {
                 const uniqueKey = `${member.season}-${member.name}-${idx}`;
-                const isExpanded = expandedBios[uniqueKey] || false;
-                const hasLongBio = member.bio && member.bio.length > 180;
-                const displayBio = hasLongBio && !isExpanded
-                  ? member.bio!.substring(0, 180) + '...'
-                  : member.bio;
+                const hasImgError = imageErrors[member.name];
+                const serialNum = `KF-${member.season.slice(-2)}-${(idx + 1).toString().padStart(2, '0')}`;
 
                 return (
-                  <div key={uniqueKey} className="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div
-                      className="team-card d-flex flex-column justify-content-between h-100 p-3 rounded position-relative"
-                      style={{
-                        background: '#FFFFFF',
-                        border: '2px solid #0F172A',
-                        boxShadow: '4px 4px 0 #0F172A',
-                        transition: 'transform 0.15s ease, box-shadow 0.15s ease',
-                      }}
-                    >
-                      {/* Top Season & Category Tag */}
-                      <div className="d-flex justify-content-between align-items-center mb-2">
+                  <div key={uniqueKey} className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 d-flex">
+                    <div className={`team-cert-card ${member.isTeacher ? 'is-faculty' : ''}`}>
+                      {/* Top Header Zone (Identical 32px height) */}
+                      <div className="cert-header-zone">
                         <span
-                          className="font-monospace fw-bold px-2 py-0.5 rounded"
+                          className="font-monospace fw-bold px-2 py-0.5 rounded text-white"
                           style={{
                             fontSize: '10.5px',
                             background: '#0F172A',
-                            color: '#FFFFFF',
+                            letterSpacing: '0.5px',
                           }}
                         >
-                          Season {member.season}
+                          SEASON {member.season}
                         </span>
 
-                        {member.isTeacher && (
+                        {member.isTeacher ? (
                           <span
-                            className="font-monospace fw-bold px-2 py-0.5 rounded text-uppercase"
+                            className="badge font-monospace"
                             style={{
-                              fontSize: '10.5px',
                               background: '#FEF3C7',
                               color: '#92400E',
                               border: '1px solid #D97706',
+                              fontSize: '10px',
+                              letterSpacing: '0.5px',
                             }}
                           >
-                            Faculty
+                            <i className="bi bi-mortarboard-fill me-1"></i> FACULTY
+                          </span>
+                        ) : member.category === 'captain' ? (
+                          <span
+                            className="badge font-monospace"
+                            style={{
+                              background: '#FEE2E2',
+                              color: '#991B1B',
+                              border: '1px solid #DC2626',
+                              fontSize: '10px',
+                              letterSpacing: '0.5px',
+                            }}
+                          >
+                            <i className="bi bi-flag-fill me-1"></i> LEADERSHIP
+                          </span>
+                        ) : member.category === 'lead' ? (
+                          <span
+                            className="badge font-monospace"
+                            style={{
+                              background: '#E0F2FE',
+                              color: '#0369A1',
+                              border: '1px solid #0284C7',
+                              fontSize: '10px',
+                              letterSpacing: '0.5px',
+                            }}
+                          >
+                            <i className="bi bi-star-fill me-1"></i> DIVISION LEAD
+                          </span>
+                        ) : (
+                          <span
+                            className="badge font-monospace"
+                            style={{
+                              background: '#F1F5F9',
+                              color: '#475569',
+                              border: '1px solid #CBD5E1',
+                              fontSize: '10px',
+                              letterSpacing: '0.5px',
+                            }}
+                          >
+                            <i className="bi bi-shield-check me-1"></i> STUDENT ENGR
                           </span>
                         )}
                       </div>
 
-                      {/* Photo & Identity */}
-                      <div className="text-center pt-1 pb-2">
-                        <div
-                          className="position-relative mx-auto mb-3 rounded-circle overflow-hidden"
-                          style={{
-                            width: '92px',
-                            height: '92px',
-                            border: member.isTeacher ? '2.5px solid #D97706' : '2.5px solid #0F172A',
-                            boxShadow: member.isTeacher ? '3px 3px 0 #D97706' : '3px 3px 0 #0F172A',
-                            background: '#F1F5F9',
-                          }}
-                        >
+                      {/* Photo Area (Identical 190px height) */}
+                      <div
+                        className="cert-photo-window"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => setSelectedMember(member)}
+                        title="Click to view official credentials"
+                      >
+                        {/* Certificate Corner Brackets */}
+                        <div className="cert-corner-bracket cert-corner-tl"></div>
+                        <div className="cert-corner-bracket cert-corner-tr"></div>
+                        <div className="cert-corner-bracket cert-corner-bl"></div>
+                        <div className="cert-corner-bracket cert-corner-br"></div>
+
+                        {/* Glass Glare Overlay */}
+                        <div className="cert-photo-glare"></div>
+
+                        {/* Photo or Monogram fallback */}
+                        {!hasImgError ? (
                           <Image
                             src={formatImageUrl(member.image)}
                             alt={member.name}
                             fill
                             unoptimized={true}
-                            style={{ objectFit: 'cover' }}
-                            sizes="92px"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              if (target && !target.src.includes('/images/logo.png')) {
-                                target.src = '/images/logo.png';
-                              }
-                            }}
+                            style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                            onError={() => setImageErrors((prev) => ({ ...prev, [member.name]: true }))}
                           />
-                        </div>
-
-                        <h6
-                          className="mb-1.5 font-orbitron"
-                          style={{
-                            color: '#0F172A',
-                            fontWeight: 800,
-                            fontSize: '15px',
-                            lineHeight: '1.3',
-                          }}
-                        >
-                          {member.name}
-                        </h6>
-
-                        <div className="d-flex justify-content-center my-1">
-                          {getRoleBadge(member)}
-                        </div>
-
-                        <div
-                          className="small mt-1 font-monospace"
-                          style={{ color: '#0284C7', fontWeight: 700, fontSize: '12px' }}
-                        >
-                          {member.department}
-                        </div>
-
-                        {/* Bio snippet */}
-                        {member.bio && (
-                          <div className="mt-2 text-start p-2 rounded" style={{ background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
-                            <p
-                              className="small mb-0"
-                              style={{
-                                color: '#334155',
-                                fontSize: '11.5px',
-                                lineHeight: '1.45',
-                                whiteSpace: isExpanded ? 'pre-line' : 'normal',
-                              }}
-                            >
-                              {displayBio}
-                            </p>
-                            {hasLongBio && (
-                              <button
-                                type="button"
-                                onClick={() => toggleBio(uniqueKey)}
-                                className="btn btn-link p-0 text-danger text-decoration-none fw-bold mt-1"
-                                style={{ fontSize: '11px' }}
-                              >
-                                {isExpanded ? 'Show less ▲' : 'Read more ▼'}
-                              </button>
-                            )}
+                        ) : (
+                          <div
+                            className="w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+                            style={{
+                              background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
+                              color: '#FFFFFF',
+                            }}
+                          >
+                            <div className="font-orbitron fw-bold fs-3 mb-1" style={{ color: '#FF2A2A' }}>
+                              {getInitials(member.name)}
+                            </div>
+                            <div className="font-monospace text-muted" style={{ fontSize: '10px' }}>
+                              KUET MOTORSPORT
+                            </div>
                           </div>
                         )}
+
+                        {/* Serial Tag */}
+                        <div className="cert-serial-tag">{serialNum}</div>
                       </div>
 
-                      {/* Footer Connect Buttons */}
-                      <div className="mt-2 pt-2 border-top d-flex justify-content-between align-items-center">
+                      {/* Name Zone (Identical 48px height) */}
+                      <div className="cert-name-zone">
+                        <h6 title={member.name}>{member.name}</h6>
+                      </div>
+
+                      {/* Role Badge Zone (Identical 32px height) */}
+                      <div className="cert-role-zone">{getRoleBadge(member)}</div>
+
+                      {/* Department Zone (Identical 24px height) */}
+                      <div className="cert-dept-zone">
+                        <span
+                          className="font-monospace fw-bold text-truncate"
+                          style={{
+                            color: '#0284C7',
+                            fontSize: '11.5px',
+                            letterSpacing: '0.4px',
+                            maxWidth: '100%',
+                          }}
+                          title={member.department}
+                        >
+                          {member.department || 'KUET FORMULA STUDENT'}
+                        </span>
+                      </div>
+
+                      {/* Bio / Citation Zone (Identical 68px height) */}
+                      <div className="cert-bio-zone">
+                        <p className="cert-bio-text">
+                          {member.bio && member.bio.trim()
+                            ? member.bio
+                            : 'Official Formula Student project personnel responsible for engineering design, computer-aided testing, and vehicle construction for Team Kilo Flight KUET.'}
+                        </p>
+                      </div>
+
+                      {/* Footer Actions Zone (Identical 42px height, anchored to bottom) */}
+                      <div className="cert-footer-zone">
                         {member.linkedin ? (
                           <a
                             href={member.linkedin}
@@ -424,17 +752,33 @@ export default function TeamDirectory() {
                             title="Connect on LinkedIn"
                           >
                             <i className="bi bi-linkedin text-primary"></i>
-                            <span>LinkedIn Profile</span>
+                            <span>LinkedIn</span>
                           </a>
                         ) : (
-                          <span className="small text-muted font-monospace" style={{ fontSize: '10.5px' }}>
-                            KUET Motorsport
+                          <span
+                            className="small font-monospace fw-bold d-inline-flex align-items-center gap-1 text-muted"
+                            style={{ fontSize: '10.5px' }}
+                          >
+                            <i className="bi bi-patch-check-fill text-success"></i>
+                            <span>KUET RACING</span>
                           </span>
                         )}
 
-                        <span className="small font-monospace text-muted" style={{ fontSize: '10.5px' }}>
-                          #KILOFLIGHT
-                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedMember(member)}
+                          className="btn btn-sm d-inline-flex align-items-center gap-1"
+                          style={{
+                            background: '#0F172A',
+                            color: '#FFFFFF',
+                            fontSize: '11px',
+                            fontWeight: 700,
+                            padding: '3px 8px',
+                            borderRadius: '5px',
+                          }}
+                        >
+                          <i className="bi bi-person-badge"></i> Pass
+                        </button>
                       </div>
                     </div>
                   </div>
