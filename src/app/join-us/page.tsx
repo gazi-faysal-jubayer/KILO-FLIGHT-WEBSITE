@@ -369,7 +369,7 @@ export default function JoinUsPage() {
                       <p>8. HAVE YOU PARTICIPATED IN THE WORKSHOP ON AUTOMOBILE ENGINEERING FOR BATCH 2K23? *</p>
                       <div className="d-flex gap-3 align-items-center pt-1 flex-wrap">
                         <label
-                          className="neo-dept-label d-flex align-items-center gap-2"
+                          className={`neo-dept-label d-flex align-items-center gap-2 ${formData.workshopParticipation === 'Yes' ? 'active selected' : ''}`}
                           style={{
                             background: formData.workshopParticipation === 'Yes' ? '#0F172A' : '#F8FAFC',
                             color: formData.workshopParticipation === 'Yes' ? '#FFFFFF' : '#0F172A',
@@ -392,11 +392,13 @@ export default function JoinUsPage() {
                             className="d-none"
                           />
                           <i className={`bi ${formData.workshopParticipation === 'Yes' ? 'bi-check-circle-fill text-danger' : 'bi-circle'}`}></i>
-                          1. Yes
+                          <span style={{ color: formData.workshopParticipation === 'Yes' ? '#FFFFFF' : '#0F172A', fontWeight: 700 }}>
+                            1. Yes
+                          </span>
                         </label>
 
                         <label
-                          className="neo-dept-label d-flex align-items-center gap-2"
+                          className={`neo-dept-label d-flex align-items-center gap-2 ${formData.workshopParticipation === 'No' ? 'active selected' : ''}`}
                           style={{
                             background: formData.workshopParticipation === 'No' ? '#0F172A' : '#F8FAFC',
                             color: formData.workshopParticipation === 'No' ? '#FFFFFF' : '#0F172A',
@@ -419,7 +421,9 @@ export default function JoinUsPage() {
                             className="d-none"
                           />
                           <i className={`bi ${formData.workshopParticipation === 'No' ? 'bi-check-circle-fill text-danger' : 'bi-circle'}`}></i>
-                          2. No
+                          <span style={{ color: formData.workshopParticipation === 'No' ? '#FFFFFF' : '#0F172A', fontWeight: 700 }}>
+                            2. No
+                          </span>
                         </label>
                       </div>
                     </div>
@@ -452,7 +456,7 @@ export default function JoinUsPage() {
                               type="button"
                               key={skill}
                               onClick={() => handleSkillToggle(skill)}
-                              className="neo-dept-label"
+                              className={`neo-dept-label ${isSelected ? 'active selected' : ''}`}
                               style={{
                                 background: isSelected ? '#0F172A' : '#F8FAFC',
                                 color: isSelected ? '#FFFFFF' : '#0F172A',
@@ -466,7 +470,9 @@ export default function JoinUsPage() {
                               }}
                             >
                               <i className={`bi ${isSelected ? 'bi-check-square-fill text-danger me-1' : 'bi-square me-1'}`}></i>
-                              {skill}
+                              <span style={{ color: isSelected ? '#FFFFFF' : '#0F172A' }}>
+                                {skill}
+                              </span>
                             </button>
                           );
                         })}

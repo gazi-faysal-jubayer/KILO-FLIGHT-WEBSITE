@@ -2001,12 +2001,12 @@ select.form-control-custom option {
   justify-content: center;
   text-align: center;
   background-color: #F8FAFC;
-  color: #0F172A !important;
+  color: #0F172A;
   border: 2px solid #0F172A;
   border-radius: 8px;
   padding: 0.6em 0.8em;
-  font-size: 0.85em !important;
-  font-weight: 800 !important;
+  font-size: 0.85em;
+  font-weight: 800;
   cursor: pointer;
   box-shadow: 2px 2px 0 #0F172A;
   transition: all 0.2s ease;
@@ -2017,17 +2017,35 @@ select.form-control-custom option {
 .neo-dept-label:hover {
   background-color: #FEF2F2;
   border-color: #FF2A2A;
-  color: #FF2A2A !important;
+  color: #FF2A2A;
   transform: translate(-1px, -1px);
   box-shadow: 3px 3px 0 #FF2A2A;
 }
 
-.neo-dept-label.active {
-  background-color: #FF2A2A;
-  border-color: #0F172A;
+.neo-dept-label.active,
+.neo-dept-label.selected {
+  background-color: #0F172A !important;
+  border-color: #0F172A !important;
   color: #FFFFFF !important;
-  box-shadow: 3px 3px 0 #0F172A;
-  transform: translate(1px, 1px);
+  box-shadow: 3px 3px 0 #FF2A2A !important;
+}
+
+.neo-dept-label.active:hover,
+.neo-dept-label.selected:hover {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+}
+
+.neo-dept-label.active *,
+.neo-dept-label.selected *,
+.neo-dept-label.active span,
+.neo-dept-label.selected span {
+  color: #FFFFFF !important;
+}
+
+.neo-dept-label.active .text-danger,
+.neo-dept-label.selected .text-danger {
+  color: #FF2A2A !important;
 }
 
 .neo-join-form #endform {
