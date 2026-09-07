@@ -77,6 +77,9 @@ function doPost(e) {
     var department = data.department || data['Department'] || '';
     var email = data.institutionalEmail || data.email || data['Institutional Email'] || '';
     var phone = data.whatsappNumber || data.phone || data['WhatsApp Number'] || '';
+    if (phone && typeof phone === 'string' && phone.charAt(0) === '+') {
+      phone = "'" + phone;
+    }
     var primarySubteam = data.primarySubteam || data['Primary Sub-Team'] || '';
     var secondarySubteam = data.secondarySubteam || data['Secondary Sub-Team'] || '';
     var workshopParticipation = data.workshopParticipation || data['Workshop Participation (Batch 2k23)'] || data['Workshop Participation'] || 'Yes';
