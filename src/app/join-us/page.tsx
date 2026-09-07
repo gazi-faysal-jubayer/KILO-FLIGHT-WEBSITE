@@ -13,6 +13,7 @@ export default function JoinUsPage() {
     whatsappNumber: '',
     primarySubteam: '1. Chassis & Suspension',
     secondarySubteam: '2. Body & Aerodynamics',
+    workshopParticipation: 'Yes',
     workshopSummary: '',
     softwareSkills: [] as string[],
     statementOfPurpose: '',
@@ -102,6 +103,7 @@ export default function JoinUsPage() {
       whatsappNumber: '',
       primarySubteam: '1. Chassis & Suspension',
       secondarySubteam: '2. Body & Aerodynamics',
+      workshopParticipation: 'Yes',
       workshopSummary: '',
       softwareSkills: [],
       statementOfPurpose: '',
@@ -362,22 +364,86 @@ export default function JoinUsPage() {
                       </div>
                     </div>
 
-                    {/* Row 5: Workshop Learnings Summary */}
+                    {/* Row 5: Workshop on Automobile Engineering Participation */}
                     <div>
-                      <p>8. WORKSHOP LEARNINGS SUMMARY *</p>
+                      <p>8. HAVE YOU PARTICIPATED IN THE WORKSHOP ON AUTOMOBILE ENGINEERING FOR BATCH 2K23? *</p>
+                      <div className="d-flex gap-3 align-items-center pt-1 flex-wrap">
+                        <label
+                          className="neo-dept-label d-flex align-items-center gap-2"
+                          style={{
+                            background: formData.workshopParticipation === 'Yes' ? '#0F172A' : '#F8FAFC',
+                            color: formData.workshopParticipation === 'Yes' ? '#FFFFFF' : '#0F172A',
+                            border: '2px solid #0F172A',
+                            boxShadow: formData.workshopParticipation === 'Yes' ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
+                            cursor: 'pointer',
+                            padding: '10px 22px',
+                            borderRadius: '10px',
+                            fontSize: '13.5px',
+                            fontWeight: 700,
+                            transition: 'all 0.15s ease',
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            name="workshopParticipation"
+                            value="Yes"
+                            checked={formData.workshopParticipation === 'Yes'}
+                            onChange={(e) => setFormData({ ...formData, workshopParticipation: e.target.value })}
+                            className="d-none"
+                          />
+                          <i className={`bi ${formData.workshopParticipation === 'Yes' ? 'bi-check-circle-fill text-danger' : 'bi-circle'}`}></i>
+                          1. Yes
+                        </label>
+
+                        <label
+                          className="neo-dept-label d-flex align-items-center gap-2"
+                          style={{
+                            background: formData.workshopParticipation === 'No' ? '#0F172A' : '#F8FAFC',
+                            color: formData.workshopParticipation === 'No' ? '#FFFFFF' : '#0F172A',
+                            border: '2px solid #0F172A',
+                            boxShadow: formData.workshopParticipation === 'No' ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
+                            cursor: 'pointer',
+                            padding: '10px 22px',
+                            borderRadius: '10px',
+                            fontSize: '13.5px',
+                            fontWeight: 700,
+                            transition: 'all 0.15s ease',
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            name="workshopParticipation"
+                            value="No"
+                            checked={formData.workshopParticipation === 'No'}
+                            onChange={(e) => setFormData({ ...formData, workshopParticipation: e.target.value })}
+                            className="d-none"
+                          />
+                          <i className={`bi ${formData.workshopParticipation === 'No' ? 'bi-check-circle-fill text-danger' : 'bi-circle'}`}></i>
+                          2. No
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Row 6: Workshop Learnings Summary */}
+                    <div>
+                      <p>9. WORKSHOP LEARNINGS SUMMARY *</p>
                       <textarea
                         className="neo-input"
                         rows={3}
-                        placeholder="Summarize technical concepts retained from workshop sessions (CAD, kinematics, braking, powertrain, composites)..."
+                        placeholder={
+                          formData.workshopParticipation === 'No'
+                            ? 'Mention any prior automotive knowledge, self-study topics, or reasons for joining...'
+                            : 'Summarize technical concepts retained from workshop sessions (CAD, kinematics, braking, powertrain, composites)...'
+                        }
                         value={formData.workshopSummary}
                         onChange={(e) => setFormData({ ...formData, workshopSummary: e.target.value })}
                         required
                       ></textarea>
                     </div>
 
-                    {/* Row 6: Technical Software Skills (Multi-select checkboxes) */}
+                    {/* Row 7: Technical Software Skills (Multi-select checkboxes) */}
                     <div>
-                      <p>9. TECHNICAL SOFTWARE &amp; PRACTICAL SKILLS (SELECT ALL THAT APPLY)</p>
+                      <p>10. TECHNICAL SOFTWARE &amp; PRACTICAL SKILLS (SELECT ALL THAT APPLY)</p>
                       <div className="d-flex gap-2 flex-wrap pt-1">
                         {availableSkills.map((skill) => {
                           const isSelected = formData.softwareSkills.includes(skill);
@@ -407,9 +473,9 @@ export default function JoinUsPage() {
                       </div>
                     </div>
 
-                    {/* Row 7: Statement of Purpose & Availability */}
+                    {/* Row 8: Statement of Purpose & Availability */}
                     <div>
-                      <p>10. STATEMENT OF PURPOSE &amp; AVAILABILITY *</p>
+                      <p>11. STATEMENT OF PURPOSE &amp; AVAILABILITY *</p>
                       <textarea
                         className="neo-input"
                         rows={3}
@@ -420,9 +486,9 @@ export default function JoinUsPage() {
                       ></textarea>
                     </div>
 
-                    {/* Row 8: Portfolio / CV Link */}
+                    {/* Row 9: Portfolio / CV Link */}
                     <div>
-                      <p>11. PORTFOLIO / CV LINK (OPTIONAL)</p>
+                      <p>12. PORTFOLIO / CV LINK (OPTIONAL)</p>
                       <input
                         className="neo-input"
                         type="url"

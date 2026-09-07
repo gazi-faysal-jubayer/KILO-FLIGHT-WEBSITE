@@ -25,6 +25,7 @@ export async function POST(req: Request) {
       whatsappNumber: String(data.whatsappNumber).trim(),
       primarySubteam: data.primarySubteam || '',
       secondarySubteam: data.secondarySubteam || '',
+      workshopParticipation: data.workshopParticipation === 'No' ? 'No' : 'Yes',
       workshopSummary: data.workshopSummary || '',
       softwareSkills: Array.isArray(data.softwareSkills) ? data.softwareSkills : [],
       statementOfPurpose: data.statementOfPurpose || '',

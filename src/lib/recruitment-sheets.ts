@@ -9,6 +9,7 @@ export const RECRUITMENT_SHEET_HEADERS = [
   'WhatsApp Number',
   'Primary Sub-Team',
   'Secondary Sub-Team',
+  'Workshop Participation (Batch 2k23)',
   'Technical Software & Skills',
   'Workshop Learnings Summary',
   'Statement of Purpose & Availability',
@@ -24,6 +25,7 @@ export interface RecruitmentPayload {
   whatsappNumber: string;
   primarySubteam: string;
   secondarySubteam: string;
+  workshopParticipation?: string;
   softwareSkills: string[] | string;
   workshopSummary: string;
   statementOfPurpose: string;
@@ -64,6 +66,7 @@ export async function forwardApplicationToGoogleSheet(app: RecruitmentPayload): 
       whatsappNumber: sanitizedPhone,
       primarySubteam: app.primarySubteam,
       secondarySubteam: app.secondarySubteam,
+      workshopParticipation: app.workshopParticipation || 'Yes',
       softwareSkills: formattedSkills,
       workshopSummary: app.workshopSummary,
       statementOfPurpose: app.statementOfPurpose,

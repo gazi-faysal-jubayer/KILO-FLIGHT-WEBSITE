@@ -91,6 +91,7 @@ export default function AdminRecruitmentPage() {
       'WhatsApp Number',
       'Primary Subteam',
       'Secondary Subteam',
+      'Workshop Participation (2k23)',
       'Software Skills',
       'Status',
       'Reviewer Notes',
@@ -106,6 +107,7 @@ export default function AdminRecruitmentPage() {
       `"${a.whatsappNumber || ''}"`,
       `"${a.primarySubteam || ''}"`,
       `"${a.secondarySubteam || ''}"`,
+      `"${a.workshopParticipation || 'Yes'}"`,
       `"${(a.softwareSkills || []).join(', ')}"`,
       `"${a.status || ''}"`,
       `"${a.reviewerNotes || ''}"`,
@@ -231,6 +233,7 @@ export default function AdminRecruitmentPage() {
                   <th>Roll &amp; Dept</th>
                   <th>Primary Preference</th>
                   <th>Secondary Preference</th>
+                  <th>Workshop (2k23)</th>
                   <th>Skills</th>
                   <th>Status</th>
                   <th className="text-end">Actions</th>
@@ -255,6 +258,21 @@ export default function AdminRecruitmentPage() {
                     </td>
                     <td>
                       <div className="text-muted">{app.secondarySubteam}</div>
+                    </td>
+                    <td>
+                      <span
+                        className="badge font-monospace"
+                        style={{
+                          background: app.workshopParticipation === 'No' ? '#FEE2E2' : '#DCFCE7',
+                          color: app.workshopParticipation === 'No' ? '#991B1B' : '#166534',
+                          border: `1px solid ${app.workshopParticipation === 'No' ? '#DC2626' : '#16A34A'}`,
+                          fontSize: '11px',
+                          fontWeight: 700,
+                        }}
+                      >
+                        <i className={`bi ${app.workshopParticipation === 'No' ? 'bi-x-circle me-1' : 'bi-check-circle-fill me-1'}`}></i>
+                        {app.workshopParticipation === 'No' ? 'No' : 'Yes'}
+                      </span>
                     </td>
                     <td>
                       <div className="d-flex gap-1 flex-wrap" style={{ maxWidth: '180px' }}>
@@ -406,9 +424,31 @@ export default function AdminRecruitmentPage() {
                   </div>
                 </div>
 
+                {/* Workshop Participation (Batch 2k23) */}
+                <div className="mb-3 p-3 rounded d-flex align-items-center justify-content-between flex-wrap gap-2" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A' }}>
+                  <div>
+                    <div className="small fw-bold text-muted">WORKSHOP ON AUTOMOBILE ENGINEERING (BATCH 2K23)</div>
+                    <div className="small text-muted">Did the candidate participate in the workshop series?</div>
+                  </div>
+                  <span
+                    className="badge font-monospace"
+                    style={{
+                      background: selectedApp.workshopParticipation === 'No' ? '#FEE2E2' : '#DCFCE7',
+                      color: selectedApp.workshopParticipation === 'No' ? '#991B1B' : '#166534',
+                      border: `1.5px solid ${selectedApp.workshopParticipation === 'No' ? '#DC2626' : '#16A34A'}`,
+                      fontSize: '13px',
+                      padding: '6px 14px',
+                      fontWeight: 800,
+                    }}
+                  >
+                    <i className={`bi ${selectedApp.workshopParticipation === 'No' ? 'bi-x-circle me-1 text-danger' : 'bi-check-circle-fill me-1 text-success'}`}></i>
+                    {selectedApp.workshopParticipation === 'No' ? 'No (Did Not Participate)' : 'Yes (Participated)'}
+                  </span>
+                </div>
+
                 {/* Workshop Learnings Summary */}
                 <div className="mb-4">
-                  <div className="small fw-bold text-muted mb-1">WORKSHOP LEARNINGS SUMMARY</div>
+                  <div className="small fw-bold text-muted mb-1">WORKSHOP LEARNINGS / PRIOR KNOWLEDGE SUMMARY</div>
                   <div className="p-3 rounded small" style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', lineHeight: '1.6' }}>
                     {selectedApp.workshopSummary || 'No summary provided.'}
                   </div>

@@ -11,18 +11,12 @@
  * 3. Replace whatever code is in Code.gs with this entire file.
  * 4. Click the "Save" icon (or Ctrl+S).
  * 5. (Optional) Run the "setupHeadings" function from the toolbar dropdown to 
- *    immediately create the formatted headers on the sheet!
- * 6. Click "Deploy" -> "New deployment":
- *    - Click gear icon next to "Select type" -> select "Web app"
- *    - Description: "Batch 2k23 Recruitment Webhook"
- *    - Execute as: "Me"
- *    - Who has access: "Anyone"
- * 7. Click "Deploy", click "Authorize access", and copy the "Web app URL".
- * 8. Paste that URL into .env.local:
- *    GOOGLE_SCRIPT_RECRUITMENT_URL="https://script.google.com/macros/s/XXXXX/exec"
+ *    immediately format the 13 table headers on the sheet!
+ * 6. Click "Deploy" -> "Manage deployments" -> edit icon -> New version -> "Deploy"
+ *    (or "Deploy" -> "New deployment" as Web app, Execute as Me, Access: Anyone).
  */
 
-// Proper Table Column Headings
+// Proper Table Column Headings (13 Columns)
 var HEADERS = [
   'Timestamp (BST)',
   'Full Name',
@@ -32,6 +26,7 @@ var HEADERS = [
   'WhatsApp Number',
   'Primary Sub-Team',
   'Secondary Sub-Team',
+  'Workshop Participation (Batch 2k23)',
   'Technical Software & Skills',
   'Workshop Learnings Summary',
   'Statement of Purpose & Availability',
@@ -54,6 +49,9 @@ function doPost(e) {
       if (!firstCell || firstCell.toLowerCase().indexOf('timestamp') === -1) {
         sheet.insertRowBefore(1);
         setupHeadings(sheet);
+      } else {
+        // Auto-check if "Workshop Participation" column needs to be inserted into existing sheet
+        autoUpgradeColumns(sheet);
       }
     }
 
@@ -81,6 +79,7 @@ function doPost(e) {
     var phone = data.whatsappNumber || data.phone || data['WhatsApp Number'] || '';
     var primarySubteam = data.primarySubteam || data['Primary Sub-Team'] || '';
     var secondarySubteam = data.secondarySubteam || data['Secondary Sub-Team'] || '';
+    var workshopParticipation = data.workshopParticipation || data['Workshop Participation (Batch 2k23)'] || data['Workshop Participation'] || 'Yes';
     
     var skills = '';
     if (Array.isArray(data.softwareSkills)) {
@@ -95,7 +94,7 @@ function doPost(e) {
     var statementOfPurpose = data.statementOfPurpose || data['Statement of Purpose & Availability'] || '';
     var portfolioLink = data.portfolioLink || data['Portfolio / CV Link'] || '';
 
-    // Build row array
+    // Build row array matching the 13 columns
     var row = [
       timestamp,
       fullName,
@@ -105,6 +104,7 @@ function doPost(e) {
       phone,
       primarySubteam,
       secondarySubteam,
+      workshopParticipation,
       skills,
       workshopSummary,
       statementOfPurpose,
@@ -140,6 +140,46 @@ function doPost(e) {
       status: 'error',
       message: error.toString()
     })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * Automatically inspects Row 1 and inserts the "Workshop Participation" column if missing
+ */
+function autoUpgradeColumns(sheet) {
+  try {
+    var lastCol = sheet.getLastColumn();
+    if (lastCol === 0) return;
+
+    var headerValues = sheet.getRange(1, 1, 1, lastCol).getValues()[0].map(function(h) {
+      return h ? h.toString().toLowerCase().trim() : '';
+    });
+
+    var hasWorkshop = false;
+    for (var i = 0; i < headerValues.length; i++) {
+      if (headerValues[i].indexOf('workshop participation') !== -1 ||
+          headerValues[i].indexOf('participated') !== -1) {
+        hasWorkshop = true;
+        break;
+      }
+    }
+
+    if (!hasWorkshop) {
+      // Insert right after Secondary Sub-Team (Col 8)
+      sheet.insertColumnAfter(8);
+      var headerCell = sheet.getRange(1, 9);
+      headerCell.setValue('Workshop Participation (Batch 2k23)');
+      headerCell.setFontWeight('bold');
+      headerCell.setFontFamily('Arial');
+      headerCell.setFontSize(11);
+      headerCell.setBackground('#0F172A');
+      headerCell.setFontColor('#FFFFFF');
+      headerCell.setHorizontalAlignment('center');
+      headerCell.setVerticalAlignment('middle');
+      sheet.setColumnWidth(9, 240);
+    }
+  } catch (e) {
+    // Non-fatal, continues appending
   }
 }
 
@@ -193,8 +233,9 @@ function setupHeadings(targetSheet) {
   sheet.setColumnWidth(6, 170); // WhatsApp Number
   sheet.setColumnWidth(7, 220); // Primary Sub-Team
   sheet.setColumnWidth(8, 220); // Secondary Sub-Team
-  sheet.setColumnWidth(9, 260); // Technical Skills
-  sheet.setColumnWidth(10, 340); // Workshop Summary
-  sheet.setColumnWidth(11, 340); // Statement of Purpose
-  sheet.setColumnWidth(12, 240); // Portfolio / CV Link
+  sheet.setColumnWidth(9, 240); // Workshop Participation (Batch 2k23)
+  sheet.setColumnWidth(10, 260); // Technical Skills
+  sheet.setColumnWidth(11, 340); // Workshop Summary
+  sheet.setColumnWidth(12, 340); // Statement of Purpose
+  sheet.setColumnWidth(13, 240); // Portfolio / CV Link
 }

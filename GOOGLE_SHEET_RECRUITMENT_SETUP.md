@@ -29,19 +29,20 @@ This guide details how the **Batch 2k23 Registration Portal** on the website (`/
 1. At the top of the Apps Script toolbar, click the function dropdown (where it says `doPost` or `myFunction`) and select **`setupHeadings`**.
 2. Click **Run**.
 3. *If prompted for permissions*: Click **Review permissions** ➔ Choose your Google Account ➔ Click **Advanced** ➔ Click **Go to Untitled project (unsafe)** ➔ Click **Allow**.
-4. Check your Google Sheet tab! The 12 columns will now have clean, formatted table headings with dark motorsport navy `#0F172A`, bold white text, and optimal column widths.
+4. Check your Google Sheet tab! The 13 columns will now have clean, formatted table headings with dark motorsport navy `#0F172A`, bold white text, and optimal column widths.
 
 ---
 
 ### Step 4: Deploy as a Web App (Allows Website to Save Responses)
-1. In the top right corner of the Apps Script window, click the blue **Deploy** button ➔ **New deployment**.
-2. Click the **gear icon (⚙️)** beside "Select type" and choose **Web app**.
-3. Fill in the deployment details:
+1. In the top right corner of the Apps Script window, click the blue **Deploy** button ➔ **Manage deployments** (or **New deployment**).
+2. If managing existing deployment: Click the **Pencil (edit)** icon ➔ Version: **New version** ➔ Click **Deploy**.
+3. If new deployment:
+   - Click the **gear icon (⚙️)** beside "Select type" and choose **Web app**.
    - **Description**: `Batch 2k23 Recruitment Webhook`
    - **Execute as**: `Me (your_email@gmail.com)`
    - **Who has access**: **`Anyone`** *(Crucial: This lets the portal submit responses automatically)*
-4. Click **Deploy**.
-5. Copy the **Web app URL** (starts with `https://script.google.com/macros/s/.../exec`).
+   - Click **Deploy**.
+4. Copy the **Web app URL** (starts with `https://script.google.com/macros/s/.../exec`).
 
 ---
 
@@ -54,7 +55,7 @@ GOOGLE_SCRIPT_RECRUITMENT_URL="https://script.google.com/macros/s/YOUR_DEPLOYMEN
 
 ---
 
-## 📋 Table Column Headings Reference
+## 📋 Table Column Headings Reference (13 Columns)
 
 | Col | Heading | Source in Registration Portal |
 | :--- | :--- | :--- |
@@ -66,7 +67,9 @@ GOOGLE_SCRIPT_RECRUITMENT_URL="https://script.google.com/macros/s/YOUR_DEPLOYMEN
 | **F** | **WhatsApp Number** | 5. WhatsApp / Contact (+880...) |
 | **G** | **Primary Sub-Team** | 6. Primary Sub-Team Preference |
 | **H** | **Secondary Sub-Team** | 7. Secondary Sub-Team Preference |
-| **I** | **Technical Software & Skills** | 8. Software & Practical Skills (SolidWorks, ANSYS, etc.) |
-| **J** | **Workshop Learnings Summary**| 9. Workshop Technical Summary |
-| **K** | **Statement of Purpose & Availability** | 10. Statement of Purpose |
-| **L** | **Portfolio / CV Link** | 11. Drive/GitHub/LinkedIn link |
+| **I** | **Workshop Participation (Batch 2k23)** | 8. Have you participated in the Workshop on Automobile Engineering for Batch 2k23? (Yes / No) |
+| **J** | **Technical Software & Skills** | 9. Software & Practical Skills (SolidWorks, ANSYS, etc.) |
+| **K** | **Workshop Learnings Summary** | 10. Workshop Technical / Self-study Summary |
+| **L** | **Statement of Purpose & Availability** | 11. Statement of Purpose & Time Commitment |
+| **M** | **Portfolio / CV Link** | 12. Drive/GitHub/LinkedIn link |
+
