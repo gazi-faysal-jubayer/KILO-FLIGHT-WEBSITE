@@ -309,10 +309,6 @@ export default function JoinUsPage() {
                           <option value="BECM">Building Engineering &amp; Construction Management (BECM)</option>
                           <option value="URP">Urban &amp; Regional Planning (URP)</option>
                           <option value="ARCH">Architecture (ARCH)</option>
-                          <option value="MATH">Mathematics (MATH)</option>
-                          <option value="CHEM">Chemistry (CHEM)</option>
-                          <option value="PHY">Physics (PHY)</option>
-                          <option value="HUM">Humanities (HUM)</option>
                           <option value="Other">Other Discipline</option>
                         </select>
                       </div>
