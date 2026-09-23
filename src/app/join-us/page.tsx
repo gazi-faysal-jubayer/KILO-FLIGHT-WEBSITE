@@ -296,11 +296,23 @@ export default function JoinUsPage() {
                           <option value="ME">Mechanical Engineering (ME)</option>
                           <option value="EEE">Electrical &amp; Electronic Engineering (EEE)</option>
                           <option value="CSE">Computer Science &amp; Engineering (CSE)</option>
+                          <option value="CE">Civil Engineering (CE)</option>
                           <option value="IPE">Industrial &amp; Production Engineering (IPE)</option>
+                          <option value="ECE">Electronics &amp; Communication Engineering (ECE)</option>
+                          <option value="MTE">Mechatronics Engineering (MTE)</option>
+                          <option value="MSE">Materials Science &amp; Engineering (MSE)</option>
+                          <option value="BME">Biomedical Engineering (BME)</option>
+                          <option value="ChE">Chemical Engineering (ChE)</option>
+                          <option value="ESE">Energy Science &amp; Engineering (ESE)</option>
                           <option value="TE">Textile Engineering (TE)</option>
-                          <option value="BECM">Building Engineering &amp; Construction Mgmt (BECM)</option>
                           <option value="LE">Leather Engineering (LE)</option>
-                          <option value="Mechatronics">Mechatronics Engineering</option>
+                          <option value="BECM">Building Engineering &amp; Construction Management (BECM)</option>
+                          <option value="URP">Urban &amp; Regional Planning (URP)</option>
+                          <option value="ARCH">Architecture (ARCH)</option>
+                          <option value="MATH">Mathematics (MATH)</option>
+                          <option value="CHEM">Chemistry (CHEM)</option>
+                          <option value="PHY">Physics (PHY)</option>
+                          <option value="HUM">Humanities (HUM)</option>
                           <option value="Other">Other Discipline</option>
                         </select>
                       </div>
