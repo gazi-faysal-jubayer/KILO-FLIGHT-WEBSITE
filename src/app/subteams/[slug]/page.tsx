@@ -1,8 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { SUBTEAMS_DATA, getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subteams-data';
 import PowertrainCalculator from '@/components/PowertrainCalculator';
+import Powertrain3DViewer from '@/components/Powertrain3DViewer';
+import SubteamMediaGallery from '@/components/SubteamMediaGallery';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -29,6 +32,29 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
+const SUBTEAM_IMAGE_MAP: Record<string, { image: string; caption: string }> = {
+  chassis: {
+    image: '/images/formula_chassis_tech.jpg',
+    caption: '4130 Chromoly tubular spaceframe undergoing torsional stiffness validation and precision laser alignment.',
+  },
+  aero: {
+    image: '/images/formula_car_hero.jpg',
+    caption: 'Full aerodynamic multi-element wing package and lightweight 7-layer Jute bio-composite exterior bodywork.',
+  },
+  electrical: {
+    image: '/images/formula_telemetry_steering.jpg',
+    caption: 'Digital OLED driver steering interface, low-voltage 12V harness, and live CAN-bus telemetry logging.',
+  },
+  braking: {
+    image: '/images/formula_track_action.jpg',
+    caption: 'Dynamic 2000 N 4-wheel brake lockup verification and 10% Ackermann rack-and-pinion shakedown.',
+  },
+  business: {
+    image: '/images/formula_workshop.jpg',
+    caption: 'Formula Student Cost & Manufacturing auditing, BPP commercial modeling, and industry partner sponsorships.',
+  },
+};
+
 export default async function DedicatedSubteamPage({ params }: PageProps) {
   const { slug } = await params;
   const subteam = getSubteamBySlug(slug);
@@ -38,6 +64,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
   }
 
   const isPowertrain = subteam.id === 'powertrain';
+  const divisionImage = SUBTEAM_IMAGE_MAP[subteam.id];
 
   return (
     <div className="subteam-detail-wrapper" style={{ background: '#F8FAFC', minHeight: '100vh' }}>
@@ -239,6 +266,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           </div>
         </section>
 
+        {/* Interactive 3D Digital Twin (Featured for Powertrain) */}
+        {isPowertrain && <Powertrain3DViewer />}
+
         {/* Section 2: Subsystem Breakdown */}
         <section className="mb-5">
           <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
@@ -371,14 +401,50 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Section 4: Interactive Driveline Solver (Powertrain Only) or Equations */}
+        {/* Section 4: Technical Blueprints & Video Media Gallery */}
+        {isPowertrain ? (
+          <SubteamMediaGallery />
+        ) : divisionImage ? (
+          <section className="mb-5">
+            <div
+              className="p-4 rounded"
+              style={{
+                background: '#FFFFFF',
+                border: '2px solid #0F172A',
+                boxShadow: '4px 4px 0 #0F172A',
+              }}
+            >
+              <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                <span className="badge-motorsport red">DIVISION ENGINEERING FIGURE</span>
+                <span className="small text-muted font-orbitron">KILOFLIGHT PHOENIX R&amp;D</span>
+              </div>
+              <div
+                className="position-relative rounded overflow-hidden mb-3"
+                style={{ aspectRatio: '21/9', border: '1.5px solid #0F172A', background: '#0F172A' }}
+              >
+                <Image
+                  src={divisionImage.image}
+                  alt={subteam.title}
+                  fill
+                  className="object-fit-cover"
+                  sizes="100vw"
+                />
+              </div>
+              <p className="small text-muted mb-0" style={{ lineHeight: '1.6' }}>
+                <i className="bi bi-info-circle-fill text-primary me-1"></i> {divisionImage.caption}
+              </p>
+            </div>
+          </section>
+        ) : null}
+
+        {/* Section 5: Interactive Driveline Solver (Powertrain Only) */}
         {isPowertrain && (
           <section className="mb-5">
             <PowertrainCalculator />
           </section>
         )}
 
-        {/* Section 5: Step-by-Step Technical Workflow */}
+        {/* Section 6: Step-by-Step Technical Workflow */}
         <section id="workflow" className="mb-5">
           <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
             <div className="d-flex align-items-center gap-2">
@@ -386,7 +452,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron"
                 style={{ width: '28px', height: '28px', background: '#0F172A', color: '#FFFFFF', fontSize: '13px' }}
               >
-                {isPowertrain ? '5' : '4'}
+                {isPowertrain ? '6' : '4'}
               </span>
               <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
                 STEP-BY-STEP TECHNICAL WORKFLOW
@@ -474,14 +540,14 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Section 6: Specifications Matrix */}
+        {/* Section 7: Specifications Matrix */}
         <section className="mb-5">
           <div className="d-flex align-items-center gap-2 mb-4">
             <span
               className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron"
               style={{ width: '28px', height: '28px', background: '#0F172A', color: '#FFFFFF', fontSize: '13px' }}
             >
-              {isPowertrain ? '6' : '5'}
+              {isPowertrain ? '7' : '5'}
             </span>
             <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
               TECHNICAL SPECIFICATIONS &amp; HARDWARE MATRIX
@@ -542,14 +608,14 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Section 7: Cross-Functional Integration & Partner Divisions */}
+        {/* Section 8: Cross-Functional Integration & Partner Divisions */}
         <section className="mb-5">
           <div className="d-flex align-items-center gap-2 mb-4">
             <span
               className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron"
               style={{ width: '28px', height: '28px', background: '#0F172A', color: '#FFFFFF', fontSize: '13px' }}
             >
-              {isPowertrain ? '7' : '6'}
+              {isPowertrain ? '8' : '6'}
             </span>
             <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
               CROSS-FUNCTIONAL DIVISION PARTNERSHIPS
@@ -603,7 +669,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Section 8: Recruitment Callout */}
+        {/* Section 9: Recruitment Callout */}
         <section
           className="p-4 p-md-5 rounded text-center"
           style={{
