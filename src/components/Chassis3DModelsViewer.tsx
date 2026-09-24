@@ -9,7 +9,7 @@ export default function Chassis3DModelsViewer() {
 
   return (
     <div
-      className="p-4 p-md-5 rounded mb-4"
+      className="p-3 p-sm-4 p-md-5 rounded mb-4"
       style={{
         background: '#FFFFFF',
         border: '2px solid #0F172A',
@@ -17,10 +17,20 @@ export default function Chassis3DModelsViewer() {
       }}
     >
       {/* Header and Model Switcher Tabs */}
-      <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+      <div className="d-flex align-items-md-center justify-content-between flex-column flex-md-row gap-3 mb-4">
         <div>
-          <span className="badge-motorsport red mb-1">1.2 Chassis &amp; Suspension 3D CAD Models</span>
-          <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+          <span className="badge-motorsport red mb-1" style={{ fontSize: '10px' }}>
+            1.2 Chassis &amp; Suspension 3D CAD Models
+          </span>
+          <h4
+            className="font-orbitron mb-0"
+            style={{
+              color: '#0F172A',
+              fontWeight: 900,
+              fontSize: 'clamp(1.15rem, 3.2vw, 1.6rem)',
+              lineHeight: '1.3',
+            }}
+          >
             {activeTab === 'chassis'
               ? 'FORMULA TUBULAR SPACEFRAME CHASSIS'
               : activeTab === 'suspension'
@@ -31,22 +41,28 @@ export default function Chassis3DModelsViewer() {
           </h4>
         </div>
 
-        {/* Tab Buttons */}
+        {/* Tab Buttons (Touch Horizontal Swipe on Mobile & Tablet) */}
         <div
-          className="d-inline-flex p-1 rounded gap-1 flex-wrap"
-          style={{ background: '#0F172A', border: '1.5px solid #0F172A' }}
+          className="d-flex p-1 rounded gap-1 overflow-x-auto flex-nowrap"
+          style={{
+            background: '#0F172A',
+            border: '1.5px solid #0F172A',
+            maxWidth: '100%',
+            WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'none',
+          }}
         >
           <button
             type="button"
             onClick={() => setActiveTab('chassis')}
-            className="btn btn-sm d-inline-flex align-items-center gap-2"
+            className="btn btn-sm d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0"
             style={{
               background: activeTab === 'chassis' ? '#DC2626' : 'transparent',
               color: '#FFFFFF',
               border: activeTab === 'chassis' ? '1px solid #F87171' : 'none',
               fontWeight: 800,
               fontSize: '12px',
-              padding: '8px 14px',
+              padding: '7px 12px',
               borderRadius: '6px',
               transition: 'all 0.15s ease',
             }}
@@ -58,14 +74,14 @@ export default function Chassis3DModelsViewer() {
           <button
             type="button"
             onClick={() => setActiveTab('suspension')}
-            className="btn btn-sm d-inline-flex align-items-center gap-2"
+            className="btn btn-sm d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0"
             style={{
               background: activeTab === 'suspension' ? '#DC2626' : 'transparent',
               color: '#FFFFFF',
               border: activeTab === 'suspension' ? '1px solid #F87171' : 'none',
               fontWeight: 800,
               fontSize: '12px',
-              padding: '8px 14px',
+              padding: '7px 12px',
               borderRadius: '6px',
               transition: 'all 0.15s ease',
             }}
@@ -77,14 +93,14 @@ export default function Chassis3DModelsViewer() {
           <button
             type="button"
             onClick={() => setActiveTab('shock')}
-            className="btn btn-sm d-inline-flex align-items-center gap-2"
+            className="btn btn-sm d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0"
             style={{
               background: activeTab === 'shock' ? '#DC2626' : 'transparent',
               color: '#FFFFFF',
               border: activeTab === 'shock' ? '1px solid #F87171' : 'none',
               fontWeight: 800,
               fontSize: '12px',
-              padding: '8px 14px',
+              padding: '7px 12px',
               borderRadius: '6px',
               transition: 'all 0.15s ease',
             }}
@@ -96,14 +112,14 @@ export default function Chassis3DModelsViewer() {
           <button
             type="button"
             onClick={() => setActiveTab('all')}
-            className="btn btn-sm d-inline-flex align-items-center gap-2"
+            className="btn btn-sm d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0"
             style={{
               background: activeTab === 'all' ? '#0F172A' : 'transparent',
               color: '#FFFFFF',
               border: activeTab === 'all' ? '1px solid #94A3B8' : 'none',
               fontWeight: 800,
               fontSize: '12px',
-              padding: '8px 14px',
+              padding: '7px 12px',
               borderRadius: '6px',
               transition: 'all 0.15s ease',
             }}
@@ -114,7 +130,7 @@ export default function Chassis3DModelsViewer() {
         </div>
       </div>
 
-      <p className="small text-muted mb-3" style={{ lineHeight: '1.6' }}>
+      <p className="small text-muted mb-3" style={{ lineHeight: '1.6', fontSize: '13.5px' }}>
         {activeTab === 'chassis'
           ? 'Inspect the Formula Student tubular spaceframe chassis in interactive 3D. Explore the main roll hoop, front roll hoop, side impact structure triangulation, front bulkhead, and engine bay geometry compliant with Formula Student regulations.'
           : activeTab === 'suspension'
@@ -124,11 +140,22 @@ export default function Chassis3DModelsViewer() {
           : 'Multi-View Studio: Inspect the Spaceframe Chassis, Push Rod Suspension, and Coilover Shock Absorber side-by-side in real-time 3D.'}
       </p>
 
+      {/* Mobile Touch Guidance Tip */}
+      <div
+        className="d-flex align-items-center justify-content-between p-2 px-3 mb-3 rounded d-md-none"
+        style={{ background: '#F1F5F9', border: '1px solid #CBD5E1', fontSize: '11px', color: '#475569' }}
+      >
+        <span>
+          <i className="bi bi-hand-index-thumb text-danger me-1"></i> Drag to orbit • Pinch to zoom
+        </span>
+        <span className="fw-semibold text-muted">Scroll outside to navigate</span>
+      </div>
+
       {/* 3D Embed Viewports */}
       <div className="row g-4">
         {/* Model 1: Chassis Spaceframe */}
         {(activeTab === 'chassis' || activeTab === 'all') && (
-          <div className={activeTab === 'all' ? 'col-lg-4 col-12' : 'col-12'}>
+          <div className={activeTab === 'all' ? 'col-lg-4 col-md-6 col-12' : 'col-12'}>
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
@@ -148,7 +175,13 @@ export default function Chassis3DModelsViewer() {
                 background: '#0F172A',
               }}
             >
-              <div className="position-relative" style={{ width: '100%', height: activeTab === 'all' ? '400px' : '500px' }}>
+              <div
+                className="position-relative"
+                style={{
+                  width: '100%',
+                  height: activeTab === 'all' ? 'clamp(300px, 40vh, 380px)' : 'clamp(340px, 50vh, 500px)',
+                }}
+              >
                 <iframe
                   title="P4T Formula chassis"
                   src="https://sketchfab.com/models/70ed61a02c964b6a8bfceaf19df98eb6/embed?autostart=1&preload=1&ui_theme=dark"
@@ -209,7 +242,7 @@ export default function Chassis3DModelsViewer() {
 
         {/* Model 2: Push Rod Suspension */}
         {(activeTab === 'suspension' || activeTab === 'all') && (
-          <div className={activeTab === 'all' ? 'col-lg-4 col-12' : 'col-12'}>
+          <div className={activeTab === 'all' ? 'col-lg-4 col-md-6 col-12' : 'col-12'}>
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
@@ -229,7 +262,13 @@ export default function Chassis3DModelsViewer() {
                 background: '#0F172A',
               }}
             >
-              <div className="position-relative" style={{ width: '100%', height: activeTab === 'all' ? '400px' : '500px' }}>
+              <div
+                className="position-relative"
+                style={{
+                  width: '100%',
+                  height: activeTab === 'all' ? 'clamp(300px, 40vh, 380px)' : 'clamp(340px, 50vh, 500px)',
+                }}
+              >
                 <iframe
                   title="Formula E Push Rod Suspension"
                   src="https://sketchfab.com/models/005da2e35d754ac898754a92c42f434d/embed?autostart=1&preload=1&ui_theme=dark"
@@ -290,7 +329,7 @@ export default function Chassis3DModelsViewer() {
 
         {/* Model 3: Shock Absorber */}
         {(activeTab === 'shock' || activeTab === 'all') && (
-          <div className={activeTab === 'all' ? 'col-lg-4 col-12' : 'col-12'}>
+          <div className={activeTab === 'all' ? 'col-lg-4 col-md-6 col-12' : 'col-12'}>
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
@@ -310,7 +349,13 @@ export default function Chassis3DModelsViewer() {
                 background: '#0F172A',
               }}
             >
-              <div className="position-relative" style={{ width: '100%', height: activeTab === 'all' ? '400px' : '500px' }}>
+              <div
+                className="position-relative"
+                style={{
+                  width: '100%',
+                  height: activeTab === 'all' ? 'clamp(300px, 40vh, 380px)' : 'clamp(340px, 50vh, 500px)',
+                }}
+              >
                 <iframe
                   title="SHOCK ABSORBER FBX"
                   src="https://sketchfab.com/models/cc938094c7ac4d3ba0a187d04bff2c4a/embed?autostart=1&preload=1&ui_theme=dark"

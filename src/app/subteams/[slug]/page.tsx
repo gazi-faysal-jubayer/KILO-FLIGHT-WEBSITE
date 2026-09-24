@@ -93,25 +93,25 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             </ol>
           </nav>
 
-          <div className="d-flex align-items-center gap-2">
+          <div className="d-flex align-items-center gap-2 flex-wrap w-100 w-md-auto">
             <Link
               href={`/subteams/${subteam.slug}/workflow`}
-              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
                 background: '#FEF2F2',
                 color: '#DC2626',
                 border: '1.5px solid #DC2626',
                 fontWeight: 700,
                 fontSize: '12px',
-                padding: '6px 14px',
+                padding: '7px 14px',
               }}
             >
-              <i className="bi bi-diagram-3-fill me-1"></i> Part 2: Technical Workflow &rarr;
+              <i className="bi bi-diagram-3-fill me-1"></i> Part 2: Workflow &rarr;
             </Link>
 
             <Link
               href="/subteams"
-              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
                 background: '#F8FAFC',
                 color: '#0F172A',
@@ -119,10 +119,10 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 boxShadow: '2px 2px 0 #0F172A',
                 fontWeight: 700,
                 fontSize: '12px',
-                padding: '6px 14px',
+                padding: '7px 14px',
               }}
             >
-              <i className="bi bi-arrow-left"></i> All Sub-Teams Overview
+              <i className="bi bi-arrow-left"></i> All Sub-Teams
             </Link>
           </div>
         </div>
@@ -179,15 +179,15 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
               </p>
 
               {/* Two Primary Part Quick Links */}
-              <div className="d-flex gap-3 flex-wrap">
+              <div className="d-flex gap-2 gap-sm-3 flex-column flex-sm-row flex-wrap">
                 <div
-                  className="btn btn-sm d-inline-flex align-items-center gap-2"
+                  className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto"
                   style={{
                     background: '#0F172A',
                     color: '#FFFFFF',
                     border: '2px solid #0F172A',
                     boxShadow: `3px 3px 0 ${subteam.accentColor}`,
-                    padding: '10px 20px',
+                    padding: '10px 18px',
                     fontWeight: 800,
                     fontSize: '13px',
                     borderRadius: '8px',
@@ -199,13 +199,13 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
 
                 <Link
                   href={`/subteams/${subteam.slug}/workflow`}
-                  className="btn btn-sm d-inline-flex align-items-center gap-2"
+                  className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto"
                   style={{
                     background: '#FFFFFF',
                     color: '#0F172A',
                     border: '2px solid #0F172A',
                     boxShadow: '3px 3px 0 #DC2626',
-                    padding: '10px 20px',
+                    padding: '10px 18px',
                     fontWeight: 800,
                     fontSize: '13px',
                     textDecoration: 'none',
@@ -213,7 +213,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   }}
                 >
                   <i className="bi bi-diagram-3-fill text-danger"></i>
-                  <span>PART 2: Technical Workflow Page &rarr;</span>
+                  <span>PART 2: Technical Workflow &rarr;</span>
                 </Link>
               </div>
             </div>
@@ -319,7 +319,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
 
           {/* 1.1 Executive Overview & Scope */}
           <div
-            className="p-4 p-md-5 rounded mb-4"
+            className="p-3 p-sm-4 p-md-5 rounded mb-4"
             style={{
               background: '#FFFFFF',
               border: '2px solid #0F172A',
@@ -454,7 +454,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             </div>
 
             <div
-              className="p-4 rounded"
+              className="p-3 p-sm-4 rounded"
               style={{
                 background: '#FFFFFF',
                 border: '2px solid #0F172A',
@@ -512,7 +512,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             PART 2: LINK TO DEDICATED TECHNICAL WORKFLOW PAGE
             ========================================================================= */}
         <section
-          className="p-4 p-md-5 rounded mb-5"
+          className="p-3 p-sm-4 p-md-5 rounded mb-5"
           style={{
             background: '#FFFFFF',
             border: '2px solid #0F172A',
@@ -532,7 +532,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             <div className="col-lg-4 col-12 text-lg-end">
               <Link
                 href={`/subteams/${subteam.slug}/workflow`}
-                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-lg-auto"
                 style={{
                   background: '#DC2626',
                   color: '#FFFFFF',

@@ -104,7 +104,7 @@ export default function SubteamMediaGallery() {
         {/* Left Column: Interactive Technical Blueprint Viewer */}
         <div className="col-lg-7 col-12">
           <div
-            className="p-4 rounded h-100 d-flex flex-column"
+            className="p-3 p-sm-4 rounded h-100 d-flex flex-column"
             style={{
               background: '#FFFFFF',
               border: '2px solid #0F172A',
@@ -240,7 +240,7 @@ export default function SubteamMediaGallery() {
         {/* Right Column: Embedded Dynamic Video & Workshop Testing */}
         <div className="col-lg-5 col-12">
           <div
-            className="p-4 rounded h-100 d-flex flex-column"
+            className="p-3 p-sm-4 rounded h-100 d-flex flex-column"
             style={{
               background: '#0F172A',
               color: '#FFFFFF',

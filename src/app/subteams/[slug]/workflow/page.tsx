@@ -64,17 +64,17 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             </ol>
           </nav>
 
-          <div className="d-flex align-items-center gap-2">
+          <div className="d-flex align-items-center gap-2 flex-wrap w-100 w-md-auto">
             <Link
               href={`/subteams/${subteam.slug}`}
-              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
                 background: '#FFFFFF',
                 color: subteam.accentColor,
                 border: `1.5px solid ${subteam.accentColor}`,
                 fontWeight: 700,
                 fontSize: '12px',
-                padding: '6px 14px',
+                padding: '7px 14px',
               }}
             >
               <i className="bi bi-book-half me-1"></i> Part 1: Basic Technical Knowledge
@@ -82,7 +82,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
 
             <Link
               href="/subteams"
-              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
                 background: '#F8FAFC',
                 color: '#0F172A',
@@ -90,7 +90,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 boxShadow: '2px 2px 0 #0F172A',
                 fontWeight: 700,
                 fontSize: '12px',
-                padding: '6px 14px',
+                padding: '7px 14px',
               }}
             >
               <i className="bi bi-arrow-left"></i> All Sub-Teams
@@ -150,16 +150,16 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
               </p>
 
               {/* Navigation Switcher Tabs */}
-              <div className="d-flex gap-3 flex-wrap">
+              <div className="d-flex gap-2 gap-sm-3 flex-column flex-sm-row flex-wrap">
                 <Link
                   href={`/subteams/${subteam.slug}`}
-                  className="btn btn-sm d-inline-flex align-items-center gap-2"
+                  className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto"
                   style={{
                     background: '#FFFFFF',
                     color: '#0F172A',
                     border: '2px solid #0F172A',
                     boxShadow: '3px 3px 0 #0F172A',
-                    padding: '10px 20px',
+                    padding: '10px 18px',
                     fontWeight: 800,
                     fontSize: '13px',
                     textDecoration: 'none',
@@ -171,13 +171,13 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 </Link>
 
                 <div
-                  className="btn btn-sm d-inline-flex align-items-center gap-2"
+                  className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto"
                   style={{
                     background: '#DC2626',
                     color: '#FFFFFF',
                     border: '2px solid #0F172A',
                     boxShadow: '3px 3px 0 #0F172A',
-                    padding: '10px 20px',
+                    padding: '10px 18px',
                     fontWeight: 800,
                     fontSize: '13px',
                     borderRadius: '8px',
@@ -267,7 +267,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             {subteam.workflow.map((w) => (
               <div key={w.step} className="col-12">
                 <div
-                  className="p-4 rounded"
+                  className="p-3 p-sm-4 rounded"
                   style={{
                     background: '#FFFFFF',
                     border: '2px solid #0F172A',
@@ -275,20 +275,20 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   }}
                 >
                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-                    <div className="d-flex align-items-center gap-3">
+                    <div className="d-flex align-items-center gap-2 gap-sm-3">
                       <span
-                        className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron"
+                        className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron flex-shrink-0"
                         style={{
-                          width: '36px',
-                          height: '36px',
+                          width: '34px',
+                          height: '34px',
                           background: subteam.accentColor,
                           color: '#FFFFFF',
-                          fontSize: '14px',
+                          fontSize: '13px',
                         }}
                       >
                         0{w.step}
                       </span>
-                      <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+                      <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: 'clamp(1rem, 2.5vw, 1.25rem)' }}>
                         {w.name}
                       </h4>
                     </div>
@@ -353,8 +353,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             </h3>
           </div>
 
+          {/* Desktop & Tablet Table (Hidden on Phones) */}
           <div
-            className="rounded overflow-hidden"
+            className="d-none d-md-block rounded overflow-hidden"
             style={{
               background: '#FFFFFF',
               border: '2px solid #0F172A',
@@ -401,6 +402,58 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
               </table>
             </div>
           </div>
+
+          {/* Mobile High-Contrast Cards (Shown Only on Phones & Small Screens) */}
+          <div className="d-md-none d-flex flex-column gap-3">
+            {subteam.engineeringPriorities.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-3 rounded"
+                style={{
+                  background: '#FFFFFF',
+                  border: '2px solid #0F172A',
+                  boxShadow: '3px 3px 0 #0F172A',
+                }}
+              >
+                <div className="d-flex align-items-center justify-content-between gap-2 mb-2 pb-2 border-bottom">
+                  <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13px' }}>
+                    <i className="bi bi-cpu me-2 text-danger"></i>
+                    {item.component}
+                  </span>
+                  <span className="badge" style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '10px' }}>
+                    Priority 0{idx + 1}
+                  </span>
+                </div>
+
+                <div className="mb-2">
+                  <span className="small text-muted d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
+                    Integration Goal:
+                  </span>
+                  <p className="small mb-0" style={{ color: '#334155', lineHeight: '1.5', fontSize: '12.5px' }}>
+                    {item.goal}
+                  </p>
+                </div>
+
+                <div className="p-2 px-3 rounded mb-2" style={{ background: '#FEF2F2', border: '1px solid #FECACA' }}>
+                  <span className="small text-danger d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
+                    <i className="bi bi-exclamation-triangle-fill me-1"></i> Engineering Challenge
+                  </span>
+                  <p className="small mb-0" style={{ color: '#991B1B', fontWeight: 600, lineHeight: '1.5', fontSize: '12px' }}>
+                    {item.challenge}
+                  </p>
+                </div>
+
+                <div className="p-2 px-3 rounded" style={{ background: '#F0FDF4', border: '1px solid #BBF7D0' }}>
+                  <span className="small text-success d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
+                    <i className="bi bi-check-circle-fill me-1"></i> KILOFLIGHT Solution
+                  </span>
+                  <p className="small mb-0" style={{ color: '#166534', fontWeight: 600, lineHeight: '1.5', fontSize: '12px' }}>
+                    {item.solution}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* =========================================================================
@@ -417,7 +470,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
           <div className="row g-4">
             <div className="col-md-4 col-12">
               <div
-                className="p-4 rounded h-100"
+                className="p-3 p-sm-4 rounded h-100"
                 style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
               >
                 <div className="d-flex align-items-center gap-2 mb-3">
@@ -439,7 +492,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
 
             <div className="col-md-4 col-12">
               <div
-                className="p-4 rounded h-100"
+                className="p-3 p-sm-4 rounded h-100"
                 style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
               >
                 <div className="d-flex align-items-center gap-2 mb-3">
@@ -461,7 +514,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
 
             <div className="col-md-4 col-12">
               <div
-                className="p-4 rounded h-100"
+                className="p-3 p-sm-4 rounded h-100"
                 style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
               >
                 <div className="d-flex align-items-center gap-2 mb-3">
@@ -485,7 +538,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
 
         {/* Prominent Link Back to Part 1 */}
         <section
-          className="p-4 p-md-5 rounded mb-5"
+          className="p-3 p-sm-4 p-md-5 rounded mb-5"
           style={{
             background: '#FFFFFF',
             border: '2px solid #0F172A',
@@ -505,7 +558,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             <div className="col-lg-4 col-12 text-lg-end">
               <Link
                 href={`/subteams/${subteam.slug}`}
-                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-lg-auto"
                 style={{
                   background: '#0F172A',
                   color: '#FFFFFF',

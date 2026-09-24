@@ -59,7 +59,7 @@ export default function SubteamsPage() {
       <section className="py-4" style={{ background: '#F1F5F9', borderBottom: '1px solid #E2E8F0' }}>
         <div className="container mx-auto px-4">
           <div
-            className="p-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-3"
+            className="p-3 p-sm-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-3"
             style={{
               background: '#0F172A',
               color: '#FFFFFF',
@@ -69,7 +69,7 @@ export default function SubteamsPage() {
           >
             <div className="d-flex align-items-center gap-3">
               <div
-                className="d-inline-flex align-items-center justify-content-center rounded-circle"
+                className="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
                 style={{
                   width: '50px',
                   height: '50px',
@@ -86,24 +86,24 @@ export default function SubteamsPage() {
                   <span className="badge-motorsport red" style={{ fontSize: '10px' }}>FEATURED DIVISION</span>
                   <span className="small fw-bold" style={{ color: '#94A3B8' }}>CFMOTO 300CC SINGLE-CYLINDER DOHC</span>
                 </div>
-                <h4 className="font-orbitron mb-0" style={{ color: '#FFFFFF', fontWeight: 800 }}>
+                <h4 className="font-orbitron mb-0" style={{ color: '#FFFFFF', fontWeight: 800, fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)' }}>
                   Mechanical Powertrain Blueprint &amp; Live Driveline Solver
                 </h4>
               </div>
             </div>
 
-            <div className="d-flex gap-2 flex-wrap">
+            <div className="d-flex gap-2 flex-wrap w-100 w-lg-auto">
               <Link
                 href="/subteams/powertrain"
-                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 flex-grow-1 flex-lg-grow-0"
                 style={{
                   background: '#0284C7',
                   color: '#FFFFFF',
                   border: '1.5px solid #FFFFFF',
                   boxShadow: '2px 2px 0 #FFFFFF',
                   fontWeight: 800,
-                  fontSize: '12.5px',
-                  padding: '9px 18px',
+                  fontSize: '12px',
+                  padding: '8px 16px',
                   textDecoration: 'none',
                 }}
               >
@@ -113,15 +113,15 @@ export default function SubteamsPage() {
 
               <Link
                 href="/subteams/powertrain/workflow"
-                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 flex-grow-1 flex-lg-grow-0"
                 style={{
                   background: '#DC2626',
                   color: '#FFFFFF',
                   border: '1.5px solid #FFFFFF',
                   boxShadow: '2px 2px 0 #FFFFFF',
                   fontWeight: 800,
-                  fontSize: '12.5px',
-                  padding: '9px 18px',
+                  fontSize: '12px',
+                  padding: '8px 16px',
                   textDecoration: 'none',
                 }}
               >
@@ -140,7 +140,7 @@ export default function SubteamsPage() {
             {SUBTEAMS_DATA.map((sub, idx) => (
               <div key={sub.id} className="col-12" id={sub.id}>
                 <div
-                  className="glass-panel p-4 p-lg-5"
+                  className="glass-panel p-3 p-sm-4 p-lg-5"
                   style={{
                     border: '2px solid #0F172A',
                     boxShadow: `5px 5px 0 ${sub.accentColor}`,
@@ -318,10 +318,10 @@ export default function SubteamsPage() {
                       ))}
                     </div>
 
-                    <div className="d-flex gap-2 flex-wrap">
+                    <div className="d-flex gap-2 flex-wrap w-100 w-lg-auto">
                       <Link
                         href={`/subteams/${sub.slug}`}
-                        className="btn btn-sm d-inline-flex align-items-center gap-2"
+                        className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 flex-grow-1 flex-lg-grow-0"
                         style={{
                           background: '#0F172A',
                           color: '#FFFFFF',
@@ -329,7 +329,7 @@ export default function SubteamsPage() {
                           boxShadow: `2px 2px 0 ${sub.accentColor}`,
                           fontWeight: 700,
                           fontSize: '12px',
-                          padding: '7px 16px',
+                          padding: '7px 14px',
                           textDecoration: 'none',
                         }}
                       >
@@ -339,7 +339,7 @@ export default function SubteamsPage() {
 
                       <Link
                         href={`/subteams/${sub.slug}/workflow`}
-                        className="btn btn-sm d-inline-flex align-items-center gap-2"
+                        className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 flex-grow-1 flex-lg-grow-0"
                         style={{
                           background: '#DC2626',
                           color: '#FFFFFF',
@@ -347,7 +347,7 @@ export default function SubteamsPage() {
                           boxShadow: '2px 2px 0 #0F172A',
                           fontWeight: 700,
                           fontSize: '12px',
-                          padding: '7px 16px',
+                          padding: '7px 14px',
                           textDecoration: 'none',
                         }}
                       >
@@ -357,7 +357,7 @@ export default function SubteamsPage() {
 
                       <Link
                         href="/join-us"
-                        className="btn btn-sm d-inline-flex align-items-center gap-1"
+                        className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-lg-grow-0"
                         style={{
                           background: '#FFFFFF',
                           color: '#0F172A',

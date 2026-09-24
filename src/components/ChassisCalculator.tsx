@@ -39,35 +39,46 @@ export default function ChassisCalculator() {
 
   return (
     <div
-      className="p-4 p-md-5 rounded mb-5"
+      className="p-3 p-sm-4 p-md-5 rounded mb-5"
       style={{
         background: '#FFFFFF',
         border: '2px solid #0F172A',
         boxShadow: '4px 4px 0 #DC2626',
       }}
     >
-      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+      <div className="d-flex align-items-md-center justify-content-between flex-column flex-md-row gap-2 mb-4">
         <div>
-          <span className="badge-motorsport red mb-1">Live Technical Calculator</span>
-          <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+          <span className="badge-motorsport red mb-1" style={{ fontSize: '10px' }}>
+            Live Technical Calculator
+          </span>
+          <h4
+            className="font-orbitron mb-0"
+            style={{
+              color: '#0F172A',
+              fontWeight: 800,
+              fontSize: 'clamp(1.15rem, 3.2vw, 1.5rem)',
+              lineHeight: '1.3',
+            }}
+          >
             SUSPENSION KINEMATICS &amp; WHEEL RATE SOLVER
           </h4>
         </div>
         <span
-          className="badge"
+          className="badge align-self-start align-self-md-center"
           style={{
             background: '#FEF2F2',
             color: '#DC2626',
             border: '1.5px solid #DC2626',
             fontWeight: 700,
-            fontSize: '12px',
+            fontSize: '11px',
+            padding: '6px 12px',
           }}
         >
           Quarter-Car Dynamics
         </span>
       </div>
 
-      <p className="text-muted small mb-4" style={{ lineHeight: '1.7' }}>
+      <p className="text-muted small mb-4" style={{ lineHeight: '1.6', fontSize: '13.5px' }}>
         Calculate real-time suspension wheel rate, damper installation stiffness, natural frequency (fn), and bump displacement under Formula Student cornering loads.
       </p>
 
@@ -166,7 +177,7 @@ export default function ChassisCalculator() {
         {/* Output 1: Wheel Rate */}
         <div className="col-md-4 col-12">
           <div
-            className="p-3 rounded h-100 text-center"
+            className="p-3 p-md-4 rounded h-100 text-center"
             style={{
               background: '#0F172A',
               color: '#FFFFFF',
@@ -177,7 +188,7 @@ export default function ChassisCalculator() {
             <span className="small text-uppercase text-muted d-block mb-1 font-orbitron" style={{ fontSize: '11px', color: '#CBD5E1' }}>
               Effective Wheel Rate (K_wheel)
             </span>
-            <h3 className="font-orbitron mb-1 text-warning" style={{ fontWeight: 900 }}>
+            <h3 className="font-orbitron mb-1 text-warning" style={{ fontWeight: 900, fontSize: 'clamp(22px, 5vw, 28px)' }}>
               {wheelRate.toFixed(1)} <span style={{ fontSize: '16px' }}>N/mm</span>
             </h3>
             <p className="small text-muted mb-0" style={{ fontSize: '11px' }}>
@@ -189,7 +200,7 @@ export default function ChassisCalculator() {
         {/* Output 2: Ride Natural Frequency */}
         <div className="col-md-4 col-12">
           <div
-            className="p-3 rounded h-100 text-center"
+            className="p-3 p-md-4 rounded h-100 text-center"
             style={{
               background: '#0F172A',
               color: '#FFFFFF',
@@ -200,7 +211,7 @@ export default function ChassisCalculator() {
             <span className="small text-uppercase text-muted d-block mb-1 font-orbitron" style={{ fontSize: '11px', color: '#CBD5E1' }}>
               Ride Natural Frequency (fn)
             </span>
-            <h3 className="font-orbitron mb-1" style={{ fontWeight: 900, color: '#38BDF8' }}>
+            <h3 className="font-orbitron mb-1" style={{ fontWeight: 900, color: '#38BDF8', fontSize: 'clamp(22px, 5vw, 28px)' }}>
               {naturalFrequency.toFixed(2)} <span style={{ fontSize: '16px' }}>Hz</span>
             </h3>
             <p className="small text-muted mb-0" style={{ fontSize: '11px' }}>
@@ -212,7 +223,7 @@ export default function ChassisCalculator() {
         {/* Output 3: 1.5G Bump Deflection */}
         <div className="col-md-4 col-12">
           <div
-            className="p-3 rounded h-100 text-center"
+            className="p-3 p-md-4 rounded h-100 text-center"
             style={{
               background: '#0F172A',
               color: '#FFFFFF',
@@ -223,7 +234,7 @@ export default function ChassisCalculator() {
             <span className="small text-uppercase text-muted d-block mb-1 font-orbitron" style={{ fontSize: '11px', color: '#CBD5E1' }}>
               1.5G Bump Wheel Travel
             </span>
-            <h3 className="font-orbitron mb-1 text-danger" style={{ fontWeight: 900 }}>
+            <h3 className="font-orbitron mb-1 text-danger" style={{ fontWeight: 900, fontSize: 'clamp(22px, 5vw, 28px)' }}>
               {wheelDeflection.toFixed(1)} <span style={{ fontSize: '16px' }}>mm</span>
             </h3>
             <p className="small text-muted mb-0" style={{ fontSize: '11px' }}>
