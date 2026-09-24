@@ -25,7 +25,7 @@ export default function SubteamsPage() {
             SUB-TEAMS &amp; WORKFLOW OVERVIEW
           </h1>
           <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '820px', fontSize: '16px', lineHeight: '1.7' }}>
-            Explore the 6 specialized engineering and business divisions powering Team KILOFLIGHT at Khulna University of Engineering &amp; Technology (KUET). Click any division to view its dedicated architecture, technical blueprints, and step-by-step development roadmap.
+            Explore the 6 specialized engineering and business divisions powering Team KILOFLIGHT at Khulna University of Engineering &amp; Technology (KUET). Every division is organized into two core parts: <strong>Part 1: Basic Technical Knowledge</strong> (architecture, 3D CAD models, specifications, and solvers) and <strong>Part 2: Technical Workflow</strong> (development phases, engineering challenges, and testing roadmap).
           </p>
 
           {/* Quick Division Selector Pills */}
@@ -191,11 +191,14 @@ export default function SubteamsPage() {
                     </p>
                   </div>
 
-                  {/* Subsystems Highlights */}
+                  {/* Part 1: Basic Technical Knowledge Preview */}
                   <div className="mb-4">
-                    <h6 className="font-orbitron mb-3" style={{ color: '#0F172A', fontSize: '14px' }}>
-                      <i className="bi bi-layers-fill me-2 text-danger"></i> Core Architectural Subsystems
-                    </h6>
+                    <div className="d-flex align-items-center gap-2 mb-3">
+                      <span className="badge-motorsport red" style={{ fontSize: '10px' }}>PART 1</span>
+                      <h6 className="font-orbitron mb-0" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                        Basic Technical Knowledge &amp; Subsystems
+                      </h6>
+                    </div>
                     <div className="row g-3">
                       {sub.subsystems.map((system, sIdx) => (
                         <div key={sIdx} className="col-lg-4 col-12">
@@ -227,11 +230,14 @@ export default function SubteamsPage() {
                     </div>
                   </div>
 
-                  {/* Workflow Steps Preview */}
+                  {/* Part 2: Technical Workflow Preview */}
                   <div className="mb-4">
-                    <h6 className="font-orbitron mb-3" style={{ color: '#0F172A', fontSize: '14px' }}>
-                      <i className="bi bi-diagram-3-fill me-2 text-danger"></i> Development Roadmap Preview
-                    </h6>
+                    <div className="d-flex align-items-center gap-2 mb-3">
+                      <span className="badge-motorsport red" style={{ fontSize: '10px' }}>PART 2</span>
+                      <h6 className="font-orbitron mb-0" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                        Technical Workflow &amp; Execution Roadmap
+                      </h6>
+                    </div>
                     <div className="row g-3">
                       {sub.workflow.slice(0, 4).map((w) => (
                         <div key={w.step} className="col-md-6 col-12">
