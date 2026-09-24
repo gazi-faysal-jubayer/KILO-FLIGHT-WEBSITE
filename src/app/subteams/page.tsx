@@ -13,7 +13,7 @@ export default function SubteamsPage() {
     <>
       {/* Header Hero Section */}
       <section
-        className="page-header-section py-5"
+        className="page-header-section"
         style={{
           background: 'radial-gradient(circle at top, rgba(255, 42, 42, 0.08) 0%, var(--dark-bg) 100%)',
           borderBottom: '2px solid #0F172A',

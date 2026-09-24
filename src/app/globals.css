@@ -229,14 +229,44 @@ a:hover {
 
 .page-header-section {
   padding-top: 135px !important;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
   position: relative;
 }
 
 @media (max-width: 991px) {
   .page-header-section {
-    padding-top: 115px !important;
-    padding-bottom: 45px;
+    padding-top: 110px !important;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-header-section {
+    padding-top: 92px !important;
+    padding-bottom: 35px;
+  }
+}
+
+/* Dedicated Breadcrumb Bar with Fixed Navbar Clearance */
+.subteam-breadcrumb-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+  padding-top: 96px;
+  padding-bottom: 14px;
+  position: relative;
+}
+
+@media (max-width: 991px) {
+  .subteam-breadcrumb-bar {
+    padding-top: 88px;
+    padding-bottom: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .subteam-breadcrumb-bar {
+    padding-top: 82px;
+    padding-bottom: 12px;
   }
 }
 
@@ -357,7 +387,6 @@ a:hover {
 -----------------------------------------*/
 
 .page-header-section {
-  padding: 135px 0 45px;
   position: relative;
   border-bottom: 2px solid #0F172A;
   background-color: #F8FAFC;
@@ -396,6 +425,21 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding: 85px 0 20px;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 96px;
+    padding-bottom: 25px;
+    height: auto;
+    min-height: 100dvh;
+    max-height: none;
+    overflow-y: auto;
+  }
+  .hero-content-container {
+    max-height: none;
+    gap: 16px;
+  }
 }
 
 .hero-content-container {
@@ -1140,7 +1184,7 @@ select.form-control-custom option {
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1050;
   pointer-events: none;
   display: flex;
   justify-content: center;

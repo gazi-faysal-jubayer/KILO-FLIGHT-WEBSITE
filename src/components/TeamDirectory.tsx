@@ -350,8 +350,6 @@ export default function TeamDirectory() {
         className="page-header-section"
         style={{
           background: 'radial-gradient(circle at top, rgba(255, 42, 42, 0.08) 0%, rgba(2, 132, 199, 0.05) 50%, var(--dark-bg) 100%)',
-          paddingTop: '50px',
-          paddingBottom: '30px',
         }}
       >
         <div className="container mx-auto px-4 text-center">

@@ -33,17 +33,33 @@ export default function Navbar() {
   ];
 
   return (
-    <ResizableNavbar>
-      {/* Desktop Navigation with dynamic scroll resize */}
-      <NavBody>
-        <NavbarLogo />
-        <NavItems items={navItems} pathname={pathname} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', zIndex: 30 }}>
-          <NavbarButton href="/join-us" variant="primary">
-            Join Team
-          </NavbarButton>
-        </div>
-      </NavBody>
+    <>
+      {/* Mobile Backdrop Overlay to close on outside tap */}
+      {isMobileMenuOpen && (
+        <div
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="d-lg-none"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(15, 23, 42, 0.45)',
+            backdropFilter: 'blur(3px)',
+            zIndex: 1040,
+          }}
+        />
+      )}
+
+      <ResizableNavbar>
+        {/* Desktop Navigation with dynamic scroll resize */}
+        <NavBody>
+          <NavbarLogo />
+          <NavItems items={navItems} pathname={pathname} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', zIndex: 30 }}>
+            <NavbarButton href="/join-us" variant="primary">
+              Join Team
+            </NavbarButton>
+          </div>
+        </NavBody>
 
       {/* Mobile Navigation */}
       <MobileNav>
@@ -94,5 +110,6 @@ export default function Navbar() {
         </MobileNavMenu>
       </MobileNav>
     </ResizableNavbar>
+    </>
   );
 }

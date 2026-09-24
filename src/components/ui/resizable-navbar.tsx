@@ -164,11 +164,11 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       animate={{
         backdropFilter: visible ? 'blur(20px)' : 'blur(12px)',
         boxShadow: visible
-          ? '0 12px 35px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)'
-          : '0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04)',
+          ? '0 12px 35px -5px rgba(0, 0, 0, 0.12), 0 0 0 1.5px #0F172A'
+          : '0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 0 0 1.5px #0F172A',
         width: visible ? '92%' : '100%',
-        y: visible ? 12 : 8,
-        background: visible ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.94)',
+        y: visible ? 10 : 8,
+        background: visible ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)',
       }}
       transition={{
         type: 'spring',
@@ -178,7 +178,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       style={{
         padding: '10px 18px',
         borderRadius: '20px',
-        border: 'none',
+        border: '1.5px solid #0F172A',
       }}
       className={cn('resizable-mobile-body', className)}
     >
@@ -247,7 +247,8 @@ export const MobileNavMenu = ({
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.25, ease: 'easeInOut' }}
           style={{
-            overflow: 'hidden',
+            overflowY: 'auto',
+            maxHeight: 'calc(80vh - 80px)',
             width: '100%',
             marginTop: '12px',
             borderTop: '1px solid rgba(0, 0, 0, 0.08)',

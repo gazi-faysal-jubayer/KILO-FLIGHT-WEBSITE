@@ -73,7 +73,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
   return (
     <div className="subteam-detail-wrapper" style={{ background: '#F8FAFC', minHeight: '100vh' }}>
       {/* Top Breadcrumb & Navigation Bar */}
-      <section className="border-bottom py-3" style={{ background: '#FFFFFF' }}>
+      <section className="subteam-breadcrumb-bar">
         <div className="container mx-auto px-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb mb-0 small" style={{ fontWeight: 600 }}>
