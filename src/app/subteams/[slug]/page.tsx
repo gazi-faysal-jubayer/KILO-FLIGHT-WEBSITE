@@ -2,9 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { SUBTEAMS_DATA, getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subteams-data';
+import { getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subteams-data';
 import PowertrainCalculator from '@/components/PowertrainCalculator';
 import SubteamMediaGallery from '@/components/SubteamMediaGallery';
+import Powertrain3DModelsViewer from '@/components/Powertrain3DModelsViewer';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,8 +27,8 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${subteam.title} | Team KILOFLIGHT KUET Formula Student`,
-    description: `Basic Knowledge & Technical Workflow for ${subteam.title} in Team KILOFLIGHT.`,
+    title: `Part 1: Basic Knowledge - ${subteam.title} | Team KILOFLIGHT KUET`,
+    description: `Basic Technical Knowledge, 3D CAD architecture, specifications, and subsystems for ${subteam.title} at Team KILOFLIGHT KUET Formula Student.`,
   };
 }
 
@@ -54,7 +55,7 @@ const SUBTEAM_IMAGE_MAP: Record<string, { image: string; caption: string }> = {
   },
 };
 
-export default async function DedicatedSubteamPage({ params }: PageProps) {
+export default async function SubteamKnowledgePage({ params }: PageProps) {
   const { slug } = await params;
   const subteam = getSubteamBySlug(slug);
 
@@ -82,8 +83,13 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   Sub-Teams
                 </Link>
               </li>
+              <li className="breadcrumb-item">
+                <Link href={`/subteams/${subteam.slug}`} className="text-decoration-none" style={{ color: '#64748B' }}>
+                  {subteam.shortTitle}
+                </Link>
+              </li>
               <li className="breadcrumb-item active" aria-current="page" style={{ color: subteam.accentColor }}>
-                {subteam.shortTitle}
+                Part 1: Basic Technical Knowledge
               </li>
             </ol>
           </nav>
@@ -106,7 +112,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Hero Header Section */}
+      {/* Hero Header Section with 2-Part Switcher */}
       <section
         className="py-5"
         style={{
@@ -156,29 +162,29 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 {subteam.executiveSummary}
               </p>
 
-              {/* Two Primary Part Quick Links */}
+              {/* Two Primary Part Navigation Tabs */}
               <div className="d-flex gap-3 flex-wrap">
-                <a
-                  href="#part-1"
+                <div
                   className="btn btn-sm d-inline-flex align-items-center gap-2"
                   style={{
-                    background: '#0F172A',
+                    background: subteam.accentColor,
                     color: '#FFFFFF',
                     border: '2px solid #0F172A',
-                    boxShadow: `3px 3px 0 ${subteam.accentColor}`,
+                    boxShadow: '3px 3px 0 #0F172A',
                     padding: '10px 20px',
                     fontWeight: 800,
                     fontSize: '13px',
-                    textDecoration: 'none',
                     borderRadius: '8px',
+                    cursor: 'default',
                   }}
                 >
-                  <i className="bi bi-book-half text-warning"></i>
+                  <i className="bi bi-book-half"></i>
                   <span>PART 1: Basic Technical Knowledge</span>
-                </a>
+                  <span className="badge bg-dark ms-1" style={{ fontSize: '10px' }}>CURRENT PAGE</span>
+                </div>
 
-                <a
-                  href="#part-2"
+                <Link
+                  href={`/subteams/${subteam.slug}/workflow`}
                   className="btn btn-sm d-inline-flex align-items-center gap-2"
                   style={{
                     background: '#FFFFFF',
@@ -188,13 +194,15 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                     padding: '10px 20px',
                     fontWeight: 800,
                     fontSize: '13px',
-                    textDecoration: 'none',
                     borderRadius: '8px',
+                    textDecoration: 'none',
+                    transition: 'all 0.15s ease',
                   }}
                 >
                   <i className="bi bi-diagram-3-fill text-danger"></i>
-                  <span>PART 2: Technical Workflow</span>
-                </a>
+                  <span>PART 2: Technical Workflow &amp; Roadmap</span>
+                  <i className="bi bi-arrow-right ms-1 text-danger"></i>
+                </Link>
               </div>
             </div>
 
@@ -260,12 +268,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Main Content Body */}
+      {/* Main Content Body: Part 1 */}
       <div className="container mx-auto px-4 py-5">
-        {/* =========================================================================
-            PART 1: BASIC KNOWLEDGE ABOUT THE SUBTEAM
-            ========================================================================= */}
-        <div id="part-1" className="mb-5 pt-3">
+        <div className="mb-5">
           {/* Part 1 Header Banner */}
           <div
             className="p-3 px-4 mb-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-2"
@@ -317,103 +322,8 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             </p>
           </div>
 
-          {/* 1.2 Engine Section with Embedded Sketchfab 3D Model (For Powertrain) */}
-          {isPowertrain && (
-            <div className="mb-4">
-              <div
-                className="p-4 rounded mb-4"
-                style={{
-                  background: '#FFFFFF',
-                  border: '2px solid #0F172A',
-                  boxShadow: '4px 4px 0 #0284C7',
-                }}
-              >
-                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                  <div>
-                    <span className="badge-motorsport red mb-1">1.2 Core Power Unit</span>
-                    <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                      CFMOTO 300CC ENGINE &amp; TRANSMISSION 3D MODEL
-                    </h4>
-                  </div>
-                  <span
-                    className="badge"
-                    style={{ background: '#F0F9FF', color: '#0284C7', border: '1.5px solid #0284C7', fontWeight: 700 }}
-                  >
-                    Interactive 3D Inspection
-                  </span>
-                </div>
-
-                <p className="small text-muted mb-3" style={{ lineHeight: '1.6' }}>
-                  Explore the internal combustion engine assembly in 3D below. Click and drag to orbit, scroll to zoom, and inspect the cylinder head, crankcase, and valvetrain architecture:
-                </p>
-
-                {/* Embedded Sketchfab 3D Engine Model */}
-                <div
-                  className="sketchfab-embed-wrapper rounded overflow-hidden"
-                  style={{
-                    border: '2px solid #0F172A',
-                    boxShadow: '3px 3px 0 #0F172A',
-                    background: '#0F172A',
-                  }}
-                >
-                  <div className="position-relative" style={{ width: '100%', height: '480px' }}>
-                    <iframe
-                      title="Engine"
-                      src="https://sketchfab.com/models/eea9d9252ab14298b50699a471dc2cee/embed?ui_theme=dark"
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        border: 0,
-                      }}
-                      allow="autoplay; fullscreen; xr-spatial-tracking"
-                      allowFullScreen
-                    />
-                  </div>
-
-                  <div
-                    className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
-                    style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
-                  >
-                    <span>
-                      <i className="bi bi-box me-1 text-info"></i>
-                      <a
-                        href="https://sketchfab.com/3d-models/engine-eea9d9252ab14298b50699a471dc2cee"
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
-                      >
-                        Engine
-                      </a>{' '}
-                      by{' '}
-                      <a
-                        href="https://sketchfab.com/ezzdesign5"
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
-                      >
-                        Ahmed Belal
-                      </a>{' '}
-                      on{' '}
-                      <a
-                        href="https://sketchfab.com"
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
-                      >
-                        Sketchfab
-                      </a>
-                    </span>
-                    <span className="badge" style={{ background: '#1E293B', color: '#38BDF8' }}>
-                      3D Engine CAD View
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          {/* 1.2 Interactive 3D CAD Inspection (Engine & Transmission Gearbox for Powertrain) */}
+          {isPowertrain && <Powertrain3DModelsViewer />}
 
           {/* 1.3 Subsystems Breakdown */}
           <div className="mb-4">
@@ -579,191 +489,32 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
               </div>
             </div>
           </div>
-        </div>
 
-        {/* =========================================================================
-            PART 2: WORKFLOW & EXECUTION ROADMAP
-            ========================================================================= */}
-        <div id="part-2" className="mb-5 pt-3">
-          {/* Part 2 Header Banner */}
+          {/* Proceed to Part 2 Callout Banner */}
           <div
-            className="p-3 px-4 mb-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-2"
+            className="p-4 p-md-5 rounded text-center my-5"
             style={{
-              background: '#0F172A',
+              background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
               color: '#FFFFFF',
               border: '2px solid #0F172A',
-              boxShadow: '4px 4px 0 #FF2A2A',
+              boxShadow: `5px 5px 0 ${subteam.accentColor}`,
             }}
           >
-            <div className="d-flex align-items-center gap-3">
-              <span
-                className="d-inline-flex align-items-center justify-content-center rounded-circle font-orbitron fw-bold"
-                style={{ width: '32px', height: '32px', background: '#FF2A2A', color: '#FFFFFF', fontSize: '14px' }}
-              >
-                2
-              </span>
-              <div>
-                <span className="small text-uppercase fw-bold" style={{ color: '#FCA5A5', letterSpacing: '1px', fontSize: '11px' }}>
-                  SECONDARY SECTION
-                </span>
-                <h4 className="font-orbitron mb-0" style={{ color: '#FFFFFF', fontWeight: 900 }}>
-                  PART 2: STEP-BY-STEP TECHNICAL WORKFLOW &amp; EXECUTION
-                </h4>
-              </div>
-            </div>
-            <span className="badge" style={{ background: '#1E293B', color: '#94A3B8', border: '1px solid #334155' }}>
-              Execution Phases • Priorities &amp; Challenges • On-Track Testing
-            </span>
-          </div>
-
-          {/* 2.1 Step-by-Step Technical Workflow Phases */}
-          <div className="mb-4">
-            <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-              <div className="d-flex align-items-center gap-2">
-                <span className="badge-motorsport red">2.1</span>
-                <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                  DEVELOPMENT PHASES &amp; TIMELINE ROADMAP
-                </h4>
-              </div>
-              <span className="badge-motorsport red">
-                {subteam.workflow.length} Execution Phases
-              </span>
-            </div>
-
-            <div className="row g-4">
-              {subteam.workflow.map((w) => (
-                <div key={w.step} className="col-12">
-                  <div
-                    className="p-4 rounded"
-                    style={{
-                      background: '#FFFFFF',
-                      border: '2px solid #0F172A',
-                      boxShadow: '3px 3px 0 #0F172A',
-                    }}
-                  >
-                    <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-                      <div className="d-flex align-items-center gap-3">
-                        <span
-                          className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron"
-                          style={{
-                            width: '32px',
-                            height: '32px',
-                            background: subteam.accentColor,
-                            color: '#FFFFFF',
-                            fontSize: '14px',
-                          }}
-                        >
-                          {w.step}
-                        </span>
-                        <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                          {w.name}
-                        </h5>
-                      </div>
-
-                      {w.duration && (
-                        <span
-                          className="badge"
-                          style={{
-                            background: '#F8FAFC',
-                            color: '#0F172A',
-                            border: '1.5px solid #0F172A',
-                            fontWeight: 700,
-                          }}
-                        >
-                          <i className="bi bi-clock-history me-1 text-danger"></i> {w.duration}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="mb-3 small" style={{ color: '#334155', lineHeight: '1.7', fontSize: '14px' }}>
-                      {w.desc}
-                    </p>
-
-                    {w.deliverables && w.deliverables.length > 0 && (
-                      <div className="pt-2 border-top d-flex align-items-center gap-2 flex-wrap">
-                        <span className="small fw-bold text-muted me-1" style={{ fontSize: '12px' }}>
-                          Phase Deliverables:
-                        </span>
-                        {w.deliverables.map((d, dIdx) => (
-                          <span
-                            key={dIdx}
-                            className="badge"
-                            style={{
-                              background: '#F1F5F9',
-                              color: '#0F172A',
-                              border: '1px solid #CBD5E1',
-                              fontSize: '11px',
-                              fontWeight: 600,
-                            }}
-                          >
-                            <i className="bi bi-check2 me-1 text-success"></i> {d}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 2.2 Engineering Priorities & Technical Blueprint Table */}
-          <div className="mb-4">
-            <div className="d-flex align-items-center gap-2 mb-3">
-              <span className="badge-motorsport red">2.2</span>
-              <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                ENGINEERING CHALLENGES &amp; SOLUTION BLUEPRINT
-              </h4>
-            </div>
-
-            <div
-              className="rounded overflow-hidden"
-              style={{
-                background: '#FFFFFF',
-                border: '2px solid #0F172A',
-                boxShadow: '4px 4px 0 #0F172A',
-              }}
+            <span className="badge-motorsport red mb-2">Continue to Next Stage</span>
+            <h3 className="font-orbitron mb-2" style={{ color: '#FFFFFF', fontWeight: 900 }}>
+              EXPLORE PART 2: TECHNICAL WORKFLOW &amp; EXECUTION ROADMAP
+            </h3>
+            <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '680px', color: '#CBD5E1', fontSize: '15px' }}>
+              Learn how the {subteam.shortTitle} team executes from initial FSAE rulebook constraints to 3D CAD modeling, FEA/CFD simulation, precision fabrication, dyno calibration, and track testing.
+            </p>
+            <Link
+              href={`/subteams/${subteam.slug}/workflow`}
+              className="custom-btn text-decoration-none d-inline-flex align-items-center gap-2"
+              style={{ padding: '14px 32px', fontSize: '15px' }}
             >
-              <div className="table-responsive">
-                <table className="table table-hover align-middle mb-0" style={{ borderCollapse: 'collapse' }}>
-                  <thead style={{ background: '#0F172A', color: '#FFFFFF' }}>
-                    <tr>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '22%' }}>
-                        SYSTEM COMPONENT
-                      </th>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '28%' }}>
-                        INTEGRATION GOAL
-                      </th>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '28%' }}>
-                        ENGINEERING CHALLENGE
-                      </th>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '22%' }}>
-                        KILOFLIGHT SOLUTION
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {subteam.engineeringPriorities.map((item, idx) => (
-                      <tr key={idx} style={{ background: idx % 2 === 0 ? '#FFFFFF' : '#F8FAFC' }}>
-                        <td className="py-3 px-4 fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>
-                          <i className="bi bi-cpu me-2 text-danger"></i>
-                          {item.component}
-                        </td>
-                        <td className="py-3 px-4 small" style={{ color: '#334155', lineHeight: '1.6' }}>
-                          {item.goal}
-                        </td>
-                        <td className="py-3 px-4 small" style={{ color: '#DC2626', fontWeight: 600, lineHeight: '1.6' }}>
-                          <i className="bi bi-exclamation-triangle-fill me-1"></i> {item.challenge}
-                        </td>
-                        <td className="py-3 px-4 small" style={{ color: '#0F172A', fontWeight: 600, lineHeight: '1.6' }}>
-                          <i className="bi bi-check-circle-fill text-success me-1"></i> {item.solution}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+              <span>Go to Part 2: Technical Workflow</span>
+              <i className="bi bi-arrow-right"></i>
+            </Link>
           </div>
         </div>
 

@@ -298,10 +298,10 @@ export default function SubteamsPage() {
                       ))}
                     </div>
 
-                    <div className="d-flex gap-2">
+                    <div className="d-flex gap-2 flex-wrap">
                       <Link
                         href={`/subteams/${sub.slug}`}
-                        className="btn btn-sm d-inline-flex align-items-center gap-2"
+                        className="btn btn-sm d-inline-flex align-items-center gap-1"
                         style={{
                           background: sub.accentColor,
                           color: '#FFFFFF',
@@ -309,23 +309,40 @@ export default function SubteamsPage() {
                           boxShadow: '2px 2px 0 #0F172A',
                           fontWeight: 700,
                           fontSize: '12px',
-                          padding: '7px 16px',
+                          padding: '7px 14px',
                           textDecoration: 'none',
                         }}
                       >
-                        <span>Explore Full Division &amp; Workflow</span>
-                        <i className="bi bi-arrow-right"></i>
+                        <i className="bi bi-book"></i>
+                        <span>Part 1: Basic Knowledge</span>
                       </Link>
                       <Link
-                        href="/join-us"
+                        href={`/subteams/${sub.slug}/workflow`}
                         className="btn btn-sm d-inline-flex align-items-center gap-1"
                         style={{
                           background: '#FFFFFF',
                           color: '#0F172A',
                           border: '1.5px solid #0F172A',
+                          boxShadow: '2px 2px 0 #0F172A',
                           fontWeight: 700,
                           fontSize: '12px',
                           padding: '7px 14px',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <i className="bi bi-diagram-3-fill text-danger"></i>
+                        <span>Part 2: Workflow</span>
+                      </Link>
+                      <Link
+                        href="/join-us"
+                        className="btn btn-sm d-inline-flex align-items-center gap-1"
+                        style={{
+                          background: '#F8FAFC',
+                          color: '#0F172A',
+                          border: '1.5px solid #CBD5E1',
+                          fontWeight: 700,
+                          fontSize: '12px',
+                          padding: '7px 12px',
                           textDecoration: 'none',
                         }}
                       >
