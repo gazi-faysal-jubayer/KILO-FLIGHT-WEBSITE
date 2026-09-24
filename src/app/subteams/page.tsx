@@ -92,23 +92,43 @@ export default function SubteamsPage() {
               </div>
             </div>
 
-            <Link
-              href="/subteams/powertrain"
-              className="btn btn-sm d-inline-flex align-items-center gap-2"
-              style={{
-                background: '#0284C7',
-                color: '#FFFFFF',
-                border: '1.5px solid #FFFFFF',
-                boxShadow: '2px 2px 0 #FFFFFF',
-                fontWeight: 800,
-                fontSize: '13px',
-                padding: '10px 20px',
-                textDecoration: 'none',
-              }}
-            >
-              <span>Explore Dedicated Powertrain Page</span>
-              <i className="bi bi-arrow-right"></i>
-            </Link>
+            <div className="d-flex gap-2 flex-wrap">
+              <Link
+                href="/subteams/powertrain"
+                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                style={{
+                  background: '#0284C7',
+                  color: '#FFFFFF',
+                  border: '1.5px solid #FFFFFF',
+                  boxShadow: '2px 2px 0 #FFFFFF',
+                  fontWeight: 800,
+                  fontSize: '12.5px',
+                  padding: '9px 18px',
+                  textDecoration: 'none',
+                }}
+              >
+                <i className="bi bi-book-half"></i>
+                <span>Part 1: Basic Knowledge &amp; 3D Models</span>
+              </Link>
+
+              <Link
+                href="/subteams/powertrain/workflow"
+                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                style={{
+                  background: '#DC2626',
+                  color: '#FFFFFF',
+                  border: '1.5px solid #FFFFFF',
+                  boxShadow: '2px 2px 0 #FFFFFF',
+                  fontWeight: 800,
+                  fontSize: '12.5px',
+                  padding: '9px 18px',
+                  textDecoration: 'none',
+                }}
+              >
+                <i className="bi bi-diagram-3-fill"></i>
+                <span>Part 2: Technical Workflow</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -301,48 +321,50 @@ export default function SubteamsPage() {
                     <div className="d-flex gap-2 flex-wrap">
                       <Link
                         href={`/subteams/${sub.slug}`}
-                        className="btn btn-sm d-inline-flex align-items-center gap-1"
+                        className="btn btn-sm d-inline-flex align-items-center gap-2"
                         style={{
-                          background: sub.accentColor,
+                          background: '#0F172A',
+                          color: '#FFFFFF',
+                          border: '1.5px solid #0F172A',
+                          boxShadow: `2px 2px 0 ${sub.accentColor}`,
+                          fontWeight: 700,
+                          fontSize: '12px',
+                          padding: '7px 16px',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <i className="bi bi-book-half text-warning"></i>
+                        <span>Part 1: Basic Knowledge</span>
+                      </Link>
+
+                      <Link
+                        href={`/subteams/${sub.slug}/workflow`}
+                        className="btn btn-sm d-inline-flex align-items-center gap-2"
+                        style={{
+                          background: '#DC2626',
                           color: '#FFFFFF',
                           border: '1.5px solid #0F172A',
                           boxShadow: '2px 2px 0 #0F172A',
                           fontWeight: 700,
                           fontSize: '12px',
-                          padding: '7px 14px',
+                          padding: '7px 16px',
                           textDecoration: 'none',
                         }}
                       >
-                        <i className="bi bi-book"></i>
-                        <span>Part 1: Basic Knowledge</span>
+                        <i className="bi bi-diagram-3-fill text-warning"></i>
+                        <span>Part 2: Technical Workflow</span>
                       </Link>
+
                       <Link
-                        href={`/subteams/${sub.slug}/workflow`}
+                        href="/join-us"
                         className="btn btn-sm d-inline-flex align-items-center gap-1"
                         style={{
                           background: '#FFFFFF',
                           color: '#0F172A',
                           border: '1.5px solid #0F172A',
-                          boxShadow: '2px 2px 0 #0F172A',
                           fontWeight: 700,
                           fontSize: '12px',
                           padding: '7px 14px',
-                          textDecoration: 'none',
-                        }}
-                      >
-                        <i className="bi bi-diagram-3-fill text-danger"></i>
-                        <span>Part 2: Workflow</span>
-                      </Link>
-                      <Link
-                        href="/join-us"
-                        className="btn btn-sm d-inline-flex align-items-center gap-1"
-                        style={{
-                          background: '#F8FAFC',
-                          color: '#0F172A',
-                          border: '1.5px solid #CBD5E1',
-                          fontWeight: 700,
-                          fontSize: '12px',
-                          padding: '7px 12px',
                           textDecoration: 'none',
                         }}
                       >

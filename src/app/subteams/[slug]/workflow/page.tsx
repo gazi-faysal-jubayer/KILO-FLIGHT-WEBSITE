@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subteams-data';
+import { SUBTEAMS_DATA, getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subteams-data';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -18,13 +18,13 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!subteam) {
     return {
-      title: 'Sub-Team Not Found | Team KILOFLIGHT',
+      title: 'Workflow Not Found | Team KILOFLIGHT',
     };
   }
 
   return {
-    title: `Part 2: Technical Workflow - ${subteam.title} | Team KILOFLIGHT KUET`,
-    description: `Step-by-step Technical Workflow, Development Roadmap, Engineering Challenges, and Testing Protocols for ${subteam.title} at Team KILOFLIGHT KUET Formula Student.`,
+    title: `${subteam.title} — Technical Workflow & Execution Roadmap | Team KILOFLIGHT KUET`,
+    description: `Comprehensive technical workflow, development phases, and engineering challenge blueprint for ${subteam.title} at Khulna University of Engineering & Technology.`,
   };
 }
 
@@ -59,7 +59,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page" style={{ color: '#DC2626' }}>
-                Part 2: Technical Workflow
+                Technical Workflow
               </li>
             </ol>
           </nav>
@@ -70,6 +70,21 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
               className="btn btn-sm d-inline-flex align-items-center gap-1"
               style={{
                 background: '#FFFFFF',
+                color: subteam.accentColor,
+                border: `1.5px solid ${subteam.accentColor}`,
+                fontWeight: 700,
+                fontSize: '12px',
+                padding: '6px 14px',
+              }}
+            >
+              <i className="bi bi-book-half me-1"></i> Part 1: Basic Technical Knowledge
+            </Link>
+
+            <Link
+              href="/subteams"
+              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              style={{
+                background: '#F8FAFC',
                 color: '#0F172A',
                 border: '1.5px solid #0F172A',
                 boxShadow: '2px 2px 0 #0F172A',
@@ -78,31 +93,17 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 padding: '6px 14px',
               }}
             >
-              <i className="bi bi-book me-1"></i> Part 1: Basic Knowledge
-            </Link>
-            <Link
-              href="/subteams"
-              className="btn btn-sm d-inline-flex align-items-center gap-1"
-              style={{
-                background: '#F8FAFC',
-                color: '#64748B',
-                border: '1.5px solid #CBD5E1',
-                fontWeight: 600,
-                fontSize: '12px',
-                padding: '6px 12px',
-              }}
-            >
-              All Divisions
+              <i className="bi bi-arrow-left"></i> All Sub-Teams
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Hero Header Section with 2-Part Switcher */}
+      {/* Hero Header Section */}
       <section
         className="py-5"
         style={{
-          background: `linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(15, 23, 42, 0.05) 100%)`,
+          background: `linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(15, 23, 42, 0.04) 100%)`,
           borderBottom: '2px solid #0F172A',
         }}
       >
@@ -120,7 +121,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                     fontSize: '11px',
                   }}
                 >
-                  DIVISION {subteam.divisionNumber} WORKFLOW
+                  PART 2: WORKFLOW &amp; EXECUTION
                 </span>
                 <span
                   className="badge"
@@ -132,23 +133,23 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                     fontSize: '11px',
                   }}
                 >
-                  {subteam.badge}
+                  DIVISION {subteam.divisionNumber} • {subteam.badge}
                 </span>
               </div>
 
               <h1 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 900, fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
-                {subteam.title}
+                {subteam.title} WORKFLOW
               </h1>
 
               <p className="lead fw-bold mb-3" style={{ color: '#DC2626', fontSize: '1.15rem' }}>
-                Technical Workflow, Development Phases &amp; Solution Blueprint
+                Engineering Execution Roadmap &amp; Solution Blueprint
               </p>
 
               <p className="text-muted mb-4" style={{ maxWidth: '750px', lineHeight: '1.7', fontSize: '15px' }}>
-                Discover the end-to-step engineering pipeline of {subteam.title} at KUET Formula Student. From initial FSAE rulebook constraints and CAD modeling to FEA/CFD simulation, precision fabrication, dyno calibration, and track shakedown.
+                This dedicated workflow documents the full operational development cycle for the {subteam.title} division. From initial rulebook interpretation and CAD packaging to rigorous CAE validation, CNC/TIG fabrication, and track endurance testing.
               </p>
 
-              {/* Two Primary Part Navigation Tabs */}
+              {/* Navigation Switcher Tabs */}
               <div className="d-flex gap-3 flex-wrap">
                 <Link
                   href={`/subteams/${subteam.slug}`}
@@ -161,13 +162,11 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                     padding: '10px 20px',
                     fontWeight: 800,
                     fontSize: '13px',
-                    borderRadius: '8px',
                     textDecoration: 'none',
-                    transition: 'all 0.15s ease',
+                    borderRadius: '8px',
                   }}
                 >
-                  <i className="bi bi-arrow-left text-primary"></i>
-                  <i className="bi bi-book-half text-primary"></i>
+                  <i className="bi bi-book text-primary"></i>
                   <span>PART 1: Basic Technical Knowledge</span>
                 </Link>
 
@@ -182,12 +181,10 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                     fontWeight: 800,
                     fontSize: '13px',
                     borderRadius: '8px',
-                    cursor: 'default',
                   }}
                 >
-                  <i className="bi bi-diagram-3-fill"></i>
-                  <span>PART 2: Technical Workflow &amp; Roadmap</span>
-                  <span className="badge bg-dark ms-1" style={{ fontSize: '10px' }}>CURRENT PAGE</span>
+                  <i className="bi bi-diagram-3-fill text-warning"></i>
+                  <span>PART 2: Technical Workflow (Current Page)</span>
                 </div>
               </div>
             </div>
@@ -206,7 +203,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   style={{
                     width: '76px',
                     height: '76px',
-                    background: '#FEF2F2',
+                    background: '#F8FAFC',
                     border: '2px solid #DC2626',
                     color: '#DC2626',
                     fontSize: '34px',
@@ -216,18 +213,14 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 </div>
 
                 <div className="small fw-bold text-uppercase mb-1" style={{ color: '#64748B', letterSpacing: '1px' }}>
-                  Execution Pipeline
+                  Execution Roadmap
                 </div>
                 <h5 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>
-                  {subteam.workflow.length} WORKFLOW PHASES
+                  {subteam.workflow.length} Development Phases
                 </h5>
-
-                <div
-                  className="p-2 mb-3 rounded"
-                  style={{ background: '#F8FAFC', border: '1px solid #CBD5E1', color: '#0F172A', fontSize: '12px', fontWeight: 700 }}
-                >
-                  <i className="bi bi-calendar-check-fill text-danger me-1"></i> Full Season Engineering Cycle
-                </div>
+                <p className="small text-muted mb-3" style={{ fontSize: '12px' }}>
+                  Full lifecycle track-readiness validation for Formula Student events.
+                </p>
 
                 <div className="d-flex justify-content-center gap-2 flex-wrap">
                   {subteam.tools.slice(0, 3).map((t, idx) => (
@@ -252,298 +245,292 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Main Content Body: Part 2 */}
+      {/* Main Content Body */}
       <div className="container mx-auto px-4 py-5">
+        {/* =========================================================================
+            SECTION 2.1: STEP-BY-STEP DEVELOPMENT PHASES & TIMELINE ROADMAP
+            ========================================================================= */}
         <div className="mb-5">
-          {/* Part 2 Header Banner */}
-          <div
-            className="p-3 px-4 mb-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-2"
-            style={{
-              background: '#0F172A',
-              color: '#FFFFFF',
-              border: '2px solid #0F172A',
-              boxShadow: '4px 4px 0 #DC2626',
-            }}
-          >
-            <div className="d-flex align-items-center gap-3">
-              <span
-                className="d-inline-flex align-items-center justify-content-center rounded-circle font-orbitron fw-bold"
-                style={{ width: '32px', height: '32px', background: '#DC2626', color: '#FFFFFF', fontSize: '14px' }}
-              >
-                2
-              </span>
-              <div>
-                <span className="small text-uppercase fw-bold" style={{ color: '#FCA5A5', letterSpacing: '1px', fontSize: '11px' }}>
-                  SECONDARY SECTION
-                </span>
-                <h4 className="font-orbitron mb-0" style={{ color: '#FFFFFF', fontWeight: 900 }}>
-                  PART 2: STEP-BY-STEP TECHNICAL WORKFLOW &amp; EXECUTION
-                </h4>
-              </div>
+          <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+            <div className="d-flex align-items-center gap-2">
+              <span className="badge-motorsport red">2.1 Execution Timeline</span>
+              <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+                DEVELOPMENT PHASES &amp; TIMELINE ROADMAP
+              </h3>
             </div>
-            <span className="badge" style={{ background: '#1E293B', color: '#94A3B8', border: '1px solid #334155' }}>
-              Execution Phases • Priorities &amp; Challenges • On-Track Testing
+            <span className="badge-motorsport red">
+              {subteam.workflow.length} Execution Phases
             </span>
           </div>
 
-          {/* 2.1 Step-by-Step Technical Workflow Phases */}
-          <div className="mb-5">
-            <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-              <div className="d-flex align-items-center gap-2">
-                <span className="badge-motorsport red">2.1</span>
-                <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                  DEVELOPMENT PHASES &amp; TIMELINE ROADMAP
-                </h4>
-              </div>
-              <span className="badge-motorsport red">
-                {subteam.workflow.length} Execution Phases
-              </span>
-            </div>
-
-            <div className="row g-4">
-              {subteam.workflow.map((w) => (
-                <div key={w.step} className="col-12">
-                  <div
-                    className="p-4 rounded"
-                    style={{
-                      background: '#FFFFFF',
-                      border: '2px solid #0F172A',
-                      boxShadow: '3px 3px 0 #0F172A',
-                    }}
-                  >
-                    <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-                      <div className="d-flex align-items-center gap-3">
-                        <span
-                          className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron"
-                          style={{
-                            width: '32px',
-                            height: '32px',
-                            background: subteam.accentColor,
-                            color: '#FFFFFF',
-                            fontSize: '14px',
-                          }}
-                        >
-                          {w.step}
-                        </span>
-                        <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                          {w.name}
-                        </h5>
-                      </div>
-
-                      {w.duration && (
-                        <span
-                          className="badge"
-                          style={{
-                            background: '#F8FAFC',
-                            color: '#0F172A',
-                            border: '1.5px solid #0F172A',
-                            fontWeight: 700,
-                          }}
-                        >
-                          <i className="bi bi-clock-history me-1 text-danger"></i> {w.duration}
-                        </span>
-                      )}
+          <div className="row g-4">
+            {subteam.workflow.map((w) => (
+              <div key={w.step} className="col-12">
+                <div
+                  className="p-4 rounded"
+                  style={{
+                    background: '#FFFFFF',
+                    border: '2px solid #0F172A',
+                    boxShadow: '3px 3px 0 #0F172A',
+                  }}
+                >
+                  <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                    <div className="d-flex align-items-center gap-3">
+                      <span
+                        className="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold font-orbitron"
+                        style={{
+                          width: '36px',
+                          height: '36px',
+                          background: subteam.accentColor,
+                          color: '#FFFFFF',
+                          fontSize: '14px',
+                        }}
+                      >
+                        0{w.step}
+                      </span>
+                      <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+                        {w.name}
+                      </h4>
                     </div>
 
-                    <p className="mb-3 small" style={{ color: '#334155', lineHeight: '1.7', fontSize: '14px' }}>
-                      {w.desc}
-                    </p>
-
-                    {w.deliverables && w.deliverables.length > 0 && (
-                      <div className="pt-2 border-top d-flex align-items-center gap-2 flex-wrap">
-                        <span className="small fw-bold text-muted me-1" style={{ fontSize: '12px' }}>
-                          Phase Deliverables:
-                        </span>
-                        {w.deliverables.map((d, dIdx) => (
-                          <span
-                            key={dIdx}
-                            className="badge"
-                            style={{
-                              background: '#F1F5F9',
-                              color: '#0F172A',
-                              border: '1px solid #CBD5E1',
-                              fontSize: '11px',
-                              fontWeight: 600,
-                            }}
-                          >
-                            <i className="bi bi-check2 me-1 text-success"></i> {d}
-                          </span>
-                        ))}
-                      </div>
+                    {w.duration && (
+                      <span
+                        className="badge"
+                        style={{
+                          background: '#F8FAFC',
+                          color: '#0F172A',
+                          border: '1.5px solid #0F172A',
+                          fontWeight: 700,
+                          fontSize: '12px',
+                        }}
+                      >
+                        <i className="bi bi-clock-history me-1 text-danger"></i> {w.duration}
+                      </span>
                     )}
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* 2.2 Engineering Priorities & Technical Blueprint Table */}
-          <div className="mb-5">
-            <div className="d-flex align-items-center gap-2 mb-3">
-              <span className="badge-motorsport red">2.2</span>
-              <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                ENGINEERING CHALLENGES &amp; SOLUTION BLUEPRINT
-              </h4>
-            </div>
-
-            <div
-              className="rounded overflow-hidden"
-              style={{
-                background: '#FFFFFF',
-                border: '2px solid #0F172A',
-                boxShadow: '4px 4px 0 #0F172A',
-              }}
-            >
-              <div className="table-responsive">
-                <table className="table table-hover align-middle mb-0" style={{ borderCollapse: 'collapse' }}>
-                  <thead style={{ background: '#0F172A', color: '#FFFFFF' }}>
-                    <tr>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '22%' }}>
-                        SYSTEM COMPONENT
-                      </th>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '28%' }}>
-                        INTEGRATION GOAL
-                      </th>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '28%' }}>
-                        ENGINEERING CHALLENGE
-                      </th>
-                      <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '22%' }}>
-                        KILOFLIGHT SOLUTION
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {subteam.engineeringPriorities.map((item, idx) => (
-                      <tr key={idx} style={{ background: idx % 2 === 0 ? '#FFFFFF' : '#F8FAFC' }}>
-                        <td className="py-3 px-4 fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>
-                          <i className="bi bi-cpu me-2 text-danger"></i>
-                          {item.component}
-                        </td>
-                        <td className="py-3 px-4 small" style={{ color: '#334155', lineHeight: '1.6' }}>
-                          {item.goal}
-                        </td>
-                        <td className="py-3 px-4 small" style={{ color: '#DC2626', fontWeight: 600, lineHeight: '1.6' }}>
-                          <i className="bi bi-exclamation-triangle-fill me-1"></i> {item.challenge}
-                        </td>
-                        <td className="py-3 px-4 small" style={{ color: '#0F172A', fontWeight: 600, lineHeight: '1.6' }}>
-                          <i className="bi bi-check-circle-fill text-success me-1"></i> {item.solution}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          {/* 2.3 Quality Assurance & Dynamic Track Testing Protocols */}
-          <div className="mb-5">
-            <div className="d-flex align-items-center gap-2 mb-3">
-              <span className="badge-motorsport red">2.3</span>
-              <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                QUALITY ASSURANCE &amp; TRACK TESTING PROTOCOLS
-              </h4>
-            </div>
-
-            <div className="row g-4">
-              <div className="col-md-6 col-12">
-                <div
-                  className="p-4 rounded h-100"
-                  style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
-                >
-                  <div className="d-flex align-items-center gap-2 mb-2">
-                    <i className="bi bi-speedometer2 text-danger fs-4"></i>
-                    <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                      Dyno &amp; Static Verification
-                    </h5>
-                  </div>
-                  <p className="small text-muted mb-3" style={{ lineHeight: '1.6' }}>
-                    Rigorous pre-track qualification ensuring all sub-assemblies meet or exceed Formula Student rulebook structural safety factors and thermodynamic benchmarks.
+                  <p className="mb-3" style={{ color: '#334155', lineHeight: '1.8', fontSize: '15px' }}>
+                    {w.desc}
                   </p>
-                  <ul className="list-unstyled mb-0 small" style={{ color: '#334155' }}>
-                    <li className="d-flex align-items-center gap-2 mb-2">
-                      <i className="bi bi-check-circle-fill text-success"></i>
-                      <span>103 dB(A) fast response sound meter acoustic validation</span>
-                    </li>
-                    <li className="d-flex align-items-center gap-2 mb-2">
-                      <i className="bi bi-check-circle-fill text-success"></i>
-                      <span>60° tilt table stability test (no fuel/fluid leakage)</span>
-                    </li>
-                    <li className="d-flex align-items-center gap-2 mb-0">
-                      <i className="bi bi-check-circle-fill text-success"></i>
-                      <span>4-wheel hydraulic lockup test under 2,000 N pedal load</span>
-                    </li>
-                  </ul>
+
+                  {w.deliverables && w.deliverables.length > 0 && (
+                    <div className="pt-3 border-top d-flex align-items-center gap-2 flex-wrap">
+                      <span className="small fw-bold text-muted me-1" style={{ fontSize: '12px' }}>
+                        Key Milestones &amp; Deliverables:
+                      </span>
+                      {w.deliverables.map((d, dIdx) => (
+                        <span
+                          key={dIdx}
+                          className="badge"
+                          style={{
+                            background: '#F1F5F9',
+                            color: '#0F172A',
+                            border: '1px solid #CBD5E1',
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            padding: '6px 10px',
+                          }}
+                        >
+                          <i className="bi bi-check2-circle me-1 text-success"></i> {d}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
-
-              <div className="col-md-6 col-12">
-                <div
-                  className="p-4 rounded h-100"
-                  style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
-                >
-                  <div className="d-flex align-items-center gap-2 mb-2">
-                    <i className="bi bi-flag-fill text-danger fs-4"></i>
-                    <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-                      Dynamic Shakedown &amp; Telemetry
-                    </h5>
-                  </div>
-                  <p className="small text-muted mb-3" style={{ lineHeight: '1.6' }}>
-                    Continuous live CAN-bus data logging across skidpad, 75m straight-line acceleration, and 22 km endurance stints to validate suspension geometry, cooling, and tire grip.
-                  </p>
-                  <ul className="list-unstyled mb-0 small" style={{ color: '#334155' }}>
-                    <li className="d-flex align-items-center gap-2 mb-2">
-                      <i className="bi bi-check-circle-fill text-success"></i>
-                      <span>75m acceleration sprint telemetry &amp; launch control tuning</span>
-                    </li>
-                    <li className="d-flex align-items-center gap-2 mb-2">
-                      <i className="bi bi-check-circle-fill text-success"></i>
-                      <span>Constant radius figure-8 skidpad lateral G-force evaluation</span>
-                    </li>
-                    <li className="d-flex align-items-center gap-2 mb-0">
-                      <i className="bi bi-check-circle-fill text-success"></i>
-                      <span>22 km endurance thermal stress and radiator airflow validation</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Return to Part 1 Callout Banner */}
-          <div
-            className="p-4 p-md-5 rounded text-center my-5"
-            style={{
-              background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
-              color: '#FFFFFF',
-              border: '2px solid #0F172A',
-              boxShadow: `5px 5px 0 ${subteam.accentColor}`,
-            }}
-          >
-            <span className="badge-motorsport red mb-2">Review Architecture &amp; Subsystems</span>
-            <h3 className="font-orbitron mb-2" style={{ color: '#FFFFFF', fontWeight: 900 }}>
-              WANT TO REVIEW PART 1: BASIC TECHNICAL KNOWLEDGE?
-            </h3>
-            <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '680px', color: '#CBD5E1', fontSize: '15px' }}>
-              Inspect the 3D CAD engine and transmission assemblies, architectural subsystem breakdowns, technical cutaways, driveline calculators, and hardware specifications matrix.
-            </p>
-            <Link
-              href={`/subteams/${subteam.slug}`}
-              className="custom-btn text-decoration-none d-inline-flex align-items-center gap-2"
-              style={{ padding: '14px 32px', fontSize: '15px' }}
-            >
-              <i className="bi bi-arrow-left"></i>
-              <span>Back to Part 1: Basic Technical Knowledge</span>
-            </Link>
+            ))}
           </div>
         </div>
+
+        {/* =========================================================================
+            SECTION 2.2: ENGINEERING CHALLENGES & SOLUTION BLUEPRINT
+            ========================================================================= */}
+        <div className="mb-5">
+          <div className="d-flex align-items-center gap-2 mb-3">
+            <span className="badge-motorsport red">2.2 Engineering Matrix</span>
+            <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+              ENGINEERING CHALLENGES &amp; SOLUTION BLUEPRINT
+            </h3>
+          </div>
+
+          <div
+            className="rounded overflow-hidden"
+            style={{
+              background: '#FFFFFF',
+              border: '2px solid #0F172A',
+              boxShadow: '4px 4px 0 #0F172A',
+            }}
+          >
+            <div className="table-responsive">
+              <table className="table table-hover align-middle mb-0" style={{ borderCollapse: 'collapse' }}>
+                <thead style={{ background: '#0F172A', color: '#FFFFFF' }}>
+                  <tr>
+                    <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '22%' }}>
+                      SYSTEM COMPONENT
+                    </th>
+                    <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '28%' }}>
+                      INTEGRATION GOAL
+                    </th>
+                    <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '28%' }}>
+                      ENGINEERING CHALLENGE
+                    </th>
+                    <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '22%' }}>
+                      KILOFLIGHT SOLUTION
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subteam.engineeringPriorities.map((item, idx) => (
+                    <tr key={idx} style={{ background: idx % 2 === 0 ? '#FFFFFF' : '#F8FAFC' }}>
+                      <td className="py-3 px-4 fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                        <i className="bi bi-cpu me-2 text-danger"></i>
+                        {item.component}
+                      </td>
+                      <td className="py-3 px-4 small" style={{ color: '#334155', lineHeight: '1.6' }}>
+                        {item.goal}
+                      </td>
+                      <td className="py-3 px-4 small" style={{ color: '#DC2626', fontWeight: 600, lineHeight: '1.6' }}>
+                        <i className="bi bi-exclamation-triangle-fill me-1"></i> {item.challenge}
+                      </td>
+                      <td className="py-3 px-4 small" style={{ color: '#0F172A', fontWeight: 600, lineHeight: '1.6' }}>
+                        <i className="bi bi-check-circle-fill text-success me-1"></i> {item.solution}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            SECTION 2.3: TRACK TESTING PROTOCOLS & QUALITY ASSURANCE
+            ========================================================================= */}
+        <div className="mb-5">
+          <div className="d-flex align-items-center gap-2 mb-3">
+            <span className="badge-motorsport red">2.3 Quality Assurance</span>
+            <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+              TRACK TESTING &amp; SCRUTINEERING PROTOCOLS
+            </h3>
+          </div>
+
+          <div className="row g-4">
+            <div className="col-md-4 col-12">
+              <div
+                className="p-4 rounded h-100"
+                style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
+              >
+                <div className="d-flex align-items-center gap-2 mb-3">
+                  <div
+                    className="rounded-circle d-inline-flex align-items-center justify-content-center"
+                    style={{ width: '40px', height: '40px', background: '#FEF2F2', border: '1.5px solid #EF4444', color: '#DC2626' }}
+                  >
+                    <i className="bi bi-shield-check"></i>
+                  </div>
+                  <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: '15px' }}>
+                    Static Scrutineering
+                  </h5>
+                </div>
+                <p className="small text-muted mb-0" style={{ lineHeight: '1.7' }}>
+                  Pre-inspection verification against the official Formula Student rulebook. Covers structural wall thicknesses, safety disconnects, firewall clearances, and fluid containment seals.
+                </p>
+              </div>
+            </div>
+
+            <div className="col-md-4 col-12">
+              <div
+                className="p-4 rounded h-100"
+                style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
+              >
+                <div className="d-flex align-items-center gap-2 mb-3">
+                  <div
+                    className="rounded-circle d-inline-flex align-items-center justify-content-center"
+                    style={{ width: '40px', height: '40px', background: '#F0F9FF', border: '1.5px solid #0284C7', color: '#0284C7' }}
+                  >
+                    <i className="bi bi-speedometer"></i>
+                  </div>
+                  <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: '15px' }}>
+                    Dyno &amp; Brake Test
+                  </h5>
+                </div>
+                <p className="small text-muted mb-0" style={{ lineHeight: '1.7' }}>
+                  Full-throttle dynamometer tuning to map volumetric efficiency and air-fuel ratios. Four-wheel simultaneous lockup test verifying 2,000 N master cylinder hydraulic pedal pressure.
+                </p>
+              </div>
+            </div>
+
+            <div className="col-md-4 col-12">
+              <div
+                className="p-4 rounded h-100"
+                style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
+              >
+                <div className="d-flex align-items-center gap-2 mb-3">
+                  <div
+                    className="rounded-circle d-inline-flex align-items-center justify-content-center"
+                    style={{ width: '40px', height: '40px', background: '#F0FDF4', border: '1.5px solid #16A34A', color: '#16A34A' }}
+                  >
+                    <i className="bi bi-flag-fill"></i>
+                  </div>
+                  <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: '15px' }}>
+                    Endurance Shakedown
+                  </h5>
+                </div>
+                <p className="small text-muted mb-0" style={{ lineHeight: '1.7' }}>
+                  22 km high-intensity dynamic track test. Thermal logging of oil, coolant, differential casing, and brake rotors to guarantee 100% mechanical reliability under sustained cornering.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Prominent Link Back to Part 1 */}
+        <section
+          className="p-4 p-md-5 rounded mb-5"
+          style={{
+            background: '#FFFFFF',
+            border: '2px solid #0F172A',
+            boxShadow: `5px 5px 0 ${subteam.accentColor}`,
+          }}
+        >
+          <div className="row align-items-center g-3">
+            <div className="col-lg-8 col-12">
+              <span className="badge-motorsport red mb-2">Technical Architecture</span>
+              <h3 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 900 }}>
+                EXPLORE {subteam.title.toUpperCase()} BASIC KNOWLEDGE &amp; 3D MODELS
+              </h3>
+              <p className="text-muted mb-0" style={{ fontSize: '15px', lineHeight: '1.6' }}>
+                Review the core engineering architecture, interactive 3D CAD models (Engine and Transmission), architectural subsystems, blueprints, and mathematical solvers on the dedicated Part 1 page.
+              </p>
+            </div>
+            <div className="col-lg-4 col-12 text-lg-end">
+              <Link
+                href={`/subteams/${subteam.slug}`}
+                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                style={{
+                  background: '#0F172A',
+                  color: '#FFFFFF',
+                  border: '2px solid #0F172A',
+                  boxShadow: `3px 3px 0 ${subteam.accentColor}`,
+                  padding: '12px 24px',
+                  fontWeight: 800,
+                  fontSize: '14px',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                }}
+              >
+                <span>Go to Part 1: Basic Knowledge</span>
+                <i className="bi bi-arrow-right"></i>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* Cross-Functional Division Partnerships */}
         <section className="mb-5">
           <div className="d-flex align-items-center gap-2 mb-4">
             <span className="badge-motorsport red">DIVISION INTERFACES</span>
             <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-              CROSS-FUNCTIONAL SYSTEM INTEGRATION
+              CROSS-FUNCTIONAL WORKFLOW INTEGRATION
             </h4>
           </div>
 
@@ -554,7 +541,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
               return (
                 <div key={partner.id} className="col-md-4 col-12">
                   <Link
-                    href={`/subteams/${partner.id}`}
+                    href={`/subteams/${partner.id}/workflow`}
                     className="p-3 rounded d-flex align-items-center justify-content-between text-decoration-none h-100"
                     style={{
                       background: '#FFFFFF',
@@ -579,7 +566,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                       </div>
                       <div>
                         <span className="small text-muted text-uppercase d-block" style={{ fontSize: '10.5px' }}>
-                          Division {partnerData.divisionNumber}
+                          Division {partnerData.divisionNumber} Workflow
                         </span>
                         <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>
                           {partnerData.title}
@@ -606,21 +593,21 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
         >
           <span className="badge-motorsport red mb-2">Batch 2k23 Recruitment Open</span>
           <h2 className="font-orbitron mb-2" style={{ color: '#FFFFFF', fontWeight: 900 }}>
-            WANT TO ENGINEER IN {subteam.title.toUpperCase()}?
+            JOIN THE {subteam.title.toUpperCase()} DIVISION
           </h2>
           <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '650px', color: '#CBD5E1' }}>
-            Recruitment is currently open for KUET Batch 2k23. Join the {subteam.shortTitle} team to design, manufacture, and test track-ready Formula Student race components.
+            Work directly on CAD design, computational modeling, and precision manufacturing in Team KILOFLIGHT at Khulna University of Engineering &amp; Technology.
           </p>
           <div className="d-flex justify-content-center gap-3 flex-wrap">
             <Link href="/join-us" className="custom-btn text-decoration-none" style={{ padding: '12px 28px', fontSize: '14px' }}>
-              Apply for {subteam.shortTitle} Now
+              Apply for {subteam.shortTitle} Induction
             </Link>
             <Link
               href="/subteams"
               className="custom-btn-outline text-decoration-none"
               style={{ background: '#FFFFFF', color: '#0F172A', padding: '12px 28px', fontSize: '14px' }}
             >
-              Explore Other Sub-Teams
+              Explore All Divisions
             </Link>
           </div>
         </section>

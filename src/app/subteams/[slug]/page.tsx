@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subteams-data';
+import { SUBTEAMS_DATA, getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subteams-data';
 import PowertrainCalculator from '@/components/PowertrainCalculator';
 import SubteamMediaGallery from '@/components/SubteamMediaGallery';
 import Powertrain3DModelsViewer from '@/components/Powertrain3DModelsViewer';
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `Part 1: Basic Knowledge - ${subteam.title} | Team KILOFLIGHT KUET`,
-    description: `Basic Technical Knowledge, 3D CAD architecture, specifications, and subsystems for ${subteam.title} at Team KILOFLIGHT KUET Formula Student.`,
+    title: `${subteam.title} — Basic Technical Knowledge & Architecture | Team KILOFLIGHT KUET`,
+    description: `Core architecture, 3D CAD models, subsystems, specifications, and solvers for ${subteam.title} at Team KILOFLIGHT.`,
   };
 }
 
@@ -55,7 +55,7 @@ const SUBTEAM_IMAGE_MAP: Record<string, { image: string; caption: string }> = {
   },
 };
 
-export default async function SubteamKnowledgePage({ params }: PageProps) {
+export default async function DedicatedSubteamPage({ params }: PageProps) {
   const { slug } = await params;
   const subteam = getSubteamBySlug(slug);
 
@@ -83,36 +83,48 @@ export default async function SubteamKnowledgePage({ params }: PageProps) {
                   Sub-Teams
                 </Link>
               </li>
-              <li className="breadcrumb-item">
-                <Link href={`/subteams/${subteam.slug}`} className="text-decoration-none" style={{ color: '#64748B' }}>
-                  {subteam.shortTitle}
-                </Link>
-              </li>
               <li className="breadcrumb-item active" aria-current="page" style={{ color: subteam.accentColor }}>
-                Part 1: Basic Technical Knowledge
+                {subteam.shortTitle}
               </li>
             </ol>
           </nav>
 
-          <Link
-            href="/subteams"
-            className="btn btn-sm d-inline-flex align-items-center gap-1"
-            style={{
-              background: '#F8FAFC',
-              color: '#0F172A',
-              border: '1.5px solid #0F172A',
-              boxShadow: '2px 2px 0 #0F172A',
-              fontWeight: 700,
-              fontSize: '12px',
-              padding: '6px 14px',
-            }}
-          >
-            <i className="bi bi-arrow-left"></i> All Sub-Teams Overview
-          </Link>
+          <div className="d-flex align-items-center gap-2">
+            <Link
+              href={`/subteams/${subteam.slug}/workflow`}
+              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              style={{
+                background: '#FEF2F2',
+                color: '#DC2626',
+                border: '1.5px solid #DC2626',
+                fontWeight: 700,
+                fontSize: '12px',
+                padding: '6px 14px',
+              }}
+            >
+              <i className="bi bi-diagram-3-fill me-1"></i> Part 2: Technical Workflow &rarr;
+            </Link>
+
+            <Link
+              href="/subteams"
+              className="btn btn-sm d-inline-flex align-items-center gap-1"
+              style={{
+                background: '#F8FAFC',
+                color: '#0F172A',
+                border: '1.5px solid #0F172A',
+                boxShadow: '2px 2px 0 #0F172A',
+                fontWeight: 700,
+                fontSize: '12px',
+                padding: '6px 14px',
+              }}
+            >
+              <i className="bi bi-arrow-left"></i> All Sub-Teams Overview
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Hero Header Section with 2-Part Switcher */}
+      {/* Hero Header Section */}
       <section
         className="py-5"
         style={{
@@ -162,25 +174,23 @@ export default async function SubteamKnowledgePage({ params }: PageProps) {
                 {subteam.executiveSummary}
               </p>
 
-              {/* Two Primary Part Navigation Tabs */}
+              {/* Two Primary Part Quick Links */}
               <div className="d-flex gap-3 flex-wrap">
                 <div
                   className="btn btn-sm d-inline-flex align-items-center gap-2"
                   style={{
-                    background: subteam.accentColor,
+                    background: '#0F172A',
                     color: '#FFFFFF',
                     border: '2px solid #0F172A',
-                    boxShadow: '3px 3px 0 #0F172A',
+                    boxShadow: `3px 3px 0 ${subteam.accentColor}`,
                     padding: '10px 20px',
                     fontWeight: 800,
                     fontSize: '13px',
                     borderRadius: '8px',
-                    cursor: 'default',
                   }}
                 >
-                  <i className="bi bi-book-half"></i>
+                  <i className="bi bi-book-half text-warning"></i>
                   <span>PART 1: Basic Technical Knowledge</span>
-                  <span className="badge bg-dark ms-1" style={{ fontSize: '10px' }}>CURRENT PAGE</span>
                 </div>
 
                 <Link
@@ -190,18 +200,16 @@ export default async function SubteamKnowledgePage({ params }: PageProps) {
                     background: '#FFFFFF',
                     color: '#0F172A',
                     border: '2px solid #0F172A',
-                    boxShadow: '3px 3px 0 #0F172A',
+                    boxShadow: '3px 3px 0 #DC2626',
                     padding: '10px 20px',
                     fontWeight: 800,
                     fontSize: '13px',
-                    borderRadius: '8px',
                     textDecoration: 'none',
-                    transition: 'all 0.15s ease',
+                    borderRadius: '8px',
                   }}
                 >
                   <i className="bi bi-diagram-3-fill text-danger"></i>
-                  <span>PART 2: Technical Workflow &amp; Roadmap</span>
-                  <i className="bi bi-arrow-right ms-1 text-danger"></i>
+                  <span>PART 2: Technical Workflow Page &rarr;</span>
                 </Link>
               </div>
             </div>
@@ -268,9 +276,12 @@ export default async function SubteamKnowledgePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Main Content Body: Part 1 */}
+      {/* Main Content Body */}
       <div className="container mx-auto px-4 py-5">
-        <div className="mb-5">
+        {/* =========================================================================
+            PART 1: BASIC KNOWLEDGE ABOUT THE SUBTEAM
+            ========================================================================= */}
+        <div id="part-1" className="mb-5 pt-3">
           {/* Part 1 Header Banner */}
           <div
             className="p-3 px-4 mb-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-2"
@@ -322,7 +333,7 @@ export default async function SubteamKnowledgePage({ params }: PageProps) {
             </p>
           </div>
 
-          {/* 1.2 Interactive 3D CAD Inspection (Engine & Transmission Gearbox for Powertrain) */}
+          {/* 1.2 Core Power & Drivetrain 3D Models (Engine & Transmission) */}
           {isPowertrain && <Powertrain3DModelsViewer />}
 
           {/* 1.3 Subsystems Breakdown */}
@@ -489,34 +500,51 @@ export default async function SubteamKnowledgePage({ params }: PageProps) {
               </div>
             </div>
           </div>
-
-          {/* Proceed to Part 2 Callout Banner */}
-          <div
-            className="p-4 p-md-5 rounded text-center my-5"
-            style={{
-              background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
-              color: '#FFFFFF',
-              border: '2px solid #0F172A',
-              boxShadow: `5px 5px 0 ${subteam.accentColor}`,
-            }}
-          >
-            <span className="badge-motorsport red mb-2">Continue to Next Stage</span>
-            <h3 className="font-orbitron mb-2" style={{ color: '#FFFFFF', fontWeight: 900 }}>
-              EXPLORE PART 2: TECHNICAL WORKFLOW &amp; EXECUTION ROADMAP
-            </h3>
-            <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '680px', color: '#CBD5E1', fontSize: '15px' }}>
-              Learn how the {subteam.shortTitle} team executes from initial FSAE rulebook constraints to 3D CAD modeling, FEA/CFD simulation, precision fabrication, dyno calibration, and track testing.
-            </p>
-            <Link
-              href={`/subteams/${subteam.slug}/workflow`}
-              className="custom-btn text-decoration-none d-inline-flex align-items-center gap-2"
-              style={{ padding: '14px 32px', fontSize: '15px' }}
-            >
-              <span>Go to Part 2: Technical Workflow</span>
-              <i className="bi bi-arrow-right"></i>
-            </Link>
-          </div>
         </div>
+
+        {/* =========================================================================
+            PART 2: LINK TO DEDICATED TECHNICAL WORKFLOW PAGE
+            ========================================================================= */}
+        <section
+          className="p-4 p-md-5 rounded mb-5"
+          style={{
+            background: '#FFFFFF',
+            border: '2px solid #0F172A',
+            boxShadow: '5px 5px 0 #DC2626',
+          }}
+        >
+          <div className="row align-items-center g-3">
+            <div className="col-lg-8 col-12">
+              <span className="badge-motorsport red mb-2">Dedicated Execution Page</span>
+              <h3 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 900 }}>
+                PART 2: {subteam.title.toUpperCase()} TECHNICAL WORKFLOW &amp; ROADMAP
+              </h3>
+              <p className="text-muted mb-0" style={{ fontSize: '15px', lineHeight: '1.7' }}>
+                Explore the {subteam.workflow.length}-phase development roadmap, step-by-step engineering timelines, milestone deliverables, and the engineering challenge solution blueprint for this division on its dedicated page.
+              </p>
+            </div>
+            <div className="col-lg-4 col-12 text-lg-end">
+              <Link
+                href={`/subteams/${subteam.slug}/workflow`}
+                className="btn btn-sm d-inline-flex align-items-center gap-2"
+                style={{
+                  background: '#DC2626',
+                  color: '#FFFFFF',
+                  border: '2px solid #0F172A',
+                  boxShadow: '3px 3px 0 #0F172A',
+                  padding: '12px 24px',
+                  fontWeight: 800,
+                  fontSize: '14px',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                }}
+              >
+                <span>View Full Technical Workflow</span>
+                <i className="bi bi-arrow-right"></i>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* Cross-Functional Division Partnerships */}
         <section className="mb-5">

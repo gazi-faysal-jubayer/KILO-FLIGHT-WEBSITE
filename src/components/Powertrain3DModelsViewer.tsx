@@ -2,114 +2,121 @@
 
 import React, { useState } from 'react';
 
+type CadTab = 'engine' | 'transmission' | 'both';
+
 export default function Powertrain3DModelsViewer() {
-  const [activeModel, setActiveModel] = useState<'engine' | 'transmission' | 'both'>('engine');
+  const [activeTab, setActiveTab] = useState<CadTab>('engine');
 
   return (
     <div
-      className="p-4 rounded mb-5"
+      className="p-4 p-md-5 rounded mb-4"
       style={{
         background: '#FFFFFF',
         border: '2px solid #0F172A',
         boxShadow: '4px 4px 0 #0284C7',
       }}
     >
-      {/* Section Header */}
-      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      {/* Header and Model Switcher Tabs */}
+      <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
         <div>
-          <span className="badge-motorsport red mb-1">1.2 Interactive 3D CAD Inspection</span>
-          <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
-            CFMOTO 300CC ENGINE &amp; TRANSMISSION GEARBOX 3D MODELS
+          <span className="badge-motorsport red mb-1">1.2 Core Power &amp; Drivetrain 3D Models</span>
+          <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+            {activeTab === 'engine'
+              ? 'CFMOTO 300CC SINGLE-CYLINDER DOHC ENGINE'
+              : activeTab === 'transmission'
+              ? 'MANUAL TRANSMISSION GEARBOX & DIFFERENTIAL'
+              : 'DUAL INSPECTION: ENGINE & TRANSMISSION CAD'}
           </h4>
         </div>
-        <span
-          className="badge"
-          style={{ background: '#F0F9FF', color: '#0284C7', border: '1.5px solid #0284C7', fontWeight: 700 }}
+
+        {/* Tab Buttons */}
+        <div
+          className="d-inline-flex p-1 rounded gap-1 flex-wrap"
+          style={{ background: '#0F172A', border: '1.5px solid #0F172A' }}
         >
-          Interactive 360° Inspection
-        </span>
+          <button
+            type="button"
+            onClick={() => setActiveTab('engine')}
+            className="btn btn-sm d-inline-flex align-items-center gap-2"
+            style={{
+              background: activeTab === 'engine' ? '#0284C7' : 'transparent',
+              color: '#FFFFFF',
+              border: activeTab === 'engine' ? '1px solid #38BDF8' : 'none',
+              fontWeight: 800,
+              fontSize: '12px',
+              padding: '8px 14px',
+              borderRadius: '6px',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            <i className="bi bi-fire"></i>
+            <span>Engine Assembly</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('transmission')}
+            className="btn btn-sm d-inline-flex align-items-center gap-2"
+            style={{
+              background: activeTab === 'transmission' ? '#0284C7' : 'transparent',
+              color: '#FFFFFF',
+              border: activeTab === 'transmission' ? '1px solid #38BDF8' : 'none',
+              fontWeight: 800,
+              fontSize: '12px',
+              padding: '8px 14px',
+              borderRadius: '6px',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            <i className="bi bi-gear-wide-connected"></i>
+            <span>Transmission &amp; Diff</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('both')}
+            className="btn btn-sm d-inline-flex align-items-center gap-2"
+            style={{
+              background: activeTab === 'both' ? '#DC2626' : 'transparent',
+              color: '#FFFFFF',
+              border: activeTab === 'both' ? '1px solid #F87171' : 'none',
+              fontWeight: 800,
+              fontSize: '12px',
+              padding: '8px 14px',
+              borderRadius: '6px',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            <i className="bi bi-columns-gap"></i>
+            <span>Dual View</span>
+          </button>
+        </div>
       </div>
 
       <p className="small text-muted mb-3" style={{ lineHeight: '1.6' }}>
-        Inspect the internal combustion engine assembly and the sequential transmission &amp; differential gearbox below.
-        Use your mouse or touch to orbit in 360°, scroll to zoom, and switch between models:
+        {activeTab === 'engine'
+          ? 'Inspect the high-revving 292.4cc single-cylinder DOHC power unit in 3D. Click and drag to orbit, scroll to zoom, and examine the cylinder block, cylinder head casting, intake port geometry, and valvetrain assembly.'
+          : activeTab === 'transmission'
+          ? 'Inspect the constant-mesh manual transmission and bevel gear differential in 3D. Explore the internal gear clusters, synchronizer rings, selector forks, countershaft, and final drive torque splitting.'
+          : 'Dual inspection mode: View both the CFMoto 300cc engine assembly and the manual transmission gearbox with differential simultaneously side-by-side.'}
       </p>
 
-      {/* Model Selector Tabs */}
-      <div className="d-flex gap-2 flex-wrap mb-4">
-        <button
-          type="button"
-          onClick={() => setActiveModel('engine')}
-          className="btn btn-sm d-inline-flex align-items-center gap-2"
-          style={{
-            background: activeModel === 'engine' ? '#0284C7' : '#F8FAFC',
-            color: activeModel === 'engine' ? '#FFFFFF' : '#0F172A',
-            border: '1.5px solid #0F172A',
-            boxShadow: activeModel === 'engine' ? '2px 2px 0 #0F172A' : 'none',
-            fontWeight: 800,
-            fontSize: '12px',
-            padding: '8px 16px',
-            borderRadius: '6px',
-          }}
-        >
-          <i className="bi bi-cpu-fill"></i>
-          <span>1. CFMoto 300cc Engine CAD</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveModel('transmission')}
-          className="btn btn-sm d-inline-flex align-items-center gap-2"
-          style={{
-            background: activeModel === 'transmission' ? '#0284C7' : '#F8FAFC',
-            color: activeModel === 'transmission' ? '#FFFFFF' : '#0F172A',
-            border: '1.5px solid #0F172A',
-            boxShadow: activeModel === 'transmission' ? '2px 2px 0 #0F172A' : 'none',
-            fontWeight: 800,
-            fontSize: '12px',
-            padding: '8px 16px',
-            borderRadius: '6px',
-          }}
-        >
-          <i className="bi bi-gear-wide-connected"></i>
-          <span>2. Transmission &amp; Differential CAD</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveModel('both')}
-          className="btn btn-sm d-inline-flex align-items-center gap-2"
-          style={{
-            background: activeModel === 'both' ? '#0F172A' : '#F8FAFC',
-            color: activeModel === 'both' ? '#FFFFFF' : '#0F172A',
-            border: '1.5px solid #0F172A',
-            boxShadow: activeModel === 'both' ? '2px 2px 0 #0284C7' : 'none',
-            fontWeight: 800,
-            fontSize: '12px',
-            padding: '8px 16px',
-            borderRadius: '6px',
-          }}
-        >
-          <i className="bi bi-columns-gap"></i>
-          <span>Dual View (Both Models)</span>
-        </button>
-      </div>
-
-      {/* Model Containers */}
+      {/* 3D Embed Viewports */}
       <div className="row g-4">
-        {/* Model 1: CFMoto 300cc Engine */}
-        {(activeModel === 'engine' || activeModel === 'both') && (
-          <div className={activeModel === 'both' ? 'col-lg-6 col-12' : 'col-12'}>
-            <div
-              className="p-2 rounded mb-2 d-flex align-items-center justify-content-between flex-wrap gap-2"
-              style={{ background: '#F8FAFC', border: '1px solid #CBD5E1', fontSize: '12px', fontWeight: 700 }}
-            >
-              <span>
-                <i className="bi bi-cpu-fill text-danger me-2"></i>
-                CFMOTO 300cc Single-Cylinder DOHC 4-Valve Engine
-              </span>
-              <span className="badge bg-secondary">292.4cc • 21.4 kW @ 8,750 RPM</span>
-            </div>
+        {/* Model 1: Engine */}
+        {(activeTab === 'engine' || activeTab === 'both') && (
+          <div className={activeTab === 'both' ? 'col-lg-6 col-12' : 'col-12'}>
+            {activeTab === 'both' && (
+              <div
+                className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
+                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+              >
+                <span>
+                  <i className="bi bi-fire text-danger me-2"></i> CFMOTO 300cc DOHC Engine
+                </span>
+                <span className="badge" style={{ background: '#0284C7' }}>292.4cc</span>
+              </div>
+            )}
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
@@ -118,7 +125,7 @@ export default function Powertrain3DModelsViewer() {
                 background: '#0F172A',
               }}
             >
-              <div className="position-relative" style={{ width: '100%', height: activeModel === 'both' ? '420px' : '480px' }}>
+              <div className="position-relative" style={{ width: '100%', height: activeTab === 'both' ? '430px' : '500px' }}>
                 <iframe
                   title="Engine"
                   src="https://sketchfab.com/models/eea9d9252ab14298b50699a471dc2cee/embed?ui_theme=dark"
@@ -135,6 +142,7 @@ export default function Powertrain3DModelsViewer() {
                 />
               </div>
 
+              {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
                 style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
@@ -169,26 +177,27 @@ export default function Powertrain3DModelsViewer() {
                   </a>
                 </span>
                 <span className="badge" style={{ background: '#1E293B', color: '#38BDF8' }}>
-                  Engine CAD Assembly
+                  CFMoto 300cc ICE Unit
                 </span>
               </div>
             </div>
           </div>
         )}
 
-        {/* Model 2: Manual Transmission Gearbox With Differential */}
-        {(activeModel === 'transmission' || activeModel === 'both') && (
-          <div className={activeModel === 'both' ? 'col-lg-6 col-12' : 'col-12'}>
-            <div
-              className="p-2 rounded mb-2 d-flex align-items-center justify-content-between flex-wrap gap-2"
-              style={{ background: '#F8FAFC', border: '1px solid #CBD5E1', fontSize: '12px', fontWeight: 700 }}
-            >
-              <span>
-                <i className="bi bi-gear-wide-connected text-primary me-2"></i>
-                Manual Transmission Gearbox With Differential Assembly
-              </span>
-              <span className="badge bg-secondary">6-Speed Sequential • Drexler FSAE LSD</span>
-            </div>
+        {/* Model 2: Transmission */}
+        {(activeTab === 'transmission' || activeTab === 'both') && (
+          <div className={activeTab === 'both' ? 'col-lg-6 col-12' : 'col-12'}>
+            {activeTab === 'both' && (
+              <div
+                className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
+                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+              >
+                <span>
+                  <i className="bi bi-gear-wide-connected text-info me-2"></i> Manual Transmission &amp; Differential
+                </span>
+                <span className="badge" style={{ background: '#DC2626' }}>6-Speed Sequential</span>
+              </div>
+            )}
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
@@ -197,7 +206,7 @@ export default function Powertrain3DModelsViewer() {
                 background: '#0F172A',
               }}
             >
-              <div className="position-relative" style={{ width: '100%', height: activeModel === 'both' ? '420px' : '480px' }}>
+              <div className="position-relative" style={{ width: '100%', height: activeTab === 'both' ? '430px' : '500px' }}>
                 <iframe
                   title="Manual Transmission Gearbox With Differential"
                   src="https://sketchfab.com/models/d48d46543d844857b31475e56f941410/embed?preload=1&transparent=1&ui_theme=dark"
@@ -214,12 +223,13 @@ export default function Powertrain3DModelsViewer() {
                 />
               </div>
 
+              {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
                 style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
               >
                 <span>
-                  <i className="bi bi-gear me-1 text-info"></i>
+                  <i className="bi bi-gear me-1 text-danger"></i>
                   <a
                     href="https://sketchfab.com/3d-models/manual-transmission-gearbox-with-differential-d48d46543d844857b31475e56f941410"
                     target="_blank"
@@ -247,12 +257,98 @@ export default function Powertrain3DModelsViewer() {
                     Sketchfab
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#38BDF8' }}>
-                  Driveline CAD Model
+                <span className="badge" style={{ background: '#1E293B', color: '#F87171' }}>
+                  Constant-Mesh Driveline CAD
                 </span>
               </div>
             </div>
           </div>
+        )}
+      </div>
+
+      {/* Model Spec Pills under Viewer */}
+      <div className="row g-3 mt-3">
+        {activeTab === 'engine' ? (
+          <>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Displacement</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>292.4 cc (Single)</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Bore x Stroke</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>78.0 x 61.2 mm</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Compression Ratio</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>11.0:1 Dynamic</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Peak Power / Torque</span>
+                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>27.5 HP @ 8,500 RPM</span>
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'transmission' ? (
+          <>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Gearbox Type</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>6-Speed Sequential Constant Mesh</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Clutch Mechanism</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Wet Multi-Plate Slipper Clutch</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Differential</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Torsen ATB / Bevel Differential</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Final Drive Ratio</span>
+                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>3.28:1 (14T / 46T 520 Chain)</span>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Total Powertrain Mass</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>38.2 kg Dry Package</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Torque Split</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>50:50 Locked Dynamic Bias</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Top Speed Target</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>128 km/h (FSAE Sprints)</span>
+              </div>
+            </div>
+            <div className="col-md-3 col-6">
+              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Oil Capacity &amp; Grade</span>
+                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>1.4 L Motul 300V 10W-50</span>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>
