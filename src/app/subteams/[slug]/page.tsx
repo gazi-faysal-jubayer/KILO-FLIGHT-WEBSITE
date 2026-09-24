@@ -6,6 +6,8 @@ import { SUBTEAMS_DATA, getSubteamBySlug, getAllSubteamSlugs } from '@/lib/subte
 import PowertrainCalculator from '@/components/PowertrainCalculator';
 import SubteamMediaGallery from '@/components/SubteamMediaGallery';
 import Powertrain3DModelsViewer from '@/components/Powertrain3DModelsViewer';
+import Chassis3DModelsViewer from '@/components/Chassis3DModelsViewer';
+import ChassisCalculator from '@/components/ChassisCalculator';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -64,6 +66,8 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
   }
 
   const isPowertrain = subteam.id === 'powertrain';
+  const isChassis = subteam.id === 'chassis';
+  const hasDedicated3D = isPowertrain || isChassis;
   const divisionImage = SUBTEAM_IMAGE_MAP[subteam.id];
 
   return (
@@ -333,14 +337,15 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             </p>
           </div>
 
-          {/* 1.2 Core Power & Drivetrain 3D Models (Engine & Transmission) */}
+          {/* 1.2 Core 3D CAD Models (Powertrain or Chassis) */}
           {isPowertrain && <Powertrain3DModelsViewer />}
+          {isChassis && <Chassis3DModelsViewer />}
 
           {/* 1.3 Subsystems Breakdown */}
           <div className="mb-4">
             <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
               <div className="d-flex align-items-center gap-2">
-                <span className="badge-motorsport red">{isPowertrain ? '1.3' : '1.2'}</span>
+                <span className="badge-motorsport red">{hasDedicated3D ? '1.3' : '1.2'}</span>
                 <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
                   CORE SUBSYSTEMS &amp; PRIMARY ASSEMBLIES
                 </h4>
@@ -435,13 +440,14 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             </div>
           ) : null}
 
-          {/* 1.5 Driveline Solver / Math Calculator (Powertrain) */}
+          {/* 1.5 Dynamic Solvers & Math Calculators */}
           {isPowertrain && <PowertrainCalculator />}
+          {isChassis && <ChassisCalculator />}
 
           {/* 1.6 Hardware Specifications Matrix */}
           <div className="mb-4">
             <div className="d-flex align-items-center gap-2 mb-3">
-              <span className="badge-motorsport red">{isPowertrain ? '1.6' : '1.4'}</span>
+              <span className="badge-motorsport red">{hasDedicated3D ? '1.6' : '1.4'}</span>
               <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
                 HARDWARE SPECIFICATIONS &amp; TOOLING MATRIX
               </h4>

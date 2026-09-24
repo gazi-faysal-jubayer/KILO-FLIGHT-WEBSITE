@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 
-type CadTab = 'engine' | 'transmission' | 'differential' | 'all';
+type ChassisTab = 'chassis' | 'suspension' | 'shock' | 'all';
 
-export default function Powertrain3DModelsViewer() {
-  const [activeTab, setActiveTab] = useState<CadTab>('engine');
+export default function Chassis3DModelsViewer() {
+  const [activeTab, setActiveTab] = useState<ChassisTab>('chassis');
 
   return (
     <div
@@ -13,21 +13,21 @@ export default function Powertrain3DModelsViewer() {
       style={{
         background: '#FFFFFF',
         border: '2px solid #0F172A',
-        boxShadow: '4px 4px 0 #0284C7',
+        boxShadow: '4px 4px 0 #DC2626',
       }}
     >
       {/* Header and Model Switcher Tabs */}
       <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
         <div>
-          <span className="badge-motorsport red mb-1">1.2 Core Power &amp; Drivetrain 3D Models</span>
+          <span className="badge-motorsport red mb-1">1.2 Chassis &amp; Suspension 3D CAD Models</span>
           <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
-            {activeTab === 'engine'
-              ? 'CFMOTO 300CC SINGLE-CYLINDER DOHC ENGINE'
-              : activeTab === 'transmission'
-              ? 'MANUAL TRANSMISSION GEARBOX & DIFFERENTIAL'
-              : activeTab === 'differential'
-              ? 'OPEN DIFFERENTIAL GEARS & PINION ANIMATION'
-              : 'POWERTRAIN MULTI-VIEW: ALL 3 3D MODELS'}
+            {activeTab === 'chassis'
+              ? 'FORMULA TUBULAR SPACEFRAME CHASSIS'
+              : activeTab === 'suspension'
+              ? 'PUSH ROD DOUBLE WISHBONE SUSPENSION'
+              : activeTab === 'shock'
+              ? 'COILOVER SHOCK ABSORBER & DAMPER'
+              : 'CHASSIS & KINEMATICS MULTI-VIEW STUDIO'}
           </h4>
         </div>
 
@@ -38,12 +38,12 @@ export default function Powertrain3DModelsViewer() {
         >
           <button
             type="button"
-            onClick={() => setActiveTab('engine')}
+            onClick={() => setActiveTab('chassis')}
             className="btn btn-sm d-inline-flex align-items-center gap-2"
             style={{
-              background: activeTab === 'engine' ? '#0284C7' : 'transparent',
+              background: activeTab === 'chassis' ? '#DC2626' : 'transparent',
               color: '#FFFFFF',
-              border: activeTab === 'engine' ? '1px solid #38BDF8' : 'none',
+              border: activeTab === 'chassis' ? '1px solid #F87171' : 'none',
               fontWeight: 800,
               fontSize: '12px',
               padding: '8px 14px',
@@ -51,18 +51,18 @@ export default function Powertrain3DModelsViewer() {
               transition: 'all 0.15s ease',
             }}
           >
-            <i className="bi bi-fire"></i>
-            <span>1. Engine</span>
+            <i className="bi bi-shield-shaded"></i>
+            <span>1. Spaceframe</span>
           </button>
 
           <button
             type="button"
-            onClick={() => setActiveTab('transmission')}
+            onClick={() => setActiveTab('suspension')}
             className="btn btn-sm d-inline-flex align-items-center gap-2"
             style={{
-              background: activeTab === 'transmission' ? '#0284C7' : 'transparent',
+              background: activeTab === 'suspension' ? '#DC2626' : 'transparent',
               color: '#FFFFFF',
-              border: activeTab === 'transmission' ? '1px solid #38BDF8' : 'none',
+              border: activeTab === 'suspension' ? '1px solid #F87171' : 'none',
               fontWeight: 800,
               fontSize: '12px',
               padding: '8px 14px',
@@ -70,18 +70,18 @@ export default function Powertrain3DModelsViewer() {
               transition: 'all 0.15s ease',
             }}
           >
-            <i className="bi bi-gear-wide-connected"></i>
-            <span>2. Transmission</span>
+            <i className="bi bi-diagram-2"></i>
+            <span>2. Push Rod</span>
           </button>
 
           <button
             type="button"
-            onClick={() => setActiveTab('differential')}
+            onClick={() => setActiveTab('shock')}
             className="btn btn-sm d-inline-flex align-items-center gap-2"
             style={{
-              background: activeTab === 'differential' ? '#0284C7' : 'transparent',
+              background: activeTab === 'shock' ? '#DC2626' : 'transparent',
               color: '#FFFFFF',
-              border: activeTab === 'differential' ? '1px solid #38BDF8' : 'none',
+              border: activeTab === 'shock' ? '1px solid #F87171' : 'none',
               fontWeight: 800,
               fontSize: '12px',
               padding: '8px 14px',
@@ -89,8 +89,8 @@ export default function Powertrain3DModelsViewer() {
               transition: 'all 0.15s ease',
             }}
           >
-            <i className="bi bi-arrow-repeat"></i>
-            <span>3. Open Differential</span>
+            <i className="bi bi-bezier2"></i>
+            <span>3. Shock Absorber</span>
           </button>
 
           <button
@@ -98,9 +98,9 @@ export default function Powertrain3DModelsViewer() {
             onClick={() => setActiveTab('all')}
             className="btn btn-sm d-inline-flex align-items-center gap-2"
             style={{
-              background: activeTab === 'all' ? '#DC2626' : 'transparent',
+              background: activeTab === 'all' ? '#0F172A' : 'transparent',
               color: '#FFFFFF',
-              border: activeTab === 'all' ? '1px solid #F87171' : 'none',
+              border: activeTab === 'all' ? '1px solid #94A3B8' : 'none',
               fontWeight: 800,
               fontSize: '12px',
               padding: '8px 14px',
@@ -108,26 +108,26 @@ export default function Powertrain3DModelsViewer() {
               transition: 'all 0.15s ease',
             }}
           >
-            <i className="bi bi-grid-fill"></i>
+            <i className="bi bi-grid-fill text-warning"></i>
             <span>Multi-View</span>
           </button>
         </div>
       </div>
 
       <p className="small text-muted mb-3" style={{ lineHeight: '1.6' }}>
-        {activeTab === 'engine'
-          ? 'Inspect the high-revving 292.4cc single-cylinder DOHC power unit in 3D. Click and drag to orbit, scroll to zoom, and examine the cylinder block, cylinder head casting, intake port geometry, and valvetrain assembly.'
-          : activeTab === 'transmission'
-          ? 'Inspect the constant-mesh manual transmission and bevel gear differential in 3D. Explore the internal gear clusters, synchronizer rings, selector forks, countershaft, and final drive torque splitting.'
-          : activeTab === 'differential'
-          ? 'Watch the open differential gears animation in 3D. Observe the rotating drive pinion, crown wheel (ring gear), and spider satellite bevel gears that allow the inner and outer driven wheels to rotate at different speeds during tight cornering.'
-          : 'Multi-View Studio: Inspect the Engine, Transmission Gearbox, and Open Differential 3D models side-by-side to understand complete vehicle driveline integration.'}
+        {activeTab === 'chassis'
+          ? 'Inspect the Formula Student tubular spaceframe chassis in interactive 3D. Explore the main roll hoop, front roll hoop, side impact structure triangulation, front bulkhead, and engine bay geometry compliant with Formula Student regulations.'
+          : activeTab === 'suspension'
+          ? 'Inspect the push rod double wishbone suspension system in interactive 3D. Examine the unequal-length A-arms, upright knuckle assembly, diagonal pushrod linkage, and bellcrank rocker converting wheel vertical travel into inboard shock deflection.'
+          : activeTab === 'shock'
+          ? 'Inspect the high-performance coilover monotube damper in interactive 3D. Observe the nitrogen-pressurized body, helical spring rate, threaded ride height pre-load collar, and velocity-sensitive valving.'
+          : 'Multi-View Studio: Inspect the Spaceframe Chassis, Push Rod Suspension, and Coilover Shock Absorber side-by-side in real-time 3D.'}
       </p>
 
       {/* 3D Embed Viewports */}
       <div className="row g-4">
-        {/* Model 1: CFMoto 300cc Engine */}
-        {(activeTab === 'engine' || activeTab === 'all') && (
+        {/* Model 1: Chassis Spaceframe */}
+        {(activeTab === 'chassis' || activeTab === 'all') && (
           <div className={activeTab === 'all' ? 'col-lg-4 col-12' : 'col-12'}>
             {activeTab === 'all' && (
               <div
@@ -135,9 +135,9 @@ export default function Powertrain3DModelsViewer() {
                 style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
-                  <i className="bi bi-fire text-danger me-2"></i> CFMOTO 300cc Engine
+                  <i className="bi bi-shield-shaded text-danger me-2"></i> P4T Formula Spaceframe
                 </span>
-                <span className="badge" style={{ background: '#0284C7' }}>292.4cc DOHC</span>
+                <span className="badge" style={{ background: '#DC2626' }}>4130 Chromoly</span>
               </div>
             )}
             <div
@@ -150,8 +150,8 @@ export default function Powertrain3DModelsViewer() {
             >
               <div className="position-relative" style={{ width: '100%', height: activeTab === 'all' ? '400px' : '500px' }}>
                 <iframe
-                  title="Engine"
-                  src="https://sketchfab.com/models/eea9d9252ab14298b50699a471dc2cee/embed?autostart=1&preload=1&ui_theme=dark"
+                  title="P4T Formula chassis"
+                  src="https://sketchfab.com/models/70ed61a02c964b6a8bfceaf19df98eb6/embed?autostart=1&preload=1&ui_theme=dark"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -173,21 +173,21 @@ export default function Powertrain3DModelsViewer() {
                 <span>
                   <i className="bi bi-box me-1 text-info"></i>
                   <a
-                    href="https://sketchfab.com/3d-models/engine-eea9d9252ab14298b50699a471dc2cee"
+                    href="https://sketchfab.com/3d-models/p4t-formula-chassis-70ed61a02c964b6a8bfceaf19df98eb6"
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
                   >
-                    Engine
+                    P4T Formula chassis
                   </a>{' '}
                   by{' '}
                   <a
-                    href="https://sketchfab.com/ezzdesign5"
+                    href="https://sketchfab.com/Qvist_Designs"
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
                   >
-                    Ahmed Belal
+                    Qvist_designs
                   </a>{' '}
                   on{' '}
                   <a
@@ -200,15 +200,15 @@ export default function Powertrain3DModelsViewer() {
                   </a>
                 </span>
                 <span className="badge" style={{ background: '#1E293B', color: '#38BDF8' }}>
-                  ICE Unit
+                  Spaceframe CAD
                 </span>
               </div>
             </div>
           </div>
         )}
 
-        {/* Model 2: Manual Transmission Gearbox With Differential */}
-        {(activeTab === 'transmission' || activeTab === 'all') && (
+        {/* Model 2: Push Rod Suspension */}
+        {(activeTab === 'suspension' || activeTab === 'all') && (
           <div className={activeTab === 'all' ? 'col-lg-4 col-12' : 'col-12'}>
             {activeTab === 'all' && (
               <div
@@ -216,9 +216,9 @@ export default function Powertrain3DModelsViewer() {
                 style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
-                  <i className="bi bi-gear-wide-connected text-primary me-2"></i> Transmission Gearbox
+                  <i className="bi bi-diagram-2 text-primary me-2"></i> Push Rod Suspension
                 </span>
-                <span className="badge" style={{ background: '#0284C7' }}>6-Speed Sequential</span>
+                <span className="badge" style={{ background: '#0284C7' }}>Double Wishbone</span>
               </div>
             )}
             <div
@@ -231,8 +231,8 @@ export default function Powertrain3DModelsViewer() {
             >
               <div className="position-relative" style={{ width: '100%', height: activeTab === 'all' ? '400px' : '500px' }}>
                 <iframe
-                  title="Manual Transmission Gearbox With Differential"
-                  src="https://sketchfab.com/models/d48d46543d844857b31475e56f941410/embed?autostart=1&preload=1&transparent=1&ui_theme=dark"
+                  title="Formula E Push Rod Suspension"
+                  src="https://sketchfab.com/models/005da2e35d754ac898754a92c42f434d/embed?autostart=1&preload=1&ui_theme=dark"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -252,23 +252,23 @@ export default function Powertrain3DModelsViewer() {
                 style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
               >
                 <span>
-                  <i className="bi bi-gear me-1 text-danger"></i>
+                  <i className="bi bi-diagram-2 me-1 text-danger"></i>
                   <a
-                    href="https://sketchfab.com/3d-models/manual-transmission-gearbox-with-differential-d48d46543d844857b31475e56f941410"
+                    href="https://sketchfab.com/3d-models/formula-e-push-rod-suspension-005da2e35d754ac898754a92c42f434d"
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
                   >
-                    Transmission &amp; Diff
+                    Formula E Push Rod Suspension
                   </a>{' '}
                   by{' '}
                   <a
-                    href="https://sketchfab.com/avredu"
+                    href="https://sketchfab.com/DM13"
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
                   >
-                    avredu
+                    DM13
                   </a>{' '}
                   on{' '}
                   <a
@@ -281,15 +281,15 @@ export default function Powertrain3DModelsViewer() {
                   </a>
                 </span>
                 <span className="badge" style={{ background: '#1E293B', color: '#F87171' }}>
-                  Gearbox CAD
+                  Suspension Kinematics
                 </span>
               </div>
             </div>
           </div>
         )}
 
-        {/* Model 3: Open Differential Gears Animation */}
-        {(activeTab === 'differential' || activeTab === 'all') && (
+        {/* Model 3: Shock Absorber */}
+        {(activeTab === 'shock' || activeTab === 'all') && (
           <div className={activeTab === 'all' ? 'col-lg-4 col-12' : 'col-12'}>
             {activeTab === 'all' && (
               <div
@@ -297,9 +297,9 @@ export default function Powertrain3DModelsViewer() {
                 style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
-                  <i className="bi bi-arrow-repeat text-warning me-2"></i> Open Differential Gears
+                  <i className="bi bi-bezier2 text-warning me-2"></i> Monotube Coilover Shock
                 </span>
-                <span className="badge" style={{ background: '#DC2626' }}>Animated Kinematics</span>
+                <span className="badge" style={{ background: '#16A34A' }}>Nitrogen Damper</span>
               </div>
             )}
             <div
@@ -312,8 +312,8 @@ export default function Powertrain3DModelsViewer() {
             >
               <div className="position-relative" style={{ width: '100%', height: activeTab === 'all' ? '400px' : '500px' }}>
                 <iframe
-                  title="Differential Gears Animation"
-                  src="https://sketchfab.com/models/0f3ee18a0c5441688846f20f2eb0f2e0/embed?autostart=1&preload=1&ui_watermark_link=0&ui_watermark=0&ui_theme=dark"
+                  title="SHOCK ABSORBER FBX"
+                  src="https://sketchfab.com/models/cc938094c7ac4d3ba0a187d04bff2c4a/embed?autostart=1&preload=1&ui_theme=dark"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -333,23 +333,23 @@ export default function Powertrain3DModelsViewer() {
                 style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
               >
                 <span>
-                  <i className="bi bi-arrow-repeat me-1 text-warning"></i>
+                  <i className="bi bi-bezier2 me-1 text-warning"></i>
                   <a
-                    href="https://sketchfab.com/3d-models/differential-gears-animation-0f3ee18a0c5441688846f20f2eb0f2e0"
+                    href="https://sketchfab.com/3d-models/shock-absorber-fbx-cc938094c7ac4d3ba0a187d04bff2c4a"
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
                   >
-                    Differential Gears Animation
+                    SHOCK ABSORBER FBX
                   </a>{' '}
                   by{' '}
                   <a
-                    href="https://sketchfab.com/Padpilot"
+                    href="https://sketchfab.com/danes_dysfunction"
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     style={{ fontWeight: 'bold', color: '#38BDF8', textDecoration: 'none' }}
                   >
-                    Padpilot
+                    danes_dysfunction
                   </a>{' '}
                   on{' '}
                   <a
@@ -361,8 +361,8 @@ export default function Powertrain3DModelsViewer() {
                     Sketchfab
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#FBBF24' }}>
-                  Animated Bevel Mesh
+                <span className="badge" style={{ background: '#1E293B', color: '#4ADE80' }}>
+                  Coilover Damper
                 </span>
               </div>
             </div>
@@ -372,84 +372,84 @@ export default function Powertrain3DModelsViewer() {
 
       {/* Model Spec Pills under Viewer */}
       <div className="row g-3 mt-3">
-        {activeTab === 'engine' ? (
+        {activeTab === 'chassis' ? (
           <>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Displacement</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>292.4 cc (Single)</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Material Grade</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>AISI 4130 Seamless Chromoly</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Bore x Stroke</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>78.0 x 61.2 mm</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Torsional Stiffness</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>1,920 Nm/deg Target</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Compression Ratio</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>11.0:1 Dynamic</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Main Hoop Spec</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>OD 25.4 mm × 2.4 mm Wall</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Peak Power / Torque</span>
-                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>27.5 HP @ 8,500 RPM</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Total Bare Frame Mass</span>
+                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>29.8 kg Finished</span>
               </div>
             </div>
           </>
-        ) : activeTab === 'transmission' ? (
+        ) : activeTab === 'suspension' ? (
           <>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Gearbox Type</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>6-Speed Sequential Constant Mesh</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Kinematics Architecture</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Unequal Double Wishbone Pushrod</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Clutch Mechanism</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Wet Multi-Plate Slipper Clutch</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Rocker Motion Ratio</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>0.85:1 Progressive Bellcrank</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Differential</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Torsen ATB / Bevel Differential</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Camber Gain</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>-0.80° / deg Roll in Bump</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Final Drive Ratio</span>
-                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>3.28:1 (14T / 46T 520 Chain)</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Upright Knuckles</span>
+                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>CNC Machined Al 7075-T6</span>
               </div>
             </div>
           </>
-        ) : activeTab === 'differential' ? (
+        ) : activeTab === 'shock' ? (
           <>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Gear Topology</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Epicyclic Bevel Planet &amp; Sun Gears</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Damper Architecture</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>High-Pressure Monotube N2</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Crown Wheel / Pinion</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Spiral Bevel High-Torque Mesh</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Spring Stiffness</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>275 lbs/in (48.2 N/mm) Linear</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Torque Bias Ratio</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>50:50 Open Equal Torque Split</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Damping Adjustment</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>24-Click Independent 2-Way</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Cornering Kinematics</span>
-                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>Speed Differentiating Planetary Action</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Usable Stroke</span>
+                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>52 mm Travel + Bumpstop</span>
               </div>
             </div>
           </>
@@ -457,26 +457,26 @@ export default function Powertrain3DModelsViewer() {
           <>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Total Powertrain Mass</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>38.2 kg Dry Package</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Wheelbase / Track</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>1550 mm / 1220 mm</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Drivetrain Layout</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Transverse Mid-Engine Rear-Wheel Drive</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Roll Center Height</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>35 mm Front / 45 mm Rear</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Top Speed Target</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>128 km/h (FSAE Sprints)</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Ride Frequency</span>
+                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>2.35 Hz Front / 2.55 Hz Rear</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Lubrication Flow</span>
-                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>Pressurized Wet Sump + Motul 300V</span>
+                <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Anti-Roll Geometry</span>
+                <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>Adjustable T-Bar ARB</span>
               </div>
             </div>
           </>
