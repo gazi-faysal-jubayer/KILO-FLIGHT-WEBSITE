@@ -756,6 +756,40 @@ textarea:focus-visible {
 }
 
 /*---------------------------------------
+  HOME HERO ENTRANCE
+-----------------------------------------*/
+
+.hero-anim {
+  animation: header-rise 0.9s var(--ease-out-expo) both;
+}
+.hero-title-sm.hero-anim { animation-delay: 0.1s; }
+.hero-title-lg.hero-anim { animation-delay: 0.2s; }
+.hero-tagline.hero-anim { animation-delay: 0.45s; }
+.hero-fact.hero-anim { animation-delay: 0.55s; }
+.hero-cta-wrap.hero-anim { animation-delay: 0.65s; }
+
+.hero-rule {
+  animation: strip-grow 0.9s var(--ease-out-expo) 0.35s both;
+}
+
+.hero-scroll i {
+  animation: scroll-bob 1.6s ease-in-out infinite;
+}
+
+@keyframes scroll-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 6px; }
+}
+
+/* Full-width "your logo here" bar under the sponsor cards */
+.sponsor-card-ghost {
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 0;
+  padding: 18px 28px;
+}
+
+/*---------------------------------------
   REDUCED MOTION
 -----------------------------------------*/
 
@@ -764,6 +798,9 @@ textarea:focus-visible {
   .race-divider,
   .racing-stripes,
   .race-timeline-dot.is-next,
+  .hero-anim,
+  .hero-rule,
+  .hero-scroll i,
   .page-header-section .container > *,
   .page-header-section::after,
   .glass-panel,

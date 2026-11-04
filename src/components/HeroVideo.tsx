@@ -1,55 +1,57 @@
 import React from 'react';
 import Link from 'next/link';
 
+const HERO_STATS = [
+  { val: '≤ 5.0s', label: '0–100 km/h' },
+  { val: '120 km/h', label: 'Target top speed' },
+  { val: '7-Layer', label: 'Jute composite' },
+  { val: '24.4 kg', label: '4130 chromoly chassis' },
+];
+
 export default function HeroVideo() {
   return (
     <section className="hero-section" id="section_1">
       <div className="section-overlay"></div>
 
       <div className="container hero-content-container">
-        {/* Main Hero Header & CTA */}
-        <div className="hero-main-block text-center">
-          <small className="hero-subtitle">KUET Formula Student Motorsport</small>
+        <div className="hero-main-block">
+          <span className="hero-eyebrow hero-anim">KUET Formula Student · Bangladesh</span>
 
-          <h1 className="hero-title fw-bold">Team KILOFLIGHT</h1>
+          <h1 className="hero-title">
+            <span className="hero-title-sm hero-anim">Team</span>
+            <span className="hero-title-lg hero-anim">KILOFLIGHT</span>
+          </h1>
 
-          <div className="hero-cta-wrap">
+          <div className="hero-rule" aria-hidden="true"></div>
+
+          <p className="hero-tagline hero-anim">Building KILOFLIGHT PHOENIX for FSAE Dynamix India 2027.</p>
+          <p className="hero-fact hero-anim">First Bangladeshi team through the FSAE Japan 2023 mechanical inspection.</p>
+
+          <div className="hero-cta-wrap hero-anim">
             <Link href="#section_2" className="custom-btn text-decoration-none">
-              <i className="bi bi-play-circle me-2"></i> Explore Phoenix &amp; Alpha
+              <i className="bi bi-play-circle me-2" aria-hidden="true"></i> Explore Phoenix
+            </Link>
+            <Link href="/sponsorship" className="hero-btn-ghost text-decoration-none">
+              Become a Partner
             </Link>
           </div>
-
-          <div className="hero-location-block">
-            <div className="location-wrap mx-auto">
-              <h5 className="mb-0 fs-6" style={{ color: '#0F172A', fontWeight: 800 }}>
-                <i className="custom-icon bi-geo-alt me-2 text-danger"></i>
-                KUET, Bangladesh &bull; FSAE Japan 2023 Mechanical Pass
-              </h5>
-            </div>
-          </div>
         </div>
+      </div>
 
-        {/* Performance Stats Ticker */}
-        <div className="hero-stats-wrapper w-100">
-          <div className="col-lg-10 mx-auto">
-            <div className="hero-stats-grid">
-              <div className="stat-box red-border">
-                <div className="stat-val">&le; 5.0s</div>
-                <div className="stat-label">0-100 KM/H ACCEL</div>
+      {/* Bottom stat strip */}
+      <div className="hero-stats-bar">
+        <div className="container">
+          <div className="hero-stats">
+            {HERO_STATS.map((s) => (
+              <div key={s.label} className="hero-stat">
+                <div className="hero-stat-val">{s.val}</div>
+                <div className="hero-stat-label">{s.label}</div>
               </div>
-              <div className="stat-box">
-                <div className="stat-val">120 KM/H</div>
-                <div className="stat-label">TARGET TOP SPEED</div>
-              </div>
-              <div className="stat-box gold-border">
-                <div className="stat-val">7-LAYER</div>
-                <div className="stat-label">JUTE COMPOSITE</div>
-              </div>
-              <div className="stat-box">
-                <div className="stat-val">24.4 KG</div>
-                <div className="stat-label">4130 CHROMOLY CHASSIS</div>
-              </div>
-            </div>
+            ))}
+            <a href="#section_2" className="hero-scroll text-decoration-none">
+              Scroll
+              <i className="bi bi-chevron-double-down" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>

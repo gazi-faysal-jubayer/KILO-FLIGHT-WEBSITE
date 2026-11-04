@@ -55,7 +55,7 @@ export default function CurrentSponsors({ variant = 'full' }: { variant?: Varian
     return (
       <RevealGroup className="row g-3 justify-content-center">
         {CURRENT_SPONSORS.map((s) => (
-          <RevealItem key={s.id} className="col-md-5 col-12">
+          <RevealItem key={s.id} className="col-md-4 col-12">
             <a
               href={s.url}
               target="_blank"
@@ -77,7 +77,7 @@ export default function CurrentSponsors({ variant = 'full' }: { variant?: Varian
   return (
     <RevealGroup className="row g-4 align-items-stretch">
       {CURRENT_SPONSORS.map((s) => (
-        <RevealItem key={s.id} className="col-lg-5 col-md-6 col-12 d-flex">
+        <RevealItem key={s.id} className="col-lg-4 col-md-6 col-12 d-flex">
           <a
             href={s.url}
             target="_blank"
@@ -98,7 +98,7 @@ export default function CurrentSponsors({ variant = 'full' }: { variant?: Varian
           </a>
         </RevealItem>
       ))}
-      <RevealItem className="col-lg-2 col-12 d-flex">
+      <RevealItem className="col-12 d-flex">
         <Link href="/sponsorship#packages" className="sponsor-card sponsor-card-ghost">
           <i className="bi bi-plus-lg" aria-hidden="true"></i>
           <span className="font-orbitron">Your logo here</span>

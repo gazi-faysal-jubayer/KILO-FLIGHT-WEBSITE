@@ -181,7 +181,7 @@ export const CURRENT_SPONSORS: CurrentSponsor[] = [
   {
     id: 'cfmoto',
     name: 'CF MOTO',
-    role: 'Official Powertrain Partner',
+    role: 'Official Powertrain Sponsor',
     blurb: 'Powering KILOFLIGHT PHOENIX with the CFMoto 300SR engine — the heart of our 2027 combustion race car.',
     logo: '/images/sponsors/cfmoto.svg',
     url: 'https://www.cfmoto.com',
@@ -190,11 +190,20 @@ export const CURRENT_SPONSORS: CurrentSponsor[] = [
   {
     id: 'ansys',
     name: 'Ansys',
-    role: 'Official Simulation Software Partner',
+    role: 'Official Software Partner',
     blurb: 'FEA and CFD simulation behind our chassis, aerodynamics and jute-composite structural validation.',
     logo: '/images/sponsors/ansys.svg',
     url: 'https://www.ansys.com',
     brandColor: '#FFB71B',
+  },
+  {
+    id: 'steadfast',
+    name: 'Steadfast',
+    role: 'Official Logistics Partner',
+    blurb: 'Moving our team and race car to exhibitions and events — logistics partner since Bangladesh AutoFest 2026.',
+    logo: '/images/sponsors/steadfast.svg',
+    url: 'https://steadfast.com.bd',
+    brandColor: '#00BF6F',
   },
 ];
 
