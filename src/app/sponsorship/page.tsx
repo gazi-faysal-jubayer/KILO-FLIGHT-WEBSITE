@@ -1,469 +1,422 @@
 import React from 'react';
 import Link from 'next/link';
-import SponsorshipCard, { SponsorshipTier } from '@/components/SponsorshipCard';
+import SponsorshipCard from '@/components/SponsorshipCard';
 import PressPatternBackground from '@/components/PressPatternBackground';
+import CurrentSponsors from '@/components/CurrentSponsors';
+import CountUp from '@/components/motion/CountUp';
+import { Reveal, RevealGroup, RevealItem, GrowBar } from '@/components/motion/Reveal';
+import {
+  SPONSORSHIP_TIERS,
+  BENEFIT_MATRIX,
+  SPONSOR_ADVANTAGES,
+  EXECUTION_DETAILS,
+  VALUE_PROPOSITIONS,
+  BUDGET,
+  TIMELINE,
+} from '@/lib/sponsorship-data';
 
 export const metadata = {
   title: 'Sponsorship Packages | Team KILOFLIGHT KUET Formula Student',
-  description: 'Official Corporate Sponsorship Proposal for 2026–2027 season. Partner with Team KILOFLIGHT at KUET.',
+  description:
+    'Partner with Team KILOFLIGHT (KUET) for FSAE Dynamix India 2027. Title, Platinum, Gold, Silver and Bronze packages from 1.5 to 7 Lacs BDT, proudly powered by CF MOTO and Ansys.',
 };
 
+const bdt = (n: number) => n.toLocaleString('en-IN');
+
+function SectionHeading({ badge, badgeClass = 'red', title, text }: { badge: string; badgeClass?: string; title: string; text?: string }) {
+  return (
+    <Reveal className="row text-center mb-5">
+      <div className="col-lg-8 mx-auto">
+        <span className={`badge-motorsport ${badgeClass} mb-2`}>{badge}</span>
+        <h2 className="mb-3 font-orbitron d-block">{title}</h2>
+        {text && <p className="text-muted mb-0">{text}</p>}
+      </div>
+    </Reveal>
+  );
+}
+
 export default function SponsorshipPage() {
-  const sponsorshipTiers: SponsorshipTier[] = [
-    {
-      id: 'title',
-      title: 'Title Partner',
-      tag: 'Exclusive (1 Slot)',
-      price: '10.0',
-      period: 'Lacs BDT / Season',
-      currency: '৳',
-      primaryColor: '#FF2A2A',
-      secondaryColor: '#0F172A',
-      accentColor: '#0284C7',
-      stampText: 'FSAE Title Verified',
-      description: 'Dominant global exposure with primary custom livery across the race car, chest logo on apparel, top website spotlight, dedicated pit branding, and exclusive priority recruitment.',
-      logoCar: 'Primary / Custom Livery',
-      logoApparel: 'Chest / Primary',
-      websiteFeature: 'Top Header & Spotlight',
-      eventPromotion: 'Dedicated Pit Branding',
-      socialCampaign: 'Exclusive Video Series',
-      exhibitionBooth: 'Exclusive Co-Host Lounge',
-      recruitmentAccess: 'Exclusive Priority Access',
-      features: [
-        { text: 'Primary / Custom Livery on Race Car' },
-        { text: 'Chest / Primary on Team Apparel & Kits' },
-        { text: 'Top Header & Spotlight on Website' },
-        { text: 'Dedicated Pit & International Branding' },
-        { text: 'Exclusive Video Series & Social Media' },
-        { text: 'Exclusive Priority Recruitment Pipeline' },
-      ],
-    },
-    {
-      id: 'platinum',
-      title: 'Platinum Partner',
-      tag: 'High Visibility',
-      price: '7.0',
-      period: 'Lacs BDT / Season',
-      currency: '৳',
-      primaryColor: '#0284C7',
-      secondaryColor: '#0F172A',
-      accentColor: '#B45309',
-      stampText: 'Platinum Tier',
-      description: 'Large prominent logo branding on multi-element wings & nose cone, upper sleeve / back apparel placement, featured partner section, and full roster recruitment access.',
-      logoCar: 'Large (Wings / Nose)',
-      logoApparel: 'Upper Sleeve / Back',
-      websiteFeature: 'Featured Partner Section',
-      eventPromotion: 'Pit & Banner Display',
-      socialCampaign: 'Dedicated Reels / Posts',
-      exhibitionBooth: 'Interactive Booth Space',
-      recruitmentAccess: 'Full Roster Access',
-      features: [
-        { text: 'Large (Wings / Nose) Race Car Placement' },
-        { text: 'Upper Sleeve / Back on Team Kits' },
-        { text: 'Featured Partner Section on Website' },
-        { text: 'Pit & Banner Display at Competitions' },
-        { text: 'Dedicated Social Media Reels & Posts' },
-        { text: 'Full Roster Recruitment Access' },
-      ],
-    },
-    {
-      id: 'gold',
-      title: 'Gold Partner',
-      tag: 'Most Popular',
-      price: '4.0',
-      period: 'Lacs BDT / Season',
-      currency: '৳',
-      primaryColor: '#B45309',
-      secondaryColor: '#0F172A',
-      accentColor: '#FF2A2A',
-      stampText: 'Gold Partner',
-      description: 'Medium logo placement on aerodynamic sidepods, mid-sleeve apparel branding, dedicated website logo & link, and exhibition booth display space.',
-      logoCar: 'Medium (Sidepods)',
-      logoApparel: 'Mid Sleeve',
-      websiteFeature: 'Dedicated Logo & Link',
-      eventPromotion: 'Banner Inclusion',
-      socialCampaign: 'Dedicated Posts',
-      exhibitionBooth: 'Display Space',
-      recruitmentAccess: 'Access Upon Request',
-      features: [
-        { text: 'Medium (Sidepods) Race Car Placement' },
-        { text: 'Mid Sleeve on Team Apparel' },
-        { text: 'Dedicated Logo & Link on Official Website' },
-        { text: 'Banner Inclusion at International Events' },
-        { text: 'Dedicated Social Media Feature Posts' },
-        { text: 'Talent Access Upon Request' },
-      ],
-    },
-    {
-      id: 'silver',
-      title: 'Silver Partner',
-      tag: 'Technical Partner',
-      price: '2.5',
-      period: 'Lacs BDT / Season',
-      currency: '৳',
-      primaryColor: '#64748B',
-      secondaryColor: '#0F172A',
-      accentColor: '#0284C7',
-      stampText: 'Silver Supplier',
-      description: 'Small logo branding on chassis, standard team apparel placement, official website directory listing, and exhibition banner inclusion.',
-      logoCar: 'Small (Chassis)',
-      logoApparel: 'Standard Placement',
-      websiteFeature: 'Logo Placement',
-      eventPromotion: 'Banner Inclusion',
-      socialCampaign: 'Brand Shout-outs',
-      exhibitionBooth: 'Display Space',
-      recruitmentAccess: '—',
-      features: [
-        { text: 'Small (Chassis) Race Car Placement' },
-        { text: 'Standard Placement on Team Apparel' },
-        { text: 'Official Logo Placement on Website' },
-        { text: 'Banner Inclusion at Events & AutoFest' },
-        { text: 'Brand Shout-outs on Social Channels' },
-      ],
-    },
-    {
-      id: 'bronze',
-      title: 'Bronze Partner',
-      tag: 'Supporting Partner',
-      price: '1.5',
-      period: 'Lacs BDT / Season',
-      currency: '৳',
-      primaryColor: '#D97706',
-      secondaryColor: '#0F172A',
-      accentColor: '#64748B',
-      stampText: 'Bronze Support',
-      description: 'Standard decal on vehicle, team kit listing, website logo placement, and official social media mention supporting student innovation.',
-      logoCar: 'Standard Decal',
-      logoApparel: 'Standard Placement',
-      websiteFeature: 'Logo Placement',
-      eventPromotion: '—',
-      socialCampaign: 'General Mention',
-      exhibitionBooth: '—',
-      recruitmentAccess: '—',
-      features: [
-        { text: 'Standard Decal on Race Car' },
-        { text: 'Standard Placement on Team Apparel' },
-        { text: 'Logo Placement on Official Website' },
-        { text: 'General Social Media Mention' },
-      ],
-    },
-  ];
+  const tiers = SPONSORSHIP_TIERS;
 
   return (
     <>
-      {/* Header */}
-      <section className="page-header-section" style={{ background: 'radial-gradient(circle at top, rgba(255, 42, 42, 0.08) 0%, var(--dark-bg) 100%)' }}>
-        <div className="container mx-auto px-4 text-center">
-          <span className="badge-motorsport red mb-2">Corporate Partnership</span>
-          <h1 className="mb-3 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>PARTNER WITH TEAM KILOFLIGHT</h1>
-          <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '800px' }}>
-            Empower Bangladesh&apos;s pioneering Formula Student team from KUET as we represent the nation at FSAE Dynamix India 2027 and European circuits with KILOFLIGHT PHOENIX.
-          </p>
+      {/* 1. Hero */}
+      <section className="page-header-section sponsor-hero overflow-hidden">
+        <div className="racing-stripes" aria-hidden="true" />
+        <div className="container mx-auto px-4 text-center position-relative">
+          <Reveal>
+            <span className="badge-motorsport red mb-3">Corporate Partnership · 2026–2027</span>
+            <h1 className="mb-3 font-orbitron">
+              PARTNER WITH <span className="text-gradient-race">TEAM KILOFLIGHT</span>
+            </h1>
+            <p className="mx-auto mb-4" style={{ maxWidth: '780px' }}>
+              Back Bangladesh&apos;s pioneering Formula Student team from KUET as KILOFLIGHT PHOENIX heads to{' '}
+              <strong>FSAE Dynamix India 2027 (19–24 January 2027)</strong>, our first international dynamic events.
+            </p>
+            <div className="d-flex gap-3 justify-content-center flex-wrap">
+              <a href="#packages" className="custom-btn">
+                <i className="bi bi-box-seam me-2" aria-hidden="true"></i> View Packages
+              </a>
+              <Link href="/contact" className="custom-btn-outline">
+                Talk to Our Team
+              </Link>
+            </div>
+          </Reveal>
+
+          <RevealGroup className="row g-3 mt-5 justify-content-center">
+            {[
+              { value: <>1<sup>st</sup></>, label: 'BD team through FSAE Japan 2023 mech. inspection' },
+              { value: <CountUp to={30} />, label: 'Engineers on the team' },
+              { value: <CountUp to={120} suffix=" km/h" />, label: 'Target top speed' },
+              { value: <>&le;<CountUp to={5} suffix=" s" /></>, label: '0–100 km/h target' },
+            ].map((s, i) => (
+              <RevealItem key={i} className="col-lg-3 col-6">
+                <div className="stat-tile h-100">
+                  <div className="stat-tile-value font-orbitron">{s.value}</div>
+                  <div className="stat-tile-label">{s.label}</div>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
         </div>
       </section>
 
-      {/* Why Sponsor Section */}
-      <section className="section-padding py-5">
+      {/* 2. Current partners */}
+      <section className="section-padding py-5" id="partners">
         <div className="container mx-auto px-4">
-          <div className="row g-4">
-            <div className="col-lg-4 col-md-6">
-              <div className="glass-panel p-4 h-100 text-center">
-                <div
-                  className="dept-icon mx-auto"
-                  style={{
-                    color: 'var(--primary-red)',
-                    borderColor: 'var(--primary-red)',
-                    background: 'rgba(255,42,42,0.1)',
-                  }}
-                >
-                  <i className="bi bi-globe-americas"></i>
-                </div>
-                <h4 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 800 }}>Global Brand Exposure</h4>
-                <p className="small text-muted mb-0">
-                  Feature your brand on international Formula Student tracks across India, Japan, and the UK, alongside massive national press coverage and live automotive exhibitions.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6">
-              <div className="glass-panel p-4 h-100 text-center">
-                <div
-                  className="dept-icon mx-auto"
-                  style={{
-                    color: 'var(--cyan-telemetry)',
-                    borderColor: 'var(--cyan-telemetry)',
-                    background: 'rgba(2,132,199,0.1)',
-                  }}
-                >
-                  <i className="bi bi-people-fill"></i>
-                </div>
-                <h4 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 800 }}>Direct Engineering Recruitment</h4>
-                <p className="small text-muted mb-0">
-                  Gain exclusive priority access to recruit top graduating KUET engineers with verified hands-on expertise in FEA, CFD, CAD-CAM, ICE tuning, and wire harnesses.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-12">
-              <div className="glass-panel p-4 h-100 text-center">
-                <div
-                  className="dept-icon mx-auto"
-                  style={{
-                    color: 'var(--jute-gold)',
-                    borderColor: 'var(--jute-gold)',
-                    background: 'rgba(212,163,89,0.1)',
-                  }}
-                >
-                  <i className="bi bi-leaf"></i>
-                </div>
-                <h4 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 800 }}>CSR &amp; Sustainable Bio-Composites</h4>
-                <p className="small text-muted mb-0">
-                  Align your company with eco-friendly innovation, championing Bangladesh&apos;s pioneering research into 7-layer natural jute fiber composite chassis and aerodynamic construction.
-                </p>
-              </div>
-            </div>
-          </div>
+          <SectionHeading
+            badge="Proudly Powered By"
+            title="OUR CURRENT PARTNERS"
+            text="The companies already on the grid with us for the 2027 season."
+          />
+          <CurrentSponsors />
         </div>
       </section>
 
-      {/* Pricing Tiers - 5 Official Packages */}
-      <section
-        className="section-padding py-5 position-relative overflow-hidden"
-        style={{
-          borderTop: '1px solid rgba(15, 23, 42, 0.08)',
-        }}
-      >
+      {/* 3. Why sponsor us */}
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid #0F172A' }}>
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            badge="Advantages"
+            badgeClass=""
+            title="WHY SPONSOR US?"
+            text="We have already put Bangladesh on the international engineering stage. Next, we race on a professional Formula track — and your brand can be on the car when we do."
+          />
+          <RevealGroup className="row g-4 justify-content-center">
+            {SPONSOR_ADVANTAGES.map((a) => (
+              <RevealItem key={a.title} className="col-lg-4 col-md-6">
+                <div className="glass-panel advantage-card p-4 h-100" style={{ '--adv-color': a.color } as React.CSSProperties}>
+                  <div className="dept-icon mb-3" style={{ color: a.color, borderColor: a.color, background: `${a.color}1A` }}>
+                    <i className={`bi ${a.icon}`} aria-hidden="true"></i>
+                  </div>
+                  <h4 className="mb-2 font-orbitron" style={{ fontSize: '17px' }}>{a.title}</h4>
+                  <p className="small text-muted mb-0">{a.text}</p>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* 4. Packages */}
+      <section id="packages" className="section-padding py-5 position-relative overflow-hidden" style={{ borderTop: '2px solid #0F172A' }}>
         <PressPatternBackground />
         <div className="container mx-auto px-4 position-relative" style={{ zIndex: 2 }}>
-          <div className="row text-center mb-5">
-            <div className="col-lg-8 mx-auto">
-              <span className="badge-motorsport jute mb-2">Partnership Tiers</span>
-              <h2 className="mb-3 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>SPONSORSHIP PACKAGES (2026–2027)</h2>
-              <p className="text-muted">
-                Choose the tier that matches your corporate goals and support Bangladesh&apos;s premier student engineering team on the international stage.
-              </p>
-            </div>
-          </div>
-
-          <div className="row g-4 justify-content-center">
-            {sponsorshipTiers.map((tier) => (
-              <div key={tier.id} className="col-lg-4 col-md-6 col-12 d-flex">
+          <SectionHeading
+            badge="Partnership Tiers"
+            badgeClass="jute"
+            title="SPONSORSHIP PACKAGES"
+            text="Five tiers from 1.5 to 7 Lacs BDT per season. Pick the visibility that matches your goals — or ask us for a custom package."
+          />
+          <RevealGroup className="row g-4 justify-content-center">
+            {tiers.map((tier) => (
+              <RevealItem key={tier.id} className="col-lg-4 col-md-6 col-12 d-flex">
                 <SponsorshipCard tier={tier} />
-              </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* 5. Benefits matrix */}
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid #0F172A' }}>
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            badge="Matrix Breakdown"
+            title="WHAT EACH PACKAGE INCLUDES"
+            text="Every deliverable, side by side, exactly as listed in our 2027 sponsorship proposal."
+          />
+
+          {/* Desktop / tablet table */}
+          <Reveal className="d-none d-lg-block">
+            <div className="table-responsive benefit-matrix-wrap">
+              <table className="schedule-table benefit-matrix table align-middle text-center w-100">
+                <thead>
+                  <tr>
+                    <th scope="col" className="text-start">Feature</th>
+                    {tiers.map((t) => (
+                      <th key={t.id} scope="col" className={t.id === 'title' ? 'is-title' : undefined}>
+                        <div style={{ color: t.id === 'title' ? '#FF6B6B' : '#FFFFFF', fontWeight: 800 }}>{t.title.replace(' Partner', '').toUpperCase()}</div>
+                        <span className="small" style={{ color: '#CBD5E1' }}>
+                          ৳ {t.price} Lacs
+                        </span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {BENEFIT_MATRIX.map((row) => (
+                    <tr key={row.feature}>
+                      <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>
+                        <i className={`bi ${row.icon} me-2 text-danger`} aria-hidden="true"></i>
+                        {row.feature}
+                      </th>
+                      {row.values.map((v, i) => (
+                        <td key={i} className={i === 0 ? 'fw-bold text-danger is-title' : v === '—' ? 'text-muted' : undefined}>
+                          {v === '—' ? <span aria-label="Not included">&mdash;</span> : v}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+
+          {/* Mobile: one card per tier */}
+          <RevealGroup className="row g-3 d-lg-none">
+            {tiers.map((t, ti) => (
+              <RevealItem key={t.id} className="col-md-6 col-12">
+                <div className="matrix-tier-card" style={{ '--tier-color': t.primaryColor } as React.CSSProperties}>
+                  <div className="matrix-tier-head">
+                    <span className="font-orbitron">{t.title}</span>
+                    <span className="font-orbitron">৳ {t.price} Lacs</span>
+                  </div>
+                  <ul className="list-unstyled mb-0">
+                    {BENEFIT_MATRIX.filter((r) => r.values[ti] !== '—').map((r) => (
+                      <li key={r.feature}>
+                        <i className={`bi ${r.icon}`} aria-hidden="true"></i>
+                        <span>
+                          <strong>{r.feature}:</strong> {r.values[ti]}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* 6. Execution details */}
+      <section className="section-padding py-5" style={{ borderTop: '2px solid #0F172A' }}>
+        <div className="container mx-auto px-4">
+          <SectionHeading badge="Execution Details" badgeClass="" title="HOW WE DELIVER YOUR BRAND" />
+          <RevealGroup className="row g-3 justify-content-center">
+            {EXECUTION_DETAILS.map((e) => (
+              <RevealItem key={e.title} className="col-lg col-md-4 col-6">
+                <div className="exec-tile h-100">
+                  <i className={`bi ${e.icon}`} aria-hidden="true"></i>
+                  <h5 className="font-orbitron">{e.title}</h5>
+                  <p className="small mb-0">{e.text}</p>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* 7. Value proposition */}
+      <section className="section-padding py-5" style={{ background: 'rgba(255, 42, 42, 0.03)', borderTop: '2px solid #0F172A' }}>
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            badge="Value Proposition"
+            title="MORE THAN LOGO PLACEMENT"
+            text="A partnership connects your brand with a nationally recognised engineering team, international motorsport, emerging technical talent and real-world automotive development."
+          />
+          <div className="row g-4">
+            {VALUE_PROPOSITIONS.map((v, i) => (
+              <Reveal key={v.title} className="col-lg-6" x={i === 0 ? -30 : 30} y={0}>
+                <div className="glass-panel p-4 p-lg-5 h-100" style={{ boxShadow: `8px 8px 0 ${v.color}` }}>
+                  <div className="dept-icon mb-3" style={{ color: v.color, borderColor: v.color, background: `${v.color}1A` }}>
+                    <i className={`bi ${v.icon}`} aria-hidden="true"></i>
+                  </div>
+                  <h3 className="mb-3">{v.title}</h3>
+                  <ul className="value-list list-unstyled mb-0">
+                    {v.items.map((item) => (
+                      <li key={item}>
+                        <i className="bi bi-check2-circle" style={{ color: v.color }} aria-hidden="true"></i>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Complete Deliverables Comparison Matrix */}
-      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)' }}>
+      {/* 8. Funding requirement */}
+      <section className="section-padding py-5" style={{ borderTop: '2px solid #0F172A' }}>
         <div className="container mx-auto px-4">
-          <div className="row text-center mb-4">
-            <div className="col-lg-8 mx-auto">
-              <span className="badge-motorsport red mb-2">Matrix Breakdown</span>
-              <h2 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>SPONSORSHIP DELIVERABLES &amp; BENEFITS</h2>
-              <p className="text-muted">Complete breakdown of brand visibility, digital promotion, exhibition lounges, and recruitment pipeline access.</p>
-            </div>
-          </div>
+          <SectionHeading
+            badge="Funding Requirement"
+            badgeClass="jute"
+            title="WHERE YOUR SUPPORT GOES"
+            text="A transparent breakdown of what it takes to build PHOENIX and take it to FSAE Dynamix India 2027."
+          />
 
-          <div className="table-responsive">
-            <table className="schedule-table table align-middle text-center w-100">
-              <thead>
-                <tr>
-                  <th scope="col" className="text-start" style={{ width: '22%' }}>Sponsorship Deliverables &amp; Benefits</th>
-                  <th scope="col" style={{ width: '15.6%', background: '#0F172A' }}>
-                    <div style={{ color: '#FF6B6B', fontWeight: 800 }}>Title Partner</div>
-                    <span className="small font-normal" style={{ color: '#CBD5E1' }}>(10.0 Lacs BDT)</span>
-                  </th>
-                  <th scope="col" style={{ width: '15.6%' }}>
-                    <div style={{ color: '#FFFFFF', fontWeight: 800 }}>Platinum Partner</div>
-                    <span className="small font-normal" style={{ color: '#CBD5E1' }}>(7.0 Lacs BDT)</span>
-                  </th>
-                  <th scope="col" style={{ width: '15.6%' }}>
-                    <div style={{ color: '#FFFFFF', fontWeight: 800 }}>Gold Partner</div>
-                    <span className="small font-normal" style={{ color: '#CBD5E1' }}>(4.0 Lacs BDT)</span>
-                  </th>
-                  <th scope="col" style={{ width: '15.6%' }}>
-                    <div style={{ color: '#FFFFFF', fontWeight: 800 }}>Silver Partner</div>
-                    <span className="small font-normal" style={{ color: '#CBD5E1' }}>(2.5 Lacs BDT)</span>
-                  </th>
-                  <th scope="col" style={{ width: '15.6%' }}>
-                    <div style={{ color: '#FFFFFF', fontWeight: 800 }}>Bronze Partner</div>
-                    <span className="small font-normal" style={{ color: '#CBD5E1' }}>(1.5 Lacs BDT)</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>Prominent Logo on Race Car</th>
-                  <td className="fw-bold text-danger">Primary / Custom Livery</td>
-                  <td className="fw-bold">Large (Wings / Nose)</td>
-                  <td>Medium (Sidepods)</td>
-                  <td>Small (Chassis)</td>
-                  <td>Standard Decal</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>Logo on Team Apparel &amp; Kits</th>
-                  <td className="fw-bold text-danger">Chest / Primary</td>
-                  <td className="fw-bold">Upper Sleeve / Back</td>
-                  <td>Mid Sleeve</td>
-                  <td>Standard Placement</td>
-                  <td>Standard Placement</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>Official Team Website Feature</th>
-                  <td className="fw-bold text-danger">Top Header &amp; Spotlight</td>
-                  <td className="fw-bold">Featured Partner Section</td>
-                  <td>Dedicated Logo &amp; Link</td>
-                  <td>Logo Placement</td>
-                  <td>Logo Placement</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>International Event Promotion</th>
-                  <td className="fw-bold text-danger">Dedicated Pit Branding</td>
-                  <td className="fw-bold">Pit &amp; Banner Display</td>
-                  <td>Banner Inclusion</td>
-                  <td>Banner Inclusion</td>
-                  <td>&mdash;</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>Social Media Spotlight Campaigns</th>
-                  <td className="fw-bold text-danger">Exclusive Video Series</td>
-                  <td className="fw-bold">Dedicated Reels / Posts</td>
-                  <td>Dedicated Posts</td>
-                  <td>Brand Shout-outs</td>
-                  <td>General Mention</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>Exhibition Booth &amp; Car Launch</th>
-                  <td className="fw-bold text-danger">Exclusive Co-Host Lounge</td>
-                  <td className="fw-bold">Interactive Booth Space</td>
-                  <td>Display Space</td>
-                  <td>Display Space</td>
-                  <td>&mdash;</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>Direct Recruitment Pipeline Access</th>
-                  <td className="fw-bold text-danger">Exclusive Priority Access</td>
-                  <td className="fw-bold">Full Roster Access</td>
-                  <td>Access Upon Request</td>
-                  <td>&mdash;</td>
-                  <td>&mdash;</td>
-                </tr>
-              </tbody>
-            </table>
+          <Reveal className="budget-total mx-auto mb-5">
+            <span className="budget-total-label">Total project budget</span>
+            <span className="budget-total-value font-orbitron">
+              <CountUp to={BUDGET.total} prefix="৳ " duration={2} />
+            </span>
+          </Reveal>
+
+          <div className="row g-4">
+            {[
+              { title: 'Formula Car Development', data: BUDGET.car, icon: 'bi-tools' },
+              { title: 'FSAE Dynamix India 2027', data: BUDGET.competition, icon: 'bi-airplane-fill' },
+            ].map((block, bi) => (
+              <Reveal key={block.title} className="col-lg-6" delay={bi * 0.1}>
+                <div className="glass-panel p-4 h-100">
+                  <div className="d-flex justify-content-between align-items-baseline mb-3 gap-2 flex-wrap">
+                    <h4 className="mb-0 font-orbitron" style={{ fontSize: '17px' }}>
+                      <i className={`bi ${block.icon} me-2 text-danger`} aria-hidden="true"></i>
+                      {block.title}
+                    </h4>
+                    <span className="font-orbitron fw-bold" style={{ color: '#0F172A' }}>৳ {bdt(block.data.total)}</span>
+                  </div>
+                  <ul className="list-unstyled budget-bars mb-0">
+                    {block.data.items.map((item, i) => {
+                      const pct = (item.amount / block.data.total) * 100;
+                      return (
+                        <li key={item.label}>
+                          <div className="d-flex justify-content-between small fw-semibold mb-1">
+                            <span>{item.label}</span>
+                            <span className="text-muted">
+                              ৳ {bdt(item.amount)} · {pct.toFixed(1)}%
+                            </span>
+                          </div>
+                          <div className="budget-track">
+                            <GrowBar className="budget-fill" style={{ width: `${pct}%`, background: item.color }} delay={0.1 + i * 0.07} />
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Want Custom Sponsor? Section */}
+      {/* 9. Plan of action */}
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid #0F172A' }}>
+        <div className="container mx-auto px-4">
+          <SectionHeading badge="Plan of Action" badgeClass="" title="ROAD TO DYNAMIX 2027" />
+          <div className="race-timeline mx-auto">
+            <GrowBar className="race-timeline-line" axis="y" duration={1.6} />
+            {TIMELINE.map((t, i) => (
+              <Reveal key={t.phase} className={`race-timeline-item ${i % 2 ? 'is-right' : 'is-left'}`} x={i % 2 ? 30 : -30} y={0} delay={i * 0.05}>
+                <span className={`race-timeline-dot ${t.done ? 'is-done' : 'is-next'}`} aria-hidden="true">
+                  <i className={`bi ${t.done ? 'bi-check-lg' : 'bi-flag-fill'}`}></i>
+                </span>
+                <div className="race-timeline-card">
+                  <span className="race-timeline-phase">{t.phase}</span>
+                  <h5 className="mb-1 font-orbitron">{t.title}</h5>
+                  <span className="small text-muted">{t.date}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Custom sponsorship CTA */}
       <section className="section-padding py-5" style={{ background: '#FFFFFF', borderTop: '2px solid #0F172A' }}>
         <div className="container mx-auto px-4">
-          <div
-            className="glass-panel p-4 p-lg-5"
-            style={{
-              border: '2px solid #0F172A',
-              boxShadow: '8px 8px 0 #FF2A2A',
-              background: 'radial-gradient(circle at top right, rgba(255, 42, 42, 0.05) 0%, #FFFFFF 100%)',
-            }}
-          >
-            <div className="row g-5 align-items-center">
-              <div className="col-lg-8 col-12">
-                <span className="badge-motorsport red mb-2">Tailored Partnerships</span>
-                <h2 className="font-orbitron mb-3" style={{ color: '#0F172A', fontWeight: 900, fontSize: 'clamp(26px, 3.5vw, 42px)' }}>
-                  WANT A CUSTOM SPONSORSHIP?
-                </h2>
-                <p className="text-muted mb-4" style={{ fontSize: '16px', lineHeight: '1.7' }}>
-                  Looking for a custom tier tailored to your corporate CSR objectives, technical component supply, R&amp;D collaboration, or marketing budget? Team KILOFLIGHT works directly with corporate partners to architect bespoke agreements that deliver maximum value.
-                </p>
-
-                <div className="row g-3">
-                  <div className="col-md-6 col-12">
-                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <i className="bi bi-tools text-danger fs-5"></i>
-                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>Technical &amp; Parts In-Kind</span>
-                      </div>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        Supply aerospace raw materials (4130 chromoly tubes, Al 7075/5052, natural jute fabric), CNC machining, rapid prototyping, or telemetry sensors in exchange for official tier recognition.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-6 col-12">
-                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <i className="bi bi-tree-fill text-warning fs-5"></i>
-                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>CSR &amp; Green Tech Research</span>
-                      </div>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        Direct CSR funding towards sustainable 7-layer bio-jute composite development, eco-friendly manufacturing, and empowering student STEM innovation in Bangladesh.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-6 col-12">
-                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <i className="bi bi-airplane-engines text-info fs-5"></i>
-                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>Logistics &amp; Tour Support</span>
-                      </div>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        Sponsor race car air-freight transport, team competition travel gear, or international entry fees for FSAE Dynamix India 2027 and Silverstone UK.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-6 col-12">
-                    <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}>
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <i className="bi bi-star-fill text-danger fs-5"></i>
-                        <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>Bespoke Activations</span>
-                      </div>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        Host exclusive campus engineering seminars at KUET, private track day demonstrations with KILOFLIGHT PHOENIX, or dedicated recruitment drives.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-4 col-12 text-center">
-                <div className="p-4 rounded" style={{ background: '#F8FAFC', border: '2px solid #0F172A', boxShadow: '5px 5px 0 #0F172A' }}>
-                  <div className="dept-icon mx-auto mb-3" style={{ color: '#FF2A2A', borderColor: '#FF2A2A', background: '#FEE2E2', width: '64px', height: '64px', fontSize: '28px' }}>
-                    <i className="bi bi-patch-question-fill"></i>
-                  </div>
-                  <h4 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>
-                    Want Custom Sponsor?
-                  </h4>
-                  <p className="small text-muted mb-4" style={{ lineHeight: '1.6' }}>
-                    Speak directly with our team captains and directors to design a custom partnership package suited to your exact specifications.
+          <Reveal>
+            <div
+              className="glass-panel p-4 p-lg-5"
+              style={{
+                border: '2px solid #0F172A',
+                boxShadow: '8px 8px 0 #FF2A2A',
+                background: 'radial-gradient(circle at top right, rgba(255, 42, 42, 0.05) 0%, #FFFFFF 100%)',
+              }}
+            >
+              <div className="row g-5 align-items-center">
+                <div className="col-lg-8 col-12">
+                  <span className="badge-motorsport red mb-2">Tailored Partnerships</span>
+                  <h2 className="font-orbitron mb-3 d-block" style={{ fontSize: 'clamp(26px, 3.5vw, 42px)' }}>
+                    WANT A CUSTOM SPONSORSHIP?
+                  </h2>
+                  <p className="text-muted mb-4" style={{ fontSize: '16px', lineHeight: '1.7' }}>
+                    Looking for a package built around your CSR objectives, technical component supply, R&amp;D collaboration, or marketing budget?
+                    We work directly with partners to design agreements that deliver real value.
                   </p>
 
-                  <div className="d-flex flex-column gap-2">
-                    <Link
-                      href="/contact"
-                      className="custom-btn text-decoration-none w-100 py-3 text-center"
-                      style={{ fontSize: '13.5px' }}
-                    >
-                      <i className="bi bi-chat-right-text-fill me-2"></i> Discuss Custom Package
-                    </Link>
-
-                    <a
-                      href="mailto:teamkiloflightkuet@gmail.com?subject=Custom Sponsorship Proposal Inquiry - Team KILOFLIGHT"
-                      className="custom-btn-outline text-decoration-none w-100 py-2 text-center small"
-                    >
-                      <i className="bi bi-envelope-fill me-2"></i> Send Custom Proposal
-                    </a>
+                  <div className="row g-3">
+                    {[
+                      { icon: 'bi-tools text-danger', title: 'Technical & Parts In-Kind', text: 'Raw materials (4130 chromoly, aluminium, natural jute fabric), CNC machining, prototyping or sensors in exchange for tier recognition.' },
+                      { icon: 'bi-tree-fill text-warning', title: 'CSR & Green Tech Research', text: 'Fund sustainable jute-composite development, eco-friendly manufacturing and student STEM innovation in Bangladesh.' },
+                      { icon: 'bi-airplane-engines text-info', title: 'Logistics & Tour Support', text: 'Sponsor race-car freight, competition travel, or entry fees for FSAE Dynamix India 2027 and Formula Student UK.' },
+                      { icon: 'bi-star-fill text-danger', title: 'Bespoke Activations', text: 'Campus engineering seminars at KUET, product demonstrations with PHOENIX, or dedicated recruitment drives.' },
+                    ].map((c) => (
+                      <div key={c.title} className="col-md-6 col-12">
+                        <div className="custom-offer-tile h-100">
+                          <div className="d-flex align-items-center gap-2 mb-2">
+                            <i className={`bi ${c.icon} fs-5`} aria-hidden="true"></i>
+                            <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>{c.title}</span>
+                          </div>
+                          <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>{c.text}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
-                  <div className="mt-3 pt-3 border-top small text-muted font-monospace">
-                    <i className="bi bi-telephone-fill me-1 text-danger"></i> +880 1611-453600
+                  <div className="payment-note mt-4">
+                    <i className="bi bi-receipt-cutoff" aria-hidden="true"></i>
+                    <span>
+                      <strong>Payment terms:</strong> by cheque or cash to the club&apos;s bank account. At least 50% by a mutually agreed date, the
+                      remainder at least 45 days before the event.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-12 text-center">
+                  <div className="p-4 rounded" style={{ background: '#F8FAFC', border: '2px solid #0F172A', boxShadow: '5px 5px 0 #0F172A' }}>
+                    <div className="dept-icon mx-auto mb-3" style={{ color: '#FF2A2A', borderColor: '#FF2A2A', background: '#FEE2E2', width: '64px', height: '64px', fontSize: '28px' }}>
+                      <i className="bi bi-patch-question-fill" aria-hidden="true"></i>
+                    </div>
+                    <h4 className="font-orbitron mb-2">Let&apos;s Build It Together</h4>
+                    <p className="small text-muted mb-4" style={{ lineHeight: '1.6' }}>
+                      Speak directly with our captain and sponsorship directors to design the package that fits you.
+                    </p>
+
+                    <div className="d-flex flex-column gap-2">
+                      <Link href="/contact" className="custom-btn text-decoration-none w-100 py-3 text-center" style={{ fontSize: '13.5px' }}>
+                        <i className="bi bi-chat-right-text-fill me-2" aria-hidden="true"></i> Discuss a Package
+                      </Link>
+                      <a
+                        href="mailto:teamkiloflightkuet@gmail.com?subject=Sponsorship Inquiry - Team KILOFLIGHT"
+                        className="custom-btn-outline text-decoration-none w-100 py-2 text-center small"
+                      >
+                        <i className="bi bi-envelope-fill me-2" aria-hidden="true"></i> Email the Team
+                      </a>
+                    </div>
+
+                    <div className="mt-3 pt-3 border-top small text-muted font-monospace">
+                      <i className="bi bi-telephone-fill me-1 text-danger" aria-hidden="true"></i> +880 1611-453600
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

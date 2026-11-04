@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import CurrentSponsors from '@/components/CurrentSponsors';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -144,6 +145,8 @@ export default function Footer() {
                 <span>FSAE Japan 2023 Mechanical Pass &bull; FSAE Dynamix India 2027</span>
               </p>
             </div>
+            <h5 className="footer-heading mb-2">Our Partners</h5>
+            <CurrentSponsors variant="mini" />
           </div>
         </div>
 

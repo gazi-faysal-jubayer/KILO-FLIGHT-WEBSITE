@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './motion.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SplashCursor from '@/components/SplashCursor';
