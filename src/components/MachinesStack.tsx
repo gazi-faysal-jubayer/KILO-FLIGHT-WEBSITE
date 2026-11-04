@@ -9,6 +9,8 @@ export default function MachinesStack() {
     <KoiStudies
       className="machines-stack"
       src="/kiloflight-card-stack.html"
+      // first-party static file; a scripts-only sandbox renders blank here
+      sandbox="allow-scripts allow-same-origin"
       title="KILOFLIGHT machines: interactive card stack"
       label="Interactive stack of three KILOFLIGHT cards: Phoenix, Alpha and jute composite"
       style={{ background: 'var(--bg)' }}

@@ -9,9 +9,11 @@ export type KoiStudiesProps = {
   src?: string;
   title?: string;
   label?: string;
+  /* our own same-origin document needs allow-same-origin to paint inside the frame */
+  sandbox?: string;
 };
 
-export function KoiStudies({ className = "", style, src = KOI_STUDIES_SOURCE_URL, title = "Koi Studies — Interactive Card Stack", label = "Interactive stack of three Japanese koi studies" }: KoiStudiesProps) {
+export function KoiStudies({ className = "", style, src = KOI_STUDIES_SOURCE_URL, title = "Koi Studies — Interactive Card Stack", label = "Interactive stack of three Japanese koi studies", sandbox = "allow-scripts" }: KoiStudiesProps) {
   const [ready, setReady] = useState(false);
 
   return (
@@ -30,7 +32,7 @@ export function KoiStudies({ className = "", style, src = KOI_STUDIES_SOURCE_URL
       <iframe
         title={title}
         src={src}
-        sandbox="allow-scripts"
+        sandbox={sandbox}
         allow="autoplay"
         loading="eager"
         onLoad={() => setReady(true)}

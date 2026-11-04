@@ -128,11 +128,17 @@ for (let id = 0; id < CARDS.length; id += 1) {
   html = html.slice(0, start) + segment + html.slice(end);
 }
 
-// 3. document labels
+// 3. page field in the site's dusk colour instead of the authored near-black
+html = replaceOnce(html, '--field: #10100e;', '--field: #0b0819;', 'field colour');
+
+// the authored size assumes a full window; inside our ~600px frame the card would be ~160px wide
+html = replaceOnce(html, 'width: min(26.40625vw, 46.94444vh);', 'width: min(44vw, 70vh);', 'stack size');
+
+// 4. document labels
 html = replaceRegexOnce(html, /<title>[^<]*<\/title>/, '<title>KILOFLIGHT — Machines Card Stack</title>', 'title');
 html = replaceOnce(html, 'aria-label="Three interactive Japanese koi studies"', 'aria-label="Three interactive KILOFLIGHT cards: Phoenix, Alpha and jute composite"', 'scene label');
 
-// 4. auto-swap, inside the authored IIFE so it can use its own stack controls
+// 5. auto-swap, inside the authored IIFE so it can use its own stack controls
 html = replaceOnce(html, 'scene.classList.add("reveal-enabled");\n      updateStack();', `scene.classList.add("reveal-enabled");\n      updateStack();${AUTO_SWAP}`, 'auto-swap anchor');
 
 await writeFile(OUTPUT, html);
