@@ -11,9 +11,11 @@ export type KoiStudiesProps = {
   label?: string;
   /* our own same-origin document needs allow-same-origin to paint inside the frame */
   sandbox?: string;
+  /* inline the document instead of navigating the frame (the same path the filmstrip uses) */
+  srcDoc?: string;
 };
 
-export function KoiStudies({ className = "", style, src = KOI_STUDIES_SOURCE_URL, title = "Koi Studies — Interactive Card Stack", label = "Interactive stack of three Japanese koi studies", sandbox = "allow-scripts" }: KoiStudiesProps) {
+export function KoiStudies({ className = "", style, src = KOI_STUDIES_SOURCE_URL, title = "Koi Studies — Interactive Card Stack", label = "Interactive stack of three Japanese koi studies", sandbox = "allow-scripts", srcDoc }: KoiStudiesProps) {
   const [ready, setReady] = useState(false);
 
   return (
@@ -31,7 +33,8 @@ export function KoiStudies({ className = "", style, src = KOI_STUDIES_SOURCE_URL
     >
       <iframe
         title={title}
-        src={src}
+        src={srcDoc ? undefined : src}
+        srcDoc={srcDoc}
         sandbox={sandbox}
         allow="autoplay"
         loading="eager"
