@@ -30,7 +30,8 @@ function SponsorLogo({ sponsor, height }: { sponsor: CurrentSponsor; height: num
       src={sponsor.logo}
       alt={`${sponsor.name} logo`}
       height={height}
-      style={{ height, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+      // Fixed height + max-width + contain: the logo scales down inside its box instead of overflowing
+      style={{ height, width: 'auto', maxWidth: '100%', minWidth: 0, objectFit: 'contain', objectPosition: 'left center' }}
       onError={() => setFailed(true)}
     />
   );

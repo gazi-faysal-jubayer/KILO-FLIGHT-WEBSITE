@@ -201,7 +201,7 @@ export const CURRENT_SPONSORS: CurrentSponsor[] = [
     name: 'Steadfast',
     role: 'Official Logistics Partner',
     blurb: 'Moving our team and race car to exhibitions and events — logistics partner since Bangladesh AutoFest 2026.',
-    logo: '/images/sponsors/steadfast.svg',
+    logo: '/images/sponsors/steadfast.png',
     url: 'https://steadfast.com.bd',
     brandColor: '#00BF6F',
   },

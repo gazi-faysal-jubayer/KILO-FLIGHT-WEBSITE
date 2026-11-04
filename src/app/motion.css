@@ -781,6 +781,28 @@ textarea:focus-visible {
   50% { translate: 0 6px; }
 }
 
+/* Keep every sponsor logo (and the wordmark fallback) inside its box at any width */
+.sponsor-card-logo,
+.sponsor-compact-logo,
+.sponsor-mini {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.sponsor-compact-logo {
+  flex: 1 1 auto;
+}
+
+.sponsor-compact-role {
+  flex: 0 1 auto;
+}
+
+.sponsor-wordmark {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
 /* Full-width "your logo here" bar under the sponsor cards */
 .sponsor-card-ghost {
   flex-direction: row;
