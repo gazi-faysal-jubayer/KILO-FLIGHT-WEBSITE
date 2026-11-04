@@ -408,7 +408,7 @@ textarea:focus-visible {
 
 .benefit-matrix tbody tr:hover td,
 .benefit-matrix tbody tr:hover th {
-  background: #FFF7ED !important;
+  background: var(--surface-2) !important;
 }
 
 .matrix-tier-card {
@@ -825,5 +825,40 @@ textarea:focus-visible {
   }
   html {
     scroll-behavior: auto !important;
+  }
+}
+
+/*---------------------------------------
+  HOME: THE MACHINES (ThreeUI KoiStudies card stack)
+-----------------------------------------*/
+
+.machines-section {
+  padding: clamp(56px, 8vw, 96px) 0;
+  border-top: 2px solid var(--line, #f4e6c8);
+}
+
+.machines-frame {
+  position: relative;
+  height: clamp(520px, 64vh, 680px);
+  border: 2px solid var(--line, #f4e6c8);
+  box-shadow: 8px 8px 0 var(--shadow, rgba(6, 4, 16, 0.62));
+  overflow: hidden;
+}
+
+.machines-frame .machines-stack {
+  position: absolute !important;
+  inset: 0;
+}
+
+.machines-hint {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--amber, #f9c74f) !important;
+}
+
+@media (max-width: 767px) {
+  .machines-frame {
+    height: 560px;
   }
 }

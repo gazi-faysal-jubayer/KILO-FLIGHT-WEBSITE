@@ -434,7 +434,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   </p>
                 </div>
 
-                <div className="p-2 px-3 rounded mb-2" style={{ background: 'var(--tint-red)', border: '1px solid #FECACA' }}>
+                <div className="p-2 px-3 rounded mb-2" style={{ background: 'var(--tint-red)', border: '1px solid rgba(255, 122, 122, 0.4)' }}>
                   <span className="small text-danger d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
                     <i className="bi bi-exclamation-triangle-fill me-1"></i> Engineering Challenge
                   </span>
@@ -443,7 +443,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   </p>
                 </div>
 
-                <div className="p-2 px-3 rounded" style={{ background: 'var(--tint-green)', border: '1px solid #BBF7D0' }}>
+                <div className="p-2 px-3 rounded" style={{ background: 'var(--tint-green)', border: '1px solid rgba(134, 239, 172, 0.4)' }}>
                   <span className="small text-success d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
                     <i className="bi bi-check-circle-fill me-1"></i> KILOFLIGHT Solution
                   </span>

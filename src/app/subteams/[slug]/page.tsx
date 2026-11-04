@@ -251,7 +251,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 {subteam.enginePackage && (
                   <div
                     className="p-2 mb-3 rounded"
-                    style={{ background: 'var(--tint-cyan)', border: '1px solid #BAE6FD', color: 'var(--cyan)', fontSize: '12px', fontWeight: 700 }}
+                    style={{ background: 'var(--tint-cyan)', border: '1px solid rgba(125, 211, 252, 0.4)', color: 'var(--cyan)', fontSize: '12px', fontWeight: 700 }}
                   >
                     <i className="bi bi-gear-fill me-1"></i> {subteam.enginePackage}
                   </div>

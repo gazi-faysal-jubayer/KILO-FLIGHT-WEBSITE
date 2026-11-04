@@ -117,7 +117,7 @@ export default function SubteamMediaGallery() {
                 <span className="badge-motorsport" style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '11px' }}>
                   {selectedFigure.figureNumber}
                 </span>
-                <span className="badge" style={{ background: 'var(--surface-2)', color: 'var(--cyan)', border: '1px solid #BAE6FD', fontSize: '11px', fontWeight: 700 }}>
+                <span className="badge" style={{ background: 'var(--surface-2)', color: 'var(--cyan)', border: '1px solid rgba(125, 211, 252, 0.4)', fontSize: '11px', fontWeight: 700 }}>
                   {selectedFigure.category}
                 </span>
               </div>
