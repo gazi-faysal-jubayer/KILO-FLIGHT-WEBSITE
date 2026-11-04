@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './motion.css';
+import '@/shaders/threeui.css';
+import './theme.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SplashCursor from '@/components/SplashCursor';
@@ -20,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-bs-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

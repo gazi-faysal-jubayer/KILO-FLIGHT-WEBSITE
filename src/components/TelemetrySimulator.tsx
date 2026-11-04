@@ -229,7 +229,7 @@ export default function TelemetrySimulator() {
       <div className="row g-4 align-items-center">
         {/* Canvas */}
         <div className="col-lg-8">
-          <div className="position-relative rounded p-2" style={{ background: '#F8FAFC', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}>
+          <div className="position-relative rounded p-2" style={{ background: 'var(--surface-2)', border: '2px solid var(--line)', boxShadow: '3px 3px 0 var(--shadow)' }}>
             <canvas ref={canvasRef} style={{ width: '100%', height: '260px', display: 'block' }} />
           </div>
         </div>

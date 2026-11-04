@@ -71,19 +71,19 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
   const divisionImage = SUBTEAM_IMAGE_MAP[subteam.id];
 
   return (
-    <div className="subteam-detail-wrapper" style={{ background: '#F8FAFC', minHeight: '100vh' }}>
+    <div className="subteam-detail-wrapper" style={{ background: 'var(--surface-2)', minHeight: '100vh' }}>
       {/* Top Breadcrumb & Navigation Bar */}
       <section className="subteam-breadcrumb-bar">
         <div className="container mx-auto px-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb mb-0 small" style={{ fontWeight: 600 }}>
               <li className="breadcrumb-item">
-                <Link href="/" className="text-decoration-none" style={{ color: '#64748B' }}>
+                <Link href="/" className="text-decoration-none" style={{ color: 'var(--text-muted)' }}>
                   Home
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/subteams" className="text-decoration-none" style={{ color: '#64748B' }}>
+                <Link href="/subteams" className="text-decoration-none" style={{ color: 'var(--text-muted)' }}>
                   Sub-Teams
                 </Link>
               </li>
@@ -98,9 +98,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
               href={`/subteams/${subteam.slug}/workflow`}
               className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
-                background: '#FEF2F2',
-                color: '#DC2626',
-                border: '1.5px solid #DC2626',
+                background: 'var(--tint-red)',
+                color: 'var(--red-text)',
+                border: '1.5px solid var(--red-text)',
                 fontWeight: 700,
                 fontSize: '12px',
                 padding: '7px 14px',
@@ -113,10 +113,10 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
               href="/subteams"
               className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
-                background: '#F8FAFC',
-                color: '#0F172A',
-                border: '1.5px solid #0F172A',
-                boxShadow: '2px 2px 0 #0F172A',
+                background: 'var(--surface-2)',
+                color: 'var(--text)',
+                border: '1.5px solid var(--line)',
+                boxShadow: '2px 2px 0 var(--shadow)',
                 fontWeight: 700,
                 fontSize: '12px',
                 padding: '7px 14px',
@@ -132,8 +132,8 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
       <section
         className="py-5"
         style={{
-          background: `linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(2, 132, 199, 0.05) 100%)`,
-          borderBottom: '2px solid #0F172A',
+          background: `linear-gradient(135deg, rgba(244, 230, 200, 0.03) 0%, rgba(2, 132, 199, 0.05) 100%)`,
+          borderBottom: '2px solid var(--line)',
         }}
       >
         <div className="container mx-auto px-4">
@@ -145,8 +145,8 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   style={{
                     background: subteam.accentColor,
                     color: '#FFFFFF',
-                    border: '1.5px solid #0F172A',
-                    boxShadow: '2px 2px 0 #0F172A',
+                    border: '1.5px solid var(--line)',
+                    boxShadow: '2px 2px 0 var(--shadow)',
                     fontSize: '11px',
                   }}
                 >
@@ -155,9 +155,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 <span
                   className="badge"
                   style={{
-                    background: '#FFFFFF',
-                    color: '#0F172A',
-                    border: '1.5px solid #0F172A',
+                    background: 'var(--surface)',
+                    color: 'var(--text)',
+                    border: '1.5px solid var(--line)',
                     fontWeight: 700,
                     fontSize: '11px',
                   }}
@@ -166,7 +166,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 </span>
               </div>
 
-              <h1 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 900, fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+              <h1 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 900, fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 {subteam.title}
               </h1>
 
@@ -183,9 +183,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 <div
                   className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto"
                   style={{
-                    background: '#0F172A',
+                    background: 'var(--surface-deep)',
                     color: '#FFFFFF',
-                    border: '2px solid #0F172A',
+                    border: '2px solid var(--line)',
                     boxShadow: `3px 3px 0 ${subteam.accentColor}`,
                     padding: '10px 18px',
                     fontWeight: 800,
@@ -201,9 +201,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   href={`/subteams/${subteam.slug}/workflow`}
                   className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto"
                   style={{
-                    background: '#FFFFFF',
-                    color: '#0F172A',
-                    border: '2px solid #0F172A',
+                    background: 'var(--surface)',
+                    color: 'var(--text)',
+                    border: '2px solid var(--line)',
                     boxShadow: '3px 3px 0 #DC2626',
                     padding: '10px 18px',
                     fontWeight: 800,
@@ -222,8 +222,8 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
               <div
                 className="p-4 rounded text-center"
                 style={{
-                  background: '#FFFFFF',
-                  border: '2px solid #0F172A',
+                  background: 'var(--surface)',
+                  border: '2px solid var(--line)',
                   boxShadow: `5px 5px 0 ${subteam.accentColor}`,
                 }}
               >
@@ -232,7 +232,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   style={{
                     width: '76px',
                     height: '76px',
-                    background: '#F8FAFC',
+                    background: 'var(--surface-2)',
                     border: `2px solid ${subteam.accentColor}`,
                     color: subteam.accentColor,
                     fontSize: '34px',
@@ -241,17 +241,17 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   <i className={`bi ${subteam.icon}`}></i>
                 </div>
 
-                <div className="small fw-bold text-uppercase mb-1" style={{ color: '#64748B', letterSpacing: '1px' }}>
+                <div className="small fw-bold text-uppercase mb-1" style={{ color: 'var(--text-muted)', letterSpacing: '1px' }}>
                   Division Blueprint
                 </div>
-                <h5 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>
+                <h5 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 800 }}>
                   {subteam.badge}
                 </h5>
 
                 {subteam.enginePackage && (
                   <div
                     className="p-2 mb-3 rounded"
-                    style={{ background: '#F0F9FF', border: '1px solid #BAE6FD', color: '#0369A1', fontSize: '12px', fontWeight: 700 }}
+                    style={{ background: 'var(--tint-cyan)', border: '1px solid #BAE6FD', color: 'var(--cyan)', fontSize: '12px', fontWeight: 700 }}
                   >
                     <i className="bi bi-gear-fill me-1"></i> {subteam.enginePackage}
                   </div>
@@ -263,9 +263,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                       key={idx}
                       className="badge"
                       style={{
-                        background: '#F8FAFC',
-                        color: '#0F172A',
-                        border: '1px solid #CBD5E1',
+                        background: 'var(--surface-2)',
+                        color: 'var(--text)',
+                        border: '1px solid var(--rule)',
                         fontSize: '11px',
                         fontWeight: 600,
                       }}
@@ -290,9 +290,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           <div
             className="p-3 px-4 mb-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-2"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: `4px 4px 0 ${subteam.accentColor}`,
             }}
           >
@@ -312,7 +312,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 </h4>
               </div>
             </div>
-            <span className="badge" style={{ background: '#1E293B', color: '#94A3B8', border: '1px solid #334155' }}>
+            <span className="badge" style={{ background: 'var(--surface-deep)', color: '#94A3B8', border: '1px solid #334155' }}>
               Subsystems • 3D Models • Specs • Formulas
             </span>
           </div>
@@ -321,18 +321,18 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           <div
             className="p-3 p-sm-4 p-md-5 rounded mb-4"
             style={{
-              background: '#FFFFFF',
-              border: '2px solid #0F172A',
-              boxShadow: '3px 3px 0 #0F172A',
+              background: 'var(--surface)',
+              border: '2px solid var(--line)',
+              boxShadow: '3px 3px 0 var(--shadow)',
             }}
           >
             <div className="d-flex align-items-center gap-2 mb-3">
               <span className="badge-motorsport red">1.1</span>
-              <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+              <h4 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800 }}>
                 EXECUTIVE OVERVIEW &amp; TECHNICAL SCOPE
               </h4>
             </div>
-            <p className="mb-0" style={{ color: '#334155', lineHeight: '1.8', fontSize: '15px' }}>
+            <p className="mb-0" style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
               {subteam.scopeAndMission}
             </p>
           </div>
@@ -346,11 +346,11 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
               <div className="d-flex align-items-center gap-2">
                 <span className="badge-motorsport red">{hasDedicated3D ? '1.3' : '1.2'}</span>
-                <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+                <h4 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800 }}>
                   CORE SUBSYSTEMS &amp; PRIMARY ASSEMBLIES
                 </h4>
               </div>
-              <span className="badge" style={{ background: '#FFFFFF', color: '#0F172A', border: '1.5px solid #0F172A', fontWeight: 700 }}>
+              <span className="badge" style={{ background: 'var(--surface)', color: 'var(--text)', border: '1.5px solid var(--line)', fontWeight: 700 }}>
                 {subteam.subsystems.length} Subsystems
               </span>
             </div>
@@ -361,16 +361,16 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   <div
                     className="p-4 rounded h-100 d-flex flex-column"
                     style={{
-                      background: '#FFFFFF',
-                      border: '2px solid #0F172A',
-                      boxShadow: '3px 3px 0 #0F172A',
+                      background: 'var(--surface)',
+                      border: '2px solid var(--line)',
+                      boxShadow: '3px 3px 0 var(--shadow)',
                     }}
                   >
                     <div className="d-flex align-items-center justify-content-between gap-2 mb-3">
                       <span
                         className="badge"
                         style={{
-                          background: '#F1F5F9',
+                          background: 'var(--surface-2)',
                           color: subteam.accentColor,
                           border: `1.5px solid ${subteam.accentColor}`,
                           fontWeight: 700,
@@ -382,7 +382,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                       <span className="small fw-bold text-muted">0{sIdx + 1}</span>
                     </div>
 
-                    <h5 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800, fontSize: '15px' }}>
+                    <h5 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 800, fontSize: '15px' }}>
                       {sub.title}
                     </h5>
 
@@ -390,7 +390,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                       {sub.description}
                     </p>
 
-                    <ul className="list-unstyled mb-0 mt-auto small" style={{ color: '#334155' }}>
+                    <ul className="list-unstyled mb-0 mt-auto small" style={{ color: 'var(--text-muted)' }}>
                       {sub.bulletPoints.map((pt, pIdx) => (
                         <li key={pIdx} className="d-flex align-items-start gap-2 mb-2">
                           <i className="bi bi-arrow-right-circle-fill text-danger mt-1" style={{ fontSize: '12px' }}></i>
@@ -412,9 +412,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
               <div
                 className="p-4 rounded"
                 style={{
-                  background: '#FFFFFF',
-                  border: '2px solid #0F172A',
-                  boxShadow: '4px 4px 0 #0F172A',
+                  background: 'var(--surface)',
+                  border: '2px solid var(--line)',
+                  boxShadow: '4px 4px 0 var(--shadow)',
                 }}
               >
                 <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
@@ -423,7 +423,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 </div>
                 <div
                   className="position-relative rounded overflow-hidden mb-3"
-                  style={{ aspectRatio: '21/9', border: '1.5px solid #0F172A', background: '#0F172A' }}
+                  style={{ aspectRatio: '21/9', border: '1.5px solid var(--line)', background: 'var(--surface-deep)' }}
                 >
                   <Image
                     src={divisionImage.image}
@@ -448,7 +448,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
           <div className="mb-4">
             <div className="d-flex align-items-center gap-2 mb-3">
               <span className="badge-motorsport red">{hasDedicated3D ? '1.6' : '1.4'}</span>
-              <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+              <h4 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800 }}>
                 HARDWARE SPECIFICATIONS &amp; TOOLING MATRIX
               </h4>
             </div>
@@ -456,9 +456,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             <div
               className="p-3 p-sm-4 rounded"
               style={{
-                background: '#FFFFFF',
-                border: '2px solid #0F172A',
-                boxShadow: '3px 3px 0 #0F172A',
+                background: 'var(--surface)',
+                border: '2px solid var(--line)',
+                boxShadow: '3px 3px 0 var(--shadow)',
               }}
             >
               <div className="row g-3">
@@ -466,12 +466,12 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                   <div key={sIdx} className="col-md-6 col-12">
                     <div
                       className="p-3 rounded d-flex align-items-center justify-content-between h-100"
-                      style={{ background: '#F8FAFC', border: '1px solid #E2E8F0' }}
+                      style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}
                     >
                       <span className="small fw-bold text-muted text-uppercase" style={{ fontSize: '12px' }}>
                         {spec.label}
                       </span>
-                      <span className="small fw-bold text-end" style={{ color: '#0F172A', fontSize: '13px' }}>
+                      <span className="small fw-bold text-end" style={{ color: 'var(--text)', fontSize: '13px' }}>
                         {spec.value}
                       </span>
                     </div>
@@ -481,7 +481,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
 
               {/* Tools list */}
               <div className="mt-4 pt-3 border-top">
-                <span className="small fw-bold text-uppercase d-block mb-2" style={{ color: '#0F172A', letterSpacing: '0.5px' }}>
+                <span className="small fw-bold text-uppercase d-block mb-2" style={{ color: 'var(--text)', letterSpacing: '0.5px' }}>
                   Tooling, CAD &amp; Fabrication Technologies:
                 </span>
                 <div className="d-flex gap-2 flex-wrap">
@@ -490,10 +490,10 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                       key={tIdx}
                       className="badge"
                       style={{
-                        background: '#FFFFFF',
-                        color: '#0F172A',
-                        border: '1.5px solid #0F172A',
-                        boxShadow: '1.5px 1.5px 0 #0F172A',
+                        background: 'var(--surface)',
+                        color: 'var(--text)',
+                        border: '1.5px solid var(--line)',
+                        boxShadow: '1.5px 1.5px 0 var(--shadow)',
                         padding: '6px 12px',
                         fontWeight: 700,
                         fontSize: '12px',
@@ -514,15 +514,15 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
         <section
           className="p-3 p-sm-4 p-md-5 rounded mb-5"
           style={{
-            background: '#FFFFFF',
-            border: '2px solid #0F172A',
+            background: 'var(--surface)',
+            border: '2px solid var(--line)',
             boxShadow: '5px 5px 0 #DC2626',
           }}
         >
           <div className="row align-items-center g-3">
             <div className="col-lg-8 col-12">
               <span className="badge-motorsport red mb-2">Dedicated Execution Page</span>
-              <h3 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 900 }}>
+              <h3 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 900 }}>
                 PART 2: {subteam.title.toUpperCase()} TECHNICAL WORKFLOW &amp; ROADMAP
               </h3>
               <p className="text-muted mb-0" style={{ fontSize: '15px', lineHeight: '1.7' }}>
@@ -536,8 +536,8 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                 style={{
                   background: '#DC2626',
                   color: '#FFFFFF',
-                  border: '2px solid #0F172A',
-                  boxShadow: '3px 3px 0 #0F172A',
+                  border: '2px solid var(--line)',
+                  boxShadow: '3px 3px 0 var(--shadow)',
                   padding: '12px 24px',
                   fontWeight: 800,
                   fontSize: '14px',
@@ -556,7 +556,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
         <section className="mb-5">
           <div className="d-flex align-items-center gap-2 mb-4">
             <span className="badge-motorsport red">DIVISION INTERFACES</span>
-            <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+            <h4 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800 }}>
               CROSS-FUNCTIONAL SYSTEM INTEGRATION
             </h4>
           </div>
@@ -571,9 +571,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                     href={`/subteams/${partner.id}`}
                     className="p-3 rounded d-flex align-items-center justify-content-between text-decoration-none h-100"
                     style={{
-                      background: '#FFFFFF',
-                      border: '2px solid #0F172A',
-                      boxShadow: '3px 3px 0 #0F172A',
+                      background: 'var(--surface)',
+                      border: '2px solid var(--line)',
+                      boxShadow: '3px 3px 0 var(--shadow)',
                       transition: 'all 0.15s ease',
                     }}
                   >
@@ -583,7 +583,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                         style={{
                           width: '40px',
                           height: '40px',
-                          background: '#F8FAFC',
+                          background: 'var(--surface-2)',
                           border: `1.5px solid ${partnerData.accentColor}`,
                           color: partnerData.accentColor,
                           fontSize: '18px',
@@ -595,7 +595,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
                         <span className="small text-muted text-uppercase d-block" style={{ fontSize: '10.5px' }}>
                           Division {partnerData.divisionNumber}
                         </span>
-                        <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                        <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13.5px' }}>
                           {partnerData.title}
                         </span>
                       </div>
@@ -612,9 +612,9 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
         <section
           className="p-4 p-md-5 rounded text-center"
           style={{
-            background: '#0F172A',
+            background: 'var(--surface-deep)',
             color: '#FFFFFF',
-            border: '2px solid #0F172A',
+            border: '2px solid var(--line)',
             boxShadow: `5px 5px 0 ${subteam.accentColor}`,
           }}
         >
@@ -632,7 +632,7 @@ export default async function DedicatedSubteamPage({ params }: PageProps) {
             <Link
               href="/subteams"
               className="custom-btn-outline text-decoration-none"
-              style={{ background: '#FFFFFF', color: '#0F172A', padding: '12px 28px', fontSize: '14px' }}
+              style={{ background: 'var(--surface)', color: 'var(--text)', padding: '12px 28px', fontSize: '14px' }}
             >
               Explore Other Sub-Teams
             </Link>

@@ -4,7 +4,8 @@ import HeroVideo from '@/components/HeroVideo';
 import CarSpecsTabs from '@/components/CarSpecsTabs';
 import FsaeEvents from '@/components/FsaeEvents';
 import CurrentSponsors from '@/components/CurrentSponsors';
-import { Reveal, RevealGroup, RevealItem } from '@/components/motion/Reveal';
+import { Reveal, RevealGroup, RevealItem, GrowBar } from '@/components/motion/Reveal';
+import { SUBTEAMS_DATA } from '@/lib/subteams-data';
 
 export const metadata = {
   title: 'Team KILOFLIGHT | KUET Formula Student Motorsport Bangladesh',
@@ -34,7 +35,7 @@ const ACHIEVEMENTS = [
     event: 'Bangladesh AutoFest 2026',
     sub: 'July 17–18, 2026 • ALOKI Dhaka',
     badge: (
-      <span className="badge-motorsport mb-1" style={{ background: '#E0F2FE', color: '#0284C7', border: '1.5px solid #0284C7' }}>
+      <span className="badge-motorsport mb-1" style={{ background: 'var(--tint-cyan)', color: 'var(--cyan)', border: '1.5px solid var(--cyan)' }}>
         National Exhibition
       </span>
     ),
@@ -85,7 +86,7 @@ export default function HomePage() {
       </section>
 
       {/* 2b. POWERED BY: CURRENT SPONSORS */}
-      <section className="py-5" style={{ background: '#FFFFFF', borderTop: '2px solid #0F172A', borderBottom: '2px solid #0F172A' }}>
+      <section className="py-5" style={{ background: 'var(--surface)', borderTop: '2px solid var(--line)', borderBottom: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <Reveal className="text-center mb-4">
             <span className="badge-motorsport jute mb-2">Proudly Powered By</span>
@@ -119,21 +120,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. ENGINEERING SUB-TEAMS & DETAILED WORKFLOWS */}
+      {/* 4. ENGINEERING SUB-TEAMS: terminal menu */}
       <section className="section-padding py-5" id="section_4">
         <div className="container mx-auto px-4">
           <Reveal className="row justify-content-center text-center mb-5">
             <div className="col-lg-8">
               <span className="badge-motorsport red mb-2">Multidisciplinary Synergy</span>
-              <h2 className="mb-3">ENGINEERING SUB-TEAMS &amp; WORKFLOWS</h2>
-              <p className="text-muted mb-4">
-                Chassis &amp; Suspension, Body &amp; Aerodynamics, Mechanical Powertrain, Electrical Systems &amp; DAQ, Braking &amp; Steering, and Business &amp; Media at KUET.
+              <h2 className="mb-3">ENGINEERING SUB-TEAMS</h2>
+              <p className="text-muted mb-0">
+                Six divisions build PHOENIX, from the chromoly spaceframe to the jute-composite bodywork and the data logger.
               </p>
-              <Link href="/subteams" className="custom-btn-outline">
-                View All 6 Sub-teams &amp; Step-by-Step Workflows
-              </Link>
             </div>
           </Reveal>
+
+          <RevealGroup className="row g-3">
+            {SUBTEAMS_DATA.map((team) => (
+              <RevealItem key={team.slug} className="col-lg-4 col-md-6 col-12 d-flex">
+                <Link href={`/subteams/${team.slug}`} className="term-tile" style={{ '--tile-accent': team.accentColor } as React.CSSProperties}>
+                  <span className="term-tile__index">{team.divisionNumber}</span>
+                  <i className={`bi ${team.icon} term-tile__icon`} aria-hidden="true"></i>
+                  <span className="term-tile__title">{team.title}</span>
+                  <span className="term-tile__desc">{team.coverTagline}</span>
+                  <span className="term-tile__go">OPEN ▶</span>
+                </Link>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+
+          <div className="text-center mt-5">
+            <Link href="/subteams" className="custom-btn-outline">
+              All Sub-teams &amp; Workflows
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -150,54 +168,27 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* Desktop table */}
-          <Reveal className="table-responsive d-none d-md-block" delay={0.1}>
-            <table className="schedule-table table align-middle w-100">
-              <thead>
-                <tr>
-                  <th scope="col">Year</th>
-                  <th scope="col">Competition / Event</th>
-                  <th scope="col">Key Milestone &amp; Details</th>
-                  <th scope="col">Location &amp; Highlights</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ACHIEVEMENTS.map((a) => (
-                  <tr key={a.year}>
-                    <th scope="row" className="font-orbitron fs-5 text-cyan">{a.year}</th>
-                    <td>
-                      <div className="fw-bold" style={{ color: '#0F172A' }}>{a.event}</div>
-                      <div className="small text-muted">{a.sub}</div>
-                    </td>
-                    <td>
-                      {a.badge}
-                      <div className="small text-muted">{a.detail}</div>
-                    </td>
-                    <td style={{ color: '#0F172A', fontWeight: 600 }}>{a.location}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </Reveal>
-
-          {/* Mobile: staggered cards */}
-          <RevealGroup className="row g-3 d-md-none">
-            {ACHIEVEMENTS.map((a) => (
-              <RevealItem key={a.year} className="col-12">
-                <div className="glass-panel p-3">
-                  <div className="font-orbitron fw-bold text-cyan mb-1">{a.year}</div>
-                  <div className="fw-bold" style={{ color: '#0F172A' }}>{a.event}</div>
-                  <div className="small text-muted mb-2">{a.sub}</div>
+          <div className="race-timeline mx-auto">
+            <GrowBar className="race-timeline-line" axis="y" duration={1.6} />
+            {ACHIEVEMENTS.map((a, i) => (
+              <Reveal key={a.year} className={`race-timeline-item ${i % 2 ? 'is-right' : 'is-left'}`} x={i % 2 ? 30 : -30} y={0} delay={i * 0.05}>
+                <span className={`race-timeline-dot ${i === ACHIEVEMENTS.length - 1 ? 'is-next' : 'is-done'}`} aria-hidden="true">
+                  <i className={`bi ${i === ACHIEVEMENTS.length - 1 ? 'bi-flag-fill' : 'bi-check-lg'}`}></i>
+                </span>
+                <div className="race-timeline-card">
+                  <span className="race-timeline-phase">{a.year}</span>
+                  <h5 className="mb-1 font-orbitron">{a.event}</h5>
+                  <div className="small mb-2" style={{ color: 'var(--text-muted)' }}>{a.sub}</div>
                   {a.badge}
-                  <div className="small text-muted">{a.detail}</div>
-                  <div className="small fw-semibold mt-2" style={{ color: '#0F172A' }}>
+                  <div className="small mt-1" style={{ color: 'var(--text-muted)' }}>{a.detail}</div>
+                  <div className="small fw-semibold mt-2">
                     <i className="bi bi-geo-alt-fill text-danger me-1" aria-hidden="true"></i>
                     {a.location}
                   </div>
                 </div>
-              </RevealItem>
+              </Reveal>
             ))}
-          </RevealGroup>
+          </div>
         </div>
       </section>
     </>

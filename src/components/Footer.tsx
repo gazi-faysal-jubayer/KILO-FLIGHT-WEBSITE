@@ -132,7 +132,7 @@ export default function Footer() {
             <div className="footer-contact-box p-3 rounded mb-3">
               <p className="small mb-2 d-flex align-items-center">
                 <i className="bi bi-envelope-fill me-2 text-cyan"></i>
-                <a href="mailto:teamkiloflightkuet@gmail.com" className="text-decoration-none fw-bold" style={{ color: '#0F172A' }}>
+                <a href="mailto:teamkiloflightkuet@gmail.com" className="text-decoration-none fw-bold" style={{ color: 'var(--text)' }}>
                   teamkiloflightkuet@gmail.com
                 </a>
               </p>
@@ -157,7 +157,7 @@ export default function Footer() {
         <div className="row align-items-center justify-content-between g-3">
           <div className="col-lg-6 col-md-12 text-center text-lg-start small text-muted">
             Copyright &copy; {new Date().getFullYear()}{' '}
-            <strong style={{ color: '#0F172A' }}>Team Kilo Flight</strong> | Khulna University of Engineering &amp; Technology (KUET). All Rights Reserved.
+            <strong style={{ color: 'var(--text)' }}>Team Kilo Flight</strong> | Khulna University of Engineering &amp; Technology (KUET). All Rights Reserved.
           </div>
 
           <div className="col-lg-6 col-md-12 text-center text-lg-end">

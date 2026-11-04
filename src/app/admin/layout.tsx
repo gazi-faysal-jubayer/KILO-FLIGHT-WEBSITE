@@ -49,12 +49,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   };
 
   if (isLoginPage) {
-    return <>{children}</>;
+    return <div data-theme-scope="admin" data-bs-theme="light">{children}</div>;
   }
 
   if (checkingAuth) {
     return (
-      <div className="d-flex align-items-center justify-content-center vh-100" style={{ background: '#F4F6FB' }}>
+      <div data-theme-scope="admin" data-bs-theme="light" className="d-flex align-items-center justify-content-center vh-100" style={{ background: '#F4F6FB' }}>
         <div className="text-center">
           <div className="spinner-border text-danger mb-3" role="status"></div>
           <div className="font-orbitron fw-bold" style={{ color: '#0F172A' }}>
@@ -78,7 +78,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   ];
 
   return (
-    <div className="admin-wrapper d-flex min-vh-100" style={{ background: '#F4F6FB' }}>
+    <div data-theme-scope="admin" data-bs-theme="light" className="admin-wrapper d-flex min-vh-100" style={{ background: '#F4F6FB' }}>
       {/* Admin Sidebar */}
       <aside
         className={`admin-sidebar p-3 d-flex flex-column ${sidebarOpen ? 'open' : ''}`}

@@ -1,0 +1,695 @@
+/*------------------------------------------------------------------
+  KILOFLIGHT "DUSK TERMINAL" THEME
+  One palette for the whole site, taken from the ThreeUI pixel-terminal
+  dock (src/shaders/animated-top-dock): indigo dusk, cream rules, amber/coral
+  accents, Fragment Mono labels. Loaded last so it wins over globals.css.
+-------------------------------------------------------------------*/
+
+:root {
+  --bg: #0b0819;
+  --surface: #1a1030;
+  --surface-2: #241548;
+  --surface-deep: #150c28;
+  --text: #f4e6c8;
+  --text-muted: #b9a7e8;
+  --line: #f4e6c8;
+  --rule: #4b2f7e;
+  --shadow: rgba(6, 4, 16, 0.62);
+  --amber: #f9c74f;
+  --coral: #f47b5c;
+  --cyan: #7dd3fc;
+  --green: #86efac;
+  --red-text: #ff7a7a;
+  --tint-red: rgba(255, 42, 42, 0.16);
+  --tint-cyan: rgba(125, 211, 252, 0.14);
+  --tint-amber: rgba(249, 199, 79, 0.16);
+  --tint-green: rgba(134, 239, 172, 0.14);
+  --font-mono: "ThreeUI Fragment Mono", ui-monospace, "SFMono-Regular", monospace;
+  --dither-band: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0 1px, transparent 1px 3px);
+
+  /* re-point the original design-system tokens */
+  --dark-bg: var(--bg);
+  --dark-surface: var(--surface);
+  --dark-surface-elevated: var(--surface-2);
+  --card-bg: var(--surface);
+  --card-border: var(--line);
+  --card-hover-border: var(--amber);
+  --text-main: var(--text);
+  --cyan-telemetry: var(--cyan);
+  --cyan-telemetry-hover: #bae6fd;
+  --yellow-accent: var(--amber);
+  --jute-gold: var(--amber);
+  --electric-blue: var(--cyan);
+  --race-gradient: linear-gradient(90deg, #ff2a2a 0%, #f47b5c 35%, #f9c74f 70%, #7dd3fc 100%);
+
+  /* Bootstrap 5.3 dark mode, tuned to the dusk palette */
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-emphasis-color: var(--text);
+  --bs-secondary-color: var(--text-muted);
+  --bs-tertiary-bg: var(--surface-2);
+  --bs-border-color: var(--rule);
+  --bs-link-color: var(--amber);
+  --bs-link-hover-color: var(--coral);
+  color-scheme: dark;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-secondary-color: var(--text-muted);
+  --bs-border-color: var(--rule);
+}
+
+/* Admin keeps its original light look */
+[data-theme-scope="admin"] {
+  --bg: #F4F6FB;
+  --surface: #FFFFFF;
+  --surface-2: #F8FAFC;
+  --surface-deep: #0F172A;
+  --text: #0F172A;
+  --text-muted: #475569;
+  --line: #0F172A;
+  --rule: #E2E8F0;
+  --shadow: #0F172A;
+  --cyan: #0284C7;
+  --red-text: #DC2626;
+  --amber: #B45309;
+  --green: #16A34A;
+  color-scheme: light;
+}
+
+/*---------------------------------------
+  BASE
+-----------------------------------------*/
+
+body {
+  background-color: var(--bg) !important;
+  background-image:
+    radial-gradient(120% 70% at 50% -10%, rgba(244, 123, 92, 0.12), transparent 60%),
+    radial-gradient(90% 60% at 100% 100%, rgba(75, 47, 126, 0.35), transparent 60%),
+    linear-gradient(rgba(244, 230, 200, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 230, 200, 0.035) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px !important;
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6,
+.page-header-section h1 {
+  color: var(--text) !important;
+}
+
+h1 {
+  text-shadow: 3px 3px 0 var(--shadow) !important;
+}
+
+h2::after {
+  height: 4px;
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, var(--coral) 0 8px, var(--amber) 8px 16px) !important;
+}
+
+p,
+.text-muted,
+small.text-muted,
+.page-header-section p,
+.page-header-section .text-muted {
+  color: var(--text-muted) !important;
+}
+
+.glass-panel p,
+.glass-panel span,
+.glass-panel li {
+  color: inherit;
+}
+
+a { color: var(--amber); }
+a:hover { color: var(--coral); }
+
+.text-danger { color: var(--red-text) !important; }
+.text-info, .text-cyan { color: var(--cyan) !important; }
+.text-warning, .text-jute { color: var(--amber) !important; }
+.text-success { color: var(--green) !important; }
+.text-dark, .text-black { color: var(--text) !important; }
+.bg-white, .bg-light { background-color: var(--surface) !important; }
+.border, .border-top, .border-bottom { border-color: var(--rule) !important; }
+
+::selection {
+  color: #1a1030;
+  background: var(--amber);
+}
+
+/*---------------------------------------
+  TERMINAL CHIPS (badges / eyebrows)
+-----------------------------------------*/
+
+.badge-motorsport,
+.hero-eyebrow,
+.hero-subtitle,
+.sponsor-card-role {
+  font-family: var(--font-mono) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.14em !important;
+  border-radius: 0 !important;
+}
+
+.badge-motorsport {
+  color: var(--cyan) !important;
+  background: var(--tint-cyan) !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 3px 3px 0 var(--shadow) !important;
+}
+
+.badge-motorsport.red {
+  color: var(--red-text) !important;
+  background: var(--tint-red) !important;
+}
+
+.badge-motorsport.jute {
+  color: var(--amber) !important;
+  background: var(--tint-amber) !important;
+}
+
+/*---------------------------------------
+  PIXEL BUTTONS
+  Hard 2px edges, stepped colour change and a press-down offset, after the
+  dock's RUN cell and uiverse.io's pixel "press" buttons (MIT).
+-----------------------------------------*/
+
+.custom-btn,
+.custom-btn-outline,
+.card-button,
+.hero-btn-ghost {
+  border-radius: 0 !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.16em !important;
+  transition: transform 0.08s steps(2), box-shadow 0.08s steps(2), background 0.1s steps(2), color 0.1s steps(2) !important;
+}
+
+.custom-btn {
+  color: #1a1030 !important;
+  background: var(--coral) !important;
+  border: 2px solid var(--line) !important;
+  box-shadow: 5px 5px 0 var(--shadow), inset -3px -3px 0 rgba(0, 0, 0, 0.18) !important;
+}
+
+.custom-btn:hover {
+  color: #1a1030 !important;
+  background: var(--amber) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--shadow), inset -3px -3px 0 rgba(0, 0, 0, 0.18) !important;
+}
+
+.custom-btn:active,
+.custom-btn-outline:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1px 1px 0 var(--shadow) !important;
+}
+
+.custom-btn-outline,
+.hero-btn-ghost {
+  color: var(--text) !important;
+  background: var(--surface-2) !important;
+  border: 2px solid var(--line) !important;
+  box-shadow: 5px 5px 0 var(--shadow) !important;
+}
+
+.custom-btn-outline:hover,
+.hero-btn-ghost:hover {
+  color: #1a1030 !important;
+  background: var(--text) !important;
+  transform: translate(-2px, -2px);
+}
+
+/*---------------------------------------
+  PANELS, TABLES, FORMS
+-----------------------------------------*/
+
+.glass-panel,
+.stat-tile,
+.exec-tile,
+.custom-offer-tile,
+.matrix-tier-card,
+.race-timeline-card,
+.sponsor-card,
+.sponsor-compact,
+.fsae-event-card {
+  color: var(--text);
+  background: var(--surface) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0 var(--shadow) !important;
+}
+
+.glass-panel:hover,
+.stat-tile:hover,
+.custom-offer-tile:hover {
+  border-color: var(--amber) !important;
+  box-shadow: 8px 8px 0 var(--shadow) !important;
+}
+
+.dept-icon {
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 var(--shadow) !important;
+}
+
+.schedule-table,
+.table {
+  --bs-table-bg: var(--surface);
+  --bs-table-color: var(--text);
+  --bs-table-hover-bg: var(--surface-2);
+  --bs-table-border-color: var(--rule);
+  background: var(--surface) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0 var(--shadow) !important;
+}
+
+.schedule-table thead th {
+  color: var(--amber) !important;
+  background: var(--surface-deep) !important;
+  border-bottom: 2px solid var(--line) !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.14em;
+}
+
+.schedule-table tbody td,
+.schedule-table tbody th {
+  color: var(--text) !important;
+  border-bottom: 1px solid var(--rule) !important;
+}
+
+.schedule-table tbody tr:hover td,
+.schedule-table tbody tr:hover th {
+  background: var(--surface-2) !important;
+}
+
+.form-control,
+.form-select,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+select {
+  color: var(--text) !important;
+  background-color: var(--surface-deep) !important;
+  border: 2px solid var(--rule) !important;
+  border-radius: 0 !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--amber) !important;
+  box-shadow: 0 0 0 3px rgba(249, 199, 79, 0.28) !important;
+}
+
+::placeholder {
+  color: rgba(185, 167, 232, 0.65) !important;
+}
+
+label,
+.form-label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.modal-content,
+.dropdown-menu {
+  color: var(--text);
+  background: var(--surface) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 0 !important;
+}
+
+/* Sponsor logos are dark artwork, so their tiles stay light */
+.sponsor-card-logo,
+.sponsor-compact-logo,
+.sponsor-mini {
+  background: #f4e6c8 !important;
+  border-radius: 0 !important;
+}
+
+.sponsor-compact-logo {
+  padding: 6px 10px;
+}
+
+.sponsor-card-name,
+.sponsor-card-blurb {
+  color: var(--text) !important;
+}
+
+.sponsor-card-blurb,
+.sponsor-compact-role {
+  color: var(--text-muted) !important;
+}
+
+/* Package cards: keep their own colours, swap the white body for dusk */
+.sponsorship-neo-card {
+  --bg: var(--surface);
+  --text: #f4e6c8;
+  --shadow-color: rgba(6, 4, 16, 0.75);
+  color: var(--text);
+  border-color: var(--line) !important;
+}
+
+/* Section separators */
+.page-header-section {
+  background: var(--surface-deep) !important;
+  border-bottom: 2px solid var(--line) !important;
+}
+
+.page-header-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    var(--dither-band),
+    radial-gradient(80% 120% at 50% 0%, rgba(244, 123, 92, 0.22), transparent 70%);
+}
+
+.page-header-section > * {
+  position: relative;
+}
+
+/*---------------------------------------
+  FOOTER
+-----------------------------------------*/
+
+.site-footer {
+  color: var(--text-muted);
+  background: var(--surface-deep) !important;
+  border-top: 2px solid var(--line) !important;
+}
+
+.footer-heading {
+  color: var(--amber) !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.16em;
+}
+
+.footer-link { color: var(--text-muted) !important; }
+.footer-link:hover { color: var(--amber) !important; }
+
+.footer-contact-box,
+.footer-social-btn,
+.developer-badge {
+  color: var(--text) !important;
+  background: var(--surface) !important;
+  border: 2px solid var(--rule) !important;
+  border-radius: 0 !important;
+}
+
+.footer-social-btn:hover,
+.developer-badge:hover {
+  border-color: var(--amber) !important;
+  color: var(--amber) !important;
+}
+
+/* The footer logo artwork is dark; give it a cream plate */
+.site-footer img[alt="Team Kilo Flight"] {
+  padding: 4px 8px;
+  background: #f4e6c8;
+}
+
+/*---------------------------------------
+  FOCUS
+-----------------------------------------*/
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--amber) !important;
+  outline-offset: 3px;
+}
+
+/*---------------------------------------
+  SITE DOCK (ThreeUI AnimatedTopDock, retro)
+  The vendored scene fills this fixed band; only its demo chrome is hidden.
+-----------------------------------------*/
+
+.site-dock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  height: calc(20px + clamp(48px, 3.4vw, 68px));
+  border-bottom: 2px solid var(--line);
+  box-shadow: 0 6px 0 var(--shadow);
+}
+
+.site-dock .animated-top-dock-component.atd-retro {
+  --atd-top: 10px;
+  --atd-bar-width: min(1460px, calc(100% - 20px));
+}
+
+.site-dock .animated-top-dock-component__caption,
+.site-dock .atd-retro__readout {
+  display: none;
+}
+
+.site-dock .atd-retro__item,
+.site-dock .atd-retro__cta {
+  text-decoration: none;
+}
+
+/* link cells use aria-current instead of the demo's aria-pressed */
+.site-dock .atd-retro__item[aria-current="page"] {
+  color: #1a1030;
+  background: #f9c74f;
+}
+
+.site-dock .atd-retro__cta {
+  color: #1a1030;
+}
+
+.site-dock__sub {
+  margin-left: 0.2em;
+  color: #b9a7e8;
+}
+
+@media (max-width: 640px) {
+  .site-dock__word {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-dock .atd-retro__brand {
+    padding: 0 8px;
+  }
+
+  .site-dock .atd-retro__cta {
+    padding: 0 10px;
+  }
+}
+
+/*---------------------------------------
+  TERMINAL TILES (home sub-team menu)
+-----------------------------------------*/
+
+.term-tile {
+  --tile-accent: var(--coral);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 22px 22px 18px;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  box-shadow: 6px 6px 0 var(--shadow);
+  text-decoration: none;
+  transition: transform 0.12s steps(2), box-shadow 0.12s steps(2), background 0.12s steps(2);
+}
+
+.term-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, var(--tile-accent) 0 10px, transparent 10px 14px);
+}
+
+.term-tile:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--shadow);
+}
+
+.term-tile__index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--amber);
+}
+
+.term-tile__icon {
+  font-size: 26px;
+  color: var(--tile-accent);
+  filter: brightness(1.4);
+}
+
+.term-tile__title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.term-tile__desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.term-tile__go {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--coral);
+}
+
+.term-tile:hover .term-tile__go {
+  color: var(--amber);
+}
+
+/* timeline on the dusk palette */
+.race-timeline-line {
+  background: repeating-linear-gradient(180deg, var(--line) 0 14px, var(--surface-deep) 14px 28px) !important;
+  border-color: var(--line) !important;
+}
+
+.race-timeline-dot {
+  border-color: var(--line) !important;
+  border-radius: 0 !important;
+}
+
+.race-timeline-dot.is-done {
+  color: #1a1030 !important;
+  background: var(--amber) !important;
+}
+
+.race-timeline-phase {
+  font-family: var(--font-mono) !important;
+  font-weight: 400 !important;
+  color: var(--coral) !important;
+}
+
+/* stripe divider in dusk colours */
+.race-divider {
+  border-color: var(--line) !important;
+  background: repeating-linear-gradient(-45deg, #ff2a2a 0 18px, var(--bg) 18px 26px, var(--coral) 26px 44px, var(--bg) 44px 52px, var(--amber) 52px 70px, var(--bg) 70px 78px) !important;
+  background-size: 220px 100% !important;
+}
+
+/*---------------------------------------
+  TEAM FILMSTRIP (ThreeUI CharacterCarousel)
+-----------------------------------------*/
+
+.team-filmstrip {
+  position: relative;
+  height: clamp(480px, 62vh, 640px);
+  margin: 0;
+  border-bottom: 2px solid var(--line);
+  background: #d8c9ad;
+  box-shadow: inset 0 0 0 2px var(--line);
+}
+
+.team-filmstrip__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  z-index: 2;
+  margin: 0;
+  padding: 6px 12px;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  color: #f4e6c8 !important;
+  background: rgba(23, 22, 18, 0.94);
+  pointer-events: none;
+}
+
+@media (max-width: 650px) {
+  .team-filmstrip {
+    height: 580px;
+  }
+  .team-filmstrip__hint {
+    font-size: 9px;
+  }
+}
+
+/*---------------------------------------
+  404: SIGNAL LOST
+-----------------------------------------*/
+
+.signal-lost {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 120px 16px 60px;
+  overflow: hidden;
+}
+
+.signal-lost__field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+}
+
+.signal-lost::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--dither-band);
+}
+
+.signal-lost__panel {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  padding: clamp(28px, 5vw, 48px);
+  text-align: center;
+  background: rgba(21, 12, 40, 0.9);
+  border: 2px solid var(--line);
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+.signal-lost__title {
+  margin-bottom: 14px;
+  font-size: clamp(34px, 7vw, 64px) !important;
+  animation: signal-flicker 2.4s steps(1) infinite;
+}
+
+@keyframes signal-flicker {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.35; }
+  95% { opacity: 0.9; }
+  96% { opacity: 0.2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-lost__title { animation: none; }
+}

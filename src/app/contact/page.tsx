@@ -37,7 +37,7 @@ export default function ContactPage() {
       >
         <div className="container mx-auto px-4 text-center">
           <span className="badge-motorsport red mb-2">Get in Touch</span>
-          <h1 className="mb-3 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>
+          <h1 className="mb-3 font-orbitron" style={{ color: 'var(--text)', fontWeight: 900 }}>
             CONTACT TEAM KILO FLIGHT
           </h1>
           <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '800px' }}>
@@ -55,14 +55,14 @@ export default function ContactPage() {
               <div
                 className="glass-panel p-4 p-md-5 h-100"
                 style={{
-                  border: '2px solid #0F172A',
+                  border: '2px solid var(--line)',
                   boxShadow: '6px 6px 0 #FF2A2A',
                 }}
               >
                 <div className="d-flex align-items-center gap-2 mb-2">
                   <span className="badge-motorsport red">Direct Transmission</span>
                 </div>
-                <h3 className="font-orbitron mb-3" style={{ color: '#0F172A', fontWeight: 900 }}>
+                <h3 className="font-orbitron mb-3" style={{ color: 'var(--text)', fontWeight: 900 }}>
                   Send a Direct Message
                 </h3>
                 <p className="text-muted small mb-4">
@@ -73,7 +73,7 @@ export default function ContactPage() {
                   <div
                     className="p-4 rounded text-center"
                     style={{
-                      background: '#DCFCE7',
+                      background: 'var(--tint-green)',
                       border: '2px solid #16A34A',
                       boxShadow: '3px 3px 0 #16A34A',
                     }}
@@ -94,7 +94,7 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit}>
                     <div className="row g-3">
                       <div className="col-md-6">
-                        <label className="small fw-bold mb-1" style={{ color: '#0F172A' }}>
+                        <label className="small fw-bold mb-1" style={{ color: 'var(--text)' }}>
                           FULL NAME *
                         </label>
                         <input
@@ -108,7 +108,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="col-md-6">
-                        <label className="small fw-bold mb-1" style={{ color: '#0F172A' }}>
+                        <label className="small fw-bold mb-1" style={{ color: 'var(--text)' }}>
                           EMAIL ADDRESS *
                         </label>
                         <input
@@ -122,7 +122,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="col-md-6">
-                        <label className="small fw-bold mb-1" style={{ color: '#0F172A' }}>
+                        <label className="small fw-bold mb-1" style={{ color: 'var(--text)' }}>
                           PHONE NUMBER
                         </label>
                         <input
@@ -135,7 +135,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="col-md-6">
-                        <label className="small fw-bold mb-1" style={{ color: '#0F172A' }}>
+                        <label className="small fw-bold mb-1" style={{ color: 'var(--text)' }}>
                           INQUIRY NATURE *
                         </label>
                         <select
@@ -153,7 +153,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="col-12">
-                        <label className="small fw-bold mb-1" style={{ color: '#0F172A' }}>
+                        <label className="small fw-bold mb-1" style={{ color: 'var(--text)' }}>
                           SUBJECT / PURPOSE
                         </label>
                         <input
@@ -166,7 +166,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="col-12">
-                        <label className="small fw-bold mb-1" style={{ color: '#0F172A' }}>
+                        <label className="small fw-bold mb-1" style={{ color: 'var(--text)' }}>
                           YOUR MESSAGE *
                         </label>
                         <textarea
@@ -199,14 +199,14 @@ export default function ContactPage() {
               <div
                 className="glass-panel p-4"
                 style={{
-                  border: '2px solid #0F172A',
+                  border: '2px solid var(--line)',
                   boxShadow: '4px 4px 0 #0284C7',
                 }}
               >
-                <span className="badge-motorsport mb-2" style={{ background: '#E0F2FE', color: '#0284C7' }}>
+                <span className="badge-motorsport mb-2" style={{ background: 'var(--tint-cyan)', color: 'var(--cyan)' }}>
                   Institutional HQ
                 </span>
-                <h4 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>
+                <h4 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 800 }}>
                   {contactSettings.institution}
                 </h4>
                 <p className="small text-muted mb-3" style={{ lineHeight: '1.6' }}>
@@ -222,7 +222,7 @@ export default function ContactPage() {
                       <a
                         href={`mailto:${contactSettings.email}`}
                         className="text-decoration-none fw-bold"
-                        style={{ color: '#0F172A' }}
+                        style={{ color: 'var(--text)' }}
                       >
                         {contactSettings.email}
                       </a>
@@ -236,7 +236,7 @@ export default function ContactPage() {
                       <a
                         href={`tel:${contactSettings.phone}`}
                         className="text-decoration-none fw-bold"
-                        style={{ color: '#0F172A' }}
+                        style={{ color: 'var(--text)' }}
                       >
                         {contactSettings.phone}
                       </a>
@@ -249,13 +249,13 @@ export default function ContactPage() {
               <div
                 className="glass-panel p-3 flex-grow-1 d-flex flex-column"
                 style={{
-                  border: '2px solid #0F172A',
-                  boxShadow: '4px 4px 0 #0F172A',
+                  border: '2px solid var(--line)',
+                  boxShadow: '4px 4px 0 var(--shadow)',
                   minHeight: '280px',
                 }}
               >
                 <div className="d-flex justify-content-between align-items-center mb-2">
-                  <span className="small fw-bold text-uppercase" style={{ color: '#0F172A' }}>
+                  <span className="small fw-bold text-uppercase" style={{ color: 'var(--text)' }}>
                     <i className="bi bi-compass me-1 text-danger"></i> KUET Campus Map
                   </span>
                   <a
@@ -267,7 +267,7 @@ export default function ContactPage() {
                     Open in Google Maps &rarr;
                   </a>
                 </div>
-                <div className="rounded overflow-hidden flex-grow-1" style={{ border: '1.5px solid #0F172A', minHeight: '220px' }}>
+                <div className="rounded overflow-hidden flex-grow-1" style={{ border: '1.5px solid var(--line)', minHeight: '220px' }}>
                   <iframe
                     className="w-100 h-100"
                     style={{ border: 0, minHeight: '220px' }}

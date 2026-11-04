@@ -152,7 +152,7 @@ export default function JoinUsPage() {
         <div className="row text-center mb-5">
           <div className="col-lg-9 mx-auto">
             <span className="badge-motorsport red mb-2">Batch 2k23 Induction</span>
-            <h1 className="mb-2 font-orbitron" style={{ fontSize: 'clamp(28px, 4vw, 42px)', color: '#0F172A', fontWeight: 900 }}>
+            <h1 className="mb-2 font-orbitron" style={{ fontSize: 'clamp(28px, 4vw, 42px)', color: 'var(--text)', fontWeight: 900 }}>
               JOIN TEAM KILOFLIGHT
             </h1>
             <p className="text-muted max-w-700 mx-auto" style={{ maxWidth: '750px', fontSize: '15px' }}>
@@ -168,9 +168,9 @@ export default function JoinUsPage() {
               <div
                 className="p-3 h-100 rounded"
                 style={{
-                  background: '#FFFFFF',
-                  border: '2px solid #0F172A',
-                  boxShadow: '3px 3px 0 #0F172A',
+                  background: 'var(--surface)',
+                  border: '2px solid var(--line)',
+                  boxShadow: '3px 3px 0 var(--shadow)',
                 }}
               >
                 <div className="d-flex align-items-center gap-2 mb-2">
@@ -186,11 +186,11 @@ export default function JoinUsPage() {
                   >
                     {stage.num}
                   </span>
-                  <div className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '12.5px' }}>
+                  <div className="fw-bold font-orbitron" style={{ color: 'var(--text)', fontSize: '12.5px' }}>
                     Stage {stage.num}
                   </div>
                 </div>
-                <div className="fw-bold mb-1" style={{ color: '#0F172A', fontSize: '13.5px' }}>{stage.title}</div>
+                <div className="fw-bold mb-1" style={{ color: 'var(--text)', fontSize: '13.5px' }}>{stage.title}</div>
                 <p className="small text-muted mb-0" style={{ lineHeight: '1.45', fontSize: '12px' }}>{stage.desc}</p>
               </div>
             </div>
@@ -204,21 +204,21 @@ export default function JoinUsPage() {
               {submitted ? (
                 <div
                   className="neo-join-form text-center p-5 d-flex flex-column align-items-center justify-content-center"
-                  style={{ minHeight: '420px', background: '#FFFFFF' }}
+                  style={{ minHeight: '420px', background: 'var(--surface)' }}
                 >
                   <div id="circleform" />
                   <i
                     className="bi bi-check-circle-fill fs-1 mb-3 text-danger"
                     style={{ filter: 'drop-shadow(2px 2px 0 #0F172A)' }}
                   ></i>
-                  <div className="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill small fw-bold" style={{ background: '#DCFCE7', color: '#15803D', border: '1.5px solid #16A34A' }}>
+                  <div className="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill small fw-bold" style={{ background: 'var(--tint-green)', color: 'var(--green)', border: '1.5px solid #16A34A' }}>
                     <i className="bi bi-shield-check"></i>
                     <span>Batch 2k23 Induction Application Received</span>
                   </div>
                   <h2
                     className="mb-2 font-orbitron"
                     style={{
-                      color: '#0F172A',
+                      color: 'var(--text)',
                       fontWeight: 900,
                     }}
                   >
@@ -235,7 +235,7 @@ export default function JoinUsPage() {
                     >
                       Submit Another Response
                     </button>
-                    <Link href="/subteams" className="custom-btn-outline" style={{ background: '#FFFFFF' }}>
+                    <Link href="/subteams" className="custom-btn-outline" style={{ background: 'var(--surface)' }}>
                       Explore Sub-Teams &rarr;
                     </Link>
                   </div>
@@ -379,10 +379,10 @@ export default function JoinUsPage() {
                         <label
                           className={`neo-dept-label d-flex align-items-center gap-2 ${formData.workshopParticipation === 'Yes' ? 'active selected' : ''}`}
                           style={{
-                            background: formData.workshopParticipation === 'Yes' ? '#0F172A' : '#F8FAFC',
-                            color: formData.workshopParticipation === 'Yes' ? '#FFFFFF' : '#0F172A',
-                            border: '2px solid #0F172A',
-                            boxShadow: formData.workshopParticipation === 'Yes' ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
+                            background: formData.workshopParticipation === 'Yes' ? 'var(--surface-deep)' : 'var(--surface-2)',
+                            color: formData.workshopParticipation === 'Yes' ? '#FFFFFF' : 'var(--text)',
+                            border: '2px solid var(--line)',
+                            boxShadow: formData.workshopParticipation === 'Yes' ? '3px 3px 0 #FF2A2A' : '2px 2px 0 var(--shadow)',
                             cursor: 'pointer',
                             padding: '10px 22px',
                             borderRadius: '10px',
@@ -400,7 +400,7 @@ export default function JoinUsPage() {
                             className="d-none"
                           />
                           <i className={`bi ${formData.workshopParticipation === 'Yes' ? 'bi-check-circle-fill text-danger' : 'bi-circle'}`}></i>
-                          <span style={{ color: formData.workshopParticipation === 'Yes' ? '#FFFFFF' : '#0F172A', fontWeight: 700 }}>
+                          <span style={{ color: formData.workshopParticipation === 'Yes' ? '#FFFFFF' : 'var(--text)', fontWeight: 700 }}>
                             1. Yes
                           </span>
                         </label>
@@ -408,10 +408,10 @@ export default function JoinUsPage() {
                         <label
                           className={`neo-dept-label d-flex align-items-center gap-2 ${formData.workshopParticipation === 'No' ? 'active selected' : ''}`}
                           style={{
-                            background: formData.workshopParticipation === 'No' ? '#0F172A' : '#F8FAFC',
-                            color: formData.workshopParticipation === 'No' ? '#FFFFFF' : '#0F172A',
-                            border: '2px solid #0F172A',
-                            boxShadow: formData.workshopParticipation === 'No' ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
+                            background: formData.workshopParticipation === 'No' ? 'var(--surface-deep)' : 'var(--surface-2)',
+                            color: formData.workshopParticipation === 'No' ? '#FFFFFF' : 'var(--text)',
+                            border: '2px solid var(--line)',
+                            boxShadow: formData.workshopParticipation === 'No' ? '3px 3px 0 #FF2A2A' : '2px 2px 0 var(--shadow)',
                             cursor: 'pointer',
                             padding: '10px 22px',
                             borderRadius: '10px',
@@ -429,7 +429,7 @@ export default function JoinUsPage() {
                             className="d-none"
                           />
                           <i className={`bi ${formData.workshopParticipation === 'No' ? 'bi-check-circle-fill text-danger' : 'bi-circle'}`}></i>
-                          <span style={{ color: formData.workshopParticipation === 'No' ? '#FFFFFF' : '#0F172A', fontWeight: 700 }}>
+                          <span style={{ color: formData.workshopParticipation === 'No' ? '#FFFFFF' : 'var(--text)', fontWeight: 700 }}>
                             2. No
                           </span>
                         </label>
@@ -466,10 +466,10 @@ export default function JoinUsPage() {
                               onClick={() => handleSkillToggle(skill)}
                               className={`neo-dept-label ${isSelected ? 'active selected' : ''}`}
                               style={{
-                                background: isSelected ? '#0F172A' : '#F8FAFC',
-                                color: isSelected ? '#FFFFFF' : '#0F172A',
-                                border: '2px solid #0F172A',
-                                boxShadow: isSelected ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
+                                background: isSelected ? 'var(--surface-deep)' : 'var(--surface-2)',
+                                color: isSelected ? '#FFFFFF' : 'var(--text)',
+                                border: '2px solid var(--line)',
+                                boxShadow: isSelected ? '3px 3px 0 #FF2A2A' : '2px 2px 0 var(--shadow)',
                                 cursor: 'pointer',
                                 padding: '6px 14px',
                                 borderRadius: '10px',
@@ -478,7 +478,7 @@ export default function JoinUsPage() {
                               }}
                             >
                               <i className={`bi ${isSelected ? 'bi-check-square-fill text-danger me-1' : 'bi-square me-1'}`}></i>
-                              <span style={{ color: isSelected ? '#FFFFFF' : '#0F172A' }}>
+                              <span style={{ color: isSelected ? '#FFFFFF' : 'var(--text)' }}>
                                 {skill}
                               </span>
                             </button>
@@ -512,7 +512,7 @@ export default function JoinUsPage() {
                       />
                     </div>
                     {errorMsg && (
-                      <div className="alert p-2 small fw-bold d-flex align-items-center gap-2 mt-2" style={{ background: '#FEE2E2', color: '#DC2626', border: '1.5px solid #DC2626', borderRadius: '8px' }}>
+                      <div className="alert p-2 small fw-bold d-flex align-items-center gap-2 mt-2" style={{ background: 'var(--tint-red)', color: 'var(--red-text)', border: '1.5px solid var(--red-text)', borderRadius: '8px' }}>
                         <i className="bi bi-exclamation-triangle-fill"></i>
                         <span>{errorMsg}</span>
                       </div>

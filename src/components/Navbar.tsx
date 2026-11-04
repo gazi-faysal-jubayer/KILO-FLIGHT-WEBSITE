@@ -1,115 +1,66 @@
 'use client';
 
-import {
-  Navbar as ResizableNavbar,
-  NavBody,
-  NavItems,
-  MobileNav,
-  NavbarLogo,
-  NavbarButton,
-  MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
-} from '@/components/ui/resizable-navbar';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { AnimatedTopDock, type DockItem } from '@/shaders/animated-top-dock/AnimatedTopDock';
+
+/* 7x7 pixel glyphs on whole units, matching the dock's own RETRO_ITEMS lattice */
+const NAV_ITEMS: readonly DockItem[] = [
+  {
+    id: 'home', label: 'HOME', href: '/',
+    icon: <><rect x="3" y="0" width="1" height="1" /><rect x="2" y="1" width="3" height="1" /><rect x="1" y="2" width="5" height="1" /><rect x="0" y="3" width="7" height="1" /><rect x="1" y="4" width="2" height="3" /><rect x="4" y="4" width="2" height="3" /></>,
+  },
+  {
+    id: 'team', label: 'TEAM', href: '/team',
+    icon: <><rect x="1" y="0" width="2" height="2" /><rect x="4" y="0" width="2" height="2" /><rect x="0" y="3" width="3" height="4" /><rect x="4" y="3" width="3" height="4" /></>,
+  },
+  {
+    id: 'subteams', label: 'SUBTEAMS', href: '/subteams',
+    icon: <><rect x="2" y="0" width="3" height="1" /><rect x="2" y="6" width="3" height="1" /><rect x="0" y="2" width="1" height="3" /><rect x="6" y="2" width="1" height="3" /><rect x="1" y="1" width="5" height="1" /><rect x="1" y="5" width="5" height="1" /><rect x="1" y="2" width="1" height="3" /><rect x="5" y="2" width="1" height="3" /><rect x="3" y="3" width="1" height="1" /></>,
+  },
+  {
+    id: 'cars', label: 'CARS', href: '/cars',
+    icon: <><rect x="2" y="1" width="3" height="1" /><rect x="1" y="2" width="5" height="1" /><rect x="0" y="3" width="7" height="2" /><rect x="1" y="5" width="2" height="2" /><rect x="4" y="5" width="2" height="2" /></>,
+  },
+  {
+    id: 'sponsorship', label: 'SPONSORS', href: '/sponsorship',
+    icon: <><rect x="3" y="0" width="1" height="2" /><rect x="0" y="2" width="7" height="1" /><rect x="1" y="3" width="5" height="1" /><rect x="2" y="4" width="3" height="1" /><rect x="1" y="5" width="2" height="2" /><rect x="4" y="5" width="2" height="2" /></>,
+  },
+  {
+    id: 'contact', label: 'CONTACT', href: '/contact',
+    icon: <><rect x="0" y="1" width="7" height="1" /><rect x="0" y="5" width="7" height="1" /><rect x="0" y="2" width="1" height="3" /><rect x="6" y="2" width="1" height="3" /><rect x="1" y="2" width="1" height="1" /><rect x="5" y="2" width="1" height="1" /><rect x="2" y="3" width="3" height="1" /></>,
+  },
+];
+
+function activeIdFor(pathname: string) {
+  if (pathname === '/') return 'home';
+  return NAV_ITEMS.find((item) => item.href !== '/' && pathname.startsWith(item.href!))?.id ?? '';
+}
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname() ?? '/';
+  const router = useRouter();
 
-  if (pathname?.startsWith('/admin')) {
+  if (pathname.startsWith('/admin')) {
     return null;
   }
 
-  const navItems = [
-    { name: 'Home', link: '/' },
-    { name: 'Our Team', link: '/team' },
-    { name: 'Sub-Teams & Workflow', link: '/subteams' },
-    { name: 'The Cars', link: '/cars' },
-    { name: 'Sponsorship', link: '/sponsorship' },
-    { name: 'Contact', link: '/contact' },
-  ];
-
   return (
-    <>
-      {/* Mobile Backdrop Overlay to close on outside tap */}
-      {isMobileMenuOpen && (
-        <div
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="d-lg-none"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(15, 23, 42, 0.45)',
-            backdropFilter: 'blur(3px)',
-            zIndex: 1040,
-          }}
-        />
-      )}
-
-      <ResizableNavbar>
-        {/* Desktop Navigation with dynamic scroll resize */}
-        <NavBody>
-          <NavbarLogo />
-          <NavItems items={navItems} pathname={pathname} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', zIndex: 30 }}>
-            <NavbarButton href="/join-us" variant="primary">
-              Join Team
-            </NavbarButton>
-          </div>
-        </NavBody>
-
-      {/* Mobile Navigation */}
-      <MobileNav>
-        <MobileNavHeader>
-          <NavbarLogo />
-          <MobileNavToggle
-            isOpen={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          />
-        </MobileNavHeader>
-
-        <MobileNavMenu
-          isOpen={isMobileMenuOpen}
-          onClose={() => setIsMobileMenuOpen(false)}
-        >
-          {navItems.map((item, idx) => {
-            const isActive = pathname === item.link;
-            return (
-              <Link
-                key={`mobile-link-${idx}`}
-                href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-decoration-none py-2 px-3 rounded-lg"
-                style={{
-                  color: isActive ? '#FF2A2A' : '#0F172A',
-                  background: isActive ? 'rgba(255, 42, 42, 0.1)' : 'transparent',
-                  fontFamily: 'var(--font-orbitron), sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 700,
-                  display: 'block',
-                  width: '100%',
-                }}
-              >
-                <span>{item.name}</span>
-              </Link>
-            );
-          })}
-          <div style={{ display: 'flex', width: '100%', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
-            <NavbarButton
-              href="/join-us"
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="primary"
-              style={{ width: '100%', textAlign: 'center' }}
-            >
-              Join Team
-            </NavbarButton>
-          </div>
-        </MobileNavMenu>
-      </MobileNav>
-    </ResizableNavbar>
-    </>
+    <div className="site-dock">
+      <AnimatedTopDock
+        variant="retro"
+        pixelSize={4}
+        levels={7}
+        noise={1.0}
+        scanlines={0.32}
+        speed={1.0}
+        proximity={132}
+        widthGrowth={54}
+        items={NAV_ITEMS}
+        activeId={activeIdFor(pathname)}
+        brand={<span className="site-dock__word">KILOFLIGHT<span className="site-dock__sub">//KUET</span></span>}
+        cta={{ label: 'JOIN', href: '/join-us' }}
+        onNavigate={(href) => router.push(href)}
+      />
+    </div>
   );
 }

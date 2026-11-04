@@ -94,7 +94,7 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 3. Why sponsor us */}
-      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid #0F172A' }}>
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <SectionHeading
             badge="Advantages"
@@ -119,7 +119,7 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 4. Packages */}
-      <section id="packages" className="section-padding py-5 position-relative overflow-hidden" style={{ borderTop: '2px solid #0F172A' }}>
+      <section id="packages" className="section-padding py-5 position-relative overflow-hidden" style={{ borderTop: '2px solid var(--line)' }}>
         <PressPatternBackground />
         <div className="container mx-auto px-4 position-relative" style={{ zIndex: 2 }}>
           <SectionHeading
@@ -139,7 +139,7 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 5. Benefits matrix */}
-      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid #0F172A' }}>
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <SectionHeading
             badge="Matrix Breakdown"
@@ -167,7 +167,7 @@ export default function SponsorshipPage() {
                 <tbody>
                   {BENEFIT_MATRIX.map((row) => (
                     <tr key={row.feature}>
-                      <th scope="row" className="text-start fw-bold" style={{ color: '#0F172A' }}>
+                      <th scope="row" className="text-start fw-bold" style={{ color: 'var(--text)' }}>
                         <i className={`bi ${row.icon} me-2 text-danger`} aria-hidden="true"></i>
                         {row.feature}
                       </th>
@@ -210,7 +210,7 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 6. Execution details */}
-      <section className="section-padding py-5" style={{ borderTop: '2px solid #0F172A' }}>
+      <section className="section-padding py-5" style={{ borderTop: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <SectionHeading badge="Execution Details" badgeClass="" title="HOW WE DELIVER YOUR BRAND" />
           <RevealGroup className="row g-3 justify-content-center">
@@ -228,7 +228,7 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 7. Value proposition */}
-      <section className="section-padding py-5" style={{ background: 'rgba(255, 42, 42, 0.03)', borderTop: '2px solid #0F172A' }}>
+      <section className="section-padding py-5" style={{ background: 'rgba(255, 42, 42, 0.03)', borderTop: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <SectionHeading
             badge="Value Proposition"
@@ -259,7 +259,7 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 8. Funding requirement */}
-      <section className="section-padding py-5" style={{ borderTop: '2px solid #0F172A' }}>
+      <section className="section-padding py-5" style={{ borderTop: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <SectionHeading
             badge="Funding Requirement"
@@ -287,7 +287,7 @@ export default function SponsorshipPage() {
                       <i className={`bi ${block.icon} me-2 text-danger`} aria-hidden="true"></i>
                       {block.title}
                     </h4>
-                    <span className="font-orbitron fw-bold" style={{ color: '#0F172A' }}>৳ {bdt(block.data.total)}</span>
+                    <span className="font-orbitron fw-bold" style={{ color: 'var(--text)' }}>৳ {bdt(block.data.total)}</span>
                   </div>
                   <ul className="list-unstyled budget-bars mb-0">
                     {block.data.items.map((item, i) => {
@@ -315,7 +315,7 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 9. Plan of action */}
-      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid #0F172A' }}>
+      <section className="section-padding py-5" style={{ background: 'rgba(2, 132, 199, 0.03)', borderTop: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <SectionHeading badge="Plan of Action" badgeClass="" title="ROAD TO DYNAMIX 2027" />
           <div className="race-timeline mx-auto">
@@ -337,15 +337,15 @@ export default function SponsorshipPage() {
       </section>
 
       {/* 10. Custom sponsorship CTA */}
-      <section className="section-padding py-5" style={{ background: '#FFFFFF', borderTop: '2px solid #0F172A' }}>
+      <section className="section-padding py-5" style={{ background: 'var(--surface)', borderTop: '2px solid var(--line)' }}>
         <div className="container mx-auto px-4">
           <Reveal>
             <div
               className="glass-panel p-4 p-lg-5"
               style={{
-                border: '2px solid #0F172A',
+                border: '2px solid var(--line)',
                 boxShadow: '8px 8px 0 #FF2A2A',
-                background: 'radial-gradient(circle at top right, rgba(255, 42, 42, 0.05) 0%, #FFFFFF 100%)',
+                background: 'radial-gradient(circle at top right, rgba(255, 42, 42, 0.05) 0%, var(--surface) 100%)',
               }}
             >
               <div className="row g-5 align-items-center">
@@ -370,7 +370,7 @@ export default function SponsorshipPage() {
                         <div className="custom-offer-tile h-100">
                           <div className="d-flex align-items-center gap-2 mb-2">
                             <i className={`bi ${c.icon} fs-5`} aria-hidden="true"></i>
-                            <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13.5px' }}>{c.title}</span>
+                            <span className="fw-bold font-orbitron" style={{ color: 'var(--text)', fontSize: '13.5px' }}>{c.title}</span>
                           </div>
                           <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>{c.text}</p>
                         </div>
@@ -388,8 +388,8 @@ export default function SponsorshipPage() {
                 </div>
 
                 <div className="col-lg-4 col-12 text-center">
-                  <div className="p-4 rounded" style={{ background: '#F8FAFC', border: '2px solid #0F172A', boxShadow: '5px 5px 0 #0F172A' }}>
-                    <div className="dept-icon mx-auto mb-3" style={{ color: '#FF2A2A', borderColor: '#FF2A2A', background: '#FEE2E2', width: '64px', height: '64px', fontSize: '28px' }}>
+                  <div className="p-4 rounded" style={{ background: 'var(--surface-2)', border: '2px solid var(--line)', boxShadow: '5px 5px 0 var(--shadow)' }}>
+                    <div className="dept-icon mx-auto mb-3" style={{ color: '#FF2A2A', borderColor: '#FF2A2A', background: 'var(--tint-red)', width: '64px', height: '64px', fontSize: '28px' }}>
                       <i className="bi bi-patch-question-fill" aria-hidden="true"></i>
                     </div>
                     <h4 className="font-orbitron mb-2">Let&apos;s Build It Together</h4>

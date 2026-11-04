@@ -41,8 +41,8 @@ export default function ChassisCalculator() {
     <div
       className="p-3 p-sm-4 p-md-5 rounded mb-5"
       style={{
-        background: '#FFFFFF',
-        border: '2px solid #0F172A',
+        background: 'var(--surface)',
+        border: '2px solid var(--line)',
         boxShadow: '4px 4px 0 #DC2626',
       }}
     >
@@ -54,7 +54,7 @@ export default function ChassisCalculator() {
           <h4
             className="font-orbitron mb-0"
             style={{
-              color: '#0F172A',
+              color: 'var(--text)',
               fontWeight: 800,
               fontSize: 'clamp(1.15rem, 3.2vw, 1.5rem)',
               lineHeight: '1.3',
@@ -66,9 +66,9 @@ export default function ChassisCalculator() {
         <span
           className="badge align-self-start align-self-md-center"
           style={{
-            background: '#FEF2F2',
-            color: '#DC2626',
-            border: '1.5px solid #DC2626',
+            background: 'var(--tint-red)',
+            color: 'var(--red-text)',
+            border: '1.5px solid var(--red-text)',
             fontWeight: 700,
             fontSize: '11px',
             padding: '6px 12px',
@@ -179,9 +179,9 @@ export default function ChassisCalculator() {
           <div
             className="p-3 p-md-4 rounded h-100 text-center"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '3px 3px 0 #DC2626',
             }}
           >
@@ -202,9 +202,9 @@ export default function ChassisCalculator() {
           <div
             className="p-3 p-md-4 rounded h-100 text-center"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '3px 3px 0 #DC2626',
             }}
           >
@@ -225,9 +225,9 @@ export default function ChassisCalculator() {
           <div
             className="p-3 p-md-4 rounded h-100 text-center"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '3px 3px 0 #DC2626',
             }}
           >
@@ -247,17 +247,17 @@ export default function ChassisCalculator() {
       {/* Dynamic Classification Banner */}
       <div
         className="p-3 rounded mt-3 d-flex align-items-center justify-content-between flex-wrap gap-2"
-        style={{ background: '#F8FAFC', border: '1.5px solid #E2E8F0' }}
+        style={{ background: 'var(--surface-2)', border: '1.5px solid var(--rule)' }}
       >
         <div className="d-flex align-items-center gap-2">
           <span className="badge rounded-circle p-2" style={{ background: badgeColor }}>
             {' '}
           </span>
-          <span className="small fw-bold" style={{ color: '#0F172A', fontSize: '12.5px' }}>
+          <span className="small fw-bold" style={{ color: 'var(--text)', fontSize: '12.5px' }}>
             Dynamic Setup Assessment: {rideAssessment}
           </span>
         </div>
-        <span className="badge" style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '11px' }}>
+        <span className="badge" style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '11px' }}>
           KUET Formula Student Target: 2.2 – 2.8 Hz
         </span>
       </div>

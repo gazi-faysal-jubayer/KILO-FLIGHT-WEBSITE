@@ -11,8 +11,8 @@ export default function Powertrain3DModelsViewer() {
     <div
       className="p-3 p-sm-4 p-md-5 rounded mb-4"
       style={{
-        background: '#FFFFFF',
-        border: '2px solid #0F172A',
+        background: 'var(--surface)',
+        border: '2px solid var(--line)',
         boxShadow: '4px 4px 0 #0284C7',
       }}
     >
@@ -25,7 +25,7 @@ export default function Powertrain3DModelsViewer() {
           <h4
             className="font-orbitron mb-0"
             style={{
-              color: '#0F172A',
+              color: 'var(--text)',
               fontWeight: 900,
               fontSize: 'clamp(1.15rem, 3.2vw, 1.6rem)',
               lineHeight: '1.3',
@@ -45,8 +45,8 @@ export default function Powertrain3DModelsViewer() {
         <div
           className="d-flex p-1 rounded gap-1 overflow-x-auto flex-nowrap"
           style={{
-            background: '#0F172A',
-            border: '1.5px solid #0F172A',
+            background: 'var(--surface-deep)',
+            border: '1.5px solid var(--line)',
             maxWidth: '100%',
             WebkitOverflowScrolling: 'touch',
             scrollbarWidth: 'none',
@@ -143,7 +143,7 @@ export default function Powertrain3DModelsViewer() {
       {/* Mobile Touch Guidance Tip */}
       <div
         className="d-flex align-items-center justify-content-between p-2 px-3 mb-3 rounded d-md-none"
-        style={{ background: '#F1F5F9', border: '1px solid #CBD5E1', fontSize: '11px', color: '#475569' }}
+        style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)', fontSize: '11px', color: 'var(--text-muted)' }}
       >
         <span>
           <i className="bi bi-hand-index-thumb text-primary me-1"></i> Drag to orbit • Pinch to zoom
@@ -159,7 +159,7 @@ export default function Powertrain3DModelsViewer() {
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
-                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+                style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
                   <i className="bi bi-fire text-danger me-2"></i> CFMOTO 300cc Engine
@@ -170,9 +170,9 @@ export default function Powertrain3DModelsViewer() {
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
-                border: '2px solid #0F172A',
-                boxShadow: '3px 3px 0 #0F172A',
-                background: '#0F172A',
+                border: '2px solid var(--line)',
+                boxShadow: '3px 3px 0 var(--shadow)',
+                background: 'var(--surface-deep)',
               }}
             >
               <div
@@ -201,7 +201,7 @@ export default function Powertrain3DModelsViewer() {
               {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
-                style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '11.5px', color: '#94A3B8' }}
+                style={{ background: 'var(--surface-deep)', borderTop: '1px solid var(--line)', fontSize: '11.5px', color: '#94A3B8' }}
               >
                 <span className="text-truncate" style={{ maxWidth: '75%' }}>
                   <i className="bi bi-box me-1 text-info"></i>
@@ -223,7 +223,7 @@ export default function Powertrain3DModelsViewer() {
                     Ahmed Belal
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#38BDF8', fontSize: '10.5px' }}>
+                <span className="badge" style={{ background: 'var(--surface-deep)', color: '#38BDF8', fontSize: '10.5px' }}>
                   ICE Unit
                 </span>
               </div>
@@ -237,7 +237,7 @@ export default function Powertrain3DModelsViewer() {
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
-                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+                style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
                   <i className="bi bi-gear-wide-connected text-primary me-2"></i> Transmission Gearbox
@@ -248,9 +248,9 @@ export default function Powertrain3DModelsViewer() {
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
-                border: '2px solid #0F172A',
-                boxShadow: '3px 3px 0 #0F172A',
-                background: '#0F172A',
+                border: '2px solid var(--line)',
+                boxShadow: '3px 3px 0 var(--shadow)',
+                background: 'var(--surface-deep)',
               }}
             >
               <div
@@ -279,7 +279,7 @@ export default function Powertrain3DModelsViewer() {
               {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
-                style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '11.5px', color: '#94A3B8' }}
+                style={{ background: 'var(--surface-deep)', borderTop: '1px solid var(--line)', fontSize: '11.5px', color: '#94A3B8' }}
               >
                 <span className="text-truncate" style={{ maxWidth: '75%' }}>
                   <i className="bi bi-gear me-1 text-danger"></i>
@@ -301,7 +301,7 @@ export default function Powertrain3DModelsViewer() {
                     avredu
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#F87171', fontSize: '10.5px' }}>
+                <span className="badge" style={{ background: 'var(--surface-deep)', color: '#F87171', fontSize: '10.5px' }}>
                   Gearbox CAD
                 </span>
               </div>
@@ -315,7 +315,7 @@ export default function Powertrain3DModelsViewer() {
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
-                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+                style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
                   <i className="bi bi-arrow-repeat text-warning me-2"></i> Open Differential Gears
@@ -326,9 +326,9 @@ export default function Powertrain3DModelsViewer() {
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
-                border: '2px solid #0F172A',
-                boxShadow: '3px 3px 0 #0F172A',
-                background: '#0F172A',
+                border: '2px solid var(--line)',
+                boxShadow: '3px 3px 0 var(--shadow)',
+                background: 'var(--surface-deep)',
               }}
             >
               <div
@@ -357,7 +357,7 @@ export default function Powertrain3DModelsViewer() {
               {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
-                style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '11.5px', color: '#94A3B8' }}
+                style={{ background: 'var(--surface-deep)', borderTop: '1px solid var(--line)', fontSize: '11.5px', color: '#94A3B8' }}
               >
                 <span className="text-truncate" style={{ maxWidth: '75%' }}>
                   <i className="bi bi-arrow-repeat me-1 text-warning"></i>
@@ -379,7 +379,7 @@ export default function Powertrain3DModelsViewer() {
                     Padpilot
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#FBBF24', fontSize: '10.5px' }}>
+                <span className="badge" style={{ background: 'var(--surface-deep)', color: '#FBBF24', fontSize: '10.5px' }}>
                   Animated Bevel
                 </span>
               </div>
@@ -393,25 +393,25 @@ export default function Powertrain3DModelsViewer() {
         {activeTab === 'engine' ? (
           <>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Displacement</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>292.4 cc (Single)</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>292.4 cc (Single)</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Bore x Stroke</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>78.0 x 61.2 mm</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>78.0 x 61.2 mm</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Compression</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>11.0:1 Dynamic</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>11.0:1 Dynamic</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Peak Power</span>
                 <span className="fw-bold text-danger d-block text-truncate" style={{ fontSize: '13px' }}>27.5 HP @ 8,500</span>
               </div>
@@ -420,25 +420,25 @@ export default function Powertrain3DModelsViewer() {
         ) : activeTab === 'transmission' ? (
           <>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Gearbox Type</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>6-Speed Sequential</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>6-Speed Sequential</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Clutch Mechanism</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>Multi-Plate Slipper</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>Multi-Plate Slipper</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Differential</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>Torsen ATB / Bevel</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>Torsen ATB / Bevel</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Final Drive</span>
                 <span className="fw-bold text-danger d-block text-truncate" style={{ fontSize: '13px' }}>3.28:1 (14T / 46T)</span>
               </div>
@@ -447,25 +447,25 @@ export default function Powertrain3DModelsViewer() {
         ) : activeTab === 'differential' ? (
           <>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Gear Topology</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>Epicyclic Bevel Planet</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>Epicyclic Bevel Planet</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Crown / Pinion</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>Spiral Bevel Mesh</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>Spiral Bevel Mesh</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Torque Bias</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>50:50 Open Split</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>50:50 Open Split</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Kinematics</span>
                 <span className="fw-bold text-danger d-block text-truncate" style={{ fontSize: '13px' }}>Cornering Speed Diff</span>
               </div>
@@ -474,25 +474,25 @@ export default function Powertrain3DModelsViewer() {
         ) : (
           <>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Total Package Mass</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>38.2 kg Dry</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>38.2 kg Dry</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Drivetrain Layout</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>Mid-Engine RWD</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>Mid-Engine RWD</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Top Speed Target</span>
-                <span className="fw-bold d-block text-truncate" style={{ color: '#0F172A', fontSize: '13px' }}>128 km/h</span>
+                <span className="fw-bold d-block text-truncate" style={{ color: 'var(--text)', fontSize: '13px' }}>128 km/h</span>
               </div>
             </div>
             <div className="col-6 col-md-3">
-              <div className="p-2 p-sm-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 p-sm-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block text-truncate" style={{ fontSize: '11px' }}>Lubricant</span>
                 <span className="fw-bold text-danger d-block text-truncate" style={{ fontSize: '13px' }}>Motul 300V 10W-50</span>
               </div>

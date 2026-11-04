@@ -18,7 +18,7 @@ function SponsorLogo({ sponsor, height }: { sponsor: CurrentSponsor; height: num
 
   if (failed) {
     return (
-      <span className="sponsor-wordmark" style={{ fontSize: height * 0.55, color: '#0F172A' }}>
+      <span className="sponsor-wordmark" style={{ fontSize: height * 0.55, color: 'var(--text)' }}>
         {sponsor.name}
       </span>
     );

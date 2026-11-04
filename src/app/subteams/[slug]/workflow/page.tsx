@@ -37,28 +37,28 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
   }
 
   return (
-    <div className="subteam-workflow-wrapper" style={{ background: '#F8FAFC', minHeight: '100vh' }}>
+    <div className="subteam-workflow-wrapper" style={{ background: 'var(--surface-2)', minHeight: '100vh' }}>
       {/* Top Breadcrumb & Navigation Bar */}
       <section className="subteam-breadcrumb-bar">
         <div className="container mx-auto px-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb mb-0 small" style={{ fontWeight: 600 }}>
               <li className="breadcrumb-item">
-                <Link href="/" className="text-decoration-none" style={{ color: '#64748B' }}>
+                <Link href="/" className="text-decoration-none" style={{ color: 'var(--text-muted)' }}>
                   Home
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/subteams" className="text-decoration-none" style={{ color: '#64748B' }}>
+                <Link href="/subteams" className="text-decoration-none" style={{ color: 'var(--text-muted)' }}>
                   Sub-Teams
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href={`/subteams/${subteam.slug}`} className="text-decoration-none" style={{ color: '#64748B' }}>
+                <Link href={`/subteams/${subteam.slug}`} className="text-decoration-none" style={{ color: 'var(--text-muted)' }}>
                   {subteam.shortTitle}
                 </Link>
               </li>
-              <li className="breadcrumb-item active" aria-current="page" style={{ color: '#DC2626' }}>
+              <li className="breadcrumb-item active" aria-current="page" style={{ color: 'var(--red-text)' }}>
                 Technical Workflow
               </li>
             </ol>
@@ -69,7 +69,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
               href={`/subteams/${subteam.slug}`}
               className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
-                background: '#FFFFFF',
+                background: 'var(--surface)',
                 color: subteam.accentColor,
                 border: `1.5px solid ${subteam.accentColor}`,
                 fontWeight: 700,
@@ -84,10 +84,10 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
               href="/subteams"
               className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-md-grow-0"
               style={{
-                background: '#F8FAFC',
-                color: '#0F172A',
-                border: '1.5px solid #0F172A',
-                boxShadow: '2px 2px 0 #0F172A',
+                background: 'var(--surface-2)',
+                color: 'var(--text)',
+                border: '1.5px solid var(--line)',
+                boxShadow: '2px 2px 0 var(--shadow)',
                 fontWeight: 700,
                 fontSize: '12px',
                 padding: '7px 14px',
@@ -103,8 +103,8 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
       <section
         className="py-5"
         style={{
-          background: `linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(15, 23, 42, 0.04) 100%)`,
-          borderBottom: '2px solid #0F172A',
+          background: `linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(244, 230, 200, 0.04) 100%)`,
+          borderBottom: '2px solid var(--line)',
         }}
       >
         <div className="container mx-auto px-4">
@@ -116,8 +116,8 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   style={{
                     background: '#DC2626',
                     color: '#FFFFFF',
-                    border: '1.5px solid #0F172A',
-                    boxShadow: '2px 2px 0 #0F172A',
+                    border: '1.5px solid var(--line)',
+                    boxShadow: '2px 2px 0 var(--shadow)',
                     fontSize: '11px',
                   }}
                 >
@@ -126,9 +126,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 <span
                   className="badge"
                   style={{
-                    background: '#FFFFFF',
-                    color: '#0F172A',
-                    border: '1.5px solid #0F172A',
+                    background: 'var(--surface)',
+                    color: 'var(--text)',
+                    border: '1.5px solid var(--line)',
                     fontWeight: 700,
                     fontSize: '11px',
                   }}
@@ -137,11 +137,11 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 </span>
               </div>
 
-              <h1 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 900, fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+              <h1 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 900, fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 {subteam.title} WORKFLOW
               </h1>
 
-              <p className="lead fw-bold mb-3" style={{ color: '#DC2626', fontSize: '1.15rem' }}>
+              <p className="lead fw-bold mb-3" style={{ color: 'var(--red-text)', fontSize: '1.15rem' }}>
                 Engineering Execution Roadmap &amp; Solution Blueprint
               </p>
 
@@ -155,10 +155,10 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   href={`/subteams/${subteam.slug}`}
                   className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto"
                   style={{
-                    background: '#FFFFFF',
-                    color: '#0F172A',
-                    border: '2px solid #0F172A',
-                    boxShadow: '3px 3px 0 #0F172A',
+                    background: 'var(--surface)',
+                    color: 'var(--text)',
+                    border: '2px solid var(--line)',
+                    boxShadow: '3px 3px 0 var(--shadow)',
                     padding: '10px 18px',
                     fontWeight: 800,
                     fontSize: '13px',
@@ -175,8 +175,8 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   style={{
                     background: '#DC2626',
                     color: '#FFFFFF',
-                    border: '2px solid #0F172A',
-                    boxShadow: '3px 3px 0 #0F172A',
+                    border: '2px solid var(--line)',
+                    boxShadow: '3px 3px 0 var(--shadow)',
                     padding: '10px 18px',
                     fontWeight: 800,
                     fontSize: '13px',
@@ -193,8 +193,8 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
               <div
                 className="p-4 rounded text-center"
                 style={{
-                  background: '#FFFFFF',
-                  border: '2px solid #0F172A',
+                  background: 'var(--surface)',
+                  border: '2px solid var(--line)',
                   boxShadow: '5px 5px 0 #DC2626',
                 }}
               >
@@ -203,19 +203,19 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   style={{
                     width: '76px',
                     height: '76px',
-                    background: '#F8FAFC',
-                    border: '2px solid #DC2626',
-                    color: '#DC2626',
+                    background: 'var(--surface-2)',
+                    border: '2px solid var(--red-text)',
+                    color: 'var(--red-text)',
                     fontSize: '34px',
                   }}
                 >
                   <i className="bi bi-diagram-3-fill"></i>
                 </div>
 
-                <div className="small fw-bold text-uppercase mb-1" style={{ color: '#64748B', letterSpacing: '1px' }}>
+                <div className="small fw-bold text-uppercase mb-1" style={{ color: 'var(--text-muted)', letterSpacing: '1px' }}>
                   Execution Roadmap
                 </div>
-                <h5 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>
+                <h5 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 800 }}>
                   {subteam.workflow.length} Development Phases
                 </h5>
                 <p className="small text-muted mb-3" style={{ fontSize: '12px' }}>
@@ -228,9 +228,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                       key={idx}
                       className="badge"
                       style={{
-                        background: '#F8FAFC',
-                        color: '#0F172A',
-                        border: '1px solid #CBD5E1',
+                        background: 'var(--surface-2)',
+                        color: 'var(--text)',
+                        border: '1px solid var(--rule)',
                         fontSize: '11px',
                         fontWeight: 600,
                       }}
@@ -254,7 +254,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
           <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
             <div className="d-flex align-items-center gap-2">
               <span className="badge-motorsport red">2.1 Execution Timeline</span>
-              <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+              <h3 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 900 }}>
                 DEVELOPMENT PHASES &amp; TIMELINE ROADMAP
               </h3>
             </div>
@@ -269,9 +269,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 <div
                   className="p-3 p-sm-4 rounded"
                   style={{
-                    background: '#FFFFFF',
-                    border: '2px solid #0F172A',
-                    boxShadow: '3px 3px 0 #0F172A',
+                    background: 'var(--surface)',
+                    border: '2px solid var(--line)',
+                    boxShadow: '3px 3px 0 var(--shadow)',
                   }}
                 >
                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
@@ -288,7 +288,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                       >
                         0{w.step}
                       </span>
-                      <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: 'clamp(1rem, 2.5vw, 1.25rem)' }}>
+                      <h4 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800, fontSize: 'clamp(1rem, 2.5vw, 1.25rem)' }}>
                         {w.name}
                       </h4>
                     </div>
@@ -297,9 +297,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                       <span
                         className="badge"
                         style={{
-                          background: '#F8FAFC',
-                          color: '#0F172A',
-                          border: '1.5px solid #0F172A',
+                          background: 'var(--surface-2)',
+                          color: 'var(--text)',
+                          border: '1.5px solid var(--line)',
                           fontWeight: 700,
                           fontSize: '12px',
                         }}
@@ -309,7 +309,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                     )}
                   </div>
 
-                  <p className="mb-3" style={{ color: '#334155', lineHeight: '1.8', fontSize: '15px' }}>
+                  <p className="mb-3" style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
                     {w.desc}
                   </p>
 
@@ -323,9 +323,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                           key={dIdx}
                           className="badge"
                           style={{
-                            background: '#F1F5F9',
-                            color: '#0F172A',
-                            border: '1px solid #CBD5E1',
+                            background: 'var(--surface-2)',
+                            color: 'var(--text)',
+                            border: '1px solid var(--rule)',
                             fontSize: '11px',
                             fontWeight: 600,
                             padding: '6px 10px',
@@ -348,7 +348,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
         <div className="mb-5">
           <div className="d-flex align-items-center gap-2 mb-3">
             <span className="badge-motorsport red">2.2 Engineering Matrix</span>
-            <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+            <h3 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 900 }}>
               ENGINEERING CHALLENGES &amp; SOLUTION BLUEPRINT
             </h3>
           </div>
@@ -357,14 +357,14 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
           <div
             className="d-none d-md-block rounded overflow-hidden"
             style={{
-              background: '#FFFFFF',
-              border: '2px solid #0F172A',
-              boxShadow: '4px 4px 0 #0F172A',
+              background: 'var(--surface)',
+              border: '2px solid var(--line)',
+              boxShadow: '4px 4px 0 var(--shadow)',
             }}
           >
             <div className="table-responsive">
               <table className="table table-hover align-middle mb-0" style={{ borderCollapse: 'collapse' }}>
-                <thead style={{ background: '#0F172A', color: '#FFFFFF' }}>
+                <thead style={{ background: 'var(--surface-deep)', color: '#FFFFFF' }}>
                   <tr>
                     <th className="py-3 px-4 font-orbitron" style={{ fontSize: '12px', width: '22%' }}>
                       SYSTEM COMPONENT
@@ -382,18 +382,18 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 </thead>
                 <tbody>
                   {subteam.engineeringPriorities.map((item, idx) => (
-                    <tr key={idx} style={{ background: idx % 2 === 0 ? '#FFFFFF' : '#F8FAFC' }}>
-                      <td className="py-3 px-4 fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                    <tr key={idx} style={{ background: idx % 2 === 0 ? 'var(--surface)' : 'var(--surface-2)' }}>
+                      <td className="py-3 px-4 fw-bold" style={{ color: 'var(--text)', fontSize: '13.5px' }}>
                         <i className="bi bi-cpu me-2 text-danger"></i>
                         {item.component}
                       </td>
-                      <td className="py-3 px-4 small" style={{ color: '#334155', lineHeight: '1.6' }}>
+                      <td className="py-3 px-4 small" style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>
                         {item.goal}
                       </td>
-                      <td className="py-3 px-4 small" style={{ color: '#DC2626', fontWeight: 600, lineHeight: '1.6' }}>
+                      <td className="py-3 px-4 small" style={{ color: 'var(--red-text)', fontWeight: 600, lineHeight: '1.6' }}>
                         <i className="bi bi-exclamation-triangle-fill me-1"></i> {item.challenge}
                       </td>
-                      <td className="py-3 px-4 small" style={{ color: '#0F172A', fontWeight: 600, lineHeight: '1.6' }}>
+                      <td className="py-3 px-4 small" style={{ color: 'var(--text)', fontWeight: 600, lineHeight: '1.6' }}>
                         <i className="bi bi-check-circle-fill text-success me-1"></i> {item.solution}
                       </td>
                     </tr>
@@ -410,17 +410,17 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 key={idx}
                 className="p-3 rounded"
                 style={{
-                  background: '#FFFFFF',
-                  border: '2px solid #0F172A',
-                  boxShadow: '3px 3px 0 #0F172A',
+                  background: 'var(--surface)',
+                  border: '2px solid var(--line)',
+                  boxShadow: '3px 3px 0 var(--shadow)',
                 }}
               >
                 <div className="d-flex align-items-center justify-content-between gap-2 mb-2 pb-2 border-bottom">
-                  <span className="fw-bold font-orbitron" style={{ color: '#0F172A', fontSize: '13px' }}>
+                  <span className="fw-bold font-orbitron" style={{ color: 'var(--text)', fontSize: '13px' }}>
                     <i className="bi bi-cpu me-2 text-danger"></i>
                     {item.component}
                   </span>
-                  <span className="badge" style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '10px' }}>
+                  <span className="badge" style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '10px' }}>
                     Priority 0{idx + 1}
                   </span>
                 </div>
@@ -429,25 +429,25 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                   <span className="small text-muted d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
                     Integration Goal:
                   </span>
-                  <p className="small mb-0" style={{ color: '#334155', lineHeight: '1.5', fontSize: '12.5px' }}>
+                  <p className="small mb-0" style={{ color: 'var(--text-muted)', lineHeight: '1.5', fontSize: '12.5px' }}>
                     {item.goal}
                   </p>
                 </div>
 
-                <div className="p-2 px-3 rounded mb-2" style={{ background: '#FEF2F2', border: '1px solid #FECACA' }}>
+                <div className="p-2 px-3 rounded mb-2" style={{ background: 'var(--tint-red)', border: '1px solid #FECACA' }}>
                   <span className="small text-danger d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
                     <i className="bi bi-exclamation-triangle-fill me-1"></i> Engineering Challenge
                   </span>
-                  <p className="small mb-0" style={{ color: '#991B1B', fontWeight: 600, lineHeight: '1.5', fontSize: '12px' }}>
+                  <p className="small mb-0" style={{ color: 'var(--red-text)', fontWeight: 600, lineHeight: '1.5', fontSize: '12px' }}>
                     {item.challenge}
                   </p>
                 </div>
 
-                <div className="p-2 px-3 rounded" style={{ background: '#F0FDF4', border: '1px solid #BBF7D0' }}>
+                <div className="p-2 px-3 rounded" style={{ background: 'var(--tint-green)', border: '1px solid #BBF7D0' }}>
                   <span className="small text-success d-block fw-bold text-uppercase" style={{ fontSize: '10px', letterSpacing: '0.5px' }}>
                     <i className="bi bi-check-circle-fill me-1"></i> KILOFLIGHT Solution
                   </span>
-                  <p className="small mb-0" style={{ color: '#166534', fontWeight: 600, lineHeight: '1.5', fontSize: '12px' }}>
+                  <p className="small mb-0" style={{ color: 'var(--green)', fontWeight: 600, lineHeight: '1.5', fontSize: '12px' }}>
                     {item.solution}
                   </p>
                 </div>
@@ -462,7 +462,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
         <div className="mb-5">
           <div className="d-flex align-items-center gap-2 mb-3">
             <span className="badge-motorsport red">2.3 Quality Assurance</span>
-            <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 900 }}>
+            <h3 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 900 }}>
               TRACK TESTING &amp; SCRUTINEERING PROTOCOLS
             </h3>
           </div>
@@ -471,16 +471,16 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             <div className="col-md-4 col-12">
               <div
                 className="p-3 p-sm-4 rounded h-100"
-                style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
+                style={{ background: 'var(--surface)', border: '2px solid var(--line)', boxShadow: '3px 3px 0 var(--shadow)' }}
               >
                 <div className="d-flex align-items-center gap-2 mb-3">
                   <div
                     className="rounded-circle d-inline-flex align-items-center justify-content-center"
-                    style={{ width: '40px', height: '40px', background: '#FEF2F2', border: '1.5px solid #EF4444', color: '#DC2626' }}
+                    style={{ width: '40px', height: '40px', background: 'var(--tint-red)', border: '1.5px solid #EF4444', color: 'var(--red-text)' }}
                   >
                     <i className="bi bi-shield-check"></i>
                   </div>
-                  <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: '15px' }}>
+                  <h5 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800, fontSize: '15px' }}>
                     Static Scrutineering
                   </h5>
                 </div>
@@ -493,16 +493,16 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             <div className="col-md-4 col-12">
               <div
                 className="p-3 p-sm-4 rounded h-100"
-                style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
+                style={{ background: 'var(--surface)', border: '2px solid var(--line)', boxShadow: '3px 3px 0 var(--shadow)' }}
               >
                 <div className="d-flex align-items-center gap-2 mb-3">
                   <div
                     className="rounded-circle d-inline-flex align-items-center justify-content-center"
-                    style={{ width: '40px', height: '40px', background: '#F0F9FF', border: '1.5px solid #0284C7', color: '#0284C7' }}
+                    style={{ width: '40px', height: '40px', background: 'var(--tint-cyan)', border: '1.5px solid var(--cyan)', color: 'var(--cyan)' }}
                   >
                     <i className="bi bi-speedometer"></i>
                   </div>
-                  <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: '15px' }}>
+                  <h5 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800, fontSize: '15px' }}>
                     Dyno &amp; Brake Test
                   </h5>
                 </div>
@@ -515,16 +515,16 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             <div className="col-md-4 col-12">
               <div
                 className="p-3 p-sm-4 rounded h-100"
-                style={{ background: '#FFFFFF', border: '2px solid #0F172A', boxShadow: '3px 3px 0 #0F172A' }}
+                style={{ background: 'var(--surface)', border: '2px solid var(--line)', boxShadow: '3px 3px 0 var(--shadow)' }}
               >
                 <div className="d-flex align-items-center gap-2 mb-3">
                   <div
                     className="rounded-circle d-inline-flex align-items-center justify-content-center"
-                    style={{ width: '40px', height: '40px', background: '#F0FDF4', border: '1.5px solid #16A34A', color: '#16A34A' }}
+                    style={{ width: '40px', height: '40px', background: 'var(--tint-green)', border: '1.5px solid #16A34A', color: 'var(--green)' }}
                   >
                     <i className="bi bi-flag-fill"></i>
                   </div>
-                  <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800, fontSize: '15px' }}>
+                  <h5 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800, fontSize: '15px' }}>
                     Endurance Shakedown
                   </h5>
                 </div>
@@ -540,15 +540,15 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
         <section
           className="p-3 p-sm-4 p-md-5 rounded mb-5"
           style={{
-            background: '#FFFFFF',
-            border: '2px solid #0F172A',
+            background: 'var(--surface)',
+            border: '2px solid var(--line)',
             boxShadow: `5px 5px 0 ${subteam.accentColor}`,
           }}
         >
           <div className="row align-items-center g-3">
             <div className="col-lg-8 col-12">
               <span className="badge-motorsport red mb-2">Technical Architecture</span>
-              <h3 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 900 }}>
+              <h3 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 900 }}>
                 EXPLORE {subteam.title.toUpperCase()} BASIC KNOWLEDGE &amp; 3D MODELS
               </h3>
               <p className="text-muted mb-0" style={{ fontSize: '15px', lineHeight: '1.6' }}>
@@ -560,9 +560,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                 href={`/subteams/${subteam.slug}`}
                 className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 w-100 w-lg-auto"
                 style={{
-                  background: '#0F172A',
+                  background: 'var(--surface-deep)',
                   color: '#FFFFFF',
-                  border: '2px solid #0F172A',
+                  border: '2px solid var(--line)',
                   boxShadow: `3px 3px 0 ${subteam.accentColor}`,
                   padding: '12px 24px',
                   fontWeight: 800,
@@ -582,7 +582,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
         <section className="mb-5">
           <div className="d-flex align-items-center gap-2 mb-4">
             <span className="badge-motorsport red">DIVISION INTERFACES</span>
-            <h4 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+            <h4 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800 }}>
               CROSS-FUNCTIONAL WORKFLOW INTEGRATION
             </h4>
           </div>
@@ -597,9 +597,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                     href={`/subteams/${partner.id}/workflow`}
                     className="p-3 rounded d-flex align-items-center justify-content-between text-decoration-none h-100"
                     style={{
-                      background: '#FFFFFF',
-                      border: '2px solid #0F172A',
-                      boxShadow: '3px 3px 0 #0F172A',
+                      background: 'var(--surface)',
+                      border: '2px solid var(--line)',
+                      boxShadow: '3px 3px 0 var(--shadow)',
                       transition: 'all 0.15s ease',
                     }}
                   >
@@ -609,7 +609,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                         style={{
                           width: '40px',
                           height: '40px',
-                          background: '#F8FAFC',
+                          background: 'var(--surface-2)',
                           border: `1.5px solid ${partnerData.accentColor}`,
                           color: partnerData.accentColor,
                           fontSize: '18px',
@@ -621,7 +621,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
                         <span className="small text-muted text-uppercase d-block" style={{ fontSize: '10.5px' }}>
                           Division {partnerData.divisionNumber} Workflow
                         </span>
-                        <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                        <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13.5px' }}>
                           {partnerData.title}
                         </span>
                       </div>
@@ -638,9 +638,9 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
         <section
           className="p-4 p-md-5 rounded text-center"
           style={{
-            background: '#0F172A',
+            background: 'var(--surface-deep)',
             color: '#FFFFFF',
-            border: '2px solid #0F172A',
+            border: '2px solid var(--line)',
             boxShadow: `5px 5px 0 ${subteam.accentColor}`,
           }}
         >
@@ -658,7 +658,7 @@ export default async function SubteamWorkflowPage({ params }: PageProps) {
             <Link
               href="/subteams"
               className="custom-btn-outline text-decoration-none"
-              style={{ background: '#FFFFFF', color: '#0F172A', padding: '12px 28px', fontSize: '14px' }}
+              style={{ background: 'var(--surface)', color: 'var(--text)', padding: '12px 28px', fontSize: '14px' }}
             >
               Explore All Divisions
             </Link>

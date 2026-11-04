@@ -11,8 +11,8 @@ export default function Chassis3DModelsViewer() {
     <div
       className="p-3 p-sm-4 p-md-5 rounded mb-4"
       style={{
-        background: '#FFFFFF',
-        border: '2px solid #0F172A',
+        background: 'var(--surface)',
+        border: '2px solid var(--line)',
         boxShadow: '4px 4px 0 #DC2626',
       }}
     >
@@ -25,7 +25,7 @@ export default function Chassis3DModelsViewer() {
           <h4
             className="font-orbitron mb-0"
             style={{
-              color: '#0F172A',
+              color: 'var(--text)',
               fontWeight: 900,
               fontSize: 'clamp(1.15rem, 3.2vw, 1.6rem)',
               lineHeight: '1.3',
@@ -45,8 +45,8 @@ export default function Chassis3DModelsViewer() {
         <div
           className="d-flex p-1 rounded gap-1 overflow-x-auto flex-nowrap"
           style={{
-            background: '#0F172A',
-            border: '1.5px solid #0F172A',
+            background: 'var(--surface-deep)',
+            border: '1.5px solid var(--line)',
             maxWidth: '100%',
             WebkitOverflowScrolling: 'touch',
             scrollbarWidth: 'none',
@@ -114,7 +114,7 @@ export default function Chassis3DModelsViewer() {
             onClick={() => setActiveTab('all')}
             className="btn btn-sm d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0"
             style={{
-              background: activeTab === 'all' ? '#0F172A' : 'transparent',
+              background: activeTab === 'all' ? 'var(--surface-deep)' : 'transparent',
               color: '#FFFFFF',
               border: activeTab === 'all' ? '1px solid #94A3B8' : 'none',
               fontWeight: 800,
@@ -143,7 +143,7 @@ export default function Chassis3DModelsViewer() {
       {/* Mobile Touch Guidance Tip */}
       <div
         className="d-flex align-items-center justify-content-between p-2 px-3 mb-3 rounded d-md-none"
-        style={{ background: '#F1F5F9', border: '1px solid #CBD5E1', fontSize: '11px', color: '#475569' }}
+        style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)', fontSize: '11px', color: 'var(--text-muted)' }}
       >
         <span>
           <i className="bi bi-hand-index-thumb text-danger me-1"></i> Drag to orbit • Pinch to zoom
@@ -159,7 +159,7 @@ export default function Chassis3DModelsViewer() {
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
-                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+                style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
                   <i className="bi bi-shield-shaded text-danger me-2"></i> P4T Formula Spaceframe
@@ -170,9 +170,9 @@ export default function Chassis3DModelsViewer() {
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
-                border: '2px solid #0F172A',
-                boxShadow: '3px 3px 0 #0F172A',
-                background: '#0F172A',
+                border: '2px solid var(--line)',
+                boxShadow: '3px 3px 0 var(--shadow)',
+                background: 'var(--surface-deep)',
               }}
             >
               <div
@@ -201,7 +201,7 @@ export default function Chassis3DModelsViewer() {
               {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
-                style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
+                style={{ background: 'var(--surface-deep)', borderTop: '1px solid var(--line)', fontSize: '12px', color: '#94A3B8' }}
               >
                 <span>
                   <i className="bi bi-box me-1 text-info"></i>
@@ -232,7 +232,7 @@ export default function Chassis3DModelsViewer() {
                     Sketchfab
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#38BDF8' }}>
+                <span className="badge" style={{ background: 'var(--surface-deep)', color: '#38BDF8' }}>
                   Spaceframe CAD
                 </span>
               </div>
@@ -246,7 +246,7 @@ export default function Chassis3DModelsViewer() {
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
-                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+                style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
                   <i className="bi bi-diagram-2 text-primary me-2"></i> Push Rod Suspension
@@ -257,9 +257,9 @@ export default function Chassis3DModelsViewer() {
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
-                border: '2px solid #0F172A',
-                boxShadow: '3px 3px 0 #0F172A',
-                background: '#0F172A',
+                border: '2px solid var(--line)',
+                boxShadow: '3px 3px 0 var(--shadow)',
+                background: 'var(--surface-deep)',
               }}
             >
               <div
@@ -288,7 +288,7 @@ export default function Chassis3DModelsViewer() {
               {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
-                style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
+                style={{ background: 'var(--surface-deep)', borderTop: '1px solid var(--line)', fontSize: '12px', color: '#94A3B8' }}
               >
                 <span>
                   <i className="bi bi-diagram-2 me-1 text-danger"></i>
@@ -319,7 +319,7 @@ export default function Chassis3DModelsViewer() {
                     Sketchfab
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#F87171' }}>
+                <span className="badge" style={{ background: 'var(--surface-deep)', color: '#F87171' }}>
                   Suspension Kinematics
                 </span>
               </div>
@@ -333,7 +333,7 @@ export default function Chassis3DModelsViewer() {
             {activeTab === 'all' && (
               <div
                 className="p-2 px-3 rounded mb-2 d-flex align-items-center justify-content-between"
-                style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
+                style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '12px', fontWeight: 800 }}
               >
                 <span>
                   <i className="bi bi-bezier2 text-warning me-2"></i> Monotube Coilover Shock
@@ -344,9 +344,9 @@ export default function Chassis3DModelsViewer() {
             <div
               className="sketchfab-embed-wrapper rounded overflow-hidden"
               style={{
-                border: '2px solid #0F172A',
-                boxShadow: '3px 3px 0 #0F172A',
-                background: '#0F172A',
+                border: '2px solid var(--line)',
+                boxShadow: '3px 3px 0 var(--shadow)',
+                background: 'var(--surface-deep)',
               }}
             >
               <div
@@ -375,7 +375,7 @@ export default function Chassis3DModelsViewer() {
               {/* Model Meta Footer */}
               <div
                 className="d-flex align-items-center justify-content-between p-2 px-3 flex-wrap gap-2"
-                style={{ background: '#0F172A', borderTop: '1px solid #1E293B', fontSize: '12px', color: '#94A3B8' }}
+                style={{ background: 'var(--surface-deep)', borderTop: '1px solid var(--line)', fontSize: '12px', color: '#94A3B8' }}
               >
                 <span>
                   <i className="bi bi-bezier2 me-1 text-warning"></i>
@@ -406,7 +406,7 @@ export default function Chassis3DModelsViewer() {
                     Sketchfab
                   </a>
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#4ADE80' }}>
+                <span className="badge" style={{ background: 'var(--surface-deep)', color: '#4ADE80' }}>
                   Coilover Damper
                 </span>
               </div>
@@ -420,25 +420,25 @@ export default function Chassis3DModelsViewer() {
         {activeTab === 'chassis' ? (
           <>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Material Grade</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>AISI 4130 Seamless Chromoly</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>AISI 4130 Seamless Chromoly</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Torsional Stiffness</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>1,920 Nm/deg Target</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>1,920 Nm/deg Target</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Main Hoop Spec</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>OD 25.4 mm × 2.4 mm Wall</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>OD 25.4 mm × 2.4 mm Wall</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Total Bare Frame Mass</span>
                 <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>29.8 kg Finished</span>
               </div>
@@ -447,25 +447,25 @@ export default function Chassis3DModelsViewer() {
         ) : activeTab === 'suspension' ? (
           <>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Kinematics Architecture</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>Unequal Double Wishbone Pushrod</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>Unequal Double Wishbone Pushrod</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Rocker Motion Ratio</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>0.85:1 Progressive Bellcrank</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>0.85:1 Progressive Bellcrank</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Camber Gain</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>-0.80° / deg Roll in Bump</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>-0.80° / deg Roll in Bump</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Upright Knuckles</span>
                 <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>CNC Machined Al 7075-T6</span>
               </div>
@@ -474,25 +474,25 @@ export default function Chassis3DModelsViewer() {
         ) : activeTab === 'shock' ? (
           <>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Damper Architecture</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>High-Pressure Monotube N2</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>High-Pressure Monotube N2</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Spring Stiffness</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>275 lbs/in (48.2 N/mm) Linear</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>275 lbs/in (48.2 N/mm) Linear</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Damping Adjustment</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>24-Click Independent 2-Way</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>24-Click Independent 2-Way</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Usable Stroke</span>
                 <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>52 mm Travel + Bumpstop</span>
               </div>
@@ -501,25 +501,25 @@ export default function Chassis3DModelsViewer() {
         ) : (
           <>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Wheelbase / Track</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>1550 mm / 1220 mm</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>1550 mm / 1220 mm</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Roll Center Height</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>35 mm Front / 45 mm Rear</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>35 mm Front / 45 mm Rear</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Ride Frequency</span>
-                <span className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>2.35 Hz Front / 2.55 Hz Rear</span>
+                <span className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>2.35 Hz Front / 2.55 Hz Rear</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
-              <div className="p-2 px-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+              <div className="p-2 px-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                 <span className="small text-muted d-block" style={{ fontSize: '11px' }}>Anti-Roll Geometry</span>
                 <span className="fw-bold text-danger" style={{ fontSize: '13px' }}>Adjustable T-Bar ARB</span>
               </div>

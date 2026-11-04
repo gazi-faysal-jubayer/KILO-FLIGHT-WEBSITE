@@ -82,16 +82,16 @@ export default function SubteamMediaGallery() {
       <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
         <div>
           <span className="badge-motorsport red mb-1">Visual Engineering Documentation</span>
-          <h3 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+          <h3 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800 }}>
             TECHNICAL BLUEPRINTS, SCHEMATICS &amp; TRACK VIDEO
           </h3>
         </div>
         <span
           className="badge"
           style={{
-            background: '#F8FAFC',
-            color: '#0F172A',
-            border: '1.5px solid #0F172A',
+            background: 'var(--surface-2)',
+            color: 'var(--text)',
+            border: '1.5px solid var(--line)',
             fontWeight: 700,
             fontSize: '11px',
           }}
@@ -106,18 +106,18 @@ export default function SubteamMediaGallery() {
           <div
             className="p-3 p-sm-4 rounded h-100 d-flex flex-column"
             style={{
-              background: '#FFFFFF',
-              border: '2px solid #0F172A',
-              boxShadow: '4px 4px 0 #0F172A',
+              background: 'var(--surface)',
+              border: '2px solid var(--line)',
+              boxShadow: '4px 4px 0 var(--shadow)',
             }}
           >
             {/* Figure Header */}
             <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
               <div className="d-flex align-items-center gap-2">
-                <span className="badge-motorsport" style={{ background: '#0F172A', color: '#FFFFFF', fontSize: '11px' }}>
+                <span className="badge-motorsport" style={{ background: 'var(--surface-deep)', color: '#FFFFFF', fontSize: '11px' }}>
                   {selectedFigure.figureNumber}
                 </span>
-                <span className="badge" style={{ background: '#F1F5F9', color: '#0284C7', border: '1px solid #BAE6FD', fontSize: '11px', fontWeight: 700 }}>
+                <span className="badge" style={{ background: 'var(--surface-2)', color: 'var(--cyan)', border: '1px solid #BAE6FD', fontSize: '11px', fontWeight: 700 }}>
                   {selectedFigure.category}
                 </span>
               </div>
@@ -126,9 +126,9 @@ export default function SubteamMediaGallery() {
                 onClick={() => setLightboxImage(selectedFigure)}
                 className="btn btn-sm d-inline-flex align-items-center gap-1"
                 style={{
-                  background: '#F8FAFC',
-                  color: '#0F172A',
-                  border: '1px solid #CBD5E1',
+                  background: 'var(--surface-2)',
+                  color: 'var(--text)',
+                  border: '1px solid var(--rule)',
                   fontSize: '11.5px',
                   fontWeight: 700,
                   padding: '4px 10px',
@@ -138,7 +138,7 @@ export default function SubteamMediaGallery() {
               </button>
             </div>
 
-            <h5 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 800 }}>
+            <h5 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 800 }}>
               {selectedFigure.title}
             </h5>
 
@@ -146,10 +146,10 @@ export default function SubteamMediaGallery() {
             <div
               className="position-relative rounded overflow-hidden mb-3"
               style={{
-                border: '1.5px solid #0F172A',
+                border: '1.5px solid var(--line)',
                 aspectRatio: '16/9',
                 cursor: 'pointer',
-                background: '#0F172A',
+                background: 'var(--surface-deep)',
               }}
               onClick={() => setLightboxImage(selectedFigure)}
             >
@@ -163,7 +163,7 @@ export default function SubteamMediaGallery() {
               />
               <div
                 className="position-absolute bottom-0 start-0 end-0 p-2 px-3 text-white small d-flex align-items-center justify-content-between"
-                style={{ background: 'rgba(15, 23, 42, 0.85)', backdropFilter: 'blur(4px)' }}
+                style={{ background: 'rgba(11, 8, 25, 0.85)', backdropFilter: 'blur(4px)' }}
               >
                 <span style={{ fontSize: '11.5px' }}>
                   <i className="bi bi-zoom-in me-1 text-danger"></i> Click image to inspect high-resolution blueprint
@@ -180,8 +180,8 @@ export default function SubteamMediaGallery() {
 
             {/* Callouts list */}
             {selectedFigure.callouts && (
-              <div className="mb-4 p-3 rounded" style={{ background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
-                <span className="small fw-bold text-uppercase d-block mb-2" style={{ color: '#0F172A', fontSize: '11px', letterSpacing: '0.5px' }}>
+              <div className="mb-4 p-3 rounded" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
+                <span className="small fw-bold text-uppercase d-block mb-2" style={{ color: 'var(--text)', fontSize: '11px', letterSpacing: '0.5px' }}>
                   Key Engineering Callouts:
                 </span>
                 <div className="row g-2">
@@ -199,7 +199,7 @@ export default function SubteamMediaGallery() {
 
             {/* Thumbnail Navigation Selector */}
             <div className="mt-auto pt-3 border-top">
-              <span className="small fw-bold text-uppercase d-block mb-2" style={{ color: '#64748B', fontSize: '11px' }}>
+              <span className="small fw-bold text-uppercase d-block mb-2" style={{ color: 'var(--text-muted)', fontSize: '11px' }}>
                 Select Figure or Schematic:
               </span>
               <div className="row g-2">
@@ -212,9 +212,9 @@ export default function SubteamMediaGallery() {
                         onClick={() => setSelectedFigure(fig)}
                         className="w-100 p-1 rounded text-start position-relative overflow-hidden"
                         style={{
-                          border: isCur ? '2px solid #FF2A2A' : '1.5px solid #CBD5E1',
+                          border: isCur ? '2px solid #FF2A2A' : '1.5px solid var(--rule)',
                           boxShadow: isCur ? '2px 2px 0 #FF2A2A' : 'none',
-                          background: isCur ? '#FEF2F2' : '#FFFFFF',
+                          background: isCur ? 'var(--tint-red)' : 'var(--surface)',
                           cursor: 'pointer',
                           transition: 'all 0.15s ease',
                         }}
@@ -224,7 +224,7 @@ export default function SubteamMediaGallery() {
                         </div>
                         <div
                           className="text-truncate fw-bold pt-1"
-                          style={{ fontSize: '10px', color: isCur ? '#FF2A2A' : '#0F172A' }}
+                          style={{ fontSize: '10px', color: isCur ? '#FF2A2A' : 'var(--text)' }}
                         >
                           {fig.figureNumber}
                         </div>
@@ -242,9 +242,9 @@ export default function SubteamMediaGallery() {
           <div
             className="p-3 p-sm-4 rounded h-100 d-flex flex-column"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '4px 4px 0 #FF2A2A',
             }}
           >
@@ -287,28 +287,28 @@ export default function SubteamMediaGallery() {
             {/* Telemetry Indicator Readout */}
             <div
               className="p-3 rounded mb-3"
-              style={{ background: '#1E293B', border: '1px solid #334155' }}
+              style={{ background: 'var(--surface-deep)', border: '1px solid #334155' }}
             >
               <div className="small fw-bold text-uppercase mb-2 text-info" style={{ fontSize: '11px', letterSpacing: '0.5px' }}>
                 <i className="bi bi-activity me-1"></i> Live Dyno Sensor Highlights:
               </div>
               <div className="row g-2 text-center font-orbitron" style={{ fontSize: '13px' }}>
                 <div className="col-4">
-                  <div className="p-2 rounded" style={{ background: '#0F172A' }}>
+                  <div className="p-2 rounded" style={{ background: 'var(--surface-deep)' }}>
                     <span className="small d-block text-muted" style={{ fontSize: '10px' }}>REDLINE</span>
                     <span className="text-danger fw-bold">9,500</span>
                     <span className="small text-muted d-block" style={{ fontSize: '9px' }}>RPM</span>
                   </div>
                 </div>
                 <div className="col-4">
-                  <div className="p-2 rounded" style={{ background: '#0F172A' }}>
+                  <div className="p-2 rounded" style={{ background: 'var(--surface-deep)' }}>
                     <span className="small d-block text-muted" style={{ fontSize: '10px' }}>SHIFT DELAY</span>
                     <span className="text-warning fw-bold">&lt; 120</span>
                     <span className="small text-muted d-block" style={{ fontSize: '9px' }}>ms</span>
                   </div>
                 </div>
                 <div className="col-4">
-                  <div className="p-2 rounded" style={{ background: '#0F172A' }}>
+                  <div className="p-2 rounded" style={{ background: 'var(--surface-deep)' }}>
                     <span className="small d-block text-muted" style={{ fontSize: '10px' }}>COOLANT PEAK</span>
                     <span className="text-success fw-bold">95°C</span>
                     <span className="small text-muted d-block" style={{ fontSize: '9px' }}>Normal</span>
@@ -323,7 +323,7 @@ export default function SubteamMediaGallery() {
                 <span className="small fw-bold" style={{ color: '#E2E8F0', fontSize: '12px' }}>
                   Fabrication &amp; Engine Assembly Clip:
                 </span>
-                <span className="badge" style={{ background: '#1E293B', color: '#38BDF8', fontSize: '10px' }}>
+                <span className="badge" style={{ background: 'var(--surface-deep)', color: '#38BDF8', fontSize: '10px' }}>
                   1080p HD
                 </span>
               </div>
@@ -346,7 +346,7 @@ export default function SubteamMediaGallery() {
         <div
           className="position-fixed top-0 start-0 end-0 bottom-0 d-flex align-items-center justify-content-center p-3 p-md-5"
           style={{
-            background: 'rgba(15, 23, 42, 0.95)',
+            background: 'rgba(11, 8, 25, 0.95)',
             zIndex: 1050,
             backdropFilter: 'blur(8px)',
           }}
@@ -357,7 +357,7 @@ export default function SubteamMediaGallery() {
             style={{
               maxWidth: '1200px',
               width: '100%',
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               border: '2px solid #38BDF8',
               boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
             }}

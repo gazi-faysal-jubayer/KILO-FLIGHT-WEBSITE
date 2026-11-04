@@ -13,7 +13,7 @@ export default function SheetGuideModal({ isOpen, onClose }: SheetGuideModalProp
   return (
     <div
       className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center px-3"
-      style={{ background: 'rgba(15, 23, 42, 0.75)', zIndex: 1050, backdropFilter: 'blur(6px)' }}
+      style={{ background: 'rgba(11, 8, 25, 0.75)', zIndex: 1050, backdropFilter: 'blur(6px)' }}
       onClick={onClose}
     >
       <div
@@ -22,14 +22,14 @@ export default function SheetGuideModal({ isOpen, onClose }: SheetGuideModalProp
           maxWidth: '780px',
           maxHeight: '90vh',
           overflowY: 'auto',
-          background: '#FFFFFF',
-          border: '2px solid #0F172A',
-          boxShadow: '6px 6px 0 #0F172A',
+          background: 'var(--surface)',
+          border: '2px solid var(--line)',
+          boxShadow: '6px 6px 0 var(--shadow)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom">
-          <h5 className="font-orbitron mb-0" style={{ color: '#0F172A', fontWeight: 800 }}>
+          <h5 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontWeight: 800 }}>
             <i className="bi bi-file-earmark-spreadsheet-fill text-success me-2"></i> Team Directory Google Sheet Guide
           </h5>
           <button
@@ -42,9 +42,9 @@ export default function SheetGuideModal({ isOpen, onClose }: SheetGuideModalProp
         </div>
 
         <div>
-          <div className="d-flex align-items-center justify-content-between p-3 rounded mb-4" style={{ background: '#F8FAFC', border: '1.5px solid #0F172A' }}>
+          <div className="d-flex align-items-center justify-content-between p-3 rounded mb-4" style={{ background: 'var(--surface-2)', border: '1.5px solid var(--line)' }}>
             <div>
-              <div className="fw-bold" style={{ color: '#0F172A' }}>Official Google Sheet</div>
+              <div className="fw-bold" style={{ color: 'var(--text)' }}>Official Google Sheet</div>
               <div className="small text-muted font-monospace">11V8Craw4Q8c6PlKQUCCAFZIpw3sonxeDN4E5BTjj-hI</div>
             </div>
             <a
@@ -57,19 +57,19 @@ export default function SheetGuideModal({ isOpen, onClose }: SheetGuideModalProp
             </a>
           </div>
 
-          <h6 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 700 }}>
+          <h6 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 700 }}>
             1. Multi-Season Tabs Structure
           </h6>
           <p className="small text-muted mb-3">
             Each season has its own separate tab (e.g. <code>Season 2026</code>, <code>Season 2025</code>, <code>Season 2024</code>). The website automatically fetches and combines all season tabs in real-time.
           </p>
 
-          <h6 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 700 }}>
+          <h6 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 700 }}>
             2. Exact Column Headers (Row 1):
           </h6>
           <div className="table-responsive mb-4">
             <table className="table table-sm table-bordered text-center small align-middle">
-              <thead style={{ background: '#0F172A', color: '#FFFFFF' }}>
+              <thead style={{ background: 'var(--surface-deep)', color: '#FFFFFF' }}>
                 <tr>
                   <th>Name</th>
                   <th>Role</th>
@@ -96,7 +96,7 @@ export default function SheetGuideModal({ isOpen, onClose }: SheetGuideModalProp
             </table>
           </div>
 
-          <h6 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 700 }}>
+          <h6 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 700 }}>
             3. The &quot;Teacher?&quot; Column Rules:
           </h6>
           <ul className="small text-muted mb-4" style={{ lineHeight: '1.6' }}>
@@ -108,7 +108,7 @@ export default function SheetGuideModal({ isOpen, onClose }: SheetGuideModalProp
             </li>
           </ul>
 
-          <h6 className="font-orbitron mb-2" style={{ color: '#0F172A', fontWeight: 700 }}>
+          <h6 className="font-orbitron mb-2" style={{ color: 'var(--text)', fontWeight: 700 }}>
             4. Google Drive Photo Links:
           </h6>
           <p className="small text-muted mb-4">

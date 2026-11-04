@@ -16,12 +16,12 @@ export default function SubteamsPage() {
         className="page-header-section"
         style={{
           background: 'radial-gradient(circle at top, rgba(255, 42, 42, 0.08) 0%, var(--dark-bg) 100%)',
-          borderBottom: '2px solid #0F172A',
+          borderBottom: '2px solid var(--line)',
         }}
       >
         <div className="container mx-auto px-4 text-center">
           <span className="badge-motorsport red mb-2">Technical Divisions &amp; R&amp;D Architecture</span>
-          <h1 className="mb-3 font-orbitron" style={{ color: '#0F172A', fontWeight: 900, fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
+          <h1 className="mb-3 font-orbitron" style={{ color: 'var(--text)', fontWeight: 900, fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
             SUB-TEAMS &amp; WORKFLOW OVERVIEW
           </h1>
           <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '820px', fontSize: '16px', lineHeight: '1.7' }}>
@@ -36,9 +36,9 @@ export default function SubteamsPage() {
                 href={`/subteams/${sub.slug}`}
                 className="btn btn-sm d-inline-flex align-items-center gap-2"
                 style={{
-                  background: '#FFFFFF',
-                  color: '#0F172A',
-                  border: '1.5px solid #0F172A',
+                  background: 'var(--surface)',
+                  color: 'var(--text)',
+                  border: '1.5px solid var(--line)',
                   boxShadow: `2px 2px 0 ${sub.accentColor}`,
                   fontWeight: 700,
                   fontSize: '12.5px',
@@ -56,14 +56,14 @@ export default function SubteamsPage() {
       </section>
 
       {/* Featured Division Callout: Mechanical Powertrain */}
-      <section className="py-4" style={{ background: '#F1F5F9', borderBottom: '1px solid #E2E8F0' }}>
+      <section className="py-4" style={{ background: 'var(--surface-2)', borderBottom: '1px solid var(--rule)' }}>
         <div className="container mx-auto px-4">
           <div
             className="p-3 p-sm-4 rounded d-flex align-items-center justify-content-between flex-wrap gap-3"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '4px 4px 0 #0284C7',
             }}
           >
@@ -75,7 +75,7 @@ export default function SubteamsPage() {
                   height: '50px',
                   background: 'rgba(2, 132, 199, 0.2)',
                   color: '#38BDF8',
-                  border: '1.5px solid #0284C7',
+                  border: '1.5px solid var(--cyan)',
                   fontSize: '22px',
                 }}
               >
@@ -142,9 +142,9 @@ export default function SubteamsPage() {
                 <div
                   className="glass-panel p-3 p-sm-4 p-lg-5"
                   style={{
-                    border: '2px solid #0F172A',
+                    border: '2px solid var(--line)',
                     boxShadow: `5px 5px 0 ${sub.accentColor}`,
-                    background: '#FFFFFF',
+                    background: 'var(--surface)',
                   }}
                 >
                   {/* Division Header */}
@@ -155,7 +155,7 @@ export default function SubteamsPage() {
                         style={{
                           color: sub.accentColor,
                           border: `2px solid ${sub.accentColor}`,
-                          background: '#F8FAFC',
+                          background: 'var(--surface-2)',
                           width: '56px',
                           height: '56px',
                           fontSize: '24px',
@@ -168,7 +168,7 @@ export default function SubteamsPage() {
                         <span className="badge-motorsport mb-1" style={{ fontSize: '11px' }}>
                           Division {sub.divisionNumber}
                         </span>
-                        <h3 className="mb-0 font-orbitron" style={{ color: '#0F172A', fontWeight: 800 }}>
+                        <h3 className="mb-0 font-orbitron" style={{ color: 'var(--text)', fontWeight: 800 }}>
                           {sub.title}
                         </h3>
                       </div>
@@ -177,7 +177,7 @@ export default function SubteamsPage() {
                     <div className="d-flex align-items-center gap-2 flex-wrap">
                       <span
                         className="badge-motorsport"
-                        style={{ background: '#F8FAFC', color: '#0F172A', border: '1.5px solid #0F172A' }}
+                        style={{ background: 'var(--surface-2)', color: 'var(--text)', border: '1.5px solid var(--line)' }}
                       >
                         {sub.badge}
                       </span>
@@ -185,9 +185,9 @@ export default function SubteamsPage() {
                         href={`/subteams/${sub.slug}`}
                         className="btn btn-sm d-inline-flex align-items-center gap-1"
                         style={{
-                          background: '#0F172A',
+                          background: 'var(--surface-deep)',
                           color: '#FFFFFF',
-                          border: '1.5px solid #0F172A',
+                          border: '1.5px solid var(--line)',
                           boxShadow: '2px 2px 0 #FF2A2A',
                           fontWeight: 700,
                           fontSize: '12px',
@@ -202,11 +202,11 @@ export default function SubteamsPage() {
                   </div>
 
                   {/* Tagline & Mission */}
-                  <div className="p-3 rounded mb-4" style={{ background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
+                  <div className="p-3 rounded mb-4" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
                     <div className="small fw-bold text-uppercase mb-1" style={{ color: sub.accentColor, letterSpacing: '0.5px' }}>
                       {sub.coverTagline}
                     </div>
-                    <p className="small mb-0" style={{ color: '#334155', lineHeight: '1.7' }}>
+                    <p className="small mb-0" style={{ color: 'var(--text-muted)', lineHeight: '1.7' }}>
                       {sub.scopeAndMission}
                     </p>
                   </div>
@@ -215,7 +215,7 @@ export default function SubteamsPage() {
                   <div className="mb-4">
                     <div className="d-flex align-items-center gap-2 mb-3">
                       <span className="badge-motorsport red" style={{ fontSize: '10px' }}>PART 1</span>
-                      <h6 className="font-orbitron mb-0" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                      <h6 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontSize: '13.5px' }}>
                         Basic Technical Knowledge &amp; Subsystems
                       </h6>
                     </div>
@@ -224,12 +224,12 @@ export default function SubteamsPage() {
                         <div key={sIdx} className="col-lg-4 col-12">
                           <div
                             className="p-3 rounded h-100"
-                            style={{ background: '#FFFFFF', border: '1.5px solid #0F172A', boxShadow: '2px 2px 0 #0F172A' }}
+                            style={{ background: 'var(--surface)', border: '1.5px solid var(--line)', boxShadow: '2px 2px 0 var(--shadow)' }}
                           >
                             <span
                               className="badge mb-2"
                               style={{
-                                background: '#F1F5F9',
+                                background: 'var(--surface-2)',
                                 color: sub.accentColor,
                                 border: `1px solid ${sub.accentColor}`,
                                 fontSize: '10.5px',
@@ -238,7 +238,7 @@ export default function SubteamsPage() {
                             >
                               {system.badge}
                             </span>
-                            <div className="fw-bold mb-1" style={{ color: '#0F172A', fontSize: '13px' }}>
+                            <div className="fw-bold mb-1" style={{ color: 'var(--text)', fontSize: '13px' }}>
                               {system.title}
                             </div>
                             <p className="small text-muted mb-0" style={{ fontSize: '12px', lineHeight: '1.5' }}>
@@ -254,7 +254,7 @@ export default function SubteamsPage() {
                   <div className="mb-4">
                     <div className="d-flex align-items-center gap-2 mb-3">
                       <span className="badge-motorsport red" style={{ fontSize: '10px' }}>PART 2</span>
-                      <h6 className="font-orbitron mb-0" style={{ color: '#0F172A', fontSize: '13.5px' }}>
+                      <h6 className="font-orbitron mb-0" style={{ color: 'var(--text)', fontSize: '13.5px' }}>
                         Technical Workflow &amp; Execution Roadmap
                       </h6>
                     </div>
@@ -264,8 +264,8 @@ export default function SubteamsPage() {
                           <div
                             className="p-3 h-100 rounded"
                             style={{
-                              background: '#F8FAFC',
-                              border: '1px solid #CBD5E1',
+                              background: 'var(--surface-2)',
+                              border: '1px solid var(--rule)',
                             }}
                           >
                             <div className="d-flex align-items-center gap-2 mb-1">
@@ -281,7 +281,7 @@ export default function SubteamsPage() {
                               >
                                 {w.step}
                               </span>
-                              <div className="fw-bold" style={{ color: '#0F172A', fontSize: '13px' }}>
+                              <div className="fw-bold" style={{ color: 'var(--text)', fontSize: '13px' }}>
                                 {w.name}
                               </div>
                             </div>
@@ -297,7 +297,7 @@ export default function SubteamsPage() {
                   {/* Bottom Action Footer */}
                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 pt-3 border-top">
                     <div className="d-flex align-items-center gap-2 flex-wrap">
-                      <span className="small fw-bold me-1" style={{ color: '#0F172A', fontSize: '12px' }}>
+                      <span className="small fw-bold me-1" style={{ color: 'var(--text)', fontSize: '12px' }}>
                         Key Tech:
                       </span>
                       {sub.tools.slice(0, 4).map((tool, tIdx) => (
@@ -305,9 +305,9 @@ export default function SubteamsPage() {
                           key={tIdx}
                           className="badge"
                           style={{
-                            background: '#F8FAFC',
-                            color: '#0F172A',
-                            border: '1px solid #CBD5E1',
+                            background: 'var(--surface-2)',
+                            color: 'var(--text)',
+                            border: '1px solid var(--rule)',
                             padding: '5px 9px',
                             fontWeight: '600',
                             fontSize: '11px',
@@ -323,9 +323,9 @@ export default function SubteamsPage() {
                         href={`/subteams/${sub.slug}`}
                         className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 flex-grow-1 flex-lg-grow-0"
                         style={{
-                          background: '#0F172A',
+                          background: 'var(--surface-deep)',
                           color: '#FFFFFF',
-                          border: '1.5px solid #0F172A',
+                          border: '1.5px solid var(--line)',
                           boxShadow: `2px 2px 0 ${sub.accentColor}`,
                           fontWeight: 700,
                           fontSize: '12px',
@@ -343,8 +343,8 @@ export default function SubteamsPage() {
                         style={{
                           background: '#DC2626',
                           color: '#FFFFFF',
-                          border: '1.5px solid #0F172A',
-                          boxShadow: '2px 2px 0 #0F172A',
+                          border: '1.5px solid var(--line)',
+                          boxShadow: '2px 2px 0 var(--shadow)',
                           fontWeight: 700,
                           fontSize: '12px',
                           padding: '7px 14px',
@@ -359,9 +359,9 @@ export default function SubteamsPage() {
                         href="/join-us"
                         className="btn btn-sm d-inline-flex align-items-center justify-content-center gap-1 flex-grow-1 flex-lg-grow-0"
                         style={{
-                          background: '#FFFFFF',
-                          color: '#0F172A',
-                          border: '1.5px solid #0F172A',
+                          background: 'var(--surface)',
+                          color: 'var(--text)',
+                          border: '1.5px solid var(--line)',
                           fontWeight: 700,
                           fontSize: '12px',
                           padding: '7px 14px',
@@ -381,13 +381,13 @@ export default function SubteamsPage() {
           <div
             className="mt-5 text-center p-4 p-md-5 glass-panel"
             style={{
-              border: '2px solid #0F172A',
-              boxShadow: '4px 4px 0 #0F172A',
-              background: '#FFFFFF',
+              border: '2px solid var(--line)',
+              boxShadow: '4px 4px 0 var(--shadow)',
+              background: 'var(--surface)',
             }}
           >
             <span className="badge-motorsport red mb-2">Recruitment Open</span>
-            <h3 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>
+            <h3 className="mb-2 font-orbitron" style={{ color: 'var(--text)', fontWeight: 900 }}>
               WANT TO JOIN ONE OF THESE SUB-TEAMS?
             </h3>
             <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '650px', fontSize: '15px' }}>
@@ -397,7 +397,7 @@ export default function SubteamsPage() {
               <Link href="/join-us" className="custom-btn text-decoration-none">
                 Apply for Batch 2k23 Induction
               </Link>
-              <Link href="/cars" className="custom-btn-outline text-decoration-none" style={{ background: '#FFFFFF' }}>
+              <Link href="/cars" className="custom-btn-outline text-decoration-none" style={{ background: 'var(--surface)' }}>
                 View KILOFLIGHT PHOENIX Specs
               </Link>
             </div>

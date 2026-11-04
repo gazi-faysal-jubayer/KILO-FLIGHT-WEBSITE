@@ -1,19 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
+import DitherField from '@/components/motion/DitherField';
 
 export default function NotFound() {
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center text-center px-4" style={{ minHeight: '80vh', paddingTop: '100px' }}>
-      <div className="glass-panel p-5 mx-auto" style={{ maxWidth: '560px' }}>
-        <span className="badge-motorsport red mb-3">404 Off Track</span>
-        <h1 className="display-4 fw-bold font-orbitron mb-3" style={{ color: '#0F172A' }}>PIT LANE OFF-COURSE</h1>
-        <p className="text-muted mb-4">
-          The racing line you are looking for does not exist or has been relocated to another sector.
+    <section className="signal-lost">
+      <DitherField className="signal-lost__field" pixelSize={6} speed={1.6} />
+      <div className="signal-lost__panel">
+        <span className="badge-motorsport red mb-3">ERR 404 // OFF TRACK</span>
+        <h1 className="signal-lost__title" data-scramble>SIGNAL LOST</h1>
+        <p className="mb-4">
+          The racing line you are looking for does not exist or has moved to another sector.
         </p>
         <Link href="/" className="custom-btn text-decoration-none">
-          <i className="bi bi-arrow-left me-2"></i> Return to Pit Wall
+          <span aria-hidden="true" className="me-2">◀</span> Return to Pit Wall
         </Link>
       </div>
-    </div>
+    </section>
   );
 }

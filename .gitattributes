@@ -1,0 +1,2 @@
+# Vendored ThreeUI sources stay byte-exact (their SHA-256 is published)
+src/shaders/** -text

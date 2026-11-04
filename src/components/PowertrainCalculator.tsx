@@ -39,8 +39,8 @@ export default function PowertrainCalculator() {
     <div
       className="p-3 p-sm-4 p-md-5 rounded"
       style={{
-        background: '#FFFFFF',
-        border: '2px solid #0F172A',
+        background: 'var(--surface)',
+        border: '2px solid var(--line)',
         boxShadow: '4px 4px 0 #0284C7',
       }}
     >
@@ -52,7 +52,7 @@ export default function PowertrainCalculator() {
           <h4
             className="font-orbitron mb-0"
             style={{
-              color: '#0F172A',
+              color: 'var(--text)',
               fontWeight: 800,
               fontSize: 'clamp(1.15rem, 3.2vw, 1.5rem)',
               lineHeight: '1.3',
@@ -64,9 +64,9 @@ export default function PowertrainCalculator() {
         <span
           className="badge align-self-start align-self-md-center"
           style={{
-            background: '#F0F9FF',
-            color: '#0284C7',
-            border: '1.5px solid #0284C7',
+            background: 'var(--tint-cyan)',
+            color: 'var(--cyan)',
+            border: '1.5px solid var(--cyan)',
             fontWeight: 700,
             fontSize: '11px',
             padding: '6px 12px',
@@ -82,7 +82,7 @@ export default function PowertrainCalculator() {
 
       {/* Gear Selector Buttons (Touch-friendly & Responsive Grid) */}
       <div className="mb-4">
-        <label className="small fw-bold text-uppercase d-block mb-2" style={{ color: '#0F172A', letterSpacing: '0.5px', fontSize: '12px' }}>
+        <label className="small fw-bold text-uppercase d-block mb-2" style={{ color: 'var(--text)', letterSpacing: '0.5px', fontSize: '12px' }}>
           Select Transmission Gear (Sequential 6-Speed):
         </label>
         <div className="d-flex gap-2 flex-wrap">
@@ -96,10 +96,10 @@ export default function PowertrainCalculator() {
                 onClick={() => setSelectedGear(num)}
                 className="btn d-inline-flex flex-column align-items-center justify-content-center flex-grow-1"
                 style={{
-                  background: isSelected ? '#0F172A' : '#F8FAFC',
-                  color: isSelected ? '#FFFFFF' : '#0F172A',
-                  border: '2px solid #0F172A',
-                  boxShadow: isSelected ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
+                  background: isSelected ? 'var(--surface-deep)' : 'var(--surface-2)',
+                  color: isSelected ? '#FFFFFF' : 'var(--text)',
+                  border: '2px solid var(--line)',
+                  boxShadow: isSelected ? '3px 3px 0 #FF2A2A' : '2px 2px 0 var(--shadow)',
                   padding: '8px 12px',
                   fontWeight: 800,
                   fontSize: '12.5px',
@@ -112,7 +112,7 @@ export default function PowertrainCalculator() {
                 <span
                   style={{
                     fontSize: '10px',
-                    color: isSelected ? '#93C5FD' : '#64748B',
+                    color: isSelected ? '#93C5FD' : 'var(--text-muted)',
                     fontWeight: 600,
                   }}
                 >
@@ -127,8 +127,8 @@ export default function PowertrainCalculator() {
       {/* Input Adjusters Grid */}
       <div className="row g-3 mb-4">
         <div className="col-md-3 col-6">
-          <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: '#0F172A' }}>
+          <div className="p-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
+            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: 'var(--text)' }}>
               Engine Torque (T<sub>engine</sub>)
             </label>
             <div className="d-flex align-items-center gap-1">
@@ -140,7 +140,7 @@ export default function PowertrainCalculator() {
                 value={engineTorque}
                 onChange={(e) => setEngineTorque(parseFloat(e.target.value) || 0)}
                 className="form-control form-control-sm fw-bold"
-                style={{ border: '1.5px solid #0F172A', borderRadius: '6px' }}
+                style={{ border: '1.5px solid var(--line)', borderRadius: '6px' }}
               />
               <span className="small fw-bold text-muted">Nm</span>
             </div>
@@ -149,8 +149,8 @@ export default function PowertrainCalculator() {
         </div>
 
         <div className="col-md-3 col-6">
-          <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: '#0F172A' }}>
+          <div className="p-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
+            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: 'var(--text)' }}>
               Final Sprocket Ratio (i<sub>final</sub>)
             </label>
             <div className="d-flex align-items-center gap-1">
@@ -162,7 +162,7 @@ export default function PowertrainCalculator() {
                 value={finalDriveRatio}
                 onChange={(e) => setFinalDriveRatio(parseFloat(e.target.value) || 0)}
                 className="form-control form-control-sm fw-bold"
-                style={{ border: '1.5px solid #0F172A', borderRadius: '6px' }}
+                style={{ border: '1.5px solid var(--line)', borderRadius: '6px' }}
               />
             </div>
             <span className="small text-muted" style={{ fontSize: '10.5px' }}>14T / 48T = 3.428</span>
@@ -170,8 +170,8 @@ export default function PowertrainCalculator() {
         </div>
 
         <div className="col-md-3 col-6">
-          <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: '#0F172A' }}>
+          <div className="p-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
+            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: 'var(--text)' }}>
               Drivetrain Efficiency (η)
             </label>
             <div className="d-flex align-items-center gap-1">
@@ -183,7 +183,7 @@ export default function PowertrainCalculator() {
                 value={efficiency}
                 onChange={(e) => setEfficiency(parseFloat(e.target.value) || 0)}
                 className="form-control form-control-sm fw-bold"
-                style={{ border: '1.5px solid #0F172A', borderRadius: '6px' }}
+                style={{ border: '1.5px solid var(--line)', borderRadius: '6px' }}
               />
               <span className="small fw-bold text-muted">%</span>
             </div>
@@ -192,8 +192,8 @@ export default function PowertrainCalculator() {
         </div>
 
         <div className="col-md-3 col-6">
-          <div className="p-3 rounded h-100" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
-            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: '#0F172A' }}>
+          <div className="p-3 rounded h-100" style={{ background: 'var(--surface-2)', border: '1px solid var(--rule)' }}>
+            <label className="small fw-bold d-block text-truncate mb-1" style={{ color: 'var(--text)' }}>
               Tire Rolling Radius (r<sub>wheel</sub>)
             </label>
             <div className="d-flex align-items-center gap-1">
@@ -205,7 +205,7 @@ export default function PowertrainCalculator() {
                 value={wheelRadius}
                 onChange={(e) => setWheelRadius(parseFloat(e.target.value) || 0)}
                 className="form-control form-control-sm fw-bold"
-                style={{ border: '1.5px solid #0F172A', borderRadius: '6px' }}
+                style={{ border: '1.5px solid var(--line)', borderRadius: '6px' }}
               />
               <span className="small fw-bold text-muted">m</span>
             </div>
@@ -220,9 +220,9 @@ export default function PowertrainCalculator() {
           <div
             className="p-3 p-md-4 rounded h-100 text-center"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '3px 3px 0 #FF2A2A',
             }}
           >
@@ -242,9 +242,9 @@ export default function PowertrainCalculator() {
           <div
             className="p-3 p-md-4 rounded h-100 text-center"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '3px 3px 0 #0284C7',
             }}
           >
@@ -264,9 +264,9 @@ export default function PowertrainCalculator() {
           <div
             className="p-3 p-md-4 rounded h-100 text-center"
             style={{
-              background: '#0F172A',
+              background: 'var(--surface-deep)',
               color: '#FFFFFF',
-              border: '2px solid #0F172A',
+              border: '2px solid var(--line)',
               boxShadow: '3px 3px 0 #16A34A',
             }}
           >

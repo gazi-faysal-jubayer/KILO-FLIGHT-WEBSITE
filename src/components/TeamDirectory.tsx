@@ -1,10 +1,17 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { TeamMember } from '@/types/team';
 import { fetchTeamDataFromGoogleSheets, formatImageUrl } from '@/lib/google-sheets';
 import { FALLBACK_TEAM_DATA } from '@/lib/fallback-data';
+import dynamic from 'next/dynamic';
+
+// the carousel inlines ~530 KB of authored HTML, so it loads after the directory
+const CharacterCarousel = dynamic(
+  () => import('@/shaders/character-carousel/CharacterCarousel').then((m) => m.CharacterCarousel),
+  { ssr: false },
+);
 
 export default function TeamDirectory() {
   const [members, setMembers] = useState<TeamMember[]>(FALLBACK_TEAM_DATA);
@@ -35,6 +42,14 @@ export default function TeamDirectory() {
   useEffect(() => {
     loadData();
   }, []);
+
+  // Filmstrip: current (non-alumni) members; a srcdoc frame resolves relative image URLs against this page
+  const filmstripProfiles = useMemo(
+    () => members
+      .filter((m) => m.category !== 'alumni' && (m.season || '').toString().includes('2026'))
+      .map((m) => ({ name: m.name, role: m.role, image: formatImageUrl(m.image) })),
+    [members],
+  );
 
   const seasonsList = [
     { id: '2026', label: 'Season 2026' },
@@ -82,9 +97,9 @@ export default function TeamDirectory() {
         <span
           className="badge d-inline-flex align-items-center text-truncate"
           style={{
-            background: '#FEF3C7',
+            background: 'var(--tint-amber)',
             border: '1.5px solid #D97706',
-            color: '#92400E',
+            color: 'var(--amber)',
             fontWeight: 800,
             fontSize: '11px',
             maxWidth: '100%',
@@ -103,9 +118,9 @@ export default function TeamDirectory() {
           <span
             className="badge d-inline-flex align-items-center text-truncate"
             style={{
-              background: '#FEE2E2',
-              border: '1.5px solid #DC2626',
-              color: '#991B1B',
+              background: 'var(--tint-red)',
+              border: '1.5px solid var(--red-text)',
+              color: 'var(--red-text)',
               fontWeight: 800,
               fontSize: '11px',
               maxWidth: '100%',
@@ -121,9 +136,9 @@ export default function TeamDirectory() {
           <span
             className="badge d-inline-flex align-items-center text-truncate"
             style={{
-              background: '#E0F2FE',
-              border: '1.5px solid #0284C7',
-              color: '#0369A1',
+              background: 'var(--tint-cyan)',
+              border: '1.5px solid var(--cyan)',
+              color: 'var(--cyan)',
               fontWeight: 800,
               fontSize: '11px',
               maxWidth: '100%',
@@ -139,9 +154,9 @@ export default function TeamDirectory() {
           <span
             className="badge d-inline-flex align-items-center text-truncate"
             style={{
-              background: '#F1F5F9',
+              background: 'var(--surface-2)',
               border: '1.5px solid #64748B',
-              color: '#334155',
+              color: 'var(--text-muted)',
               fontWeight: 800,
               fontSize: '11px',
               maxWidth: '100%',
@@ -157,9 +172,9 @@ export default function TeamDirectory() {
           <span
             className="badge d-inline-flex align-items-center text-truncate"
             style={{
-              background: '#F8FAFC',
-              border: '1.5px solid #0F172A',
-              color: '#0F172A',
+              background: 'var(--surface-2)',
+              border: '1.5px solid var(--line)',
+              color: 'var(--text)',
               fontWeight: 700,
               fontSize: '11px',
               maxWidth: '100%',
@@ -191,7 +206,7 @@ export default function TeamDirectory() {
           className="position-fixed inset-0 w-100 h-100 d-flex align-items-center justify-content-center p-3"
           style={{
             zIndex: 9998,
-            background: 'rgba(15, 23, 42, 0.85)',
+            background: 'rgba(11, 8, 25, 0.85)',
             backdropFilter: 'blur(6px)',
             top: 0,
             left: 0,
@@ -203,8 +218,8 @@ export default function TeamDirectory() {
             style={{
               width: '100%',
               maxWidth: '680px',
-              background: '#FFFFFF',
-              border: '3px solid #0F172A',
+              background: 'var(--surface)',
+              border: '3px solid var(--line)',
               boxShadow: '8px 8px 0 #FF2A2A',
             }}
             onClick={(e) => e.stopPropagation()}
@@ -213,7 +228,7 @@ export default function TeamDirectory() {
             <div
               className="px-4 py-3 d-flex justify-content-between align-items-center"
               style={{
-                background: '#0F172A',
+                background: 'var(--surface-deep)',
                 color: '#FFFFFF',
                 borderBottom: '2px solid rgba(255,255,255,0.1)',
               }}
@@ -250,9 +265,9 @@ export default function TeamDirectory() {
                     style={{
                       width: '180px',
                       height: '220px',
-                      border: '2px solid #0F172A',
-                      boxShadow: '4px 4px 0 #0F172A',
-                      background: '#F1F5F9',
+                      border: '2px solid var(--line)',
+                      boxShadow: '4px 4px 0 var(--shadow)',
+                      background: 'var(--surface-2)',
                     }}
                   >
                     <Image
@@ -275,27 +290,27 @@ export default function TeamDirectory() {
                   <div className="d-flex align-items-center gap-2 mb-2">
                     <span
                       className="font-monospace fw-bold px-2 py-0.5 rounded text-white"
-                      style={{ fontSize: '11px', background: '#0F172A' }}
+                      style={{ fontSize: '11px', background: 'var(--surface-deep)' }}
                     >
                       Season {selectedMember.season}
                     </span>
                     {selectedMember.isTeacher && (
                       <span
                         className="font-monospace fw-bold px-2 py-0.5 rounded"
-                        style={{ fontSize: '11px', background: '#FEF3C7', color: '#92400E', border: '1px solid #D97706' }}
+                        style={{ fontSize: '11px', background: 'var(--tint-amber)', color: 'var(--amber)', border: '1px solid #D97706' }}
                       >
                         FACULTY ADVISOR
                       </span>
                     )}
                   </div>
 
-                  <h4 className="font-orbitron fw-bold mb-1" style={{ color: '#0F172A' }}>
+                  <h4 className="font-orbitron fw-bold mb-1" style={{ color: 'var(--text)' }}>
                     {selectedMember.name}
                   </h4>
 
                   <div className="my-2">{getRoleBadge(selectedMember)}</div>
 
-                  <div className="font-monospace fw-bold mb-3" style={{ color: '#0284C7', fontSize: '13px' }}>
+                  <div className="font-monospace fw-bold mb-3" style={{ color: 'var(--cyan)', fontSize: '13px' }}>
                     {selectedMember.department} • KUET
                   </div>
 
@@ -303,14 +318,14 @@ export default function TeamDirectory() {
                   <div
                     className="p-3 rounded mb-3"
                     style={{
-                      background: '#F8FAFC',
-                      border: '1px dashed #CBD5E1',
+                      background: 'var(--surface-2)',
+                      border: '1px dashed var(--rule)',
                       maxHeight: '160px',
                       overflowY: 'auto',
                     }}
                   >
                     <div className="fw-bold small text-muted font-monospace mb-1">OFFICIAL CITATION / BIO:</div>
-                    <p className="small mb-0" style={{ color: '#334155', lineHeight: '1.5' }}>
+                    <p className="small mb-0" style={{ color: 'var(--text-muted)', lineHeight: '1.5' }}>
                       {selectedMember.bio && selectedMember.bio.trim()
                         ? selectedMember.bio
                         : 'Official Formula Student project personnel responsible for engineering design, computer-aided testing, and vehicle construction for Team Kilo Flight KUET.'}
@@ -330,8 +345,8 @@ export default function TeamDirectory() {
                           color: '#FFFFFF',
                           fontWeight: 700,
                           fontSize: '12px',
-                          border: '1.5px solid #0F172A',
-                          boxShadow: '2px 2px 0 #0F172A',
+                          border: '1.5px solid var(--line)',
+                          boxShadow: '2px 2px 0 var(--shadow)',
                         }}
                       >
                         <i className="bi bi-linkedin"></i> LinkedIn Profile
@@ -354,7 +369,7 @@ export default function TeamDirectory() {
       >
         <div className="container mx-auto px-4 text-center">
           <span className="badge-motorsport red mb-2">Team Personnel &amp; Credentials Roster</span>
-          <h1 className="mb-2 font-orbitron" style={{ color: '#0F172A', fontWeight: 900 }}>
+          <h1 className="mb-2 font-orbitron" style={{ color: 'var(--text)', fontWeight: 900 }}>
             TEAM KILOFLIGHT DIRECTORY
           </h1>
           <p className="text-muted max-w-700 mx-auto mb-4" style={{ maxWidth: '750px', fontSize: '15px' }}>
@@ -373,10 +388,10 @@ export default function TeamDirectory() {
                   fontSize: '13.5px',
                   fontWeight: 700,
                   borderRadius: '10px',
-                  border: '2px solid #0F172A',
-                  boxShadow: activeSeason === season.id ? '3px 3px 0 #FF2A2A' : '2px 2px 0 #0F172A',
-                  background: activeSeason === season.id ? '#0F172A' : '#FFFFFF',
-                  color: activeSeason === season.id ? '#FFFFFF' : '#0F172A',
+                  border: '2px solid var(--line)',
+                  boxShadow: activeSeason === season.id ? '3px 3px 0 #FF2A2A' : '2px 2px 0 var(--shadow)',
+                  background: activeSeason === season.id ? 'var(--surface-deep)' : 'var(--surface)',
+                  color: activeSeason === season.id ? '#FFFFFF' : 'var(--text)',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease-in-out',
                 }}
@@ -388,15 +403,32 @@ export default function TeamDirectory() {
         </div>
       </section>
 
+      {/* Filmstrip: ThreeUI CharacterCarousel (filmstrip variant) with the current roster */}
+      <section className="team-filmstrip" aria-label="Current team members">
+        {filmstripProfiles.length > 0 && (
+          <CharacterCarousel
+            variant="filmstrip"
+            speed={1.0}
+            scale={1.0}
+            opacity={1.0}
+            hue={0}
+            saturation={1.0}
+            brightness={1.0}
+            profiles={filmstripProfiles}
+          />
+        )}
+        <p className="team-filmstrip__hint">MOVE · SCROLL · ARROW KEYS TO BROWSE THE ROSTER</p>
+      </section>
+
       {/* Control Bar */}
       <section className="py-2">
         <div className="container mx-auto px-4">
           <div
             className="p-3 rounded"
             style={{
-              background: '#FFFFFF',
-              border: '2px solid #0F172A',
-              boxShadow: '3px 3px 0 #0F172A',
+              background: 'var(--surface)',
+              border: '2px solid var(--line)',
+              boxShadow: '3px 3px 0 var(--shadow)',
             }}
           >
             <div className="row g-3 align-items-center">
@@ -421,7 +453,7 @@ export default function TeamDirectory() {
               {/* Category / Role Filter */}
               <div className="col-lg-4 col-md-4 col-7">
                 <div className="d-flex align-items-center gap-2">
-                  <label htmlFor="category-select" className="small fw-bold text-nowrap mb-0" style={{ color: '#0F172A' }}>
+                  <label htmlFor="category-select" className="small fw-bold text-nowrap mb-0" style={{ color: 'var(--text)' }}>
                     <i className="bi bi-funnel-fill text-danger me-1"></i> Filter:
                   </label>
                   <select
@@ -429,7 +461,7 @@ export default function TeamDirectory() {
                     value={activeCategory}
                     onChange={(e) => setActiveCategory(e.target.value)}
                     className="neo-input"
-                    style={{ padding: '7px 12px', fontSize: '13px' }}
+                    style={{ padding: '7px 12px', fontSize: '13px', flex: '1 1 auto', minWidth: 0 }}
                   >
                     <option value="all">All Personnel ({members.length})</option>
                     <option value="teacher">Faculty Advisors &amp; Mentors</option>
@@ -443,7 +475,7 @@ export default function TeamDirectory() {
 
               {/* Count */}
               <div className="col-lg-2 col-md-2 col-5 text-end">
-                <span className="badge-motorsport" style={{ background: '#F1F5F9', color: '#0F172A', border: '1.5px solid #0F172A' }}>
+                <span className="badge-motorsport" style={{ background: 'var(--surface-2)', color: 'var(--text)', border: '1.5px solid var(--line)' }}>
                   {filteredMembers.length} member{filteredMembers.length === 1 ? '' : 's'}
                 </span>
               </div>
@@ -466,13 +498,13 @@ export default function TeamDirectory() {
                 className="p-5 mx-auto rounded text-center"
                 style={{
                   maxWidth: '520px',
-                  background: '#FFFFFF',
-                  border: '2px solid #0F172A',
-                  boxShadow: '4px 4px 0 #0F172A',
+                  background: 'var(--surface)',
+                  border: '2px solid var(--line)',
+                  boxShadow: '4px 4px 0 var(--shadow)',
                 }}
               >
                 <i className="bi bi-people-fill fs-1 text-muted mb-3 d-block"></i>
-                <h4 className="mb-2 font-orbitron" style={{ color: '#0F172A' }}>No Team Members Found</h4>
+                <h4 className="mb-2 font-orbitron" style={{ color: 'var(--text)' }}>No Team Members Found</h4>
                 <p className="text-muted small mb-4">
                   No members match your selected season ({activeSeason}), role filter, or search term.
                 </p>
@@ -504,7 +536,7 @@ export default function TeamDirectory() {
                           className="font-monospace fw-bold px-2 py-0.5 rounded text-white"
                           style={{
                             fontSize: '10.5px',
-                            background: '#0F172A',
+                            background: 'var(--surface-deep)',
                             letterSpacing: '0.5px',
                           }}
                         >
@@ -515,8 +547,8 @@ export default function TeamDirectory() {
                           <span
                             className="badge font-monospace"
                             style={{
-                              background: '#FEF3C7',
-                              color: '#92400E',
+                              background: 'var(--tint-amber)',
+                              color: 'var(--amber)',
                               border: '1px solid #D97706',
                               fontSize: '10px',
                               letterSpacing: '0.5px',
@@ -528,9 +560,9 @@ export default function TeamDirectory() {
                           <span
                             className="badge font-monospace"
                             style={{
-                              background: '#FEE2E2',
-                              color: '#991B1B',
-                              border: '1px solid #DC2626',
+                              background: 'var(--tint-red)',
+                              color: 'var(--red-text)',
+                              border: '1px solid var(--red-text)',
                               fontSize: '10px',
                               letterSpacing: '0.5px',
                             }}
@@ -541,9 +573,9 @@ export default function TeamDirectory() {
                           <span
                             className="badge font-monospace"
                             style={{
-                              background: '#E0F2FE',
-                              color: '#0369A1',
-                              border: '1px solid #0284C7',
+                              background: 'var(--tint-cyan)',
+                              color: 'var(--cyan)',
+                              border: '1px solid var(--cyan)',
                               fontSize: '10px',
                               letterSpacing: '0.5px',
                             }}
@@ -554,9 +586,9 @@ export default function TeamDirectory() {
                           <span
                             className="badge font-monospace"
                             style={{
-                              background: '#F1F5F9',
-                              color: '#475569',
-                              border: '1px solid #CBD5E1',
+                              background: 'var(--surface-2)',
+                              color: 'var(--text-muted)',
+                              border: '1px solid var(--rule)',
                               fontSize: '10px',
                               letterSpacing: '0.5px',
                             }}
@@ -597,7 +629,7 @@ export default function TeamDirectory() {
                           <div
                             className="w-100 h-100 d-flex flex-column align-items-center justify-content-center"
                             style={{
-                              background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
+                              background: 'linear-gradient(135deg, var(--surface-deep) 0%, var(--surface-deep) 100%)',
                               color: '#FFFFFF',
                             }}
                           >
@@ -627,7 +659,7 @@ export default function TeamDirectory() {
                         <span
                           className="font-monospace fw-bold text-truncate"
                           style={{
-                            color: '#0284C7',
+                            color: 'var(--cyan)',
                             fontSize: '11.5px',
                             letterSpacing: '0.4px',
                             maxWidth: '100%',
@@ -656,9 +688,9 @@ export default function TeamDirectory() {
                             rel="noopener noreferrer"
                             className="text-decoration-none d-inline-flex align-items-center gap-1 small fw-bold px-2 py-1 rounded"
                             style={{
-                              background: '#E0F2FE',
-                              color: '#0369A1',
-                              border: '1px solid #0284C7',
+                              background: 'var(--tint-cyan)',
+                              color: 'var(--cyan)',
+                              border: '1px solid var(--cyan)',
                               fontSize: '11px',
                             }}
                             title="Connect on LinkedIn"
@@ -681,7 +713,7 @@ export default function TeamDirectory() {
                           onClick={() => setSelectedMember(member)}
                           className="btn btn-sm d-inline-flex align-items-center gap-1"
                           style={{
-                            background: '#0F172A',
+                            background: 'var(--surface-deep)',
                             color: '#FFFFFF',
                             fontSize: '11px',
                             fontWeight: 700,
