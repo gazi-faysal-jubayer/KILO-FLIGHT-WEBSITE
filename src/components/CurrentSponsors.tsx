@@ -56,7 +56,7 @@ export default function CurrentSponsors({ variant = 'full' }: { variant?: Varian
     return (
       <RevealGroup className="row g-3 justify-content-center">
         {CURRENT_SPONSORS.map((s) => (
-          <RevealItem key={s.id} className="col-md-4 col-12">
+          <RevealItem key={s.id} className="col-md-3 col-12">
             <a
               href={s.url}
               target="_blank"
@@ -78,7 +78,7 @@ export default function CurrentSponsors({ variant = 'full' }: { variant?: Varian
   return (
     <RevealGroup className="row g-4 align-items-stretch">
       {CURRENT_SPONSORS.map((s) => (
-        <RevealItem key={s.id} className="col-lg-4 col-md-6 col-12 d-flex">
+        <RevealItem key={s.id} className="col-lg-3 col-md-6 col-12 d-flex">
           <a
             href={s.url}
             target="_blank"

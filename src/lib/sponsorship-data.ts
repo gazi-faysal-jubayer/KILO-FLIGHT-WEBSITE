@@ -205,6 +205,15 @@ export const CURRENT_SPONSORS: CurrentSponsor[] = [
     url: 'https://steadfast.com.bd',
     brandColor: '#00BF6F',
   },
+  {
+    id: 'solidworks',
+    name: 'SolidWorks',
+    role: 'Official CAD Partner',
+    blurb: 'The CAD behind PHOENIX: spaceframe, suspension and bodywork modelled and checked in SolidWorks before a single tube is cut.',
+    logo: '/images/sponsors/solidworks.svg',
+    url: 'https://www.solidworks.com',
+    brandColor: '#E2231A',
+  },
 ];
 
 /** Proposal p.5 — Why sponsor us. */
