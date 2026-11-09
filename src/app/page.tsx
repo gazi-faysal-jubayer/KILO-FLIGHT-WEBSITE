@@ -4,7 +4,6 @@ import HeroVideo from '@/components/HeroVideo';
 import CarSpecsTabs from '@/components/CarSpecsTabs';
 import FsaeEvents from '@/components/FsaeEvents';
 import CurrentSponsors from '@/components/CurrentSponsors';
-import MachinesStack from '@/components/MachinesStack';
 import { Reveal, RevealGroup, RevealItem, GrowBar } from '@/components/motion/Reveal';
 import { SUBTEAMS_DATA } from '@/lib/subteams-data';
 
@@ -82,28 +81,6 @@ export default function HomePage() {
             <Link href="/cars" className="custom-btn-outline">
               Compare Phoenix vs Alpha Full Specs &rarr;
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 2a. THE MACHINES: ThreeUI KoiStudies card stack with our cars */}
-      <section className="machines-section" aria-labelledby="machines-heading">
-        <div className="container mx-auto px-4">
-          <div className="row g-5 align-items-center">
-            <Reveal className="col-lg-5">
-              <span className="badge-motorsport jute mb-3">The Machines</span>
-              <h2 id="machines-heading" className="mb-3">Two cars. One <em>golden</em> fibre.</h2>
-              <p className="mb-4">
-                ALPHA took Bangladesh through the FSAE Japan 2023 mechanical inspection. PHOENIX carries that lesson to Dynamix India 2027,
-                wrapped in natural jute composite instead of carbon.
-              </p>
-              <p className="machines-hint">DRAG · TAP · ← → · AUTO-ROTATES</p>
-            </Reveal>
-            <Reveal className="col-lg-7" delay={0.1}>
-              <div className="machines-frame">
-                <MachinesStack />
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
